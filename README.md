@@ -1,6 +1,7 @@
 # SpotiActions
-SpotiActions creates special Shortcuts you can use in your automations, allowing you to turn your favorite Spotify music into custom alarms.
+SpotiActions lets you create powerful Shortcuts for your automations, turning your favorite Spotify music into personalized alarms.
 
-• You can set your Spotify music as an alarm  
-• Create as many alarms as you want  
- • No token required, No login in the app
+Spotify Premium required.
+Shortcuts can run even when your iPhone is locked in IOS 18, or even IOS 26
+Shortcuts app must be installed on your iPhone.
+Only One-Time Purchase
