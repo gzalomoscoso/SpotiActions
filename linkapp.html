@@ -2,10 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=https://apps.apple.com/app/spotiactions/id6748419049">
   <title>Redirecting...</title>
+  <script>
+    // Redirige automáticamente al abrir la página
+    window.onload = function() {
+      // Reemplazá el ID por el de tu app
+      var appStoreLink = "https://apps.apple.com/app/idXXXXXXXXX";
+      
+      // Intenta abrir en una nueva ventana (a veces fuerza Safari)
+      var win = window.open(appStoreLink, "_blank");
+      
+      // Si el navegador bloquea la apertura, fallback directo
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        window.location.href = appStoreLink;
+      }
+    };
+  </script>
 </head>
 <body>
-  <p>If you are not redirected, <a href="https://apps.apple.com/app/idXXXXXXXXX">click here</a>.</p>
+  <p>Redirecting... If it doesn’t work, <a href="https://apps.apple.com/app/idXXXXXXXXX" target="_blank">click here</a>.</p>
 </body>
 </html>
