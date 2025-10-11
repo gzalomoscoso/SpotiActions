@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpotiActions Main Page</title>
+  <title>SpotiActions – Wake up your way</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -12,33 +13,50 @@
       background: #fafafa;
       color: #333;
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
     header {
       background: #1db954;
       color: white;
-      padding: 2rem;
+      padding: 2rem 1rem;
       text-align: center;
     }
     header h1 {
       margin: 0;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
+      animation: fadeInDown 1s ease forwards;
     }
     header p {
-      font-size: 1.1rem;
       margin-top: 0.5rem;
+      font-size: 1.2rem;
+      animation: fadeIn 1.2s ease forwards;
     }
+
     main {
-      max-width: 700px;
+      max-width: 720px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     section {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
     }
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+    section:nth-child(5) { animation-delay: 1s; }
+
     h2 {
       color: #1db954;
       margin-bottom: 0.5rem;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
     }
     ul {
       padding-left: 1.2rem;
@@ -46,82 +64,125 @@
     li {
       margin-bottom: 0.5rem;
     }
+
     a.button {
       display: inline-block;
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.5rem;
       background: #1db954;
       color: white;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: 600;
       margin-top: 1rem;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     a.button:hover {
       background: #17a447;
+      transform: translateY(-2px);
     }
+
+    .highlight {
+      font-weight: 600;
+      color: #1db954;
+    }
+
+    .premium-section {
+      background: #e6f5eb;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       color: #666;
     }
-    .highlight {
-      font-weight: 600;
-      color: #1db954;
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
   </style>
 </head>
 <body>
+
   <header>
     <h1>SpotiActions</h1>
-    <p>Wake up your way with your favorite Spotify music</p>
+    <p>Free for everyone, optional premium for power users</p>
   </header>
 
   <main>
     <section>
-      <h2>Why You'll Love It</h2>
+      <h2>Start Free</h2>
       <ul>
-        <li>Start every day with music you love</li>
-        <li>Create multiple alarms for different moods or days</li>
-        <li>Automate your morning routine with Spotify and iOS Shortcuts</li>
+        <li>Fully functional without subscription</li>
+        <li>Wake up with your favorite Spotify songs or playlists</li>
+        <li>Set multiple alarms for different moods and days</li>
+        <li>Automate your morning routine via iOS Shortcuts</li>
       </ul>
     </section>
 
-    <section>
-      <h2>How It Works</h2>
+    <section class="premium-section">
+      <h2>Premium Optional</h2>
       <ul>
-        <li>Install the Shortcuts provided by SpotiActions</li>
-        <li>Set your favorite songs or playlists as alarms</li>
-        <li>Shortcuts run even when your iPhone is locked</li>
+        <li>Unlimited playlists and songs</li>
+        <li>Advanced automation options</li>
+        <li>Exclusive features for power users</li>
+        <li>Cancel anytime from your account</li>
       </ul>
+      <div class="cta">
+        <a href="#" class="button">Upgrade to Premium</a>
+      </div>
     </section>
 
     <section>
-      <h2>Important Info</h2>
+      <h2>Why SpotiActions</h2>
       <ul>
-        <li><span class="highlight">Spotify Premium</span> is required</li>
-        <li>The <span class="highlight">Shortcuts app</span> must be installed on your iPhone</li>
+        <li>Free users get full core experience</li>
+        <li>Premium enhances functionality without taking anything away</li>
+        <li>Previous full version buyers keep all features</li>
+        <li>Shortcuts run even when iPhone is locked</li>
       </ul>
     </section>
 
     <section>
       <h2>Need Help?</h2>
-      <p>If you have questions or need support, visit our <a href="https://gzalomoscoso.github.io/SpotiActions/" class="highlight">support page</a>.</p>
-      <a href="https://gzalomoscoso.github.io/SpotiActions/" class="button">Go to Support Page</a>
+      <p>Visit our <a href="https://gzalomoscoso.github.io/SpotiActions/" class="highlight">support page</a> for guides and FAQs.</p>
+      <div class="cta">
+        <a href="https://gzalomoscoso.github.io/SpotiActions/" class="button">Go to Support</a>
+      </div>
     </section>
 
-    <!-- New Section for App Story -->
     <section>
-      <h2>How SpotiActions Was Made. The Story</h2>
-      <p>Discover the journey behind the creation of SpotiActions, from concept to your iPhone.</p>
-      <a href="https://gzalomoscoso.github.io/SpotiActions/story.html" class="button">How SpotiActions Was Made</a>
+      <h2>The Story</h2>
+      <p>Learn how SpotiActions was created, from concept to your iPhone, and the journey of making music automation simple and fun.</p>
+      <div class="cta">
+        <a href="https://gzalomoscoso.github.io/SpotiActions/story.html" class="button">Read the Story</a>
+      </div>
     </section>
-
   </main>
 
   <footer>
     &copy; 2025 SpotiActions. All rights reserved.
   </footer>
+
 </body>
 </html>
