@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Proyecto HTML - plantilla base, responsive y accesible." />
+  <title>Proyecto HTML - Plantilla</title>
+
+  <!-- Favicon / Iconos -->
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Open Graph (básico) -->
+  <meta property="og:title" content="Proyecto HTML - Plantilla" />
+  <meta property="og:description" content="Plantilla base para proyectos front-end." />
+  <meta property="og:type" content="website" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Inicio - Proyecto HTML">
+        <img src="assets/logo.svg" alt="Logo" class="brand-logo" />
+        <span class="brand-name">ProyectoHTML</span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
+          <span class="sr-only">Abrir menú</span>
+          ☰
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="container">
+        <h1>Plantilla base para tu proyecto HTML</h1>
+        <p class="lead">Responsive, accesible y lista para escalar. Tiene ejemplo de layout, formulario y
