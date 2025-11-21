@@ -161,6 +161,7 @@ ul {
     width: auto;
 }
 
+/* Desktop nav hidden by default */
 .nav-desktop {
     display: none;
     gap: 32px;
@@ -193,6 +194,7 @@ ul {
     display: none;
 }
 
+/* Mobile hamburger */
 .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -260,20 +262,12 @@ ul {
     padding-left: 8px;
 }
 
-.mobile-menu nav .btn-primary {
-    margin-top: 20px;
-    text-align: center;
-    border-bottom: none;
-}
-
 /* ============================================
-   FRANJA 1: HERO SECTION
+   HERO SECTION
    ============================================ */
 .hero {
     background-color: var(--white);
     padding: 50px 0 70px;
-    position: relative;
-    overflow: hidden;
 }
 
 .hero-content {
@@ -284,29 +278,6 @@ ul {
 
 .hero-text {
     text-align: center;
-}
-
-.hero-dots {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--orange-primary);
-    opacity: 0.3;
-}
-
-.dot:nth-child(1) {
-    opacity: 1;
-}
-
-.dot:nth-child(2) {
-    opacity: 0.6;
 }
 
 .hero h1 {
@@ -323,27 +294,6 @@ ul {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
-}
-
-.btn-explore {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-primary);
-    font-weight: 600;
-    margin-top: 14px;
-    transition: var(--transition);
-    background-color: transparent;
-}
-
-.btn-explore:hover {
-    color: var(--orange-primary);
-    gap: 12px;
-}
-
-.hero-image {
-    position: relative;
 }
 
 .hero-image img {
@@ -353,40 +303,18 @@ ul {
     border-radius: var(--radius-lg);
 }
 
-.hero-decorations {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.decoration-circle {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--orange-primary);
-    opacity: 0.3;
-}
-
 /* ============================================
-   FRANJA 2: PROCESS SECTION (NARANJA)
+   PROCESS SECTION
    ============================================ */
 .process-section {
     padding: 70px 0;
     background-color: var(--peach-bg);
-    position: relative;
 }
 
 .process-content {
     display: flex;
     flex-direction: column;
     gap: 40px;
-}
-
-.process-image {
-    order: 2;
 }
 
 .process-image img {
@@ -396,100 +324,18 @@ ul {
     border-radius: var(--radius-lg);
 }
 
-.process-text {
-    order: 1;
-    text-align: center;
-}
-
-.process-text h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    line-height: 1.2;
-}
-
-.subtitle {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 35px;
-    line-height: 1.6;
-}
-
-.process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 35px;
-}
-
-.step {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.step-number {
-    min-width: 40px;
-    height: 40px;
-    background-color: var(--orange-primary);
-    color: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-.step-content h4 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--text-primary);
-}
-
-.step-content p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-.process-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
-}
-
-.process-decorations {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    gap: 10px;
-}
-
-.process-decorations .decoration-circle {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: var(--orange-primary);
-    opacity: 0.25;
-}
-
 /* ============================================
-   FRANJA 3: PRODUCTS SECTION
+   PRODUCTS SECTION
    ============================================ */
 .products-section {
     padding: 70px 0;
     background-color: var(--white);
 }
 
+/* RESPONSIVE GRID FIX */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
@@ -503,4 +349,91 @@ ul {
 
 .product-card:hover {
     transform: translateY(-4px);
-    box
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background-color: var(--white);
+    padding: 40px 0 30px;
+    border-top: 1px solid #E9ECEF;
+}
+
+.footer-columns {
+    display: grid;
+    gap: 24px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (min-width: 768px) {
+
+    .nav-desktop {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 60px;
+    }
+
+    .hero-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .hero-image {
+        flex: 1;
+    }
+
+    .process-content {
+        flex-direction: row;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .process-image {
+        order: 1;
+    }
+
+    .process-text {
+        order: 2;
+        text-align: left;
+    }
+
+    .footer-columns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================================
+   EXTRA MOBILE OPTIMIZATION
+   ============================================ */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
