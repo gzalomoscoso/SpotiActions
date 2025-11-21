@@ -4,85 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hacemos tus stickers</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, sans-serif;
-            color: #333;
-            line-height: 1.5;
-        }
-
-        header {
-            padding: 16px;
-            text-align: center;
-        }
-
-        .logo img {
-            width: 140px;
-            height: auto;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 16px;
-        }
-
-        h1, h2 {
-            margin-top: 24px;
-            margin-bottom: 12px;
-        }
-
-        img.responsive {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-        }
-
-        .section {
-            margin-bottom: 32px;
-        }
-
-        ul {
-            padding-left: 18px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 32px 16px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.6rem; }
-            h2 { font-size: 1.3rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<header>
+<header class="header">
     <div class="logo">
-        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers" style="width: 100%; height: auto;">
-    </ div>
+        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers">
+    </div>
 </header>
 
 <div class="container">
 
+    <!-- Sección hero principal -->
     <div class="section">
         <h1>Prepara el regreso a clases con todo lo necesario</h1>
         <p>Stickers personalizados para libros, folders y loncheras para mantener el orden desde el inicio del año escolar. Diseños únicos que hacen que cada detalle cuente.</p>
-        <img src="colegio/assets/index1.jpg" class="responsive" alt="Niños con materiales escolares">
+        <img src="colegio/assets/index1.jpg" alt="Niños con materiales escolares">
     </div>
 
-    <div class="section">
-        <img src="colegio/assets/index3.jpg" class="responsive" alt="Niño organizando su mochila">
+    <!-- Sección index3: texto 60% / imagen 40% -->
+    <div class="section-row">
+        <div class="text-col">
+            <h2>Organiza tus útiles escolares</h2>
+            <p>Todo lo que necesitas para que los niños mantengan sus libros, folders y loncheras organizados desde el primer día.</p>
+        </div>
+        <div class="image-col">
+            <img src="colegio/assets/index3.jpg" alt="Niño organizando su mochila">
+        </div>
     </div>
 
+    <!-- Sección index4: texto 60% / imagen 40% + fondo naranja -->
+    <div class="section-row section-index4">
+        <div class="text-col">
+            <h2>Stickers personalizados y divertidos</h2>
+            <p>Diseños únicos para cada niño, con personajes y colores que hacen que cada útil sea especial y fácil de identificar.</p>
+        </div>
+        <div class="image-col">
+            <img src="colegio/assets/index4.jpg" alt="Niña con stickers en cuaderno">
+        </div>
+    </div>
+
+    <!-- Sección compra fácil -->
     <div class="section">
         <h2>¡Compra fácil y rápido!</h2>
         <p>Encontrarás que preparar el año escolar puede ser sencillo. ¡Haz tus pedidos en minutos!</p>
@@ -94,9 +57,10 @@
         </ul>
     </div>
 
+    <!-- Sección productos -->
     <div class="section">
         <h2>Descubre nuestros productos</h2>
-        <img src="colegio/assets/producto1.jpg" class="responsive" alt="Catálogo de stickers">
+        <img src="colegio/assets/producto1.jpg" alt="Catálogo de stickers">
 
         <h3>Stickers Pequeños</h3>
         <p>Perfectos para lápices, lapiceros y marcadores. Resistentes y duraderos para el día a día.</p>
@@ -117,16 +81,16 @@
         <p>Stickers únicos con personajes y estilos que les encantan a los niños.</p>
     </div>
 
+    <!-- Testimonios -->
     <div class="section">
         <h2>Lo que dicen los padres</h2>
         <p><strong>Carla Ruiz:</strong> “Pedidos simples e increíbles. Me ha organizado el año de mis hijos totalmente. Muy recomendado.” ⭐⭐⭐⭐⭐</p>
-
         <p><strong>Ana Torres:</strong> “Mejoré todo. Mis hijos y niñas están súper felices con los diseños. Excelente calidad.” ⭐⭐⭐⭐⭐</p>
     </div>
 
 </div>
 
-<footer>
+<footer class="footer">
     © 2025 Hacemos tus stickers — Todos los derechos reservados.
 </footer>
 
