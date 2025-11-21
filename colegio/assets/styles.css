@@ -5,7 +5,7 @@
     --orange-primary: #FF6B3D;
     --orange-light: #FF8C6B;
     --orange-dark: #E85A2C;
-    --peach-bg: #FFE8E0;
+    --peach-bg: rgb(255,232,224);
     --yellow: #FFC947;
     --green: #2DD36F;
     --purple: #6B7AFF;
@@ -47,6 +47,7 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    object-fit: contain;
 }
 
 a {
@@ -159,8 +160,6 @@ ul {
 .logo img {
     height: 40px;
     width: auto;
-    object-fit: contain;
-    display: block;
 }
 
 /* Desktop nav hidden by default */
@@ -306,6 +305,31 @@ ul {
 }
 
 /* ============================================
+   SECTION 60/40 LAYOUT PARA INDEX3 E INDEX4
+   ============================================ */
+.section-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.section-row .text-col {
+    flex: 0 0 60%;
+}
+
+.section-row .image-col {
+    flex: 0 0 40%;
+}
+
+.section-index4 {
+    background-color: rgb(255,232,224);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+/* ============================================
    PROCESS SECTION
    ============================================ */
 .process-section {
@@ -328,14 +352,13 @@ ul {
 }
 
 /* ============================================
-   PRODUCTOS SECTION
+   PRODUCTS SECTION
    ============================================ */
 .products-section {
     padding: 70px 0;
     background-color: var(--white);
 }
 
-/* RESPONSIVE GRID FIX */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -354,6 +377,12 @@ ul {
     transform: translateY(-4px);
 }
 
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
 /* ============================================
    FOOTER
    ============================================ */
@@ -369,100 +398,9 @@ ul {
 }
 
 /* ============================================
-   SECCIONES INTERNAS 60/40 TEXTO-IMAGEN
-   ============================================ */
-.section-row {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.section-row .text-col {
-    width: 100%;
-}
-
-.section-row .image-col {
-    width: 100%;
-}
-
-.section-row .image-col img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-}
-
-/* Desktop layout 60% texto / 40% imagen */
-@media (min-width: 768px) {
-    .section-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 0;
-    }
-    .section-row.text-left .text-col {
-        flex: 0 0 60%;
-    }
-    .section-row.text-left .image-col {
-        flex: 0 0 40%;
-    }
-    .section-row.text-right .text-col {
-        flex: 0 0 60%;
-        order: 2;
-    }
-    .section-row.text-right .image-col {
-        flex: 0 0 40%;
-        order: 1;
-    }
-}
-
-/* Fondos */
-.section-index3 {
-    background-color: var(--white);
-}
-
-.section-index4 {
-    background-color: rgb(255, 232, 224);
-}
-
-/* Ajustes de texto */
-.section-row h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: var(--text-primary);
-}
-
-.section-row p {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-/* Responsive móviles */
-@media (max-width: 767px) {
-    .section-row {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    .section-row h1 {
-        font-size: 1.6rem;
-    }
-    .section-row p {
-        font-size: 0.95rem;
-    }
-}
-
-/* ============================================
-   RESPONSIVE BREAKPOINTS GENERALES
+   RESPONSIVE BREAKPOINTS
    ============================================ */
 @media (min-width: 768px) {
-
     .nav-desktop {
         display: flex;
     }
@@ -511,31 +449,30 @@ ul {
     h1 {
         font-size: 1.8rem;
     }
+
     h2 {
         font-size: 1.5rem;
     }
+
     p {
         font-size: 0.95rem;
     }
+
     .btn-primary,
     .btn-secondary {
         padding: 12px 24px;
         font-size: 14px;
     }
+
     .product-card img {
         height: 150px;
     }
+
     .hero-image img {
         max-height: 300px;
     }
+
     .process-image img {
         max-height: 280px;
     }
-}
-
-/* ============================================
-   AJUSTES GENERALES DE IMÁGENES
-   ============================================ */
-img.no-crop {
-    object-fit: contain;
 }
