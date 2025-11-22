@@ -1,163 +1,94 @@
-/* ============================================
-   VARIABLES Y RESET
-   ============================================ */
-:root {
-    --orange-primary: #FF6B3D;
-    --orange-light: #FF8C6B;
-    --orange-dark: #E85A2C;
-    --peach-bg: rgb(255,232,224);
-    --yellow: #FFC947;
-    --green: #2DD36F;
-    --purple: #6B7AFF;
-    --turquoise: #A8DADC;
-    --text-primary: rgba(0, 0, 0, 0.85);
-    --text-secondary: rgba(0, 0, 0, 0.7);
-    --text-muted: #636E72;
-    --bg-light: #F8F9FA;
-    --white: #FFFFFF;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
+/* Reset simple */
+body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-html { 
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
-    background-color: var(--bg-light);
-    line-height: 1.6;
-    overflow-x: hidden;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    color: #333;
+    line-height: 1.4;
 }
 
-img {
+/* Contenedor general */
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* HEADER */
+.header {
+    width: 100%;
+    background: #fff;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+.header img {
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Secciones estándar */
+.section {
+    padding: 40px 0;
+}
+.section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+/* Filas con dos columnas */
+.section-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 50px 0;
+}
+
+/* Columnas */
+.text-col {
+    width: 60%;
+}
+.image-col {
+    width: 40%;
+}
+.image-col img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* ============================================
-   CONTAINER
-   ============================================ */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-.header {
-    background-color: var(--white);
-    padding: 18px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow-sm);
-}
-
-.logo img {
-    height: 40px;
-    width: auto;
-}
-
-/* ============================================
-   SECTIONS GENERALES
-   ============================================ */
-.section {
-    margin-bottom: 40px;
-}
-
-/* ============================================
-   SECCIÓN 60/40 INDEX3 e INDEX4
-   ============================================ */
-.section-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 32px;
-}
-
-.text-col {
-    flex: 0 0 60%;
-}
-
-.image-col {
-    flex: 0 0 40%;
-}
-
-.image-col img {
-    width: 100%;
-    height: auto;
-    max-height: 220px; /* EVITA EXPANSIÓN EN MÓVILES */
-    object-fit: cover; /* RELLENO ESTABLE */
-    border-radius: 10px;
-}
-
+/* Fondo especial (index4) */
 .section-index4 {
-    background-color: rgb(255,232,224);
-    padding: 16px;
+    background: #ffe6cc;
+    padding: 60px 30px;
     border-radius: 12px;
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* Footer */
 .footer {
     text-align: center;
-    padding: 24px 0;
-    color: #666;
+    padding: 40px 0;
+    background: #f0f0f0;
+    margin-top: 30px;
+    font-size: 14px;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-/* Móviles: columnas 100% */
-@media only screen and (max-width: 768px) {
+/* Móvil */
+@media (max-width: 780px) {
     .section-row {
         flex-direction: column;
+        text-align: center;
     }
-
-    .text-col,
-    .image-col {
-        flex: 0 0 100%;
+    .text-col, .image-col {
+        width: 100%;
     }
-
-    .image-col img {
-        max-height: 280px;
-        object-fit: cover;
-    }
-}
-
-/* Ajustes móviles pequeños */
-@media only screen and (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    p { font-size: 0.95rem; }
-
-    .container {
-        padding: 14px;
-        max-width: 600px;
-    }
-
-    .image-col img {
-        max-height: 240px;
+    .section-index4 {
+        padding: 40px 20px;
     }
 }
