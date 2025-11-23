@@ -1,85 +1,135 @@
-/* Logo a 100% */
-.logo-full {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hacemos tus stickers</title>
+    <link rel="stylesheet" href="styles.css?v=221122b">
+</head>
+<body>
 
-/* Footer general */
-.footer {
-    background: #f8f8f8;
-    padding: 40px 20px 20px;
-    margin-top: 40px;
-    border-top: 1px solid #ddd;
-}
+<header class="header">
+    <div class="logo">
+        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers">
+    </div>
+</header>
 
-.footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+<!-- SECCIÓN TITULAR (1 columna) -->
+<div class="section single-col">
+    <h1>Prepara todo para cuando volvamos a clases</h1>
+</div>
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 30px;
-    margin-bottom: 30px;
-}
+<!-- SECCIÓN 1 (2 columnas) -->
+<div class="section-row">
+    <div class="text-col">
+        <h2>Organiza tus útiles escolares</h2>
+        <p>Todo lo que necesitas para que los niños mantengan sus libros, folders y loncheras organizados desde el primer día.</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/index1.jpg" alt="útiles escolares">
+    </div>
+</div>
 
-/* Columnas */
-.footer-column h4 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
+<!-- SECCIÓN 2 (2 columnas) -->
+<div class="section-row">
+    <div class="text-col">
+        <h2>Stickers personalizados</h2>
+        <p>Diseños únicos para cada niño, con personajes y colores que hacen que cada útil sea especial y fácil de identificar.</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/index2.jpg" alt="Stickers personalizados">
+    </div>
+</div>
 
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+<!-- SECCIÓN 3 (2 columnas) -->
+<div class="section-row">
+    <div class="text-col">
+        <h2>Elige tu pack ideal</h2>
+        <p>Tenemos tamaños y formatos para todo tipo de útiles escolares y necesidades.</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/index3.jpg" alt="packs de stickers">
+    </div>
+</div>
 
-.footer-column ul li {
-    margin-bottom: 8px;
-}
+<!-- SECCIÓN 4 (2 columnas) -->
+<div class="section-row">
+    <div class="text-col">
+        <h2>Compra fácil y rápido</h2>
+        <ul>
+            <li>Elije el tipo de stickers y la cantidad</li>
+            <li>Escribe al WhatsApp y recibirás el monto a pagar</li>
+            <li>Realiza tu compra por Yape o transferencia bancaria</li>
+            <li>Te vamos informando el status de tu pedido</li>
+            <li>Recibe en casa: podemos incluir el delivery</li>
+        </ul>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/index4.jpg" alt="compra rápida">
+    </div>
+</div>
 
-.footer-column ul li a {
-    color: #444;
-    text-decoration: none;
-}
+<!-- SECCIÓN 5: PRODUCTOS (Grid 2x3) -->
+<section class="products">
+    <h2>Nuestros Productos</h2>
 
-.footer-column ul li a:hover {
-    text-decoration: underline;
-}
+    <div class="products-grid">
 
-/* Logo del footer */
-.footer-logo img {
-    width: 120px;
-    height: auto;
-    display: block;
-    margin-bottom: 15px;
-}
+        <div class="product-card">
+            <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños">
+            <h3>Stickers Pequeños</h3>
+            <p>Perfectos para lápices, lapiceros y marcadores.</p>
+        </div>
 
-/* Redes sociales */
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
+        <div class="product-card">
+            <img src="colegio/assets/producto2.jpg" alt="Stickers medianos">
+            <h3>Stickers Medianos</h3>
+            <p>Ideales para cuadernos y planners.</p>
+        </div>
 
-.footer-social a svg {
-    width: 24px;
-    height: 24px;
-    color: #444;
-    transition: opacity .2s;
-}
+        <div class="product-card">
+            <img src="colegio/assets/producto3.jpg" alt="Stickers grandes">
+            <h3>Stickers Grandes</h3>
+            <p>Perfectos para folders, cuadernos y agendas.</p>
+        </div>
 
-.footer-social a:hover svg {
-    opacity: .6;
-}
+        <div class="product-card">
+            <img src="colegio/assets/producto4.jpg" alt="Sello para ropa">
+            <h3>Sello para ropa</h3>
+            <p>No se sale con lavadas.</p>
+        </div>
 
-/* Footer inferior */
-.footer-bottom {
-    text-align: center;
-    font-size: 14px;
-    color: #777;
-}
+        <div class="product-card">
+            <img src="colegio/assets/producto5.jpg" alt="Paquete completo">
+            <h3>Paquete Completo</h3>
+            <p>Un pack ideal para iniciar el año escolar.</p>
+        </div>
+
+        <div class="product-card">
+            <img src="colegio/assets/producto6.jpg" alt="Diseños especiales">
+            <h3>Diseños Especiales</h3>
+            <p>Personajes y estilos únicos para cada niño.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- TESTIMONIOS (1 columna) -->
+<section class="testimonios">
+    <h2>Lo que dicen los padres</h2>
+
+    <div class="testimonial">
+        <p><strong>Carla Ruiz:</strong> “Pedidos simples e increíbles. Organizó el año escolar de mis hijos.”</p>
+    </div>
+
+    <div class="testimonial">
+        <p><strong>Ana Torres:</strong> “Mis hijos están felices con los diseños. Excelente calidad.”</p>
+    </div>
+</section>
+
+<footer class="footer">
+    © 2025 Hacemos tus stickers — Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
