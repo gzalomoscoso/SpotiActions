@@ -18,7 +18,7 @@ body {
     margin: auto;
 }
 
-/* Header */
+/* Header (solo 1 columna) */
 .header {
     padding: 20px 0;
     text-align: center;
@@ -64,7 +64,7 @@ body {
 
 /* Sección con fondo naranja */
 .section-index4 {
-    background: #FFE8E0; /* color original */
+    background: #FFE8E0;
     border-radius: 12px;
     padding: 40px 20px;
 }
@@ -80,7 +80,7 @@ body {
     }
 }
 
-/* Desktop opcional */
+/* Desktop */
 @media (min-width: 900px) {
     .section-row {
         gap: 40px;
