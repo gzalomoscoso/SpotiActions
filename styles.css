@@ -1,13 +1,54 @@
-/* FILAS 60/40 */
+/* Reset simple */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #FFFFFF; /* siempre blanco */
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Contenedor */
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Header */
+.header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo img {
+    height: 70px;
+}
+
+/* Secciones */
+.section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 16px;
+}
+
+/* 2 columnas (MÓVIL POR DEFECTO) */
 .section-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 20px;
-    width: 100%;
+    padding: 30px 0;
+    align-items: center;
 }
 
-/* Columnas */
 .text-col {
     width: 60%;
 }
@@ -18,14 +59,41 @@
 
 .image-col img {
     width: 100%;
-    height: auto;
-    display: block;
+    border-radius: 16px;
 }
 
-/* Sangría para las viñetas */
-.section ul {
-    padding-left: 22px;
-    margin-top: 10px;
+/* Sección con fondo naranja */
+.section-index4 {
+    background: #FFE8E0; /* color original */
+    border-radius: 12px;
+    padding: 40px 20px;
+}
+
+/* Ajuste SOLO para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .section-row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-col, .image-col {
+        width: 100%;
+    }
+}
+
+/* Desktop opcional */
+@media (min-width: 900px) {
+    .section-row {
+        gap: 40px;
+        padding: 50px 0;
+    }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-size: 14px;
 }
 
 .section ul {
