@@ -1,10 +1,52 @@
-/* BASE → Móvil con dos columnas */
+/* Reset simple */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #FFFFFF; /* siempre blanco */
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Contenedor */
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Header */
+.header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo img {
+    height: 70px;
+}
+
+/* Secciones */
+.section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 16px;
+}
+
+/* 2 columnas (MÓVIL POR DEFECTO) */
 .section-row {
     display: flex;
-    flex-direction: row; /* columnas desde el inicio */
-    align-items: center;
+    flex-direction: row;
     gap: 20px;
     padding: 30px 0;
+    align-items: center;
 }
 
 .text-col {
@@ -15,7 +57,19 @@
     width: 40%;
 }
 
-/* Ajuste opcional para pantallas MUY chicas (solo si algo se rompe) */
+.image-col img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+/* Sección con fondo naranja */
+.section-index4 {
+    background: #FFE8E0; /* color original */
+    border-radius: 12px;
+    padding: 40px 20px;
+}
+
+/* Ajuste SOLO para pantallas muy pequeñas */
 @media (max-width: 360px) {
     .section-row {
         flex-direction: column;
@@ -26,10 +80,18 @@
     }
 }
 
-/* Ajuste opcional para desktop */
+/* Desktop opcional */
 @media (min-width: 900px) {
     .section-row {
         gap: 40px;
         padding: 50px 0;
     }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-size: 14px;
 }
