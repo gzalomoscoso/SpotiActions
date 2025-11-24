@@ -6,7 +6,7 @@ body, h1, h2, h3, p, ul, li {
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF; /* siempre blanco */
+    background: #FFFFFF;
     color: #333;
     line-height: 1.4;
 }
@@ -18,7 +18,7 @@ body {
     margin: auto;
 }
 
-/* Header (solo 1 columna) */
+/* Header */
 .header {
     padding: 20px 0;
     text-align: center;
@@ -40,17 +40,14 @@ body {
     margin-top: 16px;
 }
 
-/* 2 columnas (MÓVIL POR DEFECTO) */
+/* 2 columnas (móvil por defecto) */
 .section-row {
     display: flex;
-    flex-direction: column; /* móvil por defecto */
+    flex-direction: row;     /* Vuelve a quedar como antes: en fila */
     gap: 20px;
     padding: 30px 0;
     align-items: center;
 }
-
-
-
 
 .text-col {
     width: 60%;
@@ -68,71 +65,48 @@ body {
     width: 60%;
 }
 
-.image-col img {
-    width: 100%;
-    border-radius: 16px;
-}
-
+.image-col img,
 .image-col60 img {
     width: 100%;
     border-radius: 16px;
 }
 
-
+/* Sección con fondo */
 .section-bg-naranja {
     background: #f0e4dc;
     border-radius: 12px;
     padding: 40px 20px;
-
     display: flex;
-    flex-direction: column;
+    flex-direction: row;      /* igual al resto */
     gap: 20px;
+    align-items: center;
 }
 
-
-
-@media (min-width: 900px) {
-    .section-bg-naranja {
-        flex-direction: row;
-        align-items: center;
-    }
-}
-
+/* Grid de productos */
 .products-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 20px;
 }
 
-@media (min-width: 900px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-/* Ajuste SOLO para pantallas muy pequeñas */
-@media (max-width: 360px) {
-    .section-row {
+/* Ajuste SOLO para pantallas pequeñas (opción recomendada: 480px) */
+@media (max-width: 480px) {
+    .section-row,
+    .section-bg-naranja {
         flex-direction: column;
         text-align: center;
     }
-    .text-col, .image-col, .text-col40, .image-col60 {
+
+    .text-col,
+    .image-col,
+    .text-col40,
+    .image-col60 {
         width: 100%;
     }
-}
 
-
-/* Desktop */
-@media (min-width: 900px) {
-.section-row {
-        flex-direction: row; /* desktop */
-        gap: 40px;
-        padding: 50px 0;
-    }
     .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
