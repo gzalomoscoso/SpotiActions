@@ -49,13 +49,7 @@ body {
     align-items: center;
 }
 
-@media (min-width: 900px) {
-    .section-row {
-        flex-direction: row; /* desktop */
-        gap: 40px;
-        padding: 50px 0;
-    }
-}
+
 
 
 .text-col {
@@ -89,7 +83,12 @@ body {
     background: #f0e4dc;
     border-radius: 12px;
     padding: 40px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
+
 
 
 @media (min-width: 900px) {
@@ -127,7 +126,8 @@ body {
 
 /* Desktop */
 @media (min-width: 900px) {
-    .section-row {
+.section-row {
+        flex-direction: row; /* desktop */
         gap: 40px;
         padding: 50px 0;
     }
@@ -135,7 +135,6 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
 
 /* Footer */
 .footer {
