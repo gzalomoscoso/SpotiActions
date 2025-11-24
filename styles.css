@@ -57,17 +57,29 @@ body {
     width: 40%;
 }
 
+.text-col40 {
+    width: 40%;
+}
+
+.image-col60 {
+    width: 60%;
+}
+
 .image-col img {
     width: 100%;
     border-radius: 16px;
 }
 
-/* Sección con fondo naranja */
-.section-index4 {
-    background: #FFE8E0;
+.image-col60 img {
+    width: 100%;
+    border-radius: 16px;
+}
+.section-bg-naranja {
+    background: #f0e4dc;
     border-radius: 12px;
     padding: 40px 20px;
 }
+
 
 /* Ajuste SOLO para pantallas muy pequeñas */
 @media (max-width: 360px) {
