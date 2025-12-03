@@ -12,6 +12,12 @@ body {
     box-sizing: border-box; /* aplicar box-sizing global */
 }
 
+/* Reduce margen entre título y la siguiente sección */
+.section.single-col h1 {
+    margin-bottom: 16px; /* antes podría estar en 40px implícito */
+}
+
+
 /* Contenedor */
 .container {
     width: 92%;
@@ -50,7 +56,7 @@ body {
 .section-row,
 .section-bg-naranja,
 .section.single-col {
-    padding: 40px 16px; /* top/bottom 40px, izquierda/derecha 16px */
+    padding: 20px 16px; /* top/bottom reducido de 40px a 20px */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -58,6 +64,7 @@ body {
     border-radius: 12px;
     box-sizing: border-box;
 }
+
 
 .text-col, .text-col40 {
     width: 60%;
@@ -170,7 +177,7 @@ body {
 
 
 #whatsapp-button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: #25D366;
