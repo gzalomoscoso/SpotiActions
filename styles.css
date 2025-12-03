@@ -80,6 +80,10 @@ body {
 }
 
 /* Productos */
+.products h2 {
+    text-align: center;
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -153,6 +157,14 @@ body {
 }
 
 /* Botón WhatsApp compacto */
+
+#whatsapp-button.disabled {
+    opacity: 0.5;
+    pointer-events: none; /* no se puede hacer clic */
+    cursor: not-allowed;
+}
+
+
 #whatsapp-button {
     display: inline-flex;
     align-items: center;
