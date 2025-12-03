@@ -149,12 +149,16 @@ body {
 
 /* Resumen pedido */
 #pedido {
-    border-top: 2px dashed #ccc;
-    margin-top: 30px;
-    padding-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    min-height: 60px;
     font-weight: bold;
     white-space: pre-line; /* mantiene saltos de línea */
+    user-select: text;      /* permite copiar, pero no editar */
 }
+
 
 /* Botón WhatsApp compacto */
 
