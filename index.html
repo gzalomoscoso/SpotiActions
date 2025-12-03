@@ -9,6 +9,9 @@
 </head>
 <body>
 
+    
+
+
 <header class="header">
     <div class="logo">
         <img src="colegio/assets/logo.jpg"
@@ -17,6 +20,9 @@
     </div>
 </header>
 
+actualizarPedido();
+
+    
 <div class="section single-col">
     <h1>Prepara todo para cuando volvamos a clases</h1>
 </div>
@@ -159,15 +165,18 @@
 
 
     <!-- Resumen de pedido -->
-    <div id="pedido">
+    <div id="pedido" aria-readonly="true">
         Tu pedido aparecerá aquí...
     </div>
 
+    
+    
     <!-- Botón WhatsApp -->
-    <a id="whatsapp-button" href="#" target="_blank">
-        <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
-        Hacer pedido por WhatsApp
-    </a>
+<a id="whatsapp-button" href="#" target="_blank" class="disabled">
+    <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
+    Hacer pedido via WhatsApp
+</a>
+
 </section>
 
 <footer class="footer">
@@ -216,15 +225,26 @@ function actualizarPedido() {
     // Opción delivery
     const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
-    if(total>0){
+    if(total > 0){
         textoPedido += `\nTotal: S/ ${total}`;
         textoPedido += `\n${delivery}`;
     }
 
+    // Actualiza contenido del pedido
     pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
+
+    // Actualiza link WhatsApp
     const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
     whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
+
+    // Habilita o deshabilita botón según contenido
+    if (textoPedido.trim() !== '' && total > 0) {
+        whatsappBtn.classList.remove('disabled');
+    } else {
+        whatsappBtn.classList.add('disabled');
+    }
 }
+
 </script>
 
 </body>
