@@ -1,40 +1,37 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hacemos tus stickers</title>
-    <link rel="stylesheet" href="styles.css?v=221122b">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hacemos tus stickers</title>
+<link rel="stylesheet" href="styles.css?v=221122b">
 </head>
 <body>
 
 <header class="header">
     <div class="logo">
-        <img src="colegio/assets/logo.jpg"
-             alt="Hacemos tus stickers"
-             style="max-width:100%; height:auto; display:block; object-fit:contain;">
+        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers">
     </div>
 </header>
 
-<!-- SECCIÓN TITULAR (1 columna) -->
 <div class="section single-col">
     <h1>Prepara todo para cuando volvamos a clases</h1>
 </div>
 
-<!-- SECCIÓN 1 (2 columnas) -->
 <div class="section-row">
-        <div class="image-col60">
+    <div class="image-col60">
         <img src="colegio/assets/utiles.jpg" alt="útiles escolares">
     </div>
     <div class="text-col40">
-        <h2>Organiza tus útiles escolares para que los niños mantengan sus cuadernos, agendas y demás útiles organizados desde el primer día</h2>
+        <h2>Organiza tus útiles escolares...</h2>
         <p>Mejor hacerlo con tiempo</p>
     </div>
 </div>
 
 <div class="section-bg-naranja">
     <div class="text-col">
-        <h2>Stickers personalizados para cada niño, con personajes y colores que hacen que cada cosa sea especial y fácil de identificar</h2>
+        <h2>Stickers personalizados para cada niño...</h2>
         <p>Diseños únicos</p>
     </div>
     <div class="image-col">
@@ -42,7 +39,6 @@
     </div>
 </div>
 
-<!-- SECCIÓN 3 (2 columnas) -->
 <div class="section-row">
     <div class="text-col">
         <h2>Tamaños y diseños súper lindos para niño y niña</h2>
@@ -53,85 +49,97 @@
     </div>
 </div>
 
-<!-- SECCIÓN 4 (2 columnas) -->
 <div class="section-bg-naranja">
     <div class="text-col">
-        <h2>Compra Segura: Realiza tu compra por Yape o transferencia bancaria y recibelo en casa</h2>
-            <p>Cuenta Bancaria BCP o Interbank</p>
+        <h2>Compra Segura: Realiza tu compra por Yape o transferencia bancaria</h2>
+        <p>Cuenta Bancaria BCP o Interbank</p>
     </div>
     <div class="image-col">
         <img src="colegio/assets/yape.jpg" alt="compra rápida">
     </div>
 </div>
 
-
-    
-<!-- SECCIÓN 6: PRODUCTOS (Grid 2x3) -->
 <section class="products">
     <h2>Mira Nuestros Productos</h2>
-<hr>
+    <hr>
     <div class="products-grid">
-
-        <div class="product-card">
+        <!-- Repetir este bloque por producto -->
+        <div class="product-card" data-product="Stickers Pequeños" data-price="15">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
             <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños">
-
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 15</p>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-product="Stickers Medianos" data-price="25">
             <h3>Stickers Medianos</h3>
             <p>Ideales para cuadernos y planners.</p>
             <img src="colegio/assets/producto2.jpg" alt="Stickers medianos">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 25</p>
         </div>
 
-        <div class="product-card">
-            <h3>Stickers Grandes</h3>
-            <p>Perfectos para folders, cuadernos y agendas.</p>
-            <img src="colegio/assets/producto3.jpg" alt="Stickers grandes">
-
-        </div>
-
-        <div class="product-card">
-            <h3>Sello para ropa</h3>
-            <p>No se sale con lavadas.</p>
-            <img src="colegio/assets/producto4.jpg" alt="Sello para ropa">
-            
-        </div>
-
-        <div class="product-card">
-            <h3>Paquete Completo</h3>
-            <p>Un pack ideal para iniciar el año escolar.</p>
-            <img src="colegio/assets/producto5.jpg" alt="Paquete completo">
-            
-        </div>
-
-        <div class="product-card">
-            <h3>Diseños Especiales</h3>
-            <p>Personajes y estilos únicos para cada niño.</p>
-            <img src="colegio/assets/producto6.jpg" alt="Diseños especiales">
-            
-        </div>
-
-    </div>
-</section>
-
-<!-- TESTIMONIOS (1 columna) -->
-<section class="testimonios">
-    <h2>Lo que dicen los padres</h2>
-<hr>
-    <div class="testimonial">
-        <p><strong>Carla Ruiz:</strong> “Pedidos simples e increíbles. Organizó el año escolar de mis hijos.”</p>
+        <!-- Agregar más productos según corresponda -->
     </div>
 
-    <div class="testimonial">
-        <p><strong>Ana Torres:</strong> “Mis hijos están felices con los diseños. Excelente calidad.”</p>
+    <div id="pedido">
+        Tu pedido aparecerá aquí...
     </div>
+
+    <a id="whatsapp-button" href="#" target="_blank">
+        🟢 Hacer pedido por WhatsApp
+    </a>
+
 </section>
 
 <footer class="footer">
     © 2025 Hacemos tus stickers — Todos los derechos reservados.
 </footer>
+
+<script>
+const productCards = document.querySelectorAll('.product-card');
+const pedidoDiv = document.getElementById('pedido');
+const whatsappBtn = document.getElementById('whatsapp-button');
+
+productCards.forEach(card => {
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('input');
+
+    minus.addEventListener('click', () => {
+        input.value = Math.max(0, parseInt(input.value) - 1);
+        actualizarPedido();
+    });
+    plus.addEventListener('click', () => {
+        input.value = parseInt(input.value) + 1;
+        actualizarPedido();
+    });
+    input.addEventListener('input', actualizarPedido);
+});
+
+function actualizarPedido() {
+    let textoPedido = '';
+    productCards.forEach(card => {
+        const cantidad = parseInt(card.querySelector('input').value);
+        if (cantidad > 0) {
+            const nombre = card.dataset.product;
+            textoPedido += `${nombre}: ${cantidad} unidades\n`;
+        }
+    });
+    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
+    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
+    whatsappBtn.href = `https://wa.me/51900000000?text=${mensaje}`; // reemplazar con tu número
+}
+</script>
 
 </body>
 </html>
