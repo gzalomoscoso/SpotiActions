@@ -25,9 +25,12 @@ body {
 }
 
 .logo img {
-    height: 70px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
+/* Secciones */
 .section {
     margin: 40px 0;
 }
@@ -69,6 +72,7 @@ body {
     background: #f0e4dc;
 }
 
+/* Productos */
 .products-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -97,9 +101,21 @@ body {
     margin: 8px 0;
 }
 
+.product-quantity button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ddd;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .product-quantity input {
     width: 50px;
     text-align: center;
+    font-size: 16px;
+    padding: 4px;
 }
 
 .product-price {
@@ -107,15 +123,31 @@ body {
     margin-top: 8px;
 }
 
+/* Opciones Delivery */
+.delivery-options {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.delivery-options input {
+    margin-right: 6px;
+}
+
+/* Resumen pedido */
 #pedido {
     border-top: 2px dashed #ccc;
     margin-top: 30px;
     padding-top: 20px;
     font-weight: bold;
+    white-space: pre-line; /* mantiene saltos de línea */
 }
 
+/* Botón WhatsApp */
 #whatsapp-button {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #25D366;
     color: white;
     font-weight: bold;
@@ -125,8 +157,15 @@ body {
     text-decoration: none;
     margin: 20px auto 40px auto;
     font-size: 18px;
+    gap: 10px;
 }
 
+#whatsapp-button img {
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Footer */
 .footer {
     text-align: center;
     padding: 30px 0;
@@ -134,6 +173,7 @@ body {
     font-size: 14px;
 }
 
+/* Media Queries */
 @media (max-width: 480px) {
     .section-row, .section-bg-naranja {
         flex-direction: column;
