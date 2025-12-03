@@ -8,19 +8,17 @@ body, h1, h2, h3, p, ul, li {
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF; /* siempre blanco */
+    background: #FFFFFF;
     color: #333;
     line-height: 1.4;
 }
 
-/* Contenedor */
 .container {
     width: 92%;
     max-width: 900px;
     margin: auto;
 }
 
-/* Header */
 .header {
     padding: 20px 0;
     text-align: center;
@@ -30,7 +28,6 @@ body {
     height: 70px;
 }
 
-/* Secciones */
 .section {
     margin: 40px 0;
 }
@@ -53,7 +50,7 @@ body {
 .section-row .text-col40,
 .section-bg-naranja .text-col {
     width: 100%;
-    text-align: left; /* margen izquierdo */
+    text-align: left;
 }
 
 .section-row .image-col,
@@ -68,12 +65,10 @@ body {
     margin-top: 16px;
 }
 
-/* Sección con fondo naranja */
 .section-bg-naranja {
     background: #f0e4dc;
 }
 
-/* Productos (grid) */
 .products-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -112,7 +107,6 @@ body {
     margin-top: 8px;
 }
 
-/* Pedido dinámico */
 #pedido {
     border-top: 2px dashed #ccc;
     margin-top: 30px;
@@ -120,7 +114,6 @@ body {
     font-weight: bold;
 }
 
-/* Botón WhatsApp */
 #whatsapp-button {
     display: block;
     background-color: #25D366;
@@ -134,7 +127,6 @@ body {
     font-size: 18px;
 }
 
-/* Footer */
 .footer {
     text-align: center;
     padding: 30px 0;
@@ -142,7 +134,6 @@ body {
     font-size: 14px;
 }
 
-/* Media Queries */
 @media (max-width: 480px) {
     .section-row, .section-bg-naranja {
         flex-direction: column;
