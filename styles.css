@@ -32,12 +32,15 @@ body {
 
 /* Margen interno y padding consistente para todas las secciones */
 .section-row, .section-bg-naranja, .section.single-col {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 40px 16px; /* top/bottom 40px, izquierda/derecha 16px */
     box-sizing: border-box; /* asegura que el padding no haga overflow */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    border-radius: 12px;
 }
+
 
 .section.single-col h1,
 .section.single-col h2 {
@@ -49,7 +52,6 @@ body {
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    padding: 40px 20px;
     border-radius: 12px;
 }
 
@@ -162,7 +164,7 @@ body {
     margin: 20px auto 40px auto;
     font-size: 16px;
     gap: 8px;
-    max-width: 280px; /* limita el ancho del botón */
+    max-width: 300px; /* limita el ancho del botón */
 }
 
 #whatsapp-button img {
