@@ -1,11 +1,5 @@
 /* styles.css */
 
-/* Margen interno para todas las secciones */
-.section-row, .section-bg-naranja, .section.single-col {
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
 /* Reset simple */
 body, h1, h2, h3, p, ul, li {
     margin: 0;
@@ -36,9 +30,13 @@ body {
     object-fit: contain;
 }
 
-/* Secciones */
-.section {
-    margin: 40px 0;
+/* Margen interno y padding consistente para todas las secciones */
+.section-row, .section-bg-naranja, .section.single-col {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box; /* asegura que el padding no haga overflow */
 }
 
 .section.single-col h1,
@@ -151,7 +149,7 @@ body {
 
 /* Botón WhatsApp compacto */
 #whatsapp-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: #25D366;
@@ -164,11 +162,11 @@ body {
     margin: 20px auto 40px auto;
     font-size: 16px;
     gap: 8px;
+    max-width: 280px; /* limita el ancho del botón */
 }
 
 #whatsapp-button img {
-    height: 100%; /* La imagen se adapta a la altura del botón */
-    max-height: 24px; /* límite superior */
+    height: 24px;
     width: auto;
 }
 
