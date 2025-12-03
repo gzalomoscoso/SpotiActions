@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* Reset simple */
 body, h1, h2, h3, p, ul, li {
     margin: 0;
@@ -8,17 +6,20 @@ body, h1, h2, h3, p, ul, li {
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF;
+    background: #FFFFFF; /* siempre blanco */
     color: #333;
     line-height: 1.4;
+    box-sizing: border-box; /* aplicar box-sizing global */
 }
 
+/* Contenedor */
 .container {
     width: 92%;
     max-width: 900px;
     margin: auto;
 }
 
+/* Header (solo 1 columna) */
 .header {
     padding: 20px 0;
     text-align: center;
@@ -26,62 +27,54 @@ body {
 
 .logo img {
     max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: auto; /* permite escalado proporcional */
     display: block;
 }
 
-/* Margen interno y padding consistente para todas las secciones */
-.section-row, .section-bg-naranja, .section.single-col {
-    padding: 40px 16px; /* top/bottom 40px, izquierda/derecha 16px */
-    box-sizing: border-box; /* asegura que el padding no haga overflow */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    border-radius: 12px;
-}
-
-.section.single-col h1,
-.section.single-col h2 {
+/* Secciones */
+.section {
+    margin: 40px 0;
     text-align: center;
 }
 
-/* Secciones flex */
-.section-row, .section-bg-naranja {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    border-radius: 12px;
-}
-
-/* Columnas de texto e imágenes */
-.section-row .text-col, 
-.section-row .text-col40,
-.section-bg-naranja .text-col {
-    width: 100%;
-    text-align: left;
-    box-sizing: border-box;
-}
-
-.section-row .image-col,
-.section-row .image-col60,
-.section-bg-naranja .image-col {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Imágenes */
+/* Imágenes de sección */
 .section img {
     width: 100%;
-    max-width: 100%; /* evita desbordes */
     height: auto;
     border-radius: 14px;
     margin-top: 16px;
     display: block;
 }
 
+/* Secciones con 2 columnas (móvil por defecto) */
+.section-row,
+.section-bg-naranja,
+.section.single-col {
+    padding: 40px 16px; /* top/bottom 40px, izquierda/derecha 16px */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.text-col, .text-col40 {
+    width: 60%;
+}
+
+.image-col, .image-col60 {
+    width: 40%;
+}
+
+.image-col img,
+.image-col60 img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+}
+
+/* Sección con fondo naranja */
 .section-bg-naranja {
     background: #f0e4dc;
 }
@@ -103,7 +96,6 @@ body {
 
 .product-card img {
     width: 100%;
-    max-width: 100%;
     height: auto;
     border-radius: 12px;
     margin: 12px 0;
@@ -202,9 +194,18 @@ body {
     font-size: 14px;
 }
 
+/* Listas dentro de secciones */
+.section ul {
+    padding-left: 24px;
+    margin: 12px 0;
+}
+
 /* Media Queries */
+
+/* Móvil muy pequeño */
 @media (max-width: 480px) {
-    .section-row, .section-bg-naranja {
+    .section-row,
+    .section-bg-naranja {
         flex-direction: column;
         text-align: center;
     }
@@ -214,8 +215,10 @@ body {
     }
 }
 
+/* Desktop */
 @media (min-width: 900px) {
-    .section-row, .section-bg-naranja {
+    .section-row,
+    .section-bg-naranja {
         flex-direction: row;
         gap: 40px;
         padding: 50px 0;
@@ -230,3 +233,5 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+
