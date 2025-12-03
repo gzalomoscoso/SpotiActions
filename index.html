@@ -63,7 +63,6 @@
     <h2>Mira Nuestros Productos</h2>
     <hr>
     <div class="products-grid">
-        <!-- Repetir este bloque por producto -->
         <div class="product-card" data-product="Stickers Pequeños" data-price="15">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
@@ -88,7 +87,53 @@
             <p class="product-price">S/ 25</p>
         </div>
 
-        <!-- Agregar más productos según corresponda -->
+        <div class="product-card" data-product="Stickers Grandes" data-price="35">
+            <h3>Stickers Grandes</h3>
+            <p>Perfectos para folders, cuadernos y agendas.</p>
+            <img src="colegio/assets/producto3.jpg" alt="Stickers grandes">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 35</p>
+        </div>
+
+        <div class="product-card" data-product="Sello para ropa" data-price="20">
+            <h3>Sello para ropa</h3>
+            <p>No se sale con lavadas.</p>
+            <img src="colegio/assets/producto4.jpg" alt="Sello para ropa">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 20</p>
+        </div>
+
+        <div class="product-card" data-product="Paquete Completo" data-price="80">
+            <h3>Paquete Completo</h3>
+            <p>Un pack ideal para iniciar el año escolar.</p>
+            <img src="colegio/assets/producto5.jpg" alt="Paquete completo">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 80</p>
+        </div>
+
+        <div class="product-card" data-product="Diseños Especiales" data-price="50">
+            <h3>Diseños Especiales</h3>
+            <p>Personajes y estilos únicos para cada niño.</p>
+            <img src="colegio/assets/producto6.jpg" alt="Diseños especiales">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 50</p>
+        </div>
     </div>
 
     <div id="pedido">
@@ -98,7 +143,6 @@
     <a id="whatsapp-button" href="#" target="_blank">
         🟢 Hacer pedido por WhatsApp
     </a>
-
 </section>
 
 <footer class="footer">
@@ -128,16 +172,22 @@ productCards.forEach(card => {
 
 function actualizarPedido() {
     let textoPedido = '';
+    let total = 0;
     productCards.forEach(card => {
         const cantidad = parseInt(card.querySelector('input').value);
         if (cantidad > 0) {
             const nombre = card.dataset.product;
-            textoPedido += `${nombre}: ${cantidad} unidades\n`;
+            const precio = parseInt(card.dataset.price);
+            textoPedido += `${nombre}: ${cantidad} unidades - S/ ${precio * cantidad}\n`;
+            total += precio * cantidad;
         }
     });
+    if(total>0){
+        textoPedido += `\nTotal: S/ ${total}`;
+    }
     pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
     const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
-    whatsappBtn.href = `https://wa.me/51900000000?text=${mensaje}`; // reemplazar con tu número
+    whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
 }
 </script>
 
