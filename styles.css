@@ -28,6 +28,7 @@ body {
     max-width: 100%;
     height: auto;
     object-fit: contain;
+    display: block;
 }
 
 /* Margen interno y padding consistente para todas las secciones */
@@ -41,12 +42,12 @@ body {
     border-radius: 12px;
 }
 
-
 .section.single-col h1,
 .section.single-col h2 {
     text-align: center;
 }
 
+/* Secciones flex */
 .section-row, .section-bg-naranja {
     display: flex;
     flex-direction: column;
@@ -55,23 +56,30 @@ body {
     border-radius: 12px;
 }
 
+/* Columnas de texto e imágenes */
 .section-row .text-col, 
 .section-row .text-col40,
 .section-bg-naranja .text-col {
     width: 100%;
     text-align: left;
+    box-sizing: border-box;
 }
 
 .section-row .image-col,
 .section-row .image-col60,
 .section-bg-naranja .image-col {
     width: 100%;
+    box-sizing: border-box;
 }
 
+/* Imágenes */
 .section img {
     width: 100%;
+    max-width: 100%; /* evita desbordes */
+    height: auto;
     border-radius: 14px;
     margin-top: 16px;
+    display: block;
 }
 
 .section-bg-naranja {
@@ -95,8 +103,11 @@ body {
 
 .product-card img {
     width: 100%;
+    max-width: 100%;
+    height: auto;
     border-radius: 12px;
     margin: 12px 0;
+    display: block;
 }
 
 .product-quantity {
@@ -165,11 +176,13 @@ body {
     font-size: 16px;
     gap: 8px;
     max-width: 300px; /* limita el ancho del botón */
+    box-sizing: border-box;
 }
 
 #whatsapp-button img {
     height: 24px;
     width: auto;
+    display: block;
 }
 
 /* Texto aclaratorio debajo de delivery */
