@@ -1,127 +1,145 @@
-/* Reset simple */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-}
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hacemos tus stickers</title>
+<link rel="stylesheet" href="styles.css?v=221122b">
+</head>
+<body>
 
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF; /* siempre blanco */
-    color: #333;
-    line-height: 1.4;
-}
+<header class="header">
+    <div class="logo">
+        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers">
+    </div>
+</header>
 
-/* Contenedor */
-.container {
-    width: 92%;
-    max-width: 900px;
-    margin: auto;
-}
+<div class="section single-col">
+    <h1>Prepara todo para cuando volvamos a clases</h1>
+</div>
 
-/* Header (solo 1 columna) */
-.header {
-    padding: 20px 0;
-    text-align: center;
-}
+<div class="section-row">
+    <div class="image-col60">
+        <img src="colegio/assets/utiles.jpg" alt="útiles escolares">
+    </div>
+    <div class="text-col40">
+        <h2>Organiza tus útiles escolares...</h2>
+        <p>Mejor hacerlo con tiempo</p>
+    </div>
+</div>
 
-.logo img {
-    height: 70px;
-}
+<div class="section-bg-naranja">
+    <div class="text-col">
+        <h2>Stickers personalizados para cada niño...</h2>
+        <p>Diseños únicos</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/matetito.jpg" alt="Stickers personalizados">
+    </div>
+</div>
 
-/* Secciones */
-.section {
-    margin: 40px 0;
-    text-align: center;
-}
+<div class="section-row">
+    <div class="text-col">
+        <h2>Tamaños y diseños súper lindos para niño y niña</h2>
+        <p>Puedes elegir entre los diseños mostrados</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/niñoyniña.jpg" alt="para niños y niñas">
+    </div>
+</div>
 
-.section img {
-    width: 100%;
-    border-radius: 14px;
-    margin-top: 16px;
-}
+<div class="section-bg-naranja">
+    <div class="text-col">
+        <h2>Compra Segura: Realiza tu compra por Yape o transferencia bancaria</h2>
+        <p>Cuenta Bancaria BCP o Interbank</p>
+    </div>
+    <div class="image-col">
+        <img src="colegio/assets/yape.jpg" alt="compra rápida">
+    </div>
+</div>
 
-/* 2 columnas (MÓVIL POR DEFECTO) */
-.section-row {
-    display: flex;
-    flex-direction: column; /* móvil por defecto */
-    border-radius: 12px;
-    padding: 40px 20px;
-    gap: 20px;
-    align-items: center;
-}
+<section class="products">
+    <h2>Mira Nuestros Productos</h2>
+    <hr>
+    <div class="products-grid">
+        <!-- Repetir este bloque por producto -->
+        <div class="product-card" data-product="Stickers Pequeños" data-price="15">
+            <h3>Stickers Pequeños</h3>
+            <p>Perfectos para lápices, lapiceros y marcadores.</p>
+            <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 15</p>
+        </div>
 
-.text-col,
-.text-col40 {
-    width: 60%;
-}
+        <div class="product-card" data-product="Stickers Medianos" data-price="25">
+            <h3>Stickers Medianos</h3>
+            <p>Ideales para cuadernos y planners.</p>
+            <img src="colegio/assets/producto2.jpg" alt="Stickers medianos">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 25</p>
+        </div>
 
-.image-col,
-.image-col60 {
-    width: 40%;
-}
+        <!-- Agregar más productos según corresponda -->
+    </div>
 
-.image-col img,
-.image-col60 img {
-    width: 100%;
-    border-radius: 16px;
-}
+    <div id="pedido">
+        Tu pedido aparecerá aquí...
+    </div>
 
-/* Sección con fondo naranja */
-.section-bg-naranja {
-    background: #f0e4dc;
-    border-radius: 12px;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+    <a id="whatsapp-button" href="#" target="_blank">
+        🟢 Hacer pedido por WhatsApp
+    </a>
 
-/* Productos (grid) */
-.products-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 20px;
-}
+</section>
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    color: #666;
-    font-size: 14px;
-}
+<footer class="footer">
+    © 2025 Hacemos tus stickers — Todos los derechos reservados.
+</footer>
 
-.section ul {
-    padding-left: 24px;
-    margin: 12px 0;
-}
+<script>
+const productCards = document.querySelectorAll('.product-card');
+const pedidoDiv = document.getElementById('pedido');
+const whatsappBtn = document.getElementById('whatsapp-button');
 
-/* Media Queries */
+productCards.forEach(card => {
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('input');
 
-/* Móvil muy pequeño */
-@media (max-width: 480px) {
-    .section-row {
-        flex-direction: column;
-        text-align: center;
-    }
-    .text-col, .image-col, .text-col40, .image-col60 {
-        width: 100%;
-    }
-}
+    minus.addEventListener('click', () => {
+        input.value = Math.max(0, parseInt(input.value) - 1);
+        actualizarPedido();
+    });
+    plus.addEventListener('click', () => {
+        input.value = parseInt(input.value) + 1;
+        actualizarPedido();
+    });
+    input.addEventListener('input', actualizarPedido);
+});
 
-/* Desktop */
-@media (min-width: 900px) {
-    .section-row {
-        flex-direction: row;
-        gap: 40px;
-        padding: 50px 0;
-    }
-    .section-bg-naranja {
-        flex-direction: row;
-        align-items: center;
-    }
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+function actualizarPedido() {
+    let textoPedido = '';
+    productCards.forEach(card => {
+        const cantidad = parseInt(card.querySelector('input').value);
+        if (cantidad > 0) {
+            const nombre = card.dataset.product;
+            textoPedido += `${nombre}: ${cantidad} unidades\n`;
+        }
+    });
+    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
+    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
+    whatsappBtn.href = `https://wa.me/51900000000?text=${mensaje}`; // reemplazar con tu número
 }
+</script>
+
+</body>
+</html>
