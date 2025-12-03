@@ -1,145 +1,172 @@
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hacemos tus stickers</title>
-<link rel="stylesheet" href="styles.css?v=221122b">
-</head>
-<body>
+/* styles.css */
 
-<header class="header">
-    <div class="logo">
-        <img src="colegio/assets/logo.jpg" alt="Hacemos tus stickers">
-    </div>
-</header>
-
-<div class="section single-col">
-    <h1>Prepara todo para cuando volvamos a clases</h1>
-</div>
-
-<div class="section-row">
-    <div class="image-col60">
-        <img src="colegio/assets/utiles.jpg" alt="útiles escolares">
-    </div>
-    <div class="text-col40">
-        <h2>Organiza tus útiles escolares...</h2>
-        <p>Mejor hacerlo con tiempo</p>
-    </div>
-</div>
-
-<div class="section-bg-naranja">
-    <div class="text-col">
-        <h2>Stickers personalizados para cada niño...</h2>
-        <p>Diseños únicos</p>
-    </div>
-    <div class="image-col">
-        <img src="colegio/assets/matetito.jpg" alt="Stickers personalizados">
-    </div>
-</div>
-
-<div class="section-row">
-    <div class="text-col">
-        <h2>Tamaños y diseños súper lindos para niño y niña</h2>
-        <p>Puedes elegir entre los diseños mostrados</p>
-    </div>
-    <div class="image-col">
-        <img src="colegio/assets/niñoyniña.jpg" alt="para niños y niñas">
-    </div>
-</div>
-
-<div class="section-bg-naranja">
-    <div class="text-col">
-        <h2>Compra Segura: Realiza tu compra por Yape o transferencia bancaria</h2>
-        <p>Cuenta Bancaria BCP o Interbank</p>
-    </div>
-    <div class="image-col">
-        <img src="colegio/assets/yape.jpg" alt="compra rápida">
-    </div>
-</div>
-
-<section class="products">
-    <h2>Mira Nuestros Productos</h2>
-    <hr>
-    <div class="products-grid">
-        <!-- Repetir este bloque por producto -->
-        <div class="product-card" data-product="Stickers Pequeños" data-price="15">
-            <h3>Stickers Pequeños</h3>
-            <p>Perfectos para lápices, lapiceros y marcadores.</p>
-            <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 15</p>
-        </div>
-
-        <div class="product-card" data-product="Stickers Medianos" data-price="25">
-            <h3>Stickers Medianos</h3>
-            <p>Ideales para cuadernos y planners.</p>
-            <img src="colegio/assets/producto2.jpg" alt="Stickers medianos">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 25</p>
-        </div>
-
-        <!-- Agregar más productos según corresponda -->
-    </div>
-
-    <div id="pedido">
-        Tu pedido aparecerá aquí...
-    </div>
-
-    <a id="whatsapp-button" href="#" target="_blank">
-        🟢 Hacer pedido por WhatsApp
-    </a>
-
-</section>
-
-<footer class="footer">
-    © 2025 Hacemos tus stickers — Todos los derechos reservados.
-</footer>
-
-<script>
-const productCards = document.querySelectorAll('.product-card');
-const pedidoDiv = document.getElementById('pedido');
-const whatsappBtn = document.getElementById('whatsapp-button');
-
-productCards.forEach(card => {
-    const minus = card.querySelector('.minus');
-    const plus = card.querySelector('.plus');
-    const input = card.querySelector('input');
-
-    minus.addEventListener('click', () => {
-        input.value = Math.max(0, parseInt(input.value) - 1);
-        actualizarPedido();
-    });
-    plus.addEventListener('click', () => {
-        input.value = parseInt(input.value) + 1;
-        actualizarPedido();
-    });
-    input.addEventListener('input', actualizarPedido);
-});
-
-function actualizarPedido() {
-    let textoPedido = '';
-    productCards.forEach(card => {
-        const cantidad = parseInt(card.querySelector('input').value);
-        if (cantidad > 0) {
-            const nombre = card.dataset.product;
-            textoPedido += `${nombre}: ${cantidad} unidades\n`;
-        }
-    });
-    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
-    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
-    whatsappBtn.href = `https://wa.me/51900000000?text=${mensaje}`; // reemplazar con tu número
+/* Reset simple */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
 }
-</script>
 
-</body>
-</html>
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #FFFFFF; /* siempre blanco */
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Contenedor */
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Header */
+.header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo img {
+    height: 70px;
+}
+
+/* Secciones */
+.section {
+    margin: 40px 0;
+}
+
+.section.single-col h1,
+.section.single-col h2 {
+    text-align: center;
+}
+
+.section-row, .section-bg-naranja {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 40px 20px;
+    border-radius: 12px;
+}
+
+.section-row .text-col, 
+.section-row .text-col40,
+.section-bg-naranja .text-col {
+    width: 100%;
+    text-align: left; /* margen izquierdo */
+}
+
+.section-row .image-col,
+.section-row .image-col60,
+.section-bg-naranja .image-col {
+    width: 100%;
+}
+
+.section img {
+    width: 100%;
+    border-radius: 14px;
+    margin-top: 16px;
+}
+
+/* Sección con fondo naranja */
+.section-bg-naranja {
+    background: #f0e4dc;
+}
+
+/* Productos (grid) */
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 12px 0;
+}
+
+.product-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.product-quantity input {
+    width: 50px;
+    text-align: center;
+}
+
+.product-price {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* Pedido dinámico */
+#pedido {
+    border-top: 2px dashed #ccc;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+/* Botón WhatsApp */
+#whatsapp-button {
+    display: block;
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin: 20px auto 40px auto;
+    font-size: 18px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+    .section-row, .section-bg-naranja {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-col, .image-col, .text-col40, .image-col60 {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (min-width: 900px) {
+    .section-row, .section-bg-naranja {
+        flex-direction: row;
+        gap: 40px;
+        padding: 50px 0;
+    }
+    .text-col, .text-col40 {
+        width: 60%;
+    }
+    .image-col, .image-col60 {
+        width: 40%;
+    }
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
