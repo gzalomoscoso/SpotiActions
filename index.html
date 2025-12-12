@@ -218,13 +218,25 @@ function actualizarPedido() {
         }
     });
 
-    // Opción delivery
-    const delivery = document.querySelector('input[name="delivery"]:checked').value;
+// Opción delivery
+const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
-    if(total > 0){
-        textoPedido += `\nTotal: S/ ${total}`;
-        textoPedido += `\n${delivery}`;
+// Sumar delivery
+let deliveryCosto = 0;
+if (delivery === "Con Delivery") {
+    deliveryCosto = 15;
+}
+total += deliveryCosto;
+
+if (total > 0) {
+    if (delivery === "Con Delivery") {
+        textoPedido += `\nDelivery: S/ 15`;
     }
+    textoPedido += `\nTotal: S/ ${total}`;
+}
+
+
+
 
     // Actualiza contenido del pedido
     pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
