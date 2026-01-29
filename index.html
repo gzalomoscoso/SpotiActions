@@ -217,8 +217,26 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.image-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.image-carousel img {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    border-radius: 12px;
+}
+
+    
 </style>
 </head>
+
+    
 <body>
 
 <header class="header">
@@ -241,6 +259,24 @@ body {
     <hr>
     <div class="products-grid">
 
+        <div class="product-card" data-product="Stickers Grandes" data-price="15">
+            <h3>Stickers Grandes</h3>
+            <p>Perfectos para que ocupe todo el alto del cuaderno</p>
+  <div class="image-carousel">
+      <img src="colegio/assets/grande3.jpg" alt="Stickers grandes 1">
+      <img src="colegio/assets/grande4.jpg" alt="Stickers grandes 2">
+      <img src="colegio/assets/grande2.jpg" alt="Stickers grandes 2">
+      <img src="colegio/assets/grande1.jpg" alt="Stickers grandes 2">
+    </div>
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 15</p>
+            <p>Dos unidades por 15 soles. Stickers recortados.</p>
+        </div>
+        
         <div class="product-card" data-product="Stickers Pequeños" data-price="10">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
@@ -269,19 +305,6 @@ body {
             <p>Pack de 10 stickers vienen cortados</p>
         </div>
 
-        <div class="product-card" data-product="Stickers Grandes" data-price="15">
-            <h3>Stickers Grandes</h3>
-            <p>Perfectos para todo el cuaderno, horarios y agendas.</p>
-            <img src="colegio/assets/grande1.jpg" alt="Stickers grandes1">
-            <img src="colegio/assets/grande3.jpg" alt="Stickers grandes3">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 15</p>
-            <p>Dos unidades por 15 soles. Stickers recortados.</p>
-        </div>
 
         <div class="product-card" data-product="Sellos para Ropa" data-price="50">
             <h3>Sellos para Ropa</h3>
@@ -304,15 +327,29 @@ body {
 
             <label>Selecciona personaje:</label>
             <select class="personaje">
-                <option value="Personaje 1">Stitch</option>
-                <option value="Personaje 2">K-pop</option>
-                <option value="Personaje 3">Spiderman Miles</option>
-                <option value="Personaje 4">Pushing</option>
-                <option value="Personaje 5">Batman</option>
-                <option value="Personaje 6">Hello Kitty</option>
-                <option value="Personaje 7">Personaje 7</option>
-                <option value="Personaje 8">Personaje 8</option>
-                <option value="Personaje 9">Otro</option>
+
+<option value="Plancha Surtida x 20">1) Plancha Surtida x 20</option>
+<option value="Personaje 1">Personaje 1</option>
+<option value="Personaje 2">Personaje 2</option>
+<option value="Personaje 3">Personaje 3</option>
+<option value="Personaje 4">Personaje 4</option>
+<option value="Personaje 5">Personaje 5</option>
+<option value="Personaje 6">Personaje 6</option>
+<option value="Personaje 7">Personaje 7</option>
+<option value="Personaje 8">Personaje 8</option>
+<option value="Personaje 9">Personaje 9</option>
+<option value="Personaje 10">Personaje 10</option>
+<option value="Personaje 11">Personaje 11</option>
+<option value="Personaje 12">Personaje 12</option>
+<option value="Personaje 13">Personaje 13</option>
+<option value="Personaje 14">Personaje 14</option>
+<option value="Personaje 15">Personaje 15</option>
+<option value="Personaje 16">Personaje 16</option>
+<option value="Personaje 17">Personaje 17</option>
+<option value="Personaje 18">Personaje 18</option>
+<option value="Personaje 19">Personaje 19</option>
+<option value="Personaje 20">Personaje 20</option>
+
             </select>
 
             <div class="product-quantity">
@@ -364,7 +401,8 @@ const whatsappBtn = document.getElementById('whatsapp-button');
 productCards.forEach(card => {
     const minus = card.querySelector('.minus');
     const plus = card.querySelector('.plus');
-    const input = card.querySelector('input');
+    const input = card.querySelector('.product-quantity input');
+
 
     minus.addEventListener('click', () => {
         input.value = Math.max(0, parseInt(input.value) - 1);
