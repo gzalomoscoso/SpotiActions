@@ -14,7 +14,7 @@ body, h1, h2, h3, p, ul, li {
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF; /* siempre blanco */
+    background: #FFFFFF;
     color: #333;
     line-height: 1.4;
     box-sizing: border-box;
@@ -149,6 +149,15 @@ body {
     margin-top: 8px;
 }
 
+/* Desplegable personajes */
+.product-card .personaje {
+    margin: 8px 0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
 /* Opciones Delivery */
 .delivery-options {
     margin-top: 20px;
@@ -180,243 +189,4 @@ body {
 }
 
 #whatsapp-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #25D366;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding: 12px 16px;
-    border-radius: 12px;
-    text-decoration: none;
-    margin: 20px auto 40px auto;
-    font-size: 16px;
-    gap: 8px;
-    max-width: 300px;
-}
-
-#whatsapp-button img {
-    height: 24px;
-    width: auto;
-    display: block;
-}
-
-/* Texto aclaratorio debajo de delivery */
-.delivery-aclaracion {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 6px;
-    font-style: italic;
-    color: #555;
-}
-
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    color: #666;
-    font-size: 14px;
-}
-
-/* Media Queries */
-@media (min-width: 900px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-</style>
-</head>
-<body>
-
-<header class="header">
-    <img src="colegio/assets/portada.jpg" alt="Hacemos tus stickers">
-    <div class="hero-text">
-        <h1>Stickers y etiquetas personalizadas para tus hijos</h1>
-        <p>Organiza útiles escolares con diseños divertidos y únicos</p>
-        <a href="#products" class="btn-primary">Ver Productos</a>
-    </div>
-</header>
-
-<div class="section-bg-naranja">
-    <div class="text-col">
-        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recíbelo en casa</h2>
-        <p>Puedes pagar con Yape o transferencia bancaria</p>
-    </div>
-</div>
-
-<section class="products" id="products">
-    <h2>Catálogo</h2>
-    <hr>
-    <div class="products-grid">
-        <div class="product-card" data-product="Stickers Pequeños" data-price="10">
-            <h3>Stickers Pequeños</h3>
-            <p>Perfectos para lápices, lapiceros y marcadores.</p>
-            
-            <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños1">
-            <img src="colegio/assets/pequenosr.jpg" alt="Stickers pequeños4">
-            
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 10</p>
-            <p>Plancha A4 llena de stickers, vienen sin cortar</p>
-        </div>
-
-        <div class="product-card" data-product="Stickers Medianos" data-price="15">
-            <h3>Stickers Medianos</h3>
-            <p>Ideales para etiquetas de cuadernos y planners.</p>
-            <img src="colegio/assets/medianoschica.jpg" alt="Stickers medianos3">
-            <img src="colegio/assets/medianos4.jpg" alt="Stickers medianos4">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 15</p>
-            <p>Pack de 10 stickers vienen cortados</p>
-        </div>
-
-        <div class="product-card" data-product="Stickers Grandes" data-price="15">
-            <h3>Stickers Grandes</h3>
-            <p>Perfectos para todo el cuaderno, horarios y agendas.</p>
-            <img src="colegio/assets/grande1.jpg" alt="Stickers grandes1">
-            <img src="colegio/assets/grande3.jpg" alt="Stickers grandes3">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            
-            <p class="product-price">S/ 15</p>
-            <p>Dos unidades por 15 soles. Stickers recortados.</p>
-        </div>
-
-
-        <div class="product-card" data-product="Sellos para Ropa" data-price="50">
-            <h3>Sellos para Ropa</h3>
-            <p>Marca cada prenda con nombre. La impresión queda firme y no se desprende con los lavados.</p>
-            <img src="colegio/assets/sello.webp" alt="sello1">
-            <img src="colegio/assets/polo.jpg" alt="sello2">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 50</p>
-            <p>Pidelo con anticipación: este producto requiere 30 días para la entrega</p>
-        </div>
-
-        <div class="product-card" data-product="Diseños Especiales" data-price="10">
-            <h3>Diseños Especiales</h3>
-            <p>Elige tu personaje favorito y lo convertimos en una plancha de stickers lista para usar</p>
-            <img src="colegio/assets/plancha.jpg" alt="Diseños especiales">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p>“Entre 12 y hasta 15 stickers por hoja, según lo que entre en un A4.”</p>
-            <p class="product-price">S/ 10</p>
-        </div>
-    </div>
-
-    <div class="delivery-options">
-        <label>
-            <input type="radio" name="delivery" value="Con Delivery">
-            Incluir Delivery
-        </label>
-        &nbsp;&nbsp;
-        <label>
-            <input type="radio" name="delivery" value="Sin Delivery" checked>
-            No incluir Delivery
-        </label>
-        <div class="delivery-aclaracion">
-            El precio del delivery depende de la zona de entrega
-        </div>
-    </div>
-
-    <div id="pedido" aria-readonly="true">
-        Tu pedido aparecerá aquí...
-    </div>
-
-    <a id="whatsapp-button" href="#" target="_blank" class="disabled">
-        <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
-        Hacer pedido via WhatsApp
-    </a>
-
-</section>
-
-<footer class="footer">
-    © 2025 Hacemos tus stickers — Todos los derechos reservados.
-</footer>
-
-<script>
-/* Script para sumar cantidades y actualizar pedido (igual que antes) */
-const productCards = document.querySelectorAll('.product-card');
-const pedidoDiv = document.getElementById('pedido');
-const whatsappBtn = document.getElementById('whatsapp-button');
-
-productCards.forEach(card => {
-    const minus = card.querySelector('.minus');
-    const plus = card.querySelector('.plus');
-    const input = card.querySelector('input');
-
-    minus.addEventListener('click', () => {
-        input.value = Math.max(0, parseInt(input.value) - 1);
-        actualizarPedido();
-    });
-    plus.addEventListener('click', () => {
-        input.value = parseInt(input.value) + 1;
-        actualizarPedido();
-    });
-    input.addEventListener('input', actualizarPedido);
-});
-
-document.querySelectorAll('input[name="delivery"]').forEach(radio => {
-    radio.addEventListener('change', actualizarPedido);
-});
-
-function actualizarPedido() {
-    let textoPedido = '';
-    let total = 0;
-
-    productCards.forEach(card => {
-        const cantidad = parseInt(card.querySelector('input').value);
-        if (cantidad > 0) {
-            const nombre = card.dataset.product;
-            const precio = parseInt(card.dataset.price);
-            textoPedido += `${nombre}: ${cantidad} unidades - S/ ${precio * cantidad}\n`;
-            total += precio * cantidad;
-        }
-    });
-
-    const delivery = document.querySelector('input[name="delivery"]:checked').value;
-    let deliveryCosto = 0;
-    if (delivery === "Con Delivery") deliveryCosto = 15;
-    total += deliveryCosto;
-
-    if (total > 0) {
-        if (delivery === "Con Delivery") textoPedido += `\nDelivery: S/ 15`;
-        textoPedido += `\nTotal: S/ ${total}`;
-    }
-
-    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
-    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
-    whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
-
-    if (textoPedido.trim() !== '' && total > 0) {
-        whatsappBtn.classList.remove('disabled');
-    } else {
-        whatsappBtn.classList.add('disabled');
-    }
-}
-
-actualizarPedido();
-</script>
-
-</body>
-</html>
+    displa
