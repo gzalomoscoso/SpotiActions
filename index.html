@@ -47,15 +47,16 @@ body {
 
 .hero-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: left;
+    top: 70%;           /* 20% más abajo desde el centro aproximado */
+    left: 20px;         /* distancia desde el borde izquierdo */
+    transform: translateY(-50%); /* centrar verticalmente respecto a top */
+    text-align: left;    /* alineación del texto a la izquierda */
     color: #fff;
     background: rgba(0,0,0,0.35);
     padding: 20px;
     border-radius: 12px;
 }
+
 
 .hero-text h1 {
     font-size: 2rem;
