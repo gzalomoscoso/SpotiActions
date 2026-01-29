@@ -221,6 +221,7 @@ body {
     }
 }
 
+/* Carrusel horizontal unificado y corregido */
 .image-carousel {
     display: flex;
     gap: 12px;
@@ -235,6 +236,17 @@ body {
     cursor: grabbing;
 }
 
+/* Cada imagen es un punto de snap y no se encoge */
+.image-carousel img {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Sombra indicadora de que hay más contenido a la derecha */
 .image-carousel::after {
     content: "";
     position: sticky;
@@ -243,8 +255,13 @@ body {
     width: 40px;
     height: 100%;
     pointer-events: none;
-    background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+    background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.85),
+        rgba(255, 255, 255, 0)
+    );
 }
+
 
 
 .swipe-hint {
