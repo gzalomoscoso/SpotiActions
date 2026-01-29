@@ -26,14 +26,12 @@ body {
     text-align: center;
 }
 
-/* Contenedor */
 .container {
     width: 92%;
     max-width: 900px;
     margin: auto;
 }
 
-/* Header hero */
 .header {
     position: relative;
     text-align: center;
@@ -79,7 +77,6 @@ body {
     display: inline-block;
 }
 
-/* Secciones */
 .section {
     margin: 40px 0;
     text-align: center;
@@ -91,7 +88,6 @@ body {
     border-radius: 12px;
 }
 
-/* Productos */
 .products h2 {
     text-align: center;
     margin-bottom: 16px;
@@ -149,16 +145,6 @@ body {
     margin-top: 8px;
 }
 
-/* Desplegable personajes */
-.product-card .personaje {
-    margin: 8px 0;
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-}
-
-/* Opciones Delivery */
 .delivery-options {
     margin-top: 20px;
     text-align: center;
@@ -169,7 +155,6 @@ body {
     margin-right: 6px;
 }
 
-/* Resumen pedido */
 #pedido {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -181,7 +166,6 @@ body {
     user-select: text;
 }
 
-/* Botón WhatsApp */
 #whatsapp-button.disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -211,7 +195,6 @@ body {
     display: block;
 }
 
-/* Texto aclaratorio debajo de delivery */
 .delivery-aclaracion {
     text-align: center;
     font-size: 14px;
@@ -220,7 +203,6 @@ body {
     color: #555;
 }
 
-/* Footer */
 .footer {
     text-align: center;
     padding: 30px 0;
@@ -228,7 +210,6 @@ body {
     font-size: 14px;
 }
 
-/* Media Queries */
 @media (min-width: 900px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -259,13 +240,67 @@ body {
     <hr>
     <div class="products-grid">
 
-        <!-- Ejemplo producto con desplegable -->
+        <div class="product-card" data-product="Stickers Pequeños" data-price="10">
+            <h3>Stickers Pequeños</h3>
+            <p>Perfectos para lápices, lapiceros y marcadores.</p>
+            <img src="colegio/assets/producto1.jpg" alt="Stickers pequeños1">
+            <img src="colegio/assets/pequenosr.jpg" alt="Stickers pequeños4">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 10</p>
+            <p>Plancha A4 llena de stickers, vienen sin cortar</p>
+        </div>
+
+        <div class="product-card" data-product="Stickers Medianos" data-price="10">
+            <h3>Stickers Medianos</h3>
+            <p>Ideales para etiquetas de cuadernos y planners.</p>
+            <img src="colegio/assets/medianoschica.jpg" alt="Stickers medianos3">
+            <img src="colegio/assets/medianos4.jpg" alt="Stickers medianos4">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 10</p>
+            <p>Pack de 10 stickers vienen cortados</p>
+        </div>
+
+        <div class="product-card" data-product="Stickers Grandes" data-price="15">
+            <h3>Stickers Grandes</h3>
+            <p>Perfectos para todo el cuaderno, horarios y agendas.</p>
+            <img src="colegio/assets/grande1.jpg" alt="Stickers grandes1">
+            <img src="colegio/assets/grande3.jpg" alt="Stickers grandes3">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 15</p>
+            <p>Dos unidades por 15 soles. Stickers recortados.</p>
+        </div>
+
+        <div class="product-card" data-product="Sellos para Ropa" data-price="50">
+            <h3>Sellos para Ropa</h3>
+            <p>Marca cada prenda con nombre. La impresión queda firme y no se desprende con los lavados.</p>
+            <img src="colegio/assets/sello.webp" alt="sello1">
+            <img src="colegio/assets/polo.jpg" alt="sello2">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 50</p>
+            <p>Pidelo con anticipación: este producto requiere 30 días para la entrega</p>
+        </div>
+
         <div class="product-card" data-product="Diseños Especiales" data-price="10">
             <h3>Diseños Especiales</h3>
             <p>Elige tu personaje favorito y lo convertimos en una plancha de stickers lista para usar</p>
             <img src="colegio/assets/plancha.jpg" alt="Diseños especiales">
 
-            <!-- Desplegable de personajes -->
             <label>Selecciona personaje:</label>
             <select class="personaje">
                 <option value="Personaje 1">Personaje 1</option>
@@ -328,7 +363,7 @@ const whatsappBtn = document.getElementById('whatsapp-button');
 productCards.forEach(card => {
     const minus = card.querySelector('.minus');
     const plus = card.querySelector('.plus');
-    const input = card.querySelector('.product-quantity input');
+    const input = card.querySelector('input');
 
     minus.addEventListener('click', () => {
         input.value = Math.max(0, parseInt(input.value) - 1);
@@ -350,7 +385,7 @@ function actualizarPedido() {
     let total = 0;
 
     productCards.forEach(card => {
-        const cantidad = parseInt(card.querySelector('.product-quantity input').value);
+        const cantidad = parseInt(card.querySelector('input').value);
         if (cantidad > 0) {
             let nombre = card.dataset.product;
             const precio = parseInt(card.dataset.price);
