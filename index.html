@@ -189,4 +189,206 @@ body {
 }
 
 #whatsapp-button {
-    displa
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin: 20px auto 40px auto;
+    font-size: 16px;
+    gap: 8px;
+    max-width: 300px;
+}
+
+#whatsapp-button img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+
+/* Texto aclaratorio debajo de delivery */
+.delivery-aclaracion {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 6px;
+    font-style: italic;
+    color: #555;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (min-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <img src="colegio/assets/portada.jpg" alt="Hacemos tus stickers">
+    <div class="hero-text">
+        <h1>Stickers y etiquetas personalizadas para tus hijos</h1>
+        <p>Organiza útiles escolares con diseños divertidos y únicos</p>
+        <a href="#products" class="btn-primary">Ver Productos</a>
+    </div>
+</header>
+
+<div class="section-bg-naranja">
+    <div class="text-col">
+        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recíbelo en casa</h2>
+        <p>Puedes pagar con Yape o transferencia bancaria</p>
+    </div>
+</div>
+
+<section class="products" id="products">
+    <h2>Catálogo</h2>
+    <hr>
+    <div class="products-grid">
+
+        <!-- Ejemplo producto con desplegable -->
+        <div class="product-card" data-product="Diseños Especiales" data-price="10">
+            <h3>Diseños Especiales</h3>
+            <p>Elige tu personaje favorito y lo convertimos en una plancha de stickers lista para usar</p>
+            <img src="colegio/assets/plancha.jpg" alt="Diseños especiales">
+
+            <!-- Desplegable de personajes -->
+            <label>Selecciona personaje:</label>
+            <select class="personaje">
+                <option value="Personaje 1">Personaje 1</option>
+                <option value="Personaje 2">Personaje 2</option>
+                <option value="Personaje 3">Personaje 3</option>
+                <option value="Personaje 4">Personaje 4</option>
+                <option value="Personaje 5">Personaje 5</option>
+                <option value="Personaje 6">Personaje 6</option>
+                <option value="Personaje 7">Personaje 7</option>
+                <option value="Personaje 8">Personaje 8</option>
+                <option value="Personaje 9">Personaje 9</option>
+            </select>
+
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p>“Entre 12 y hasta 15 stickers por hoja, según lo que entre en un A4.”</p>
+            <p class="product-price">S/ 10</p>
+        </div>
+
+    </div>
+
+    <div class="delivery-options">
+        <label>
+            <input type="radio" name="delivery" value="Con Delivery">
+            Incluir Delivery
+        </label>
+        &nbsp;&nbsp;
+        <label>
+            <input type="radio" name="delivery" value="Sin Delivery" checked>
+            No incluir Delivery
+        </label>
+        <div class="delivery-aclaracion">
+            El precio del delivery depende de la zona de entrega
+        </div>
+    </div>
+
+    <div id="pedido" aria-readonly="true">
+        Tu pedido aparecerá aquí...
+    </div>
+
+    <a id="whatsapp-button" href="#" target="_blank" class="disabled">
+        <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
+        Hacer pedido via WhatsApp
+    </a>
+
+</section>
+
+<footer class="footer">
+    © 2025 Hacemos tus stickers — Todos los derechos reservados.
+</footer>
+
+<script>
+const productCards = document.querySelectorAll('.product-card');
+const pedidoDiv = document.getElementById('pedido');
+const whatsappBtn = document.getElementById('whatsapp-button');
+
+productCards.forEach(card => {
+    const minus = card.querySelector('.minus');
+    const plus = card.querySelector('.plus');
+    const input = card.querySelector('.product-quantity input');
+
+    minus.addEventListener('click', () => {
+        input.value = Math.max(0, parseInt(input.value) - 1);
+        actualizarPedido();
+    });
+    plus.addEventListener('click', () => {
+        input.value = parseInt(input.value) + 1;
+        actualizarPedido();
+    });
+    input.addEventListener('input', actualizarPedido);
+});
+
+document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+    radio.addEventListener('change', actualizarPedido);
+});
+
+function actualizarPedido() {
+    let textoPedido = '';
+    let total = 0;
+
+    productCards.forEach(card => {
+        const cantidad = parseInt(card.querySelector('.product-quantity input').value);
+        if (cantidad > 0) {
+            let nombre = card.dataset.product;
+            const precio = parseInt(card.dataset.price);
+
+            const selectPersonaje = card.querySelector('.personaje');
+            if (selectPersonaje) {
+                const personaje = selectPersonaje.value;
+                nombre += ` - ${personaje}`;
+            }
+
+            textoPedido += `${nombre}: ${cantidad} unidades - S/ ${precio * cantidad}\n`;
+            total += precio * cantidad;
+        }
+    });
+
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
+    let deliveryCosto = 0;
+    if (delivery === "Con Delivery") deliveryCosto = 15;
+    total += deliveryCosto;
+
+    if (total > 0) {
+        if (delivery === "Con Delivery") textoPedido += `\nDelivery: S/ 15`;
+        textoPedido += `\nTotal: S/ ${total}`;
+    }
+
+    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
+    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
+    whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
+
+    if (textoPedido.trim() !== '' && total > 0) {
+        whatsappBtn.classList.remove('disabled');
+    } else {
+        whatsappBtn.classList.add('disabled');
+    }
+}
+
+actualizarPedido();
+</script>
+
+</body>
+</html>
