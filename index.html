@@ -4,34 +4,252 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Stikers y Etiquetas</title>
-<link rel="stylesheet" href="styles.css?v=221122b">
 <link rel="icon" href="colegio/assets/iconweb.png">
+<style>
+/* Reset simple */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #FFFFFF; /* siempre blanco */
+    color: #333;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+.text-col {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Contenedor */
+.container {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Header hero */
+.header {
+    position: relative;
+    text-align: center;
+}
+
+.header img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.35);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.hero-text h1 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.btn-primary {
+    background: #FF7F50;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Secciones */
+.section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section-bg-naranja {
+    background: #f0e4dc;
+    padding: 20px 16px;
+    border-radius: 12px;
+}
+
+/* Productos */
+.products h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 12px 0;
+    display: block;
+}
+
+.product-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.product-quantity button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ddd;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.product-quantity input {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    padding: 4px;
+}
+
+.product-price {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* Opciones Delivery */
+.delivery-options {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.delivery-options input {
+    margin-right: 6px;
+}
+
+/* Resumen pedido */
+#pedido {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    min-height: 60px;
+    font-weight: bold;
+    white-space: pre-line;
+    user-select: text;
+}
+
+/* Botón WhatsApp */
+#whatsapp-button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+#whatsapp-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin: 20px auto 40px auto;
+    font-size: 16px;
+    gap: 8px;
+    max-width: 300px;
+}
+
+#whatsapp-button img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+
+/* Texto aclaratorio debajo de delivery */
+.delivery-aclaracion {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 6px;
+    font-style: italic;
+    color: #555;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (min-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+</style>
 </head>
 <body>
 
-    
-
-
 <header class="header">
-    <div class="logo">
-        <img src="colegio/assets/portada.jpg"
-             alt="Hacemos tus stickers"
-             style="max-width:100%; height:auto; display:block; object-fit:contain;">
+    <img src="colegio/assets/portada.jpg" alt="Hacemos tus stickers">
+    <div class="hero-text">
+        <h1>Stickers y etiquetas personalizadas para tus hijos</h1>
+        <p>Organiza útiles escolares con diseños divertidos y únicos</p>
+        <a href="#products" class="btn-primary">Ver Productos</a>
     </div>
 </header>
 
 <div class="section-bg-naranja">
     <div class="text-col">
-        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recibe en casar</h2>
+        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recíbelo en casa</h2>
         <p>Puedes pagar con Yape o transferencia bancaria</p>
     </div>
 </div>
 
-<section class="products">
+<section class="products" id="products">
     <h2>Catálogo</h2>
     <hr>
     <div class="products-grid">
-
         <div class="product-card" data-product="Stickers Pequeños" data-price="10">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
@@ -104,39 +322,31 @@
             <p>“Entre 12 y hasta 15 stickers por hoja, según lo que entre en un A4.”</p>
             <p class="product-price">S/ 10</p>
         </div>
-
     </div>
 
-    <!-- Opciones Delivery -->
-<!-- Opciones Delivery -->
-<div class="delivery-options">
-    <label>
-        <input type="radio" name="delivery" value="Con Delivery" checked>
-        Incluir Delivery
-    </label>
-    &nbsp;&nbsp;
-    <label>
-        <input type="radio" name="delivery" value="Sin Delivery">
-        No incluir Delivery
-    </label>
-    <div class="delivery-aclaracion">
-        El precio del delivery es aproximado: depende de la zona de entrega, así siempre sabes el costo real
+    <div class="delivery-options">
+        <label>
+            <input type="radio" name="delivery" value="Con Delivery">
+            Incluir Delivery
+        </label>
+        &nbsp;&nbsp;
+        <label>
+            <input type="radio" name="delivery" value="Sin Delivery" checked>
+            No incluir Delivery
+        </label>
+        <div class="delivery-aclaracion">
+            El precio del delivery depende de la zona de entrega
+        </div>
     </div>
-</div>
 
-
-    <!-- Resumen de pedido -->
     <div id="pedido" aria-readonly="true">
         Tu pedido aparecerá aquí...
     </div>
 
-    
-    
-    <!-- Botón WhatsApp -->
-<a id="whatsapp-button" href="#" target="_blank" class="disabled">
-    <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
-    Hacer pedido via WhatsApp
-</a>
+    <a id="whatsapp-button" href="#" target="_blank" class="disabled">
+        <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
+        Hacer pedido via WhatsApp
+    </a>
 
 </section>
 
@@ -145,6 +355,7 @@
 </footer>
 
 <script>
+/* Script para sumar cantidades y actualizar pedido (igual que antes) */
 const productCards = document.querySelectorAll('.product-card');
 const pedidoDiv = document.getElementById('pedido');
 const whatsappBtn = document.getElementById('whatsapp-button');
@@ -183,34 +394,20 @@ function actualizarPedido() {
         }
     });
 
-// Opción delivery
-const delivery = document.querySelector('input[name="delivery"]:checked').value;
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
+    let deliveryCosto = 0;
+    if (delivery === "Con Delivery") deliveryCosto = 15;
+    total += deliveryCosto;
 
-// Sumar delivery
-let deliveryCosto = 0;
-if (delivery === "Con Delivery") {
-    deliveryCosto = 15;
-}
-total += deliveryCosto;
-
-if (total > 0) {
-    if (delivery === "Con Delivery") {
-        textoPedido += `\nDelivery: S/ 15`;
+    if (total > 0) {
+        if (delivery === "Con Delivery") textoPedido += `\nDelivery: S/ 15`;
+        textoPedido += `\nTotal: S/ ${total}`;
     }
-    textoPedido += `\nTotal: S/ ${total}`;
-}
 
-
-
-
-    // Actualiza contenido del pedido
     pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
-
-    // Actualiza link WhatsApp
     const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
     whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
 
-    // Habilita o deshabilita botón según contenido
     if (textoPedido.trim() !== '' && total > 0) {
         whatsappBtn.classList.remove('disabled');
     } else {
@@ -218,9 +415,7 @@ if (total > 0) {
     }
 }
 
-
-    actualizarPedido();
-
+actualizarPedido();
 </script>
 
 </body>
