@@ -58,6 +58,21 @@ body {
     max-width: 40%;  
 }
 
+.hero-textPROD {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centrado real horizontal y vertical */
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 12px 18px;
+    border-radius: 12px;
+    max-width: 70%;
+    pointer-events: none; /* no bloquea el swipe */
+    font-size: 14px;
+    font-weight: 600;
+}
 
 .hero-text h1 {
     font-size: 2rem;
@@ -263,15 +278,6 @@ body {
 }
 
 
-
-.swipe-hint {
-    font-size: 11px;
-    color: #007BFF; /* azul brillante */
-    margin-bottom: 6px;
-    user-select: none;
-}
-
-
     
 </style>
 </head>
@@ -303,11 +309,10 @@ body {
             <h3>Stickers Grandes</h3>
             <p>Perfectos para que ocupe todo el alto del cuaderno</p>
 
-<div class="swipe-hint">
-  ← DESLIZA →
-</div>
-
   <div class="image-carousel">
+      <div class="hero-textPROD">
+        <p>← Desliza →</p>
+    </div>
       <img src="colegio/assets/grande3.jpg" alt="Stickers grandes 1">
       <img src="colegio/assets/grande4.jpg" alt="Stickers grandes 2">
       <img src="colegio/assets/grande2.jpg" alt="Stickers grandes 2">
@@ -325,10 +330,11 @@ body {
         <div class="product-card" data-product="Stickers Pequeños" data-price="10">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
-<div class="swipe-hint">
-  ← DESLIZA →
-</div>
+
 <div class="image-carousel">
+          <div class="hero-textPROD">
+        <p>← Desliza →</p>
+    </div>
       <img src="colegio/assets/peque3.jpg" alt="Stickers Peq 1">
       <img src="colegio/assets/peque2.png" alt="Stickers Peq 2">
       <img src="colegio/assets/peque4.jpg" alt="Stickers Peq 2">
@@ -347,10 +353,10 @@ body {
             <h3>Stickers Medianos</h3>
             <p>Ideales para etiquetas de cuadernos y planners.</p>
             
-<div class="swipe-hint">
-  ← DESLIZA →
-</div>
 <div class="image-carousel">
+          <div class="hero-textPROD">
+        <p>← Desliza →</p>
+    </div>
       <img src="colegio/assets/med1.jpg" alt="Stickers MED 1">
       <img src="colegio/assets/med2.jpg" alt="Stickers MED 2">
       <img src="colegio/assets/med3.jpg" alt="Stickers MED 2">
