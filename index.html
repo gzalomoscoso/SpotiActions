@@ -216,6 +216,9 @@ body {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+        .swipe-hint {
+        display: none;
+    }
 }
 
 .image-carousel {
@@ -224,13 +227,33 @@ body {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    position: relative;
+    cursor: grab;
 }
 
-.image-carousel img {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-    border-radius: 12px;
+.image-carousel:active {
+    cursor: grabbing;
 }
+
+.image-carousel::after {
+    content: "";
+    position: sticky;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+}
+
+
+.swipe-hint {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+    user-select: none;
+}
+
 
     
 </style>
@@ -262,6 +285,11 @@ body {
         <div class="product-card" data-product="Stickers Grandes" data-price="15">
             <h3>Stickers Grandes</h3>
             <p>Perfectos para que ocupe todo el alto del cuaderno</p>
+
+<div class="swipe-hint">
+  ← Desliza →
+</div>
+
   <div class="image-carousel">
       <img src="colegio/assets/grande3.jpg" alt="Stickers grandes 1">
       <img src="colegio/assets/grande4.jpg" alt="Stickers grandes 2">
@@ -280,6 +308,9 @@ body {
         <div class="product-card" data-product="Stickers Pequeños" data-price="10">
             <h3>Stickers Pequeños</h3>
             <p>Perfectos para lápices, lapiceros y marcadores.</p>
+<div class="swipe-hint">
+  ← Desliza →
+</div>
 <div class="image-carousel">
       <img src="colegio/assets/peque3.jpg" alt="Stickers Peq 1">
       <img src="colegio/assets/peque2.jpg" alt="Stickers Peq 2">
@@ -298,9 +329,16 @@ body {
         <div class="product-card" data-product="Stickers Medianos" data-price="10">
             <h3>Stickers Medianos</h3>
             <p>Ideales para etiquetas de cuadernos y planners.</p>
-      <img src="colegio/assets/peque5.jpg" alt="Stickers Peq 1">
-      <img src="colegio/assets/medianoschica.jpg" alt="Stickers Peq 2">
-      <img src="colegio/assets/medianos4.jpg" alt="Stickers Peq 2">
+            
+<div class="swipe-hint">
+  ← Desliza →
+</div>
+<div class="image-carousel">
+      <img src="colegio/assets/peque5.jpg" alt="Stickers MED 1">
+      <img src="colegio/assets/medianoschica.jpg" alt="Stickers MED 2">
+      <img src="colegio/assets/medianos4.jpg" alt="Stickers MED 2">
+    </div>    
+        
             <div class="product-quantity">
                 <button class="minus">-</button>
                 <input type="number" value="0" min="0">
@@ -314,7 +352,7 @@ body {
         <div class="product-card" data-product="Sellos para Ropa" data-price="50">
             <h3>Sellos para Ropa</h3>
             <p>Marca cada prenda con nombre. La impresión queda firme y no se desprende con los lavados.</p>
-            <img src="colegio/assets/sello.webp" alt="sello1">
+            <img src="colegio/assets/sello1.jpg" alt="sello1">
             <img src="colegio/assets/polo.jpg" alt="sello2">
             <div class="product-quantity">
                 <button class="minus">-</button>
