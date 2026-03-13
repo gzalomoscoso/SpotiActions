@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIOSapps | Engineering Minimalist Tools</title>
+    <title>MyIOSapps | Premium Tools</title>
     <style>
-        /* Paleta de colores inspirada en Seera (Grises profundos y tipografía limpia) */
+        /* Paleta Seera: Grises profundos y Morado Vibrante */
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #141414;
-            --border-color: #262626;
+            --bg-color: #0f0f0f;         /* Gris casi negro de fondo */
+            --card-bg: #1a1a1a;         /* Gris un poco más claro para tarjetas */
+            --border-color: #2a2a2a;    /* Bordes sutiles */
             --text-primary: #ffffff;
             --text-secondary: #a1a1a1;
-            --accent-color: #ffffff;
-            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --purple-accent: #a855f7;   /* El morado de Seera */
+            --font-main: 'Inter', -apple-system, sans-serif;
         }
 
         * {
@@ -29,50 +29,40 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
         }
 
         .layout-wrapper {
             display: flex;
             width: 100%;
-            max-width: 1200px;
-            padding: 60px 20px;
-            gap: 80px;
+            max-width: 1100px;
+            padding: 80px 24px;
+            gap: 60px;
         }
 
-        /* FRAME IZQUIERDO: Descripción */
+        /* FRAME IZQUIERDO: Texto principal */
         .left-frame {
             flex: 1.2;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            position: sticky;
-            top: 60px;
-            height: fit-content;
-        }
-
-        .brand-logo {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-            color: var(--text-secondary);
         }
 
         h1 {
-            font-size: 48px;
-            font-weight: 600;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            font-size: 56px;
+            font-weight: 800; /* Letras gruesas */
+            line-height: 1;
+            letter-spacing: -0.04em;
             margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: var(--purple-accent); /* "iOS" en morado */
         }
 
         .main-description {
             font-size: 18px;
             line-height: 1.6;
             color: var(--text-secondary);
-            max-width: 480px;
+            max-width: 450px;
         }
 
         /* FRAME DERECHO: Tarjetas */
@@ -80,37 +70,36 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
 
         .section-title {
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.15em;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 32px;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 28px;
+            border-radius: 16px;
             text-decoration: none;
-            color: inherit;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .card:hover {
-            border-color: #404040;
-            transform: translateY(-4px);
-            background-color: #1a1a1a;
+            border-color: var(--purple-accent);
+            transform: translateY(-2px);
         }
 
         .card h3 {
-            font-size: 20px;
-            font-weight: 500;
+            font-size: 22px;
+            font-weight: 700; /* Letras gruesas para el título */
+            color: var(--purple-accent); /* Títulos morados */
             margin-bottom: 8px;
         }
 
@@ -120,25 +109,15 @@
             line-height: 1.5;
         }
 
-        /* Lógica Responsiva Móvil */
-        @media (max-width: 900px) {
+        /* Responsive: Proyectos arriba en móvil, descripción abajo */
+        @media (max-width: 850px) {
             .layout-wrapper {
-                flex-direction: column-reverse; /* El frame derecho (apps) sube al inicio */
+                flex-direction: column-reverse;
                 padding: 40px 20px;
-                gap: 60px;
-            }
-
-            .left-frame {
-                position: relative;
-                top: 0;
             }
 
             h1 {
-                font-size: 32px;
-            }
-
-            .card {
-                padding: 24px;
+                font-size: 40px;
             }
         }
     </style>
@@ -147,31 +126,29 @@
 
     <div class="layout-wrapper">
         <section class="left-frame">
-            <div class="brand-logo">MyIOSapps.org</div>
-            <h1>Engineering tools for the focused mind.</h1>
+            <h1>My<span>iOS</span>apps</h1>
             <p class="main-description">
-                Un laboratorio dedicado al desarrollo de software con un enfoque analítico. 
-                Creamos aplicaciones donde la tecnología se vuelve invisible, priorizando la ejecución rigurosa y la eficiencia en cada proceso.
+                Un laboratorio de ingeniería enfocado en la creación de herramientas digitales de alto rendimiento. Desarrollamos soluciones donde la precisión técnica y el minimalismo se encuentran.
             </p>
         </section>
 
         <aside class="right-frame">
             <h2 class="section-title">Explora nuestras aplicaciones</h2>
             
-            <a href="#" class="card">
+            <div class="card">
                 <h3>Hacemos tus Stickers</h3>
                 <p>Etiquetado premium para útiles escolares con estética cinematográfica.</p>
-            </a>
+            </div>
 
-            <a href="#" class="card">
+            <div class="card">
                 <h3>SpotiActions</h3>
                 <p>Automatización y gestión avanzada de playlists para usuarios de Spotify.</p>
-            </a>
+            </div>
 
-            <a href="#" class="card">
+            <div class="card">
                 <h3>SoloWrite</h3>
                 <p>Un lienzo digital puro para capturar ideas sin fricción ni distracciones.</p>
-            </a>
+            </div>
         </aside>
     </div>
 
