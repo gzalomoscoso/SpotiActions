@@ -7,12 +7,12 @@
     <style>
         /* Paleta Seera: Grises profundos y Morado Vibrante */
         :root {
-            --bg-color: #0f0f0f;         /* Gris casi negro de fondo */
-            --card-bg: #1a1a1a;         /* Gris un poco más claro para tarjetas */
-            --border-color: #2a2a2a;    /* Bordes sutiles */
+            --bg-color: #0f0f0f;         
+            --card-bg: #1a1a1a;         
+            --border-color: #2a2a2a;    
             --text-primary: #ffffff;
             --text-secondary: #a1a1a1;
-            --purple-accent: #a855f7;   /* El morado de Seera */
+            --purple-accent: #a855f7;   
             --font-main: 'Inter', -apple-system, sans-serif;
         }
 
@@ -48,14 +48,14 @@
 
         h1 {
             font-size: 56px;
-            font-weight: 800; /* Letras gruesas */
+            font-weight: 800; 
             line-height: 1;
             letter-spacing: -0.04em;
             margin-bottom: 24px;
         }
 
         h1 span {
-            color: var(--purple-accent); /* "iOS" en morado */
+            color: var(--purple-accent); 
         }
 
         .main-description {
@@ -87,19 +87,20 @@
             border: 1px solid var(--border-color);
             padding: 28px;
             border-radius: 16px;
-            text-decoration: none;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            text-decoration: none; /* Quita el subrayado de link */
+            display: block; /* Ocupa todo el ancho */
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.3s ease;
         }
 
         .card:hover {
             border-color: var(--purple-accent);
-            transform: translateY(-2px);
+            transform: scale(1.02);
         }
 
         .card h3 {
             font-size: 22px;
-            font-weight: 700; /* Letras gruesas para el título */
-            color: var(--purple-accent); /* Títulos morados */
+            font-weight: 700; 
+            color: var(--purple-accent); 
             margin-bottom: 8px;
         }
 
@@ -135,20 +136,20 @@
         <aside class="right-frame">
             <h2 class="section-title">Explora nuestras aplicaciones</h2>
             
-            <div class="card">
+            <a href="https://www.myiosapps.org/colegio/" class="card">
                 <h3>Hacemos tus Stickers</h3>
                 <p>Etiquetado premium para útiles escolares con estética cinematográfica.</p>
-            </div>
+            </a>
 
-            <div class="card">
+            <a href="https://www.myiosapps.org/spotiactions/" class="card">
                 <h3>SpotiActions</h3>
                 <p>Automatización y gestión avanzada de playlists para usuarios de Spotify.</p>
-            </div>
+            </a>
 
-            <div class="card">
+            <a href="https://www.myiosapps.org/solowrite/" class="card">
                 <h3>SoloWrite</h3>
                 <p>Un lienzo digital puro para capturar ideas sin fricción ni distracciones.</p>
-            </div>
+            </a>
         </aside>
     </div>
 
