@@ -1,538 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stickers y Etiquetas</title>
-<link rel="icon" href="colegio/assets/iconweb.png">
-<style>
-/* Reset simple */
-body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyIOSapps | Engineering Minimalist Tools</title>
+    <style>
+        /* Paleta de colores inspirada en Seera (Grises profundos y tipografía limpia) */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #141414;
+            --border-color: #262626;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1a1;
+            --accent-color: #ffffff;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
 
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background: #FFFFFF;
-    color: #333;
-    line-height: 1.4;
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.text-col {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
 
-.container {
-    width: 92%;
-    max-width: 900px;
-    margin: auto;
-}
+        .layout-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 20px;
+            gap: 80px;
+        }
 
-.header {
-    position: relative;
-    text-align: center;
-}
+        /* FRAME IZQUIERDO: Descripción */
+        .left-frame {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: sticky;
+            top: 60px;
+            height: fit-content;
+        }
 
-.header img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-}
+        .brand-logo {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
 
-.hero-text {
-    position: absolute;
-    top: 60%;           
-    left: 20px;         /* distancia desde el borde izquierdo */
-    transform: translateY(-50%); /* centrar verticalmente respecto a top */
-    text-align: left;    /* alineación del texto a la izquierda */
-    color: #fff;
-    background: rgba(0,0,0,0.25);
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 40%;  
-}
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
 
-.hero-textPROD {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* centrado real horizontal y vertical */
-    text-align: center;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 12px 18px;
-    border-radius: 12px;
-    max-width: 70%;
-    pointer-events: none; /* no bloquea el swipe */
-    font-size: 14px;
-    font-weight: 600;
-}
+        .main-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 480px;
+        }
 
-.hero-text h1 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-}
+        /* FRAME DERECHO: Tarjetas */
+        .right-frame {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-.hero-text p {
-    font-size: 1.2rem;
-    margin-bottom: 16px;
-}
+        .section-title {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
 
-.btn-primary {
-    background: #FF7F50;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
-}
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-decoration: none;
+            color: inherit;
+        }
 
-.section {
-    margin: 40px 0;
-    text-align: center;
-}
+        .card:hover {
+            border-color: #404040;
+            transform: translateY(-4px);
+            background-color: #1a1a1a;
+        }
 
-.section-bg-naranja {
-    background: #f0e4dc;
-    padding: 20px 16px;
-    border-radius: 12px;
-}
+        .card h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
 
-.products h2 {
-    text-align: center;
-    margin-bottom: 16px;
-}
+        .card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
 
-.products-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 20px;
-}
-
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    margin: 12px 0;
-    display: block;
-}
-
-.product-quantity {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 8px 0;
-}
-
-.product-quantity button {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 6px;
-    background-color: #ddd;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.product-quantity input {
-    width: 50px;
-    text-align: center;
-    font-size: 16px;
-    padding: 4px;
-}
-
-.product-price {
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.delivery-options {
-    margin-top: 20px;
-    text-align: center;
-    font-weight: bold;
-    color: #007BFF; /* azul brillante */
-}
-.delivery-options label {
-    color: #007BFF;
-}
-.delivery-options input {
-    margin-right: 6px;
-    accent-color: #007BFF; /* radios azules en navegadores modernos */
-}
-.delivery-aclaracion {
-    color: #007BFF;
-}
-    
-#pedido {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 8px;
-    min-height: 60px;
-    font-weight: bold;
-    white-space: pre-line;
-    user-select: text;
-}
-
-#whatsapp-button.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-#whatsapp-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #25D366;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding: 12px 16px;
-    border-radius: 12px;
-    text-decoration: none;
-    margin: 20px auto 40px auto;
-    font-size: 16px;
-    gap: 8px;
-    max-width: 300px;
-}
-
-#whatsapp-button img {
-    height: 24px;
-    width: auto;
-    display: block;
-}
-
-.delivery-aclaracion {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 6px;
-    font-style: italic;
-    color: #555;
-}
-
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    color: #666;
-    font-size: 14px;
-}
-
-@media (min-width: 900px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-        .swipe-hint {
-        display: none;
-    }
-}
-
-/* Carrusel horizontal unificado y corregido */
-.image-carousel {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    position: relative;
-    cursor: grab;
-}
-
-.image-carousel:active {
-    cursor: grabbing;
-}
-
-/* Cada imagen es un punto de snap y no se encoge */
-.image-carousel img {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    display: block;
-}
-
-/* Sombra indicadora de que hay más contenido a la derecha */
-.image-carousel::after {
-    content: "";
-    position: sticky;
-    right: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
-    pointer-events: none;
-    background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 0.85),
-        rgba(255, 255, 255, 0)
-    );
-}
-
-
-    
-</style>
-</head>
-
-    
-<body>
-
-<header class="header">
-    <img src="colegio/assets/portada26.jpg" alt="Hacemos tus stickers">
-    <div class="hero-text">
-        <p>Escoje tus etiquetas y pídelas ahora</p>
-        <a href="#products" class="btn-primary">Ver Productos</a>
-    </div>
-</header>
-
-<div class="section-bg-naranja">
-    <div class="text-col">
-        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recíbelo en casa</h2>
-        <p>Puedes pagar con Yape o transferencia bancaria</p>
-    </div>
-</div>
-
-<section class="products" id="products">
-    <h2>Catálogo</h2>
-    <hr>
-    <div class="products-grid">
-
-        <div class="product-card" data-product="Stickers Grandes" data-price="15">
-            <h3>Stickers Grandes</h3>
-            <p>Perfectos para que ocupe todo el alto del cuaderno</p>
-
-  <div class="image-carousel">
-      <div class="hero-textPROD">
-        <p>← Desliza →</p>
-    </div>
-      <img src="colegio/assets/gran1.jpeg" alt="Stickers grandes 1">
-      <img src="colegio/assets/gran2.jpeg" alt="Stickers grandes 2">
-      <img src="colegio/assets/gran3.jpeg" alt="Stickers grandes 3">
-    </div>
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 15</p>
-            <p>Dos unidades por 15 soles. Stickers recortados.</p>
-        </div>
-        
-        <div class="product-card" data-product="Stickers Pequeños" data-price="10">
-            <h3>Stickers Pequeños</h3>
-            <p>Perfectos para lápices, lapiceros y marcadores.</p>
-
-<div class="image-carousel">
-          <div class="hero-textPROD">
-        <p>← Desliza →</p>
-    </div>
-      <img src="colegio/assets/pequenoslapiz.jpg" alt="Stickers Peq 1">
-      <img src="colegio/assets/peque2.png" alt="Stickers Peq 2">
-    </div>
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 10</p>
-            <p>Plancha A4 con 76 stickers. Vienen sin cortar</p>
-        </div>
-
-        <div class="product-card" data-product="Stickers Medianos" data-price="10">
-            <h3>Stickers Medianos</h3>
-            <p>Ideales para etiquetas de cuadernos y planners.</p>
-            
-<div class="image-carousel">
-          <div class="hero-textPROD">
-        <p>← Desliza →</p>
-    </div>
-      <img src="colegio/assets/medianosreal3.JPG" alt="Stickers MED 1">
-      <img src="colegio/assets/medianosreal2.jpg" alt="Stickers MED 2">
-      <img src="colegio/assets/medianosgirl.JPG" alt="Stickers MED 3">
-    </div>    
-        
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 10</p>
-            <p>Pack de 10 stickers vienen cortados</p>
-        </div>
-
-
-        <div class="product-card" data-product="Sellos para Ropa" data-price="50">
-            <h3>Sellos para Ropa</h3>
-            <p>Marca cada prenda con nombre. La impresión queda firme y no se desprende con los lavados.</p>
-            <img src="colegio/assets/sello1.jpg" alt="sello1">
-            <img src="colegio/assets/polo.jpg" alt="sello2">
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p class="product-price">S/ 50</p>
-            <p>Pidelo con anticipación: este producto requiere 30 días para la entrega</p>
-        </div>
-
-        <div class="product-card" data-product="Diseños Especiales" data-price="10">
-            <h3>Diseños Especiales</h3>
-            <p>Elige tu personaje favorito y lo convertimos en una plancha de stickers lista para usar</p>
-            <img src="colegio/assets/plancha.jpg" alt="Diseños especiales">
-
-            <label for="personaje-especial">Selecciona personaje:</label>
-            <select class="personaje" id="personaje-especial">
-
-<option value="Plancha Surtida x 20">1) Plancha Surtida x 20</option>
-<option value="Personaje 1">Personaje 1</option>
-<option value="Personaje 2">Personaje 2</option>
-<option value="Personaje 3">Personaje 3</option>
-<option value="Personaje 4">Personaje 4</option>
-<option value="Personaje 5">Personaje 5</option>
-<option value="Personaje 6">Personaje 6</option>
-<option value="Personaje 7">Personaje 7</option>
-<option value="Personaje 8">Personaje 8</option>
-<option value="Personaje 9">Personaje 9</option>
-<option value="Personaje 10">Personaje 10</option>
-<option value="Personaje 11">Personaje 11</option>
-<option value="Personaje 12">Personaje 12</option>
-<option value="Personaje 13">Personaje 13</option>
-<option value="Personaje 14">Personaje 14</option>
-<option value="Personaje 15">Personaje 15</option>
-<option value="Personaje 16">Personaje 16</option>
-<option value="Personaje 17">Personaje 17</option>
-<option value="Personaje 18">Personaje 18</option>
-<option value="Personaje 19">Personaje 19</option>
-<option value="Personaje 20">Personaje 20</option>
-
-            </select>
-
-            <div class="product-quantity">
-                <button class="minus">-</button>
-                <input type="number" value="0" min="0">
-                <button class="plus">+</button>
-            </div>
-            <p>“Entre 12 y hasta 15 stickers por hoja, según lo que entre en un A4.”</p>
-            <p class="product-price">S/ 10</p>
-        </div>
-
-    </div>
-
-    <div class="delivery-options">
-        <label>
-            <input type="radio" name="delivery" value="Con Delivery">
-            Incluir Delivery
-        </label>
-        &nbsp;&nbsp;
-        <label>
-            <input type="radio" name="delivery" value="Sin Delivery" checked>
-            No incluir Delivery
-        </label>
-        <div class="delivery-aclaracion">
-            El precio del delivery en Arequipa es de 15 soles
-        </div>
-    </div>
-
-    <div id="pedido" aria-readonly="true">
-        Tu pedido aparecerá aquí...
-    </div>
-
-    <a id="whatsapp-button" href="#" target="_blank" class="disabled">
-        <img src="colegio/assets/whatsapp.jpg" alt="WhatsApp">
-        Hacer pedido via WhatsApp
-    </a>
-
-</section>
-
-<footer class="footer">
-    © 2025 Hacemos tus stickers — Todos los derechos reservados.
-</footer>
-
-<script>
-const productCards = document.querySelectorAll('.product-card');
-const pedidoDiv = document.getElementById('pedido');
-const whatsappBtn = document.getElementById('whatsapp-button');
-
-productCards.forEach(card => {
-    const minus = card.querySelector('.minus');
-    const plus = card.querySelector('.plus');
-    const input = card.querySelector('.product-quantity input');
-
-
-    minus.addEventListener('click', () => {
-        input.value = Math.max(0, parseInt(input.value) - 1);
-        actualizarPedido();
-    });
-    plus.addEventListener('click', () => {
-        input.value = parseInt(input.value) + 1;
-        actualizarPedido();
-    });
-    input.addEventListener('input', actualizarPedido);
-});
-
-document.querySelectorAll('input[name="delivery"]').forEach(radio => {
-    radio.addEventListener('change', actualizarPedido);
-});
-
-function actualizarPedido() {
-    let textoPedido = '';
-    let total = 0;
-
-    productCards.forEach(card => {
-        const cantidad = parseInt(card.querySelector('input').value);
-        if (cantidad > 0) {
-            let nombre = card.dataset.product;
-            const precio = parseInt(card.dataset.price);
-
-            const selectPersonaje = card.querySelector('.personaje');
-            if (selectPersonaje) {
-                const personaje = selectPersonaje.value;
-                nombre += ` - ${personaje}`;
+        /* Lógica Responsiva Móvil */
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                flex-direction: column-reverse; /* El frame derecho (apps) sube al inicio */
+                padding: 40px 20px;
+                gap: 60px;
             }
 
-            textoPedido += `${nombre}: ${cantidad} unidades - S/ ${precio * cantidad}\n`;
-            total += precio * cantidad;
+            .left-frame {
+                position: relative;
+                top: 0;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .card {
+                padding: 24px;
+            }
         }
-    });
+    </style>
+</head>
+<body>
 
-    const delivery = document.querySelector('input[name="delivery"]:checked').value;
-    let deliveryCosto = 0;
-    if (delivery === "Con Delivery") deliveryCosto = 15;
-    total += deliveryCosto;
+    <div class="layout-wrapper">
+        <section class="left-frame">
+            <div class="brand-logo">MyIOSapps.org</div>
+            <h1>Engineering tools for the focused mind.</h1>
+            <p class="main-description">
+                Un laboratorio dedicado al desarrollo de software con un enfoque analítico. 
+                Creamos aplicaciones donde la tecnología se vuelve invisible, priorizando la ejecución rigurosa y la eficiencia en cada proceso.
+            </p>
+        </section>
 
-    if (total > 0) {
-        if (delivery === "Con Delivery") textoPedido += `\nDelivery: S/ 15`;
-        textoPedido += `\nTotal: S/ ${total}`;
-    }
+        <aside class="right-frame">
+            <h2 class="section-title">Explora nuestras aplicaciones</h2>
+            
+            <a href="#" class="card">
+                <h3>Hacemos tus Stickers</h3>
+                <p>Etiquetado premium para útiles escolares con estética cinematográfica.</p>
+            </a>
 
-    pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
-    const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
-    whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
+            <a href="#" class="card">
+                <h3>SpotiActions</h3>
+                <p>Automatización y gestión avanzada de playlists para usuarios de Spotify.</p>
+            </a>
 
-    if (textoPedido.trim() !== '' && total > 0) {
-        whatsappBtn.classList.remove('disabled');
-    } else {
-        whatsappBtn.classList.add('disabled');
-    }
-}
-
-actualizarPedido();
-</script>
+            <a href="#" class="card">
+                <h3>SoloWrite</h3>
+                <p>Un lienzo digital puro para capturar ideas sin fricción ni distracciones.</p>
+            </a>
+        </aside>
+    </div>
 
 </body>
 </html>
