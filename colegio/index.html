@@ -1,46 +1,472 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Proyecto HTML - plantilla base, responsive y accesible." />
-  <title>Proyecto HTML - Plantilla</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stickers y Etiquetas</title>
+    <link rel="icon" href="assets/iconweb.png">
+    <style>
+        /* Reset simple */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
 
-  <!-- Favicon / Iconos -->
-  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #FFFFFF;
+            color: #333;
+            line-height: 1.4;
+            box-sizing: border-box;
+        }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/styles.css" />
+        .text-col {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-  <!-- Open Graph (básico) -->
-  <meta property="og:title" content="Proyecto HTML - Plantilla" />
-  <meta property="og:description" content="Plantilla base para proyectos front-end." />
-  <meta property="og:type" content="website" />
+        .container {
+            width: 92%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .header {
+            position: relative;
+            text-align: center;
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 60%;            
+            left: 20px;          /* distancia desde el borde izquierdo */
+            transform: translateY(-50%); /* centrar verticalmente respecto a top */
+            text-align: left;    /* alineación del texto a la izquierda */
+            color: #fff;
+            background: rgba(0,0,0,0.25);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 40%;  
+        }
+
+        .hero-textPROD {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* centrado real horizontal y vertical */
+            text-align: center;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 12px 18px;
+            border-radius: 12px;
+            max-width: 70%;
+            pointer-events: none; /* no bloquea el swipe */
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .btn-primary {
+            background: #FF7F50;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .section-bg-naranja {
+            background: #f0e4dc;
+            padding: 20px 16px;
+            border-radius: 12px;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 12px 0;
+            display: block;
+        }
+
+        .product-quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+        }
+
+        .product-quantity button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background-color: #ddd;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .product-quantity input {
+            width: 50px;
+            text-align: center;
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .delivery-options {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #007BFF; 
+        }
+
+        .delivery-options input {
+            margin-right: 6px;
+            accent-color: #007BFF; 
+        }
+            
+        #pedido {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            min-height: 60px;
+            font-weight: bold;
+            white-space: pre-line;
+            user-select: text;
+        }
+
+        #whatsapp-button.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        #whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin: 20px auto 40px auto;
+            font-size: 16px;
+            gap: 8px;
+            max-width: 300px;
+        }
+
+        #whatsapp-button img {
+            height: 24px;
+            width: auto;
+            display: block;
+        }
+
+        .delivery-aclaracion {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 6px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (min-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .image-carousel {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+            cursor: grab;
+        }
+
+        .image-carousel:active {
+            cursor: grabbing;
+        }
+
+        .image-carousel img {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .image-carousel::after {
+            content: "";
+            position: sticky;
+            right: 0;
+            top: 0;
+            width: 40px;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                to left,
+                rgba(255, 255, 255, 0.85),
+                rgba(255, 255, 255, 0)
+            );
+        }
+    </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#" aria-label="Inicio - Proyecto HTML">
-        <img src="assets/logo.svg" alt="Logo" class="brand-logo" />
-        <span class="brand-name">ProyectoHTML</span>
-      </a>
 
-      <nav class="nav" aria-label="Navegación principal">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">
-          <span class="sr-only">Abrir menú</span>
-          ☰
-        </button>
-        <ul id="nav-list" class="nav-list">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#features">Características</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
+<header class="header">
+    <img src="assets/portada26.jpg" alt="Hacemos tus stickers">
+    <div class="hero-text">
+        <p>Escoje tus etiquetas y pídelas ahora</p>
+        <a href="#products" class="btn-primary">Ver Productos</a>
     </div>
-  </header>
+</header>
 
-  <main>
-    <section id="inicio" class="hero">
-      <div class="container">
-        <h1>Plantilla base para tu proyecto HTML</h1>
-        <p class="lead">Responsive, accesible y lista para escalar. Tiene ejemplo de layout, formulario y
+<div class="section-bg-naranja">
+    <div class="text-col">
+        <h2>Stickers y etiquetas escolares personalizados para niños. Compra online y recíbelo en casa</h2>
+        <p>Puedes pagar con Yape o transferencia bancaria</p>
+    </div>
+</div>
+
+<section class="products" id="products">
+    <h2>Catálogo</h2>
+    <hr>
+    <div class="products-grid">
+
+        <div class="product-card" data-product="Stickers Grandes" data-price="15">
+            <h3>Stickers Grandes</h3>
+            <p>Perfectos para que ocupe todo el alto del cuaderno</p>
+            <div class="image-carousel">
+                <div class="hero-textPROD"><p>← Desliza →</p></div>
+                <img src="assets/gran1.jpeg" alt="Stickers grandes 1">
+                <img src="assets/gran2.jpeg" alt="Stickers grandes 2">
+                <img src="assets/gran3.jpeg" alt="Stickers grandes 3">
+            </div>
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 15</p>
+            <p>Dos unidades por 15 soles. Stickers recortados.</p>
+        </div>
+        
+        <div class="product-card" data-product="Stickers Pequeños" data-price="10">
+            <h3>Stickers Pequeños</h3>
+            <p>Perfectos para lápices, lapiceros y marcadores.</p>
+            <div class="image-carousel">
+                <div class="hero-textPROD"><p>← Desliza →</p></div>
+                <img src="assets/pequenoslapiz.jpg" alt="Stickers Peq 1">
+                <img src="assets/peque2.png" alt="Stickers Peq 2">
+            </div>
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 10</p>
+            <p>Plancha A4 con 76 stickers. Vienen sin cortar</p>
+        </div>
+
+        <div class="product-card" data-product="Stickers Medianos" data-price="10">
+            <h3>Stickers Medianos</h3>
+            <p>Ideales para etiquetas de cuadernos y planners.</p>
+            <div class="image-carousel">
+                <div class="hero-textPROD"><p>← Desliza →</p></div>
+                <img src="assets/medianosreal3.JPG" alt="Stickers MED 1">
+                <img src="assets/medianosreal2.jpg" alt="Stickers MED 2">
+                <img src="assets/medianosgirl.JPG" alt="Stickers MED 3">
+            </div>    
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 10</p>
+            <p>Pack de 10 stickers vienen cortados</p>
+        </div>
+
+        <div class="product-card" data-product="Sellos para Ropa" data-price="50">
+            <h3>Sellos para Ropa</h3>
+            <p>Marca cada prenda con nombre. La impresión queda firme y no se desprende con los lavados.</p>
+            <img src="assets/sello1.jpg" alt="sello1">
+            <img src="assets/polo.jpg" alt="sello2">
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p class="product-price">S/ 50</p>
+            <p>Pidelo con anticipación: este producto requiere 30 días para la entrega</p>
+        </div>
+
+        <div class="product-card" data-product="Diseños Especiales" data-price="10">
+            <h3>Diseños Especiales</h3>
+            <p>Elige tu personaje favorito y lo convertimos en una plancha de stickers lista para usar</p>
+            <img src="assets/plancha.jpg" alt="Diseños especiales">
+            <label for="personaje-especial">Selecciona personaje:</label>
+            <select class="personaje" id="personaje-especial">
+                <option value="Plancha Surtida x 20">1) Plancha Surtida x 20</option>
+                <option value="Personaje 1">Personaje 1</option>
+                <option value="Personaje 2">Personaje 2</option>
+                </select>
+            <div class="product-quantity">
+                <button class="minus">-</button>
+                <input type="number" value="0" min="0">
+                <button class="plus">+</button>
+            </div>
+            <p>“Entre 12 y hasta 15 stickers por hoja, según lo que entre en un A4.”</p>
+            <p class="product-price">S/ 10</p>
+        </div>
+    </div>
+
+    <div class="delivery-options">
+        <label><input type="radio" name="delivery" value="Con Delivery"> Incluir Delivery</label>
+        &nbsp;&nbsp;
+        <label><input type="radio" name="delivery" value="Sin Delivery" checked> No incluir Delivery</label>
+        <div class="delivery-aclaracion">El precio del delivery en Arequipa es de 15 soles</div>
+    </div>
+
+    <div id="pedido" aria-readonly="true">Tu pedido aparecerá aquí...</div>
+
+    <a id="whatsapp-button" href="#" target="_blank" class="disabled">
+        <img src="assets/whatsapp.jpg" alt="WhatsApp">
+        Hacer pedido via WhatsApp
+    </a>
+
+</section>
+
+<footer class="footer">
+    © 2025 Hacemos tus stickers — Todos los derechos reservados.
+</footer>
+
+<script>
+    const productCards = document.querySelectorAll('.product-card');
+    const pedidoDiv = document.getElementById('pedido');
+    const whatsappBtn = document.getElementById('whatsapp-button');
+
+    productCards.forEach(card => {
+        const minus = card.querySelector('.minus');
+        const plus = card.querySelector('.plus');
+        const input = card.querySelector('.product-quantity input');
+
+        minus.addEventListener('click', () => {
+            input.value = Math.max(0, parseInt(input.value) - 1);
+            actualizarPedido();
+        });
+        plus.addEventListener('click', () => {
+            input.value = parseInt(input.value) + 1;
+            actualizarPedido();
+        });
+        input.addEventListener('input', actualizarPedido);
+    });
+
+    document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+        radio.addEventListener('change', actualizarPedido);
+    });
+
+    function actualizarPedido() {
+        let textoPedido = '';
+        let total = 0;
+
+        productCards.forEach(card => {
+            const cantidad = parseInt(card.querySelector('input').value);
+            if (cantidad > 0) {
+                let nombre = card.dataset.product;
+                const precio = parseInt(card.dataset.price);
+                const selectPersonaje = card.querySelector('.personaje');
+                if (selectPersonaje) {
+                    nombre += ` - ${selectPersonaje.value}`;
+                }
+                textoPedido += `${nombre}: ${cantidad} unidades - S/ ${precio * cantidad}\n`;
+                total += precio * cantidad;
+            }
+        });
+
+        const delivery = document.querySelector('input[name="delivery"]:checked').value;
+        let deliveryCosto = (delivery === "Con Delivery") ? 15 : 0;
+        total += deliveryCosto;
+
+        if (total > 0) {
+            if (delivery === "Con Delivery") textoPedido += `\nDelivery: S/ 15`;
+            textoPedido += `\nTotal: S/ ${total}`;
+        }
+
+        pedidoDiv.textContent = textoPedido || 'Tu pedido aparecerá aquí...';
+        const mensaje = encodeURIComponent(textoPedido || 'Hola, quiero hacer un pedido');
+        whatsappBtn.href = `https://wa.me/51959457070?text=${mensaje}`;
+
+        if (textoPedido.trim() !== '' && total > 0) {
+            whatsappBtn.classList.remove('disabled');
+        } else {
+            whatsappBtn.classList.add('disabled');
+        }
+    }
+    actualizarPedido();
+</script>
+</body>
+</html>
