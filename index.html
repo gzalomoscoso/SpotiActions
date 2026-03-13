@@ -3,200 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIOSapps | Engineering & Design Lab</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>MyIOSapps | Engineering Lab</title>
     <style>
+        /* Paleta Simplificada: Alto contraste y Carga rápida */
         :root {
-            --bg-color: #0f0f0f;         /* Fondo gris oscuro profundo */
-            --card-bg: #1a1a1a;         /* Tarjetas gris un poco más claro */
-            --border-color: #2a2a2a;    /* Bordes sutiles */
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1a1;
-            --purple-accent: #a855f7;   /* Morado Seera */
-            --font-main: 'Inter', sans-serif;
+            --bg: #000000;
+            --card-bg: #111111;
+            --border: #222222;
+            --purple: #a855f7;
+            --text: #ffffff;
+            --text-dim: #a1a1a1;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        .layout-wrapper {
+        .container {
             display: flex;
             width: 100%;
-            max-width: 1100px;
-            padding: 100px 24px;
-            gap: 80px;
-            z-index: 1;
+            max-width: 1000px;
+            padding: 60px 20px;
+            gap: 40px;
         }
 
-        /* --- FRAME IZQUIERDO: Descripción --- */
-        .left-frame {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        /* Indicador de Status */
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--purple-accent);
-            margin-bottom: 24px;
-            background: rgba(168, 85, 247, 0.1);
-            padding: 6px 14px;
-            border-radius: 100px;
-            width: fit-content;
-            border: 1px solid rgba(168, 85, 247, 0.2);
-        }
-
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-
-        h1 {
-            font-size: 64px;
-            font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: -0.05em;
-            margin-bottom: 30px;
-            background: linear-gradient(to bottom, #fff 50%, #71717a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        h1 span {
-            color: var(--purple-accent);
-            -webkit-text-fill-color: var(--purple-accent);
-        }
-
-        .main-description {
-            font-size: 19px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-            max-width: 460px;
-        }
-
-        .main-description strong {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Efecto Glow de fondo */
-        .glow-effect {
-            position: absolute;
-            top: -120px;
-            left: -120px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(15, 15, 15, 0) 70%);
-            z-index: -1;
-            filter: blur(50px);
-            pointer-events: none;
-        }
-
-        /* --- FRAME DERECHO: Tarjetas --- */
-        .right-frame {
+        /* Lado Izquierdo: Marca */
+        .brand-section {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            justify-content: flex-start;
         }
 
-        .section-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            opacity: 0.7;
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        h1 span { color: var(--purple); }
+
+        p.desc {
+            font-size: 18px;
+            line-height: 1.5;
+            color: var(--text-dim);
+        }
+
+        /* Lado Derecho: Tarjetas */
+        .apps-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 32px;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 12px;
             text-decoration: none;
-            display: block;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: inherit;
+            transition: border-color 0.2s;
         }
 
         .card:hover {
-            border-color: var(--purple-accent);
-            transform: translateY(-5px) scale(1.01);
-            background-color: #1e1e1e;
+            border-color: var(--purple);
         }
 
         .card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--purple-accent);
-            margin-bottom: 10px;
-            letter-spacing: -0.02em;
+            color: var(--purple);
+            font-size: 20px;
+            margin-bottom: 8px;
         }
 
         .card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.5;
+            font-size: 14px;
+            color: var(--text-dim);
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .layout-wrapper {
-                flex-direction: column-reverse; /* Proyectos arriba en móvil */
-                padding: 60px 24px;
-                gap: 50px;
-            }
-
-            .left-frame {
-                text-align: left;
-            }
-
-            h1 {
-                font-size: 48px;
-            }
-
-            .main-description {
-                font-size: 17px;
-            }
+        /* Responsive: Proyectos primero en móvil */
+        @media (max-width: 800px) {
+            .container { flex-direction: column-reverse; padding: 40px 20px; }
+            h1 { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="layout-wrapper">
-        <section class="left-frame">
-            <div class
+    <div class="container">
+        <section class="brand-section">
+            <h1>My<span>iOS</span>apps</h1>
+            <p class="desc">
+                Laboratorio de ingeniería enfocado en herramientas de alto rendimiento. 
+                Donde la precisión técnica se encuentra con la simplicidad.
+            </p>
+        </section>
+
+        <aside class="apps-section">
+            <a href="https://www.myiosapps.org/colegio/" class="card">
+                <h3>Hacemos tus Stickers</h3>
+                <p>Etiquetado premium con estética cinematográfica.</p>
+            </a>
+            <a href="https://www.myiosapps.org/spotiactions/" class="card">
+                <h3>SpotiActions</h3>
+                <p>Gestión avanzada de playlists para Spotify.</p>
+            </a>
+            <a href="https://www.myiosapps.org/solowrite/" class="card">
+                <h3>SoloWrite</h3>
+                <p>Un lienzo puro para que tus pensamientos fluyan.</p>
+            </a>
+        </aside>
+    </div>
+
+</body>
+</html>
