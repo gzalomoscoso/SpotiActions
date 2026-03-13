@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyIOSapps | Engineering Lab</title>
     <style>
-        /* Paleta Simplificada: Alto contraste y Carga rápida */
         :root {
-            --bg: #000000;
-            --card-bg: #111111;
-            --border: #222222;
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --border: #262626;
             --purple: #a855f7;
-            --text: #ffffff;
+            --text-white: #ffffff;
             --text-dim: #a1a1a1;
         }
 
@@ -19,8 +18,8 @@
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-white);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Inter", sans-serif;
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -29,71 +28,93 @@
         .container {
             display: flex;
             width: 100%;
-            max-width: 1000px;
-            padding: 60px 20px;
+            max-width: 1100px;
+            padding: 80px 24px;
             gap: 40px;
         }
 
-        /* Lado Izquierdo: Marca */
+        /* Frame Izquierdo: Ahora dentro de un recuadro */
         .brand-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            flex: 1.2;
+        }
+
+        .brand-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            height: 100%;
         }
 
         h1 {
             font-size: 48px;
             font-weight: 800;
             letter-spacing: -2px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            line-height: 1;
         }
 
         h1 span { color: var(--purple); }
 
-        p.desc {
+        .desc {
             font-size: 18px;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--text-dim);
         }
 
-        /* Lado Derecho: Tarjetas */
+        .desc p { margin-bottom: 20px; }
+
+        .desc strong { color: var(--text-white); }
+
+        /* Frame Derecho: Proyectos */
         .apps-section {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 20px;
             text-decoration: none;
             color: inherit;
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .card:hover {
             border-color: var(--purple);
+            transform: translateY(-2px);
         }
 
         .card h3 {
             color: var(--purple);
-            font-size: 20px;
-            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
-        .card p {
+        .card .lang-en {
+            display: block;
+            font-size: 15px;
+            color: var(--text-white);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .card .lang-es {
+            display: block;
             font-size: 14px;
             color: var(--text-dim);
         }
 
         /* Responsive: Proyectos primero en móvil */
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
             .container { flex-direction: column-reverse; padding: 40px 20px; }
-            h1 { font-size: 36px; }
+            h1 { font-size: 38px; }
+            .brand-card { padding: 30px; }
         }
     </style>
 </head>
@@ -101,25 +122,35 @@
 
     <div class="container">
         <section class="brand-section">
-            <h1>My<span>iOS</span>apps</h1>
-            <p class="desc">
-                Laboratorio de ingeniería enfocado en herramientas de alto rendimiento. 
-                Donde la precisión técnica se encuentra con la simplicidad.
-            </p>
+            <div class="brand-card">
+                <h1>My<span>iOS</span>apps</h1>
+                <div class="desc">
+                    <p>
+                        An engineering laboratory focused on building high-performance digital tools, where technical precision meets minimalism through simplicity.
+                    </p>
+                    <p>
+                        Un laboratorio de ingeniería enfocado en herramientas de alto rendimiento, donde la precisión técnica se encuentra con el minimalismo a través de la simplicidad.
+                    </p>
+                </div>
+            </div>
         </section>
 
         <aside class="apps-section">
             <a href="https://www.myiosapps.org/colegio/" class="card">
                 <h3>Hacemos tus Stickers</h3>
-                <p>Etiquetado premium con estética cinematográfica.</p>
+                <span class="lang-es">Etiquetado premium para útiles escolares con estética cinematográfica.</span>
             </a>
+
             <a href="https://www.myiosapps.org/spotiactions/" class="card">
                 <h3>SpotiActions</h3>
-                <p>Gestión avanzada de playlists para Spotify.</p>
+                <span class="lang-en">Advanced playlist management and automation for Spotify.</span>
+                <span class="lang-es">Gestión avanzada y automatización de playlists para Spotify.</span>
             </a>
+
             <a href="https://www.myiosapps.org/solowrite/" class="card">
                 <h3>SoloWrite</h3>
-                <p>Un lienzo puro para que tus pensamientos fluyan.</p>
+                <span class="lang-en">A pure digital canvas for your thoughts to flow without friction.</span>
+                <span class="lang-es">Un lienzo digital puro para que tus pensamientos fluyan sin fricciones.</span>
             </a>
         </aside>
     </div>
