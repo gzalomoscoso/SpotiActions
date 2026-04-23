@@ -1,0 +1,70 @@
+ACUERDO DE LICENCIA DE USUARIO FINAL (EULA) / END USER LICENSE AGREEMENT (EULA)
+
+Este Acuerdo de Licencia de Usuario Final (“Acuerdo”) es un contrato legal entre usted (“Usuario”) y GONZALO JUVENAL MOSCOSO PACHECO (“Desarrollador”) sobre el uso de la aplicación móvil (la “App”). / This End User License Agreement (“Agreement”) is a legal contract between you (“User”) and [Your Legal Name or Company] (“Developer”) regarding the use of the mobile application (the “App”).
+
+Al instalar o usar la App, usted acepta estar legalmente vinculado por este Acuerdo. / By installing or using the App, you agree to be bound by this Agreement.
+
+1. Alcance de la licencia / Scope of License  
+La App se licencia, no se vende. Se concede al Usuario una licencia limitada, no transferible y no exclusiva para instalar y usar la App en dispositivos Apple que le pertenezcan o controle, de acuerdo con este Acuerdo y con los Términos de Servicio del App Store.  
+The App is licensed, not sold. Developer grants a limited, non-transferable, non-exclusive license to install and use the App on Apple-branded devices owned or controlled by the User, strictly in accordance with this Agreement and the App Store Terms of Service.
+
+2. Rol de Apple / Apple’s Role  
+El Usuario reconoce que Apple no es parte de este Acuerdo y no tiene responsabilidad alguna por la App o su contenido. Apple no está obligada a proveer mantenimiento, soporte, garantías ni a responder a reclamos relacionados con la App.  
+The User acknowledges that Apple is not a party to this Agreement and has no responsibility for the App or its content. Apple has no obligation to provide maintenance, support, warranties, or to address any claims related to the App.
+
+3. Contenido y uso / Content and Usage  
+La App puede permitir acceso o reproducción de contenido a través de atajos u otras integraciones de terceros. El Usuario es el único responsable de:  
+(a) asegurarse de tener derecho legal para acceder, reproducir o usar dicho contenido;  
+(b) decidir si dicho contenido es apropiado para su edad o circunstancias;  
+(c) cualquier consecuencia derivada del uso de contenido de terceros.  
+El Desarrollador no controla ni provee dicho contenido y no asume responsabilidad alguna por él.  
+The App may allow access to or reproduction of content through third-party shortcuts or integrations. The User is solely responsible for:  
+(a) ensuring they have the legal right to access, play, or reproduce such content;  
+(b) determining whether such content is appropriate for their age or circumstances;  
+(c) any consequences arising from the use of third-party content.  
+Developer does not control or provide such third-party content and assumes no liability for it.
+
+4. Restricciones / Restrictions  
+El Usuario no puede:  
+- Descompilar, hacer ingeniería inversa ni modificar la App;  
+- Usar la App para fines ilegales;  
+- Distribuir o revender la App sin permiso escrito del Desarrollador.  
+User may not:  
+- Decompile, reverse engineer, or modify the App;  
+- Use the App for unlawful purposes;  
+- Distribute or resell the App without written permission from Developer.
+
+5. Clasificación por edades / Age Rating  
+La App puede permitir acceso a música u otros medios que incluyan temas explícitos o maduros. El Usuario es responsable de supervisar el acceso y de cumplir con las restricciones legales de edad en su región.  
+The App may permit access to music or other media that can include explicit or mature themes. By using the App, the User agrees that they are responsible for supervising access and ensuring compliance with local age and content restrictions.
+
+6. Garantías y responsabilidad / Warranties and Liability  
+La App se proporciona “TAL CUAL” sin garantías de ningún tipo. El Desarrollador rechaza expresamente todas las garantías, incluidas la idoneidad para un fin particular, la confiabilidad o la disponibilidad.  
+En la máxima medida permitida por la ley:  
+- La responsabilidad del Desarrollador se limita al precio pagado por la App;  
+- El Desarrollador no será responsable de daños indirectos, incidentales o consecuenciales.  
+The App is provided “AS IS” without warranties of any kind. Developer expressly disclaims all warranties, including fitness for a particular purpose, reliability, or availability.  
+To the maximum extent permitted by law:  
+- Developer’s liability is limited to the amount paid by the User for the App;  
+- Developer is not liable for any indirect, incidental, or consequential damages.
+
+7. Soporte y mantenimiento / Support and Maintenance  
+El Desarrollador puede, pero no está obligado, a proveer actualizaciones, correcciones o soporte técnico. Apple no tiene obligación de brindar soporte para la App.  
+Developer may, but is not obligated to, provide updates, bug fixes, or technical support. Apple has no obligation to provide any support for the App.
+
+8. Terminación / Termination  
+Esta licencia es válida hasta su terminación. El Usuario puede terminarla eliminando la App. El Desarrollador puede terminarla si el Usuario incumple este Acuerdo. Al finalizar, el Usuario debe cesar todo uso y eliminar la App.  
+This license is effective until terminated. The User may terminate by deleting the App. Developer may terminate the license if the User fails to comply with this Agreement. Upon termination, the User must cease all use and delete the App.
+
+9. Cumplimiento legal / Legal Compliance  
+El Usuario acepta cumplir con todas las leyes locales y regulaciones aplicables al usar la App, incluidas las de derechos de autor y contenido.  
+The User agrees to comply with all local laws and regulations while using the App, including copyright and content regulations.
+
+10. Legislación aplicable / Governing Law  
+Este Acuerdo se rige por las leyes de PERU. Cualquier disputa se someterá a la jurisdicción exclusiva de los tribunales de PERU.  
+This Agreement is governed by the laws of PERU. Any disputes will be subject to the exclusive jurisdiction of the courts of PERU.
+
+---
+
+Al instalar o usar la App, el Usuario confirma su aceptación de este Acuerdo.  
+By installing or using the App, the User confirms acceptance of this Agreement.

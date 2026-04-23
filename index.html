@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyIOSapps | Engineering Lab</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --border: #262626;
+            --purple: #a855f7;
+            --text-white: #ffffff;
+            --text-dim: #a1a1a1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-white);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Inter", sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            padding: 80px 24px;
+            gap: 40px;
+        }
+
+        /* Frame Izquierdo: Ahora dentro de un recuadro */
+        .brand-section {
+            flex: 1.2;
+        }
+
+        .brand-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            line-height: 1;
+        }
+
+        h1 span { color: var(--purple); }
+
+        .desc {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        .desc p { margin-bottom: 20px; }
+
+        .desc strong { color: var(--text-white); }
+
+        /* Frame Derecho: Proyectos */
+        .apps-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            color: var(--purple);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card .lang-en {
+            display: block;
+            font-size: 15px;
+            color: var(--text-white);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .card .lang-es {
+            display: block;
+            font-size: 14px;
+            color: var(--text-dim);
+        }
+
+        /* Responsive: Proyectos primero en móvil */
+        @media (max-width: 900px) {
+            .container { flex-direction: column-reverse; padding: 40px 20px; }
+            h1 { font-size: 38px; }
+            .brand-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="brand-section">
+            <div class="brand-card">
+                <h1>My<span>iOS</span>apps</h1>
+                <div class="desc">
+                    <p>
+                        An engineering laboratory focused on building high-performance digital tools, where technical precision meets minimalism through simplicity.
+                    </p>
+                    <p>
+                        Un laboratorio de ingeniería enfocado en herramientas de alto rendimiento, donde la precisión técnica se encuentra con el minimalismo a través de la simplicidad.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="apps-section">
+            <a href="https://www.myiosapps.org/colegio/" class="card">
+                <h3>Hacemos tus Stickers</h3>
+                <span class="lang-en">Etiquetado premium para útiles escolares con estética única</span>
+            </a>
+
+            <a href="https://www.myiosapps.org/spotiactions/" class="card">
+                <h3>SpotiActions</h3>
+                <span class="lang-en">The missing bridge between Spotify and iOS Automations.</span>
+                <span class="lang-es">El puente que faltaba entre Spotify y las Automatizaciones en IOS</span>
+            </a>
+
+            <a href="https://www.myiosapps.org/solowrite/" class="card">
+                <h3>SoloWrite</h3>
+                <span class="lang-en">A pure digital canvas for your thoughts to flow without friction.</span>
+                <span class="lang-es">Un lienzo digital puro para que tus pensamientos fluyan sin fricciones.</span>
+            </a>
+        </aside>
+    </div>
+
+</body>
+</html>

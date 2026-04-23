@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoloWrite | Pure Flow Writing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #fafafa;
+            --text-main: #1d1d1f;
+            --text-dim: #86868b;
+            --accent: #a855f7; 
+            --border: #e5e5e5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: radial-gradient(circle at center, #fdfcfd 0%, #ffffff 100%);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 1rem;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            font-weight: 300;
+            max-width: 600px;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .highlight-box {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Button Store */
+        .cta-container {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .app-store-button {
+            display: inline-block;
+            background: var(--text-main);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--text-main);
+        }
+
+        .app-store-button:hover {
+            background: transparent;
+            color: var(--text-main);
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.8rem; }
+            header p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SoloWrite</h1>
+        <p>It’s not just an app. <br>It’s a tool for your thoughts to flow.</p>
+    </header>
+
+    <main>
+        <section id="concept">
+            <div class="highlight-box">
+                <h2>Open. Write. Nothing in between.</h2>
+                <p>SoloWrite is the digital version of a blank page. It’s not a project manager, it’s not a social network; it’s the space where your ideas land before the noise makes them disappear.</p>
+            </div>
+        </section>
+
+        <section id="focus">
+            <h2>Designed for Absolute Focus</h2>
+            <p>Every gram of cognitive friction has been removed. In SoloWrite, the interface steps back so your text becomes the only protagonist.</p>
+            <ul>
+                <li>No complex menus or intrusive toolbars.</li>
+                <li>Typography designed for clarity and calm.</li>
+                <li>No notifications, no pressure metrics, no distractions.</li>
+            </ul>
+        </section>
+
+        <section id="files">
+            <h2>Ownership by Design</h2>
+            <p>Your thoughts belong to you. That’s why SoloWrite uses the standard <strong>.md (Markdown)</strong> format stored in your own iCloud Drive.</p>
+            <ul>
+                <li>Full access from the iOS Files app or macOS Finder.</li>
+                <li>No proprietary databases: your files are yours forever.</li>
+                <li>Natively compatible with tools like Obsidian or iA Writer.</li>
+            </ul>
+        </section>
+
+        <section id="download" class="cta-container">
+            <h2>Embrace Simplicity</h2>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Start writing today in an environment designed for the analytical mind.</p>
+            <a href="https://apps.apple.com/app/solowrite/id6753189572" class="app-store-button">
+                Download on the App Store
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2026 SoloWrite · A <a href="https://www.myiosapps.org">myIOSapps</a> project.
+            <br><br>
+            <a href="#">Privacy</a> · <a href="#">Support</a> · <a href="#">Terms</a>
+        </p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpotiActions – Automate your music</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #1db954;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      animation: fadeInDown 1s ease forwards;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+    section:nth-child(5) { animation-delay: 1s; }
+    section:nth-child(6) { animation-delay: 1.2s; }
+
+    h2 {
+      color: #1db954;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      background: #1db954;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    a.button:hover {
+      background: #17a447;
+      transform: translateY(-2px);
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #1db954;
+    }
+
+    .premium-section {
+      background: #e6f5eb;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SpotiActions</h1>
+    <p>Free for everyone, optional premium for power users</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>What SpotiActions Is Now</h2>
+      <p>SpotiActions began as a simple idea: a playlist-triggered alarm. It evolved into a complete space where you <span class="highlight">discover playlists</span>, <span class="highlight">automate your routines</span>, and <span class="highlight">make your music truly yours</span>.</p>
+      <ul>
+        <li>Wake up with your chosen playlist through powerful iOS Shortcuts.</li>
+        <li>Let your iPhone detect when you arrive at the subway and start playing music automatically.</li>
+        <li>Trigger your favorite tunes the moment you connect CarPlay.</li>
+        <li>Use small automations that make music blend naturally with your daily rhythm.</li>
+      </ul>
+      <p>These features take advantage of iOS automation in a way that feels natural and useful, not complicated.</p>
+    </section>
+
+    <section>
+      <h2>Curated Playlists</h2>
+      <p>The new <span class="highlight">Curated Playlists</span> section highlights playlists made by real people — musicians, curators, and music lovers.</p>
+      <ul>
+        <li>No AI-generated lists. No bots.</li>
+        <li>Selections with genuine taste and unexpected discoveries.</li>
+        <li>More playlists will be added regularly.</li>
+      </ul>
+      <p>It feels like digging through a friend's old box of CDs and finding something great.</p>
+    </section>
+
+    <section>
+      <h2>Start Free</h2>
+      <ul>
+        <li>Free access only to The Free playlist</li>
+        <li>View all the playlists: Rock, Piano, Spanish, Happy Wakeup, and more</li>
+        <li>Set multiple alarms for different moods and days</li>
+        <li>Learn to automate your morning routine with iOS Shortcuts</li>
+      </ul>
+    </section>
+
+    <section class="premium-section">
+      <h2>Premium Optional</h2>
+      <ul>
+        <li>Unlock unlimited playlists and full automation features</li>
+        <li>Advanced automation triggers</li>
+        <li>Power-user exclusive capabilities</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <div class="cta">
+        <a href="spotiactions://"
+           onclick="setTimeout(function(){ window.location='https://apps.apple.com/app/spotiactions/id6748419049'; }, 500);"
+           class="button">Upgrade to Premium</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Free to Download</h2>
+      <p>SpotiActions used to cost a few dollars. Now it’s free.</p>
+      <p>You can try it with one playlist and upgrade only if it fits your routine. This change came directly from user feedback — and it makes the app more welcoming.</p>
+      <div class="cta">
+        <a href="https://apps.apple.com/app/spotiactions/id6748419049" class="button">Download SpotiActions</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why SpotiActions</h2>
+      <ul>
+        <li>Free users get the full core experience</li>
+        <li>Premium adds features without removing anything</li>
+        <li>Past buyers keep all features permanently</li>
+        <li>Shortcuts work even when the iPhone is locked</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Need Help?</h2>
+      <p>Visit the <a href="https://gzalomoscoso.github.io/SpotiActions/support.html" class="highlight">support page</a> for guides and FAQs.</p>
+      <div class="cta">
+        <a href="https://gzalomoscoso.github.io/SpotiActions/support.html" class="button">Go to Support</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>The Story</h2>
+      <p>Learn how SpotiActions evolved from a simple automation idea into a complete music companion that makes your routines smoother and more personal.</p>
+      <div class="cta">
+        <a href="https://gzalomoscoso.github.io/SpotiActions/story.html" class="button">Read the Story</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Discover Real-Life Uses</h2>
+      <p>Watch examples of how people are using SpotiActions every day.</p>
+      <div class="cta">
+        <a href="https://www.instagram.com/reel/DO03od2DgCJ/?igsh=cGc5dWlrMWp6NzNj" class="button">See Real Uses</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 SpotiActions. All rights reserved.
+  </footer>
+
+</body>
+</html>
