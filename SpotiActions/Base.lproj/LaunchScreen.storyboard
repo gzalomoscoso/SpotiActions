@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ViewController">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="launch-scene">
+            <objects>
+                <viewController id="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="main-view">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Launch112525" translatesAutoresizingMaskIntoConstraints="NO" id="launch-image">
+                                <rect key="frame" x="0.0" y="118" width="393" height="734"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SpotiActions" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label-main">
+                                <rect key="frame" x="77.000000000000014" y="168" width="239.33333333333337" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="automate your music" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label-sub">
+                                <rect key="frame" x="97.666666666666671" y="226" width="197.66666666666663" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" systemColor="systemGray"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="safe-area"/>
+                        <color key="backgroundColor" red="0.9176" green="0.9176" blue="0.9176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="launch-image" firstAttribute="bottom" secondItem="main-view" secondAttribute="bottom" id="img-bottom"/>
+                            <constraint firstItem="launch-image" firstAttribute="leading" secondItem="main-view" secondAttribute="leading" id="img-leading"/>
+                            <constraint firstItem="launch-image" firstAttribute="top" secondItem="safe-area" secondAttribute="top" id="img-top"/>
+                            <constraint firstItem="launch-image" firstAttribute="trailing" secondItem="main-view" secondAttribute="trailing" id="img-trailing"/>
+                            <constraint firstItem="label-main" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="label-main-centerX"/>
+                            <constraint firstItem="label-main" firstAttribute="top" secondItem="safe-area" secondAttribute="top" constant="50" id="label-main-top"/>
+                            <constraint firstItem="label-sub" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="label-sub-centerX"/>
+                            <constraint firstItem="label-sub" firstAttribute="top" secondItem="label-main" secondAttribute="bottom" constant="10" id="label-sub-top"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="first-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Launch112525" width="1242" height="2688"/>
+        <systemColor name="systemGray">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

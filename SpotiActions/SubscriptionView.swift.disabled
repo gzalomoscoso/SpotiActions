@@ -1,0 +1,66 @@
+import SwiftUI
+import StoreKit
+
+struct SubscriptionView: View {
+    @StateObject private var store = StoreManager()
+    private let annualID = "com.spotiactions.premium.anual"
+    private let lifetimeID = "com.spotiactions.lifetime"
+
+    var body: some View {
+        VStack(spacing: 20) {
+            if store.isLoading {
+                ProgressView(NSLocalizedString("loading_price", comment: ""))
+            } else {
+                // Intentamos obtener ambos productos
+                let annualProduct = store.products.first { $0.id == annualID }
+                let lifetimeProduct = store.products.first { $0.id == lifetimeID }
+
+                if let annual = annualProduct {
+                    Button(action: {
+                        Task {
+                            do {
+                                try await store.purchase(annual)
+                            } catch {
+                                print("\(NSLocalizedString("purchase_failed", comment: "")) \(error)")
+                            }
+                        }
+                    }) {
+                        Text(String(format: NSLocalizedString("continue_with_price", comment: ""), annual.displayPrice))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                }
+
+                if let lifetime = lifetimeProduct {
+                    Button(action: {
+                        Task {
+                            do {
+                                try await store.purchase(lifetime)
+                            } catch {
+                                print("\(NSLocalizedString("purchase_failed", comment: "")) \(error)")
+                            }
+                        }
+                    }) {
+                        Text(String(format: NSLocalizedString("lifetime_access_price", comment: ""), lifetime.displayPrice))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.green)
+                            .cornerRadius(10)
+                    }
+                }
+
+                if annualProduct == nil && lifetimeProduct == nil {
+                    Text(NSLocalizedString("product_not_available", comment: ""))
+                        .foregroundColor(.red)
+                }
+            }
+        }
+        .padding()
+    }
+}

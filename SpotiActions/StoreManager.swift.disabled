@@ -1,0 +1,243 @@
+import Foundation
+import StoreKit
+
+@MainActor
+class StoreManager: ObservableObject {
+    @Published var products: [Product] = []
+    @Published var isLoading: Bool = false
+    @Published var isSubscribed: Bool = UserDefaults.standard.bool(forKey: "isSubscribed")
+
+    let annualProductID = "com.spotiactions.premium.anual"
+    let lifetimeProductID = "com.spotiactions.lifetime"
+    let lastPaidVersion = "1.8" // Última versión que fue de pago único
+
+    // 🟢 Mantener la escucha activa de transacciones
+    private var updatesTask: Task<Void, Never>? = nil
+
+    init() {
+        Task {
+            await fetchProducts()
+            await updateSubscriptionStatus()
+            await checkLegacyPurchaseLocally()
+        }
+
+        // Iniciar escucha de actualizaciones de transacciones
+        updatesTask = Task {
+            await listenForTransactionUpdates()
+        }
+    }
+
+    deinit {
+        updatesTask?.cancel()
+    }
+
+    // MARK: - Fetch Products
+    private func fetchProducts() async {
+        await MainActor.run { self.isLoading = true }
+        do {
+            let storeProducts = try await Product.products(for: [annualProductID, lifetimeProductID])
+            await MainActor.run {
+                self.products = storeProducts
+                self.isLoading = false
+            }
+        } catch {
+            print("\(NSLocalizedString("fetch_products_failed", comment: "")) \(error)")
+            await MainActor.run {
+                self.products = []
+                self.isLoading = false
+            }
+        }
+    }
+
+    // MARK: - Escucha continua de transacciones
+    private func listenForTransactionUpdates() async {
+        for await verificationResult in Transaction.updates {
+            switch verificationResult {
+            case .verified(let transaction):
+                await handle(transaction)
+            case .unverified(_, let error):
+                print("⚠️ Unverified transaction update: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    // MARK: - Manejo de transacción
+    private func handle(_ transaction: Transaction) async {
+        if transaction.productID == annualProductID || transaction.productID == lifetimeProductID {
+            isSubscribed = true
+            UserDefaults.standard.set(true, forKey: "isSubscribed")
+            if transaction.productID == lifetimeProductID {
+                UserDefaults.standard.set(true, forKey: "isLifetimeUser")
+                print("✅ Lifetime purchase verified (update)")
+            } else {
+                UserDefaults.standard.set(false, forKey: "isLifetimeUser")
+                print("✅ Annual subscription verified (update)")
+            }
+        }
+        await transaction.finish()
+    }
+
+    // MARK: - Purchase Product
+    func purchase(_ product: Product) async throws {
+        let result = try await product.purchase()
+
+        switch result {
+        case .success(let verification):
+            switch verification {
+            case .verified(let transaction):
+                await handle(transaction)
+                print(NSLocalizedString("purchase_verified", comment: ""))
+
+            case .unverified(_, let error):
+                throw error
+            }
+
+        case .userCancelled:
+            throw NSError(
+                domain: "Store",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("user_cancelled", comment: "")]
+            )
+
+        case .pending:
+            print(NSLocalizedString("purchase_pending", comment: ""))
+
+        @unknown default:
+            print(NSLocalizedString("purchase_failed", comment: ""))
+        }
+    }
+
+    // MARK: - Subscription Check
+    func checkActiveSubscription() async -> Bool {
+        for await verificationResult in Transaction.currentEntitlements {
+            switch verificationResult {
+            case .verified(let transaction):
+                if transaction.productID == annualProductID {
+                    if let expiry = transaction.expirationDate {
+                        if expiry > Date() { return true }
+                    } else {
+                        return true
+                    }
+                } else if transaction.productID == lifetimeProductID {
+                    return true
+                }
+            case .unverified(_, _):
+                continue
+            }
+        }
+        return false
+    }
+
+    // MARK: - Update Subscription Status
+    func updateSubscriptionStatus() async {
+        var subscribed = false
+        var lifetime = false
+
+        for await verificationResult in Transaction.currentEntitlements {
+            switch verificationResult {
+            case .verified(let transaction):
+                if transaction.productID == annualProductID {
+                    if let expiry = transaction.expirationDate {
+                        if expiry > Date() { subscribed = true }
+                    } else {
+                        subscribed = true
+                    }
+                } else if transaction.productID == lifetimeProductID {
+                    lifetime = true
+                    subscribed = true
+                }
+            case .unverified(_, _):
+                continue
+            }
+        }
+
+        self.isSubscribed = subscribed
+        UserDefaults.standard.set(subscribed, forKey: "isSubscribed")
+        UserDefaults.standard.set(lifetime, forKey: "isLifetimeUser")
+    }
+
+    // MARK: - Legacy Purchase (before subscriptions)
+    func checkLegacyPurchaseLocally() async {
+        guard let receiptURL = Bundle.main.appStoreReceiptURL else { return }
+        guard FileManager.default.fileExists(atPath: receiptURL.path),
+              let receiptData = try? Data(contentsOf: receiptURL) else { return }
+
+        do {
+            let responseJSON = try await postVerifyReceipt(
+                to: URL(string: "https://buy.itunes.apple.com/verifyReceipt")!,
+                receiptData: receiptData
+            )
+
+            if let receipt = responseJSON["receipt"] as? [String: Any],
+               let originalVersion = receipt["original_application_version"] as? String {
+
+                if compareVersions(originalVersion, lastPaidVersion) <= 0 {
+                    await MainActor.run {
+                        self.isSubscribed = true
+                        UserDefaults.standard.set(true, forKey: "isLifetimeUser")
+                        UserDefaults.standard.set(true, forKey: "isSubscribed")
+                    }
+                    print("✅ Legacy user detected → granted lifetime")
+                } else {
+                    await MainActor.run {
+                        self.isSubscribed = false
+                        UserDefaults.standard.set(false, forKey: "isLifetimeUser")
+                    }
+                }
+            }
+        } catch {
+            print("❌ checkLegacyPurchaseLocally failed: \(error)")
+        }
+    }
+
+    // MARK: - Version Comparison
+    private func compareVersions(_ v1: String, _ v2: String) -> Int {
+        let comps1 = v1.split(separator: ".").compactMap { Int($0) }
+        let comps2 = v2.split(separator: ".").compactMap { Int($0) }
+        let maxLen = max(comps1.count, comps2.count)
+        for i in 0..<maxLen {
+            let a = i < comps1.count ? comps1[i] : 0
+            let b = i < comps2.count ? comps2[i] : 0
+            if a < b { return -1 }
+            if a > b { return 1 }
+        }
+        return 0
+    }
+
+    // MARK: - Verify Receipt
+    private func postVerifyReceipt(to url: URL, receiptData: Data) async throws -> [String: Any] {
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let base64 = receiptData.base64EncodedString()
+        let body: [String: Any] = [
+            "receipt-data": base64,
+            "exclude-old-transactions": true
+        ]
+
+        req.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+
+        let (data, response) = try await URLSession.shared.data(for: req)
+
+        if let httpResp = response as? HTTPURLResponse, !(200...299).contains(httpResp.statusCode) {
+            let bodyText = String(data: data, encoding: .utf8) ?? "<no-body>"
+            throw NSError(
+                domain: "StoreManager",
+                code: httpResp.statusCode,
+                userInfo: [NSLocalizedDescriptionKey: "Apple verifyReceipt returned HTTP \(httpResp.statusCode): \(bodyText)"]
+            )
+        }
+
+        guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            let bodyText = String(data: data, encoding: .utf8) ?? "<no-body>"
+            throw NSError(
+                domain: "StoreManager",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid JSON from Apple: \(bodyText)"]
+            )
+        }
+
+        return json
+    }
+}

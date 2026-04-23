@@ -1,0 +1,152 @@
+"OnBoarding" = "OnBoarding";
+"Menu" = "Settings";
+"Tutorials" = "Tutorials";
+"SETUPTHISPLAYLIST" = "HOW";
+"SwipeDown" = "Swipe down to view the free list";
+"Make sure" = "Make sure to test the automation by pressing the black play ▶️ button below. Permissions will only be requested if this is the first time you are using this list ID. ";
+
+/* LIFETIME */
+"Unlock Lifetime Premium" = "Unlock Lifetime Premium";
+"All playlists and features" = "All paid plans give you full access to every playlist and feature";
+"choosePriceTEXT" = "Choose your preferred price";
+"Lifetime" = " Unlock Lifetime – %@";
+"OneYear" = "Unlock One Year Subscription – %@";
+"Lifetime product not available" = "Lifetime product not available";
+"payementTEXT" = "Choose your Premium plan and enjoy all playlists and features";
+"idrequiredTEXT" = "You’ll be asked for your Apple ID to complete the purchase.";
+"Download Shortcuts App" = "If you don't have the Shortcuts App, download it here";
+
+/* MainView / Mensajes sistema */
+"RequiresPremium" = "Only for premium users";
+"PRONTOTEXT" = "Christmas Playlist";
+
+/* SEASON */
+"DESCHRISTMAS" = "A different list for Christmas. I love it";
+"dayly" = "Dayly Mix 1";
+
+/* Header / App title */
+"SpotiActions" = "SpotiActions";
+"app_title" = "SpotiActions";
+
+/* FullScreenCover button */
+"Show Onboarding Again" = "Show Onboarding Again";
+
+/* howtoSETUP / Header */
+"Pick only the tutorial you need" = "Pick only the tutorial you need";
+
+/* howtoSETUP - section titles */
+"How to setup your automation" = "Tap to play the video tutorial";
+"BotonIZQ" = "Show me a\nstep-by-step";
+"BotonDER" = "Let's create the\nautomation";
+
+"How to create an automation and use it as an alarm" = "How to create an automation and use it as an alarm";
+"Hear ‘Welcome Back, Sir’ when you get in your car ( only with carplay )" = "Hear ‘Welcome Back, Sir’ when you get in your car ( only with carplay )";
+"Play Music Automatically when you get home" = "Play Music Automatically when you get home";
+"Start your song as you cross the finish line of your training" = "Start your song as you cross the finish line of your training";
+
+/* howtoSETUP - descriptions */
+"Choose a playlist or song and install the shortcut into your Shortcuts app." = "Choose a playlist or song and install the shortcut into your Shortcuts app.";
+"Create a time-based automation (alarm) and assign a shortcut to run when it triggers." = "Create a time-based automation (alarm) and assign a shortcut to run when it triggers.";
+"Use CarPlay as trigger so the shortcut plays when the car connects to your device." = "Use CarPlay as trigger so the shortcut plays when the car connects to your device.";
+"Enable location-based automation to start playback as you arrive home." = "Enable location-based automation to start playback as you arrive home.";
+"Set a geofence at your finish line so your victory song plays automatically." = "Set a geofence at your finish line so your victory song plays automatically.";
+"Alternative method to play a playlist when arriving home (arrive-home trigger)." = "Alternative method to play a playlist when arriving home (arrive-home trigger).";
+
+/* howtoSETUP - buttons & modal */
+"Watch tutorial" = "Watch tutorial";
+"Back" = "Back";
+
+/* howtoSETUP - tutorial steps (case 0..5) - CORREGIDOS CON ESCAPADO */
+"Paso1" = "In a new automation, select the first option from the list: \"Time of Day\"";
+"Paso2" = "Under Repeat, select Weekly and ensure only the days you want the alarm to trigger are highlighted in blue";
+"Paso3" = "Next, tap the \"Create New Shortcut\" option";
+"Paso4" = "Finally, configure the automation using the three steps shown: Set Volume, Number, and Run Shortcut. Ensure they are in that exact order. Tap the black Play button before leaving";
+"Paso5" = "Esto es crítico para que sea automatico: debe estar seleccionada la opción: \"Ejecutar Automaticamente\"";
+
+"This is the longest tutorial, so please be patient. First, tap “Automation” in the bottom bar" = "This is the longest tutorial, so please be patient. First, tap “Automation” in the bottom bar";
+"Tap the “+” button to create a new automation" = "Tap the “+” button to create a new automation";
+"Select [Time of Day]. Let's set an alarm for 6:00 AM, Monday to Friday" = "Select [Time of Day]. Let's set an alarm for 6:00 AM, Monday to Friday";
+"Choose the values as shown on the screen, and make sure “Run Immediately” is checked. Then tap Done" = "Choose the values as shown on the screen, and make sure “Run Immediately” is checked. Then tap Done";
+"Tap [Create New Shortcut]" = "Tap [Create New Shortcut]";
+"Include at least the volume, and..." = "Include at least the volume, and...";
+"and make sure to select the shortcut so it looks like this. Then tap the blue checkmark" = "and make sure to select the shortcut so it looks like this. Then tap the blue checkmark";
+"That's it! Your automation is ready and can be seen in your Automations list. It will play every day; in this case, the playlist will play shuffled, so a different song will play each day" = "That's it! Your automation is ready and can be seen in your Automations list. It will play every day; in this case, the playlist will play shuffled, so a different song will play each day";
+
+"Follow steps 1, 2, and 3 from the previous tutorial, but instead of selecting “Time of Day”, choose “CarPlay”. This shortcut is in the Settings menu " = "Follow steps 1, 2, and 3 from the previous tutorial, but instead of selecting “Time of Day”, choose “CarPlay”. This shortcut is in the Settings menu ";
+"To play “Welcome Back Sir” when CarPlay connects, choose these options and then tap the blue checkmark." = "To play “Welcome Back Sir” when CarPlay connects, choose these options and then tap the blue checkmark.";
+"Always make sure all your automations are set to “Run Immediately”" = "Always make sure all your automations are set to “Run Immediately”";
+
+"Enable location-based automation." = "Enable location-based automation.";
+"Set your home location." = "Set your home location.";
+"Choose 'Play Playlist' action." = "Choose 'Play Playlist' action.";
+"Select your favorite playlist." = "Select your favorite playlist.";
+
+"Open your running app." = "Open your running app.";
+"Set a geofence at the finish line." = "Set a geofence at the finish line.";
+"Choose 'Play Music' action." = "Choose 'Play Music' action.";
+"Select your victory song." = "Select your victory song.";
+
+"Open Shortcuts automation." = "Open Shortcuts automation.";
+"Set trigger: Arrive Home." = "Set trigger: Arrive Home.";
+"Add 'Play Playlist' action." = "Add 'Play Playlist' action.";
+"Select playlist to play automatically." = "Select playlist to play automatically.";
+"Test the automation to confirm." = "Test the automation to confirm.";
+
+/* OnboardingView (pantallas) */
+"Welcome to SpotiActions" = "Welcome to SpotiActions";
+"SpotiActions lets you play your Spotify songs automatically" = "SpotiActions lets you play your Spotify songs automatically";
+"At a set time (perfect as a wake-up alarm)" = "At a set time (perfect as a wake-up alarm)";
+"Smart Location Playback" = "Smart Location Playback: Auto-play your home playlist or switch to your gym tracks upon arrival.";
+"When you hop in your car and connect to CarPlay" = "When you hop in your car and connect to CarPlay";
+
+"SpotiActions always works" = "SpotiActions always works";
+"Shortcuts instead of APIs" = "Unlike other apps, SpotiActions uses Shortcuts instead of APIs, so it doesn't require Spotify Premium";
+"install the shortcut" = "First, install the SpotiAction shortcut";
+"grant the permissions" = "Then, run it once to grant the necessary permissions";
+
+"Just install and run them once — this gives them permission to work on their own" = "Just install and run them once — this gives them permission to work on their own";
+"Install the Shortcuts App if you don’t have it yet" = "Install the Shortcuts App if you don’t have it yet";
+
+"Why not just make my own shortcuts?" = "Why not just make my own shortcuts?";
+"Apple doesn’t provide native Spotify shortcuts" = "Apple doesn’t provide native Spotify shortcuts";
+"OnboardingviewP3Parrafo1" = "Sure, you can create a shortcut that just opens Spotify — but it won’t run by itself and you’d have to confirm every single time";
+"SpotiActions shortcuts only ask for permission once, after that, they run completely automatically" = "Unlike others, SpotiActions shortcuts only ask for permission once. After that, they run automatically every time you use them.";
+
+"How do I set them up?" = "How do I set them up?";
+"Spotify and Shortcuts must be installed on your iPhone" = "Spotify and Shortcuts must be installed on your iPhone";
+"Create an automation that triggers your chosen shortcut" = "Create an automation that triggers your chosen shortcut";
+"Just follow our easy step-by-step guide and you’ll be set" = "Just follow our easy step-by-step guide and you’ll be set";
+"If you have any trouble setting up, our support team is here to help! Just write to us" = "If you have any trouble setting up, our support team is here to help! Just write to us";
+
+"Ready to unlock the full experience?" = "Ready to unlock the full experience?";
+"The free version only lets you use the playlist of your liked songs" = "The free version only lets you use the playlist of your liked songs";
+"The yearly subscription unlocks access to all playlists" = "The yearly subscription unlocks access to all playlists";
+"See how easy it is to automate. Check the tutorials" = "See how easy it is to automate. Check the tutorials";
+"You can use url schemes spotiactions://" = "You can use url schemes spotiactions://";
+
+/* precios / compras */
+"Loading price…" = "Loading price…";
+"loading_price" = "Loading price…";
+"Annual Subscription – %@ / year" = "Only %@ a year — incredibly affordable 💳";
+"continue_with_price" = "Continue – %@ / year";
+"product_not_available" = "⚠️ Product not available";
+"continue" = "Continue";
+"continue_free" = "I want to try it now";
+"Restore_Purchase" = "Restore Purchase";
+
+/* StoreManager keys (logs/errors) */
+"fetch_products_failed" = "❌ Failed to fetch products:";
+"purchase_verified" = "✅ Purchase verified";
+"user_cancelled" = "User cancelled";
+"purchase_pending" = "⏳ Purchase pending";
+"purchase_failed" = "❌ Purchase failed:";
+
+/* HeaderView menu keys */
+"ModoInstalar" = "Install Mode";
+"ModoPlay" = "Play Mode";
+"back" = "Back";
+"suggest_song" = "I want her to add the song I choose";
+"support_url" = "Support URL";
+"main_page" = "SpotiActions Main Page";
+"get_welcomeback" = "Get WelcomeBack shortcut";
+"restore_purchases" = "Restore Purchase";

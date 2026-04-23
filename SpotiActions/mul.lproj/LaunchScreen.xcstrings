@@ -1,0 +1,30 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "label-main.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"SpotiActions\"; ObjectID = \"label-main\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SpotiActions"
+          }
+        }
+      }
+    },
+    "label-sub.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"automate your music\"; ObjectID = \"label-sub\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "automate your music"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

@@ -1,0 +1,95 @@
+import SwiftUI
+
+struct BarraInferior: View {
+    @Binding var activeTab: Int
+    @Binding var isDarkMode: Bool
+    
+    @AppStorage("lastMessage") private var lastMessage: String = ""
+    
+    var onShowOnboarding: (() -> Void)? = nil
+    var onShowSetup: (() -> Void)? = nil
+    var onHeightChange: ((CGFloat) -> Void)? = nil
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Spacer() // empuja todo hacia abajo
+            
+            HStack {
+                Spacer()
+                
+                // OnBoarding
+                Button(action: { onShowOnboarding?() }) {
+                    VStack(spacing: 4) {
+                        Image(systemName: "autostartstop")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(.white)
+                        Text(NSLocalizedString("OnBoarding", comment: "Bottom bar onboarding tab"))
+                            .font(.caption2)
+                            .foregroundColor(.white.opacity(0.8))
+                            .frame(width: 65)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                
+                Spacer()
+                
+                // MainView Shortcuts (disabled if no subscription)
+                Button(action: {}) {
+                    VStack(spacing: 4) {
+                        Image(systemName: "rectangle.stack")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(.orange)
+                        Text(NSLocalizedString("Shortcuts", comment: "Bottom bar shortcuts tab"))
+                            .font(.caption2)
+                            .foregroundColor(.orange)
+                    }
+                }
+                .disabled(true)
+                
+                Spacer()
+                
+                // Tutorials
+                Button(action: { onShowSetup?() }) {
+                    VStack(spacing: 4) {
+                        Image(systemName: "wrench.and.screwdriver")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(.white)
+                        Text(NSLocalizedString("Tutorials", comment: "Bottom bar tutorials tab"))
+                            .font(.caption2)
+                            .foregroundColor(.white.opacity(0.8))
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding(.top, 10)
+            .padding(.bottom,
+                UIDevice.current.userInterfaceIdiom == .pad
+                    ? (UIApplication.shared.connectedScenes
+                        .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+                        .first?.safeAreaInsets.bottom ?? 0)
+                    : 8 // solo 8 pts en iPhone
+            )
+            .background(Color.black)
+            
+        }
+        .ignoresSafeArea(.keyboard, edges: .bottom) // 🔹 evita que la barra suba con el teclado
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear { onHeightChange?(proxy.size.height) }
+                    .onChange(of: proxy.size.height) { _, newHeight in
+                        onHeightChange?(newHeight) }
+            }
+        )
+
+    }
+}
