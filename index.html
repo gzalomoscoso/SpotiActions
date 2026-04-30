@@ -6,153 +6,196 @@
     <title>MyIOSapps | Engineering Lab</title>
     <style>
         :root {
-            --bg: #0a0a0a;
-            --card-bg: #161616;
-            --border: #262626;
-            --purple: #a855f7;
-            --text-white: #ffffff;
-            --text-dim: #a1a1a1;
+            --bg: #050505;
+            --accent: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.15);
+            --card-bg: rgba(22, 22, 22, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #f5f5f7;
+            --text-dim: #86868b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg);
-            color: var(--text-white);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Inter", sans-serif;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #050505 80%);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            display: flex;
-            width: 100%;
-            max-width: 1100px;
-            padding: 80px 24px;
-            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px;
         }
 
-        /* Frame Izquierdo: Ahora dentro de un recuadro */
-        .brand-section {
-            flex: 1.2;
-        }
-
-        .brand-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 24px;
-            height: 100%;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: clamp(40px, 8vw, 72px);
             font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 30px;
-            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        h1 span { color: var(--purple); }
+        h1 span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
 
-        .desc {
-            font-size: 18px;
-            line-height: 1.6;
+        .hero-desc {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 20px;
             color: var(--text-dim);
+            font-weight: 400;
         }
 
-        .desc p { margin-bottom: 20px; }
-
-        .desc strong { color: var(--text-white); }
-
-        /* Frame Derecho: Proyectos */
-        .apps-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* Grid Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
+        .section-title {
+            grid-column: 1 / -1;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        /* Cards */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 20px;
+            border-radius: 24px;
+            padding: 40px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s ease;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
-            border-color: var(--purple);
-            transform: translateY(-2px);
+            border-color: var(--accent);
+            background: rgba(168, 85, 247, 0.03);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow);
         }
 
         .card h3 {
-            color: var(--purple);
-            font-size: 22px;
+            font-size: 28px;
+            margin-bottom: 16px;
             font-weight: 700;
-            margin-bottom: 12px;
         }
 
-        .card .lang-en {
-            display: block;
-            font-size: 15px;
-            color: var(--text-white);
-            margin-bottom: 4px;
-            font-weight: 500;
+        .card p {
+            color: var(--text-dim);
+            font-size: 16px;
+            margin-bottom: 24px;
         }
 
-        .card .lang-es {
-            display: block;
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: auto;
+        }
+
+        /* Footer / Standards Section */
+        .standards {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+        }
+
+        .std-item h4 {
             font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .std-item p {
+            font-size: 13px;
             color: var(--text-dim);
         }
 
-        /* Responsive: Proyectos primero en móvil */
-        @media (max-width: 900px) {
-            .container { flex-direction: column-reverse; padding: 40px 20px; }
-            h1 { font-size: 38px; }
-            .brand-card { padding: 30px; }
+        @media (max-width: 768px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .standards { grid-template-columns: 1fr; }
+            .container { padding-top: 60px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <section class="brand-section">
-            <div class="brand-card">
-                <h1>My<span>iOS</span>apps</h1>
-                <div class="desc">
-                    <p>
-                        An engineering laboratory focused on building high-performance digital tools, where technical precision meets minimalism through simplicity.
-                    </p>
-                    <p>
-                        Un laboratorio de ingeniería enfocado en herramientas de alto rendimiento, donde la precisión técnica se encuentra con el minimalismo a través de la simplicidad.
-                    </p>
-                </div>
-            </div>
-        </section>
+        <header class="hero">
+            <h1>My<span>iOS</span>apps</h1>
+            <p class="hero-desc">
+                High-performance engineering lab. Technical precision meets minimalist architecture.
+            </p>
+        </header>
 
-        <aside class="apps-section">
-            <a href="https://www.myiosapps.org/colegio/" class="card">
-                <h3>Hacemos tus Stickers</h3>
-                <span class="lang-en">Etiquetado premium para útiles escolares con estética única</span>
-            </a>
+        <main class="main-grid">
+            <div class="section-title">Active Projects</div>
 
             <a href="https://www.myiosapps.org/spotiactions/" class="card">
-                <h3>SpotiActions</h3>
-                <span class="lang-en">The missing bridge between Spotify and iOS Automations.</span>
-                <span class="lang-es">El puente que faltaba entre Spotify y las Automatizaciones en IOS</span>
+                <div>
+                    <h3>SpotiActions</h3>
+                    <p>Advanced bridge for iOS Automations and Spotify API. Built for seamless workflow integration.</p>
+                </div>
+                <span class="tag">Automation & APIs</span>
             </a>
 
             <a href="https://www.myiosapps.org/solowrite/" class="card">
-                <h3>SoloWrite</h3>
-                <span class="lang-en">A pure digital canvas for your thoughts to flow without friction.</span>
-                <span class="lang-es">Un lienzo digital puro para que tus pensamientos fluyan sin fricciones.</span>
+                <div>
+                    <h3>SoloWrite</h3>
+                    <p>A zero-friction digital canvas. Focused on secure, local-first data integrity for focused thoughts.</p>
+                </div>
+                <span class="tag">System Design</span>
             </a>
-        </aside>
+
+            <div class="section-title">Engineering Standards</div>
+            
+            <div class="standards">
+                <div class="std-item">
+                    <h4>Security First</h4>
+                    <p>Encrypted data handling and secure API integration as core principles.</p>
+                </div>
+                <div class="std-item">
+                    <h4>Automation</h4>
+                    <p>Optimizing complex workflows through intelligent scripting and logic.</p>
+                </div>
+                <div class="std-item">
+                    <h4>Performance</h4>
+                    <p>Minimalist architecture designed for low latency and high availability.</p>
+                </div>
+            </div>
+        </main>
     </div>
 
 </body>
