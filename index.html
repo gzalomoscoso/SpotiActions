@@ -8,11 +8,11 @@
         :root {
             --bg: #000000;
             --accent: #00ff41; 
-            --accent-glow: rgba(0, 255, 65, 0.2);
+            --accent-glow: rgba(0, 255, 65, 0.4);
             --text-main: #ffffff;
             --text-dim: #86868b;
             --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,227 +21,142 @@
             background-color: var(--bg);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            overflow-x: hidden;
+            overflow: hidden; /* Evita scroll innecesario para mantener el feeling de app */
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Canvas de partículas dinámicas */
         #particle-canvas {
             position: fixed;
             top: 0;
             right: 0;
-            width: 60%; 
+            width: 100%; 
             height: 100%;
-            z-index: -1;
-        }
-
-        /* Navegación Estratégica */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-logo {
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .nav-logo span { color: var(--accent); }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 120px 24px 80px;
-            position: relative;
             z-index: 1;
         }
 
-        /* Hero Section */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            padding: 0 80px;
+        }
+
         .hero {
-            text-align: left;
-            padding: 100px 0 60px;
-            max-width: 55%;
+            max-width: 500px;
         }
 
         .hero-brand {
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
 
-        /* Punto de pulso estilo Sensor */
         .status-dot {
-            height: 8px;
-            width: 8px;
+            height: 6px;
+            width: 6px;
             background-color: var(--accent);
             border-radius: 50%;
-            display: inline-block;
-            margin-right: 12px;
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 2s infinite;
+            margin-right: 10px;
+            box-shadow: 0 0 12px var(--accent);
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
             0% { transform: scale(0.9); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 0.4; }
             100% { transform: scale(0.9); opacity: 1; }
         }
 
         .hero h1 {
-            font-size: clamp(50px, 9vw, 85px);
+            font-size: 64px;
             font-weight: 700;
-            letter-spacing: -0.05em;
-            line-height: 0.9;
-            background: linear-gradient(180deg, #fff 40%, rgba(255,255,255,0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.04em;
+            line-height: 1;
             margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-dim);
-            max-width: 480px;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        /* Grid de Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 60px 0;
-        }
-
-        .service-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 24px;
-            transition: 0.4s ease;
-        }
-
-        .service-card:hover {
-            border-color: var(--accent);
-            background: rgba(0, 255, 65, 0.01);
-        }
-
-        .service-card h2 { font-size: 20px; margin-bottom: 12px; color: var(--accent); font-weight: 600; }
-        .service-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
-
-        /* App Section */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .app-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 32px;
-            text-decoration: none;
-            color: inherit;
-            transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .app-card:hover {
-            border-color: rgba(0, 255, 65, 0.3);
-            transform: scale(1.01);
-        }
-
-        .badge {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            padding: 4px 10px;
-            border-radius: 100px;
-            margin-bottom: 15px;
+        /* Botón Estilo Portfolio */
+        .btn-portfolio {
             display: inline-block;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 18px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
-        footer {
-            margin-top: 100px;
-            text-align: center;
-            padding: 40px;
-            font-size: 11px;
-            color: #444;
-            letter-spacing: 2px;
+        .btn-portfolio:hover {
+            background: rgba(0, 255, 65, 0.05);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* MyIOSApps centralizado en la nube */
+        .brand-center {
+            position: fixed;
+            right: 20%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .brand-center h2 {
+            font-size: 120px;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            opacity: 0.15;
+            color: var(--accent);
+            filter: blur(2px);
         }
 
         @media (max-width: 900px) {
-            .hero { max-width: 100%; text-align: center; }
-            .services-grid, .apps-grid { grid-template-columns: 1fr; }
-            nav { padding: 15px 24px; }
+            .main-content { padding: 40px; justify-content: center; text-align: center; }
+            .hero { max-width: 100%; }
+            .brand-center { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">My<span>IOS</span>Apps</div>
-        <div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px;">EST. 2025</div>
-    </nav>
-
     <canvas id="particle-canvas"></canvas>
 
-    <div class="container">
+    <div class="brand-center">
+        <h2>MyIOSApps</h2>
+    </div>
+
+    <div class="main-content">
         <header class="hero">
             <div class="hero-brand">
                 <span class="status-dot"></span> Engineering Lab
             </div>
             <h1>Security & <br>Development</h1>
             <p>Soluciones de infraestructura crítica y software nativo bajo estándares de seguridad de alto nivel.</p>
+            
+            <a href="https://gzalomoscoso.github.io/articulos/portafolio.html" class="btn-portfolio">
+                GONZALO MOSCOSO PORTFOLIO
+            </a>
         </header>
-
-        <section class="services-grid">
-            <div class="service-card">
-                <h2>Cybersecurity</h2>
-                <p>Hardening de sistemas y auditoría técnica basada en arquitecturas Zero-Trust.</p>
-            </div>
-            <div class="service-card">
-                <h2>Development</h2>
-                <p>Aplicaciones en Swift con integración profunda en el ecosistema Apple y APIs.</p>
-            </div>
-            <div class="service-card">
-                <h2>Automations</h2>
-                <p>Pipeline de automatización SecOps utilizando Python y n8n para entornos empresariales.</p>
-            </div>
-        </section>
-
-        <section class="apps-grid">
-            <a href="https://www.myiosapps.org/spotiactions/" class="app-card">
-                <span class="badge">Ecosystem Bridge</span>
-                <h3>SpotiActions</h3>
-                <p>Control avanzado de flujos multimedia.</p>
-            </a>
-            <a href="https://www.myiosapps.org/solowrite/" class="app-card">
-                <span class="badge">Secure Writing</span>
-                <h3>SoloWrite</h3>
-                <p>Escritura técnica sin distracciones.</p>
-            </a>
-        </section>
-
-        <footer>
-            DEPOLOYED BY GONZALO MOSCOSO | POWERED BY MYIOSAPPS.ORG
-        </footer>
     </div>
 
     <script>
@@ -249,8 +164,9 @@
         const ctx = canvas.getContext('2d');
         let width, height, particles;
 
-        const particleCount = 2000; // Máxima densidad solicitada
-        const particleColor = '#00ff41'; 
+        // Alta velocidad y densidad
+        const particleCount = 2200; 
+        const baseSpeed = 0.8; // Velocidad incrementada
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -260,23 +176,29 @@
 
         class Particle {
             constructor() {
-                this.x = (Math.random() * width * 0.6) + (width * 0.4);
+                // Enfocadas en el área de la marca (derecha)
+                this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.size = Math.random() * 1.5 + 0.1;
-                this.speedX = Math.random() * 0.1 - 0.05;
-                this.speedY = Math.random() * 0.1 - 0.05;
-                this.alpha = Math.random() * 0.5 + 0.1;
+                this.size = Math.random() * 1.2 + 0.1;
+                // Velocidad mayor
+                this.vx = (Math.random() - 0.5) * baseSpeed;
+                this.vy = (Math.random() - 0.5) * baseSpeed;
+                this.alpha = Math.random() * 0.6 + 0.1;
             }
+
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > width) this.x = width * 0.4;
-                if (this.y > height) this.y = 0;
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
                 if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
             }
+
             draw() {
                 ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = particleColor;
+                ctx.fillStyle = '#00ff41';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
