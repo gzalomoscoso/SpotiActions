@@ -7,195 +7,180 @@
     <style>
         :root {
             --bg: #000000;
-            --accent: #b6ff00; /* Verde neón del video DOTDNA */
+            --accent: #b6ff00; 
             --accent-soft: rgba(182, 255, 0, 0.1);
             --text-main: #ffffff;
             --text-dim: #a1a1a6;
-            --glass: rgba(255, 255, 255, 0.02);
             --border: rgba(255, 255, 255, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 10px rgba(182, 255, 0, 0.05); }
-            50% { box-shadow: 0 0 30px rgba(182, 255, 0, 0.15); }
-            100% { box-shadow: 0 0 10px rgba(182, 255, 0, 0.05); }
-        }
 
         body {
             background-color: var(--bg);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
             line-height: 1.5;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Fondo con gradiente dinámico sutil como el video */
-        .grid-bg {
+        /* Canvas para la animación de fondo */
+        #particles-js {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 80% 20%, #0a1a05 0%, #000 60%);
-            z-index: -1;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 100px 24px;
+            padding: 80px 24px;
         }
 
-        /* Hero Section */
+        /* Estilo DOTDNA - Animaciones de entrada */
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
         .hero {
-            text-align: left;
-            padding: 120px 0 80px;
-            animation: fadeIn 1s ease-out;
+            padding: 100px 0 60px;
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .service-label {
-            font-size: 12px;
+        .label {
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.4em;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             display: block;
         }
 
-        .hero h1 {
-            font-size: clamp(48px, 10vw, 88px);
+        h1 {
+            font-size: clamp(40px, 8vw, 80px);
             font-weight: 700;
             letter-spacing: -0.04em;
-            line-height: 1;
+            line-height: 0.95;
             margin-bottom: 30px;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-dim);
-            max-width: 600px;
-            font-weight: 400;
+            max-width: 500px;
         }
 
-        /* Grid de Servicios */
-        .main-grid {
+        /* Grid de tarjetas con efecto Glass */
+        .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 60px;
+            gap: 16px;
+            margin-top: 40px;
         }
 
         .card {
-            background: var(--glass);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 24px;
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            animation: fadeIn 1.2s ease-out;
+            border-radius: 20px;
             text-decoration: none;
             color: inherit;
+            transition: all 0.4s ease;
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.3s; }
+        .card:nth-child(3) { animation-delay: 0.4s; }
 
         .card:hover {
             border-color: var(--accent);
-            background: rgba(182, 255, 0, 0.02);
-            animation: glowPulse 2s infinite;
+            background: rgba(182, 255, 0, 0.03);
+            transform: scale(1.02);
         }
 
-        .card h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
+        .card .num { color: var(--accent); font-family: monospace; font-size: 13px; display: block; margin-bottom: 20px; }
+        .card h3 { font-size: 24px; margin-bottom: 12px; font-weight: 600; }
+        .card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
 
-        .card .title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .card p {
-            color: var(--text-dim);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Footer */
         footer {
-            margin-top: 150px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border);
+            margin-top: 100px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            font-size: 12px;
             color: var(--text-dim);
-            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10px;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        @media (max-width: 900px) {
-            .main-grid { grid-template-columns: 1fr; }
-            .hero { padding: 60px 0; }
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-bg"></div>
+    <div id="particles-js"></div>
 
     <div class="container">
         <header class="hero">
-            <span class="service-label">[ Engineering Lab ]</span>
-            <h1>Engineering <br>& Security</h1>
-            <p>Laboratorio de alto rendimiento especializado en ciberdefensa, arquitectura de software y automatización estratégica de procesos.</p>
+            <span class="label">// Engineering Lab 2026</span>
+            <h1>Engineering<br>& Security.</h1>
+            <p>Laboratorio especializado en arquitecturas de defensa, automatización SecOps y desarrollo de software de alto rendimiento.</p>
         </header>
 
-        <section class="main-grid">
-            <!-- Vertical 1: Ciberseguridad -->
+        <main class="grid">
             <div class="card">
-                <h3>01. Cybersecurity</h3>
-                <span class="title">Detection & Response</span>
-                <p>Implementación de arquitecturas Zero-Trust y hardening de infraestructuras críticas. Auditoría técnica alineada a estándares ISO 27001 y SBS 504-2021.</p>
+                <span class="num">[ 01 ]</span>
+                <h3>Cybersecurity</h3>
+                <p>Hardening de infraestructuras críticas y auditoría técnica bajo marcos SBS 504-2021 e ISO 27001.</p>
             </div>
 
-            <!-- Vertical 2: Desarrollo -->
             <a href="https://www.myiosapps.org/solowrite/" class="card">
-                <h3>02. App Dev</h3>
-                <span class="title">SoloWrite</span>
-                <p>Ingeniería de software minimalista con enfoque en la integridad de datos y el rendimiento nativo. Desarrollo bajo estándares de seguridad por diseño.</p>
+                <span class="num">[ 02 ]</span>
+                <h3>Development</h3>
+                <span style="display: block; font-size: 18px; margin-bottom: 10px;">SoloWrite</span>
+                <p>Software nativo enfocado en integridad de datos, cifrado local y minimalismo funcional.</p>
             </a>
 
-            <!-- Vertical 3: Automatización -->
             <a href="https://www.myiosapps.org/spotiactions/" class="card">
-                <h3>03. Automations</h3>
-                <span class="title">SpotiActions</span>
-                <p>Orquestación de flujos complejos mediante Python y APIs. Automatización de respuesta ante incidentes y optimización de flujos de trabajo SecOps.</p>
+                <span class="num">[ 03 ]</span>
+                <h3>Automations</h3>
+                <span style="display: block; font-size: 18px; margin-bottom: 10px;">SpotiActions</span>
+                <p>Orquestación de flujos SecOps y automatización de respuesta mediante APIs y lógica de sistemas.</p>
             </a>
-        </section>
+        </main>
 
         <footer>
-            <div>
-                <span class="dot"></span> Systems Online: 2026.4
-            </div>
-            <p>© MyIOSapps | Gonzalo Moscoso</p>
+            <span>Status: Operational</span>
+            <span>Arequipa, PE</span>
         </footer>
     </div>
 
+    <!-- Scripts para las partículas (No necesitas bajar nada, cargan de la red) -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80 },
+                "color": { "value": "#b6ff00" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#b6ff00", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1 }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "grab" } }
+            }
+        });
+    </script>
 </body>
 </html>
