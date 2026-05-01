@@ -191,6 +191,26 @@
             .services-grid, .apps-grid { grid-template-columns: 1fr; }
             nav { padding: 15px 24px; }
         }
+        .btn-portfolio {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 28px;
+            background-color: var(--accent);
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 5px; /* 5% de redondeo visual aproximado */
+            transition: 0.3s all ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-portfolio:hover {
+            background-color: #00cc33;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -209,6 +229,10 @@
             </div>
             <h1>Security & <br>Development</h1>
             <p>Soluciones de infraestructura crítica y software nativo bajo estándares de seguridad de alto nivel.</p>
+            <!-- Nuevo botón añadido aquí -->
+            <a href="https://gzalomoscoso.github.io/articulos/portfolio.html" class="btn-portfolio">
+                Portafolio de Gonzalo Moscoso
+            </a>
         </header>
 
         <section class="services-grid">
