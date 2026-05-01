@@ -275,9 +275,8 @@
         const ctx = canvas.getContext('2d');
         let width, height, particles;
 
-        const particleCount = 3000; // Máxima densidad solicitada
-        const particleColor = '#00ff41';
-        let tick = 0;
+        const particleCount = 5000; // Máxima densidad solicitada
+        const particleColor = '#00ff41'; 
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -285,60 +284,42 @@
             initParticles();
         }
 
-
 class Particle {
-    constructor() {
-        this.init();
-    }
+            constructor() {
+                // Mantiene el inicio horizontal desde el 40% (width * 0.6 + width * 0.4)
+                this.x = (Math.random() * width * 0.6) + (width * 0.4);
+                
+                // Aumentado a 540px (un 20% más que los 450px previos)
+                this.y = Math.random() * 540; 
+                
+                this.size = Math.random() * 1.5 + 0.1;
+                this.speedX = Math.random() * 0.1 - 0.05;
+                this.speedY = Math.random() * 0.1 - 0.05;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
 
-    init() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 1.5 + 0.2;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = (Math.random() * 30) + 1;
-        this.angle = Math.random() * Math.PI * 2;
-    }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-    update() {
-        // Ciclo de forma orgánica (cambia cada cierto tiempo)
-        let time = Date.now() * 0.001;
-        let centerX = width * 0.7; // Centro en la zona derecha
-        let centerY = 300; // Altura media de la zona superior
-        
-        // Creamos una forma de "pulso" orgánico
-        let radius = 100 + Math.sin(time) * 50; 
-        let targetX = centerX + Math.cos(this.angle + time) * radius * Math.sin(this.angle * 2 + time);
-        let targetY = centerY + Math.sin(this.angle + time) * radius * Math.cos(this.angle * 0.5 + time);
+                // Límites Horizontales (40% a 100%)
+                if (this.x < width * 0.4) this.x = width;
+                if (this.x > width) this.x = width * 0.4;
 
-        // Suavizado de movimiento hacia el objetivo
-        let dx = targetX - this.x;
-        let dy = targetY - this.y;
-        this.x += dx / this.density;
-        this.y += dy / this.density;
-    }
+                // Límites Verticales ajustados a 540px
+                if (this.y > 540) this.y = 0;
+                if (this.y < 0) this.y = 540;
+            }
 
-    draw() {
-        ctx.globalAlpha = this.alpha || 0.6;
-        ctx.fillStyle = particleColor;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = particleColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
 
-function animate() {
-    // Estela de movimiento para mayor fluidez (efecto blur)
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-    ctx.fillRect(0, 0, width, height);
-
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-    }
-    requestAnimationFrame(animate);
-}
         function initParticles() {
             particles = [];
             for (let i = 0; i < particleCount; i++) {
