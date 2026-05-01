@@ -30,7 +30,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 60%; 
+            width: 50%; 
             height: 100%;
             z-index: -1;
         }
@@ -40,7 +40,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            padding: 10px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -193,31 +193,29 @@
         }
         .btn-portfolio {
             display: inline-block;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            
             margin-top: 30px;
             padding: 12px 28px;
-            background-color: var(--accent);
-            color: #000;
-            text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
             border-radius: 5px; /* 5% de redondeo visual aproximado */
             transition: 0.3s all ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .btn-portfolio:hover {
-            background-color: #00cc33;
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
+            border-color: var(--accent);
+            background: rgba(0, 255, 65, 0.01);
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">My<span>IOS</span>Apps</div>
-        <div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px;">EST. 2025</div>
+<!-- Contenido eliminado para dejar el frame limpio -->
     </nav>
 
     <canvas id="particle-canvas"></canvas>
@@ -264,7 +262,7 @@
         </section>
 
         <footer>
-            DEPOLOYED BY GONZALO MOSCOSO | POWERED BY MYIOSAPPS.ORG
+            www.myiosapps.org
         </footer>
     </div>
 
@@ -273,7 +271,7 @@
         const ctx = canvas.getContext('2d');
         let width, height, particles;
 
-        const particleCount = 2000; // Máxima densidad solicitada
+        const particleCount = 5000; // Máxima densidad solicitada
         const particleColor = '#00ff41'; 
 
         function resize() {
@@ -287,8 +285,8 @@
                 this.x = (Math.random() * width * 0.6) + (width * 0.4);
                 this.y = Math.random() * height;
                 this.size = Math.random() * 1.5 + 0.1;
-                this.speedX = Math.random() * 0.1 - 0.05;
-                this.speedY = Math.random() * 0.1 - 0.05;
+                this.speedX = Math.random() * 0.1 - 0.05;// <--- Cambia 0.1 para velocidad horizontal
+                this.speedY = Math.random() * 0.1 - 0.1;// <--- Cambia 0.1 para velocidad vertical
                 this.alpha = Math.random() * 0.5 + 0.1;
             }
             update() {
