@@ -305,7 +305,7 @@ class Particle {
     update() {
         let time = Date.now() * 0.0008; // Un poco más lento para mayor elegancia
         let centerX = width * 0.7; 
-        let centerY = 450; // Bajamos el centro para dar más espacio vertical
+        let centerY = 200; // Bajamos el centro para dar más espacio vertical
 
         // AJUSTES SOLICITADOS:
         // 1. Dispersión: Aumentamos el radio base (de 100 a 250) para que no estén tan juntas.
@@ -314,8 +314,8 @@ class Particle {
         
         let radius = 250 + Math.sin(time) * 100; 
         
-        let targetX = centerX + (Math.cos(this.angle + time) * radius * Math.sin(this.angle * 2 + time)) * 2.5;
-        let targetY = centerY + (Math.sin(this.angle + time) * radius * Math.cos(this.angle * 0.5 + time)) * 2.0;
+        let targetX = centerX + (Math.cos(this.angle + time) * radius * Math.sin(this.angle * 2 + time)) * 1.5;
+        let targetY = centerY + (Math.sin(this.angle + time) * radius * Math.cos(this.angle * 0.5 + time)) * 1.0;
 
         let dx = targetX - this.x;
         let dy = targetY - this.y;
