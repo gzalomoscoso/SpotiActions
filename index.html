@@ -30,7 +30,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            width: 80%; /* Ocupa el 40% de la derecha (del 60% al 100%) */
+            width: 90%; /* Ocupa el 90% de este frame
             height: 100%;
             z-index: -1;
         }
@@ -61,7 +61,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 120px 24px 80px;
+            padding: 36px 24px 80px;
             position: relative;
             z-index: 1;
         }
@@ -286,11 +286,11 @@
 
 class Particle {
             constructor() {
-                // Inicia horizontalmente desde el 40% (width * 0.4) hasta el final
+                // Mantiene el inicio horizontal desde el 40% (width * 0.6 + width * 0.4)
                 this.x = (Math.random() * width * 0.6) + (width * 0.4);
                 
-                // Inicia verticalmente desde 0 hasta 450px (antes de las service-cards)
-                this.y = Math.random() * 450; 
+                // Aumentado a 540px (un 20% más que los 450px previos)
+                this.y = Math.random() * 540; 
                 
                 this.size = Math.random() * 1.5 + 0.1;
                 this.speedX = Math.random() * 0.1 - 0.05;
@@ -306,9 +306,9 @@ class Particle {
                 if (this.x < width * 0.4) this.x = width;
                 if (this.x > width) this.x = width * 0.4;
 
-                // Límites Verticales (Solo hasta los 450px de altura)
-                if (this.y > 450) this.y = 0;
-                if (this.y < 0) this.y = 450;
+                // Límites Verticales ajustados a 540px
+                if (this.y > 540) this.y = 0;
+                if (this.y < 0) this.y = 540;
             }
 
             draw() {
