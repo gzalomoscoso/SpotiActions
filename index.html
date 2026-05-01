@@ -25,15 +25,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Canvas de partículas dinámicas */
+/* Canvas de partículas dinámicas */
         #particle-canvas {
             position: fixed;
             top: 0;
             right: 0;
-            width: 90%; /* Ocupa el 90% de este frame
+            width: 90%; 
             height: 100%;
             z-index: -1;
-        }
+        } /* <-- Asegúrate de que esta llave esté cerrada y el comentario de arriba también */
 
         /* Navegación Estratégica */
         nav {
@@ -191,29 +191,28 @@
             .services-grid, .apps-grid { grid-template-columns: 1fr; }
             nav { padding: 15px 24px; }
         }
-        .btn-portfolio {
+.btn-portfolio {
             display: inline-block;
             background: var(--glass);
             border: 1px solid var(--border);
-            
             margin-top: 30px;
             padding: 12px 28px;
             font-weight: 600;
             font-size: 12px;
-            border-radius: 5px; /* 5% de redondeo visual aproximado */
+            border-radius: 5px;
             transition: 0.3s all ease;
             text-transform: uppercase;
             letter-spacing: 2px;
-
-            /* Cambio clave: Forzar el color gris */
             color: var(--text-dim) !important; 
             text-decoration: none;
         }
 
         .btn-portfolio:hover {
             border-color: var(--accent);
-            background: rgba(0, 255, 65, 0.01);
+            background: rgba(0, 255, 65, 0.05);
+            color: var(--text-dim) !important; /* Mantiene el gris en el hover */
         }
+        
     </style>
 </head>
 <body>
