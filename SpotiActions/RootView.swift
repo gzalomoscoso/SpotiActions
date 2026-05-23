@@ -27,8 +27,7 @@ struct RootView: View {
             case .main:
                 MainView(
                     activeTab: $activeTab,
-                    isDarkMode: $isDarkMode,
-                    activeIndex: $activeIndex
+                    isDarkMode: $isDarkMode
                 )
                 .environmentObject(storeManager)
                 
@@ -57,10 +56,14 @@ struct RootView: View {
             .environmentObject(storeManager)
         }
         .onAppear {
-            // Evitamos ejecuciones duplicadas de limpieza
             guard !didCheckOnboarding else { return }
-            didCheckOnboarding = true
-            cleanLegacyKeys()
+                didCheckOnboarding = true
+                
+                // 1. Limpieza de llaves viejas
+                cleanLegacyKeys()
+                
+                // 2. Lógica de control de versión
+                checkVersionAndRoute()
         }
     }
 
@@ -74,4 +77,20 @@ struct RootView: View {
             }
         }
     }
+    
+    private func checkVersionAndRoute() {
+        let defaults = UserDefaults.standard
+        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let lastSeenVersion = defaults.string(forKey: "lastSeenVersion") ?? ""
+        
+        // Si la versión ya fue vista, forzamos el paso a la MainView
+        if lastSeenVersion == currentVersion {
+            navigationState.currentView = .main
+        } else {
+            // Si es versión nueva o primera vez, aseguramos que vea el Onboarding
+            navigationState.currentView = .welcome
+        }
+    }
+    
+    
 }

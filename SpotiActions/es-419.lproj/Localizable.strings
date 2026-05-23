@@ -20,6 +20,7 @@
 /* MainView / Mensajes sistema */
 "RequiresPremium" = "Solo usuarios Premium";
 "PRONTOTEXT"="Playlist de Navidad";
+"TIPOplaylist" = "Lista Especial: Personalizada para ti";
 "DESCHRISTMAS"="Una lista diferente para navidad. Me encanta";
 "dayly"="Mix Diario 1";
 
@@ -37,9 +38,10 @@
 "Pick only the tutorial you need" = "Elige sólo el tutorial que necesites";
 
 /* howtoSETUP - section titles */
-"How to setup your automation" = "Toca para ver el video tutorial";
+"How to setup your automation" = "How to setup your automation";
 "BotonIZQ" = "Muéstrame un paso a paso";
 "BotonDER" = "Crear la automatización";
+"Show me with a video instead" = "Mejor muéstramelo con un video";
 
 "How to create an automation and use it as an alarm" = "Cómo crear una automatización y usarla como alarma";
 "Hear ‘Welcome Back, Sir’ when you get in your car ( only with carplay )" = "Escucha 'Welcome Back, Sir' al subir al auto (solo con CarPlay)";
@@ -103,7 +105,7 @@
 
 "SpotiActions always works" = "SpotiActions funciona siempre!";
 "Shortcuts instead of APIs" = "SpotiActions funciona con Atajos, no con APIs. Sin necesidad de Spotify Premium";
-"install the shortcut" = "Primero, instala el atajo especial de SpotiActions.";
+"Always install the new shortcut" = "Siempre instala el nuevo atajo";
 "grant the permissions" = "Luego, ejecútalo una vez para otorgar los permisos necesarios";
 
 "Just install and run them once — this gives them permission to work on their own" = "Solo instálalos y ejecútalos una vez — así obtienen permiso para funcionar solos";
@@ -125,7 +127,7 @@
 "The free version only lets you use the playlist of your liked songs" = "La versión gratuita solo permite usar una lista con dos canciones";
 "The yearly subscription unlocks access to all playlists" = "La suscripción anual desbloquea acceso a todas las listas";
 "See how easy it is to automate. Check the tutorials" = "Mira lo fácil que es automatizar. Revisa los tutoriales";
-"You can use url schemes spotiactions://" = "Podés usar el esquema spotiactions://";
+"You can use url schemes SpotiActions://" = "Podés usar el esquema SpotiActions://";
 
 /* precios / compras */
 "Loading price…" = "Cargando precio…";

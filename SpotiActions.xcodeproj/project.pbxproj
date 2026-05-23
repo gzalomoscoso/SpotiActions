@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		848FA0832FAA936E007F301F /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FA0822FAA936E007F301F /* AppIntents.swift */; };
 		8494885D2F8FFE7400F0C7DD /* swift_files.md in Resources */ = {isa = PBXBuildFile; fileRef = 8494885C2F8FFE7400F0C7DD /* swift_files.md */; };
+		84B7B3232FACBAEC00EC6E8D /* cards main.swiftdisable in Resources */ = {isa = PBXBuildFile; fileRef = 84B7B3222FACBAD700EC6E8D /* cards main.swiftdisable */; };
 		84C2AA192F96DE7B00616249 /* videosetup.mov in Resources */ = {isa = PBXBuildFile; fileRef = 84C2AA182F96DE7B00616249 /* videosetup.mov */; };
 		C7035FF72E32EFEB00642EE8 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7035FF62E32EFEB00642EE8 /* RootView.swift */; };
 		C71A3D472E79CB2C006866D6 /* tuto2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C71A3D462E79CB2C006866D6 /* tuto2.jpg */; };
@@ -33,7 +35,6 @@
 		C7603EAA2E562D1800F4F046 /* tuto1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7603E8A2E562D1800F4F046 /* tuto1.jpg */; };
 		C770BBAD2E70D97A002AC016 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770BBAC2E70D976002AC016 /* Theme.swift */; };
 		C7721C912E9469A600F80DAB /* SubscriptionView.swift.disabled in Sources */ = {isa = PBXBuildFile; fileRef = C7721C902E9469A400F80DAB /* SubscriptionView.swift.disabled */; };
-		C7721C932E946A6400F80DAB /* StoreManager.swift.disabled in Sources */ = {isa = PBXBuildFile; fileRef = C7721C922E946A6400F80DAB /* StoreManager.swift.disabled */; };
 		C77AB4B52E21EB8700BEDCAE /* SpotiActionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB4B42E21EB8700BEDCAE /* SpotiActionsApp.swift */; };
 		C7930D902E78850800032231 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7930D8F2E78850200032231 /* OnboardingView.swift */; };
 		C79B6A3C2E286EA2000A74E2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79B6A3B2E286EA2000A74E2 /* MainView.swift */; };
@@ -41,7 +42,6 @@
 		C7B2957A2E28CBFF004944B6 /* piano.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7B295792E28CBFF004944B6 /* piano.jpg */; };
 		C7B2957E2E28D48B004944B6 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2957D2E28D48B004944B6 /* NavigationState.swift */; };
 		C7B2958C2E2C7C7C004944B6 /* howtoSETUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2958B2E2C7C7C004944B6 /* howtoSETUP.swift */; };
-		C7B2958E2E2C9CAC004944B6 /* BarraInferior.disabled in Sources */ = {isa = PBXBuildFile; fileRef = C7B2958D2E2C9CAC004944B6 /* BarraInferior.disabled */; };
 		C7B627CA2E748FDA0050642F /* LaunchBackground@1x 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7B627C72E748FDA0050642F /* LaunchBackground@1x 2.jpg */; };
 		C7C9AB572E270A980068D04E /* allout2010s.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7C9AB522E270A980068D04E /* allout2010s.jpg */; };
 		C7CD7E7C2E3AC65200CFAAC3 /* tophits.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7CD7E7B2E3AC65200CFAAC3 /* tophits.jpg */; };
@@ -50,7 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		848FA0812FAA92E7007F301F /* SpotiActions.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotiActions.entitlements; sourceTree = "<group>"; };
+		848FA0822FAA936E007F301F /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
 		8494885C2F8FFE7400F0C7DD /* swift_files.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = swift_files.md; sourceTree = "<group>"; };
+		84B7B3222FACBAD700EC6E8D /* cards main.swiftdisable */ = {isa = PBXFileReference; lastKnownFileType = text; path = "cards main.swiftdisable"; sourceTree = "<group>"; };
 		84C2AA182F96DE7B00616249 /* videosetup.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = videosetup.mov; sourceTree = "<group>"; };
 		C7035FF62E32EFEB00642EE8 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C71A3D462E79CB2C006866D6 /* tuto2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tuto2.jpg; sourceTree = "<group>"; };
@@ -78,7 +81,6 @@
 		C7603E9A2E562D1800F4F046 /* tuto17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tuto17.jpg; sourceTree = "<group>"; };
 		C770BBAC2E70D976002AC016 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C7721C902E9469A400F80DAB /* SubscriptionView.swift.disabled */ = {isa = PBXFileReference; lastKnownFileType = text; path = SubscriptionView.swift.disabled; sourceTree = "<group>"; };
-		C7721C922E946A6400F80DAB /* StoreManager.swift.disabled */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreManager.swift.disabled; sourceTree = "<group>"; };
 		C77AB4B42E21EB8700BEDCAE /* SpotiActionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotiActionsApp.swift; sourceTree = "<group>"; };
 		C7930D8F2E78850200032231 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C79B6A3B2E286EA2000A74E2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -86,7 +88,6 @@
 		C7B295792E28CBFF004944B6 /* piano.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = piano.jpg; sourceTree = "<group>"; };
 		C7B2957D2E28D48B004944B6 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		C7B2958B2E2C7C7C004944B6 /* howtoSETUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = howtoSETUP.swift; sourceTree = "<group>"; };
-		C7B2958D2E2C9CAC004944B6 /* BarraInferior.disabled */ = {isa = PBXFileReference; lastKnownFileType = text; path = BarraInferior.disabled; sourceTree = "<group>"; };
 		C7B627C72E748FDA0050642F /* LaunchBackground@1x 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchBackground@1x 2.jpg"; sourceTree = "<group>"; };
 		C7B627C82E748FDA0050642F /* LaunchBackground@2x 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchBackground@2x 2.jpg"; sourceTree = "<group>"; };
 		C7B627C92E748FDA0050642F /* LaunchBackground@3x 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "LaunchBackground@3x 2.jpg"; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		C74D48D92E21CA35003187BA = {
 			isa = PBXGroup;
 			children = (
+				848FA0822FAA936E007F301F /* AppIntents.swift */,
 				C74D48E42E21CA35003187BA /* SpotiActions */,
 				C74D48E32E21CA35003187BA /* Products */,
 				C7E74E582E277D9E00E1A8F0 /* Frameworks */,
@@ -131,17 +133,17 @@
 		C74D48E42E21CA35003187BA /* SpotiActions */ = {
 			isa = PBXGroup;
 			children = (
+				848FA0812FAA92E7007F301F /* SpotiActions.entitlements */,
 				84C2AA182F96DE7B00616249 /* videosetup.mov */,
 				C7F4A9782E21E2BF00BC0746 /* Info.plist */,
 				C74D48F32E21CA61003187BA /* Resources */,
 				C77AB4B42E21EB8700BEDCAE /* SpotiActionsApp.swift */,
 				C7B2957D2E28D48B004944B6 /* NavigationState.swift */,
-				C7B2958D2E2C9CAC004944B6 /* BarraInferior.disabled */,
 				C7035FF62E32EFEB00642EE8 /* RootView.swift */,
 				C79B6A3B2E286EA2000A74E2 /* MainView.swift */,
+				84B7B3222FACBAD700EC6E8D /* cards main.swiftdisable */,
 				C7B2958B2E2C7C7C004944B6 /* howtoSETUP.swift */,
 				C7930D8F2E78850200032231 /* OnboardingView.swift */,
-				C7721C922E946A6400F80DAB /* StoreManager.swift.disabled */,
 				C7ABBCE22F19E59100185395 /* StoreManager.swift */,
 				C7721C902E9469A400F80DAB /* SubscriptionView.swift.disabled */,
 				C770BBAC2E70D976002AC016 /* Theme.swift */,
@@ -266,6 +268,7 @@
 			files = (
 				C7C9AB572E270A980068D04E /* allout2010s.jpg in Resources */,
 				C71A3D4D2E79DAB6006866D6 /* tuto19.jpg in Resources */,
+				84B7B3232FACBAEC00EC6E8D /* cards main.swiftdisable in Resources */,
 				C7B2957A2E28CBFF004944B6 /* piano.jpg in Resources */,
 				84C2AA192F96DE7B00616249 /* videosetup.mov in Resources */,
 				C74D49052E21CAC7003187BA /* AllerDisplay.ttf in Resources */,
@@ -303,12 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7721C932E946A6400F80DAB /* StoreManager.swift.disabled in Sources */,
 				C7721C912E9469A600F80DAB /* SubscriptionView.swift.disabled in Sources */,
+				848FA0832FAA936E007F301F /* AppIntents.swift in Sources */,
 				C7035FF72E32EFEB00642EE8 /* RootView.swift in Sources */,
 				C7B2958C2E2C7C7C004944B6 /* howtoSETUP.swift in Sources */,
 				C7B2957E2E28D48B004944B6 /* NavigationState.swift in Sources */,
-				C7B2958E2E2C9CAC004944B6 /* BarraInferior.disabled in Sources */,
 				C770BBAD2E70D97A002AC016 /* Theme.swift in Sources */,
 				C7ABBCE32F19E59100185395 /* StoreManager.swift in Sources */,
 				C7930D902E78850800032231 /* OnboardingView.swift in Sources */,
@@ -431,14 +433,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotiActions/SpotiActions.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42026;
+				CURRENT_PROJECT_VERSION = 52326;
 				INFOPLIST_FILE = SpotiActions/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SpotiActions;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzalomoscoso.SpotiActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -460,17 +463,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotiActions/SpotiActions.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42026;
-				"CURRENT_PROJECT_VERSION[sdk=iphoneos*]" = 42026;
+				CURRENT_PROJECT_VERSION = 52326;
 				INFOPLIST_FILE = SpotiActions/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SpotiActions;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 2.7;
-				"MARKETING_VERSION[sdk=*]" = 2.7;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 2.7;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gzalomoscoso.SpotiActions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

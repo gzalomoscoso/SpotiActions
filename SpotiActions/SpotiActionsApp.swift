@@ -14,7 +14,7 @@ struct SpotiActionsApp: App {
         // 1. Forzar lectura fresca del disco
         defaults.synchronize()
         
-        let majorUpdateVersion = "2.6"
+        let majorUpdateVersion = "2.9"
         let lastSeenVersion = defaults.string(forKey: "lastSeenVersion") ?? "0.0"
         let hasSeenGeneral = defaults.bool(forKey: "hasSeenOnboarding")
         

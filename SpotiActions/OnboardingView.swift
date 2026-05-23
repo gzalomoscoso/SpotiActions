@@ -7,7 +7,7 @@ struct OnboardingView: View {
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding: Bool = false
     
     // El link masivo de las 40 playlists
-    private let masterShortcutURL = "https://www.icloud.com/shortcuts/317c1ca7a74b40f5b4c09e5348da6f1d"
+    private let masterShortcutURL = "https://www.icloud.com/shortcuts/30b78ae064c94b619a12d30ef0ffefd4"
     
     // Gradientes simplificados para 2 páginas
     private let pageGradients: [[Color]] = [
@@ -68,7 +68,7 @@ struct OnboardingView: View {
         }) {
             Text(currentPage == 0
                  ? NSLocalizedString("continue", comment: "")
-                 : NSLocalizedString("Install Shortcut & Start", comment: ""))
+                 : NSLocalizedString("Always install the new shortcut", comment: ""))
                 .font(.system(.headline, design: .default).weight(.bold))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
@@ -94,25 +94,15 @@ struct OnboardingView: View {
         Task { @MainActor in
             UIApplication.shared.open(url)
             
-            // Esperamos a que el usuario regrese o el sistema procese
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 let defaults = UserDefaults.standard
+                let currentAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
                 
-                // 1. Obtenemos la versión REAL del plist (2.6)
-                let currentAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "2.6"
-                
-                // 2. Grabamos AMBAS llaves
-                defaults.set(true, forKey: "hasSeenOnboarding")
+                // GRABAMOS LA VERSIÓN ACTUAL PARA QUE NO VUELVA A SALIR
                 defaults.set(currentAppVersion, forKey: "lastSeenVersion")
-                
-                // 3. Forzamos el volcado al disco físico
+                defaults.set(true, forKey: "hasSeenOnboarding")
                 defaults.synchronize()
                 
-                print("--- ESCRITURA EN DISCO ---")
-                print("Versión grabada: \(currentAppVersion)")
-                print("--------------------------")
-                
-                // 4. Cambiamos la vista
                 onFinished?()
             }
         }
