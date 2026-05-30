@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutomateMusic – Automate your Apple Music</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #fc3c44; /* Color representativo de Apple Music */
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      animation: fadeInDown 1s ease forwards;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+    section:nth-child(5) { animation-delay: 1.2s; }
+
+    h2 {
+      color: #fc3c44;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      background: #fc3c44;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    a.button:hover {
+      background: #d92b32;
+      transform: translateY(-2px);
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #fc3c44;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AutomateMusic</h1>
+    <p>Seamless Apple Music automation via iOS Shortcuts</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>What AutomateMusic Is</h2>
+      <p>AutomateMusic bridges the gap between Apple Music and iOS system automations. Built natively using MusicKit, it exposes powerful <span class="highlight">App Intents</span> that allow your custom music routines to run seamlessly in the background.</p>
+      <ul>
+        <li>Wake up with your favorite Apple Music playlists using robust iOS Shortcuts.</li>
+        <li>Trigger background music playback the exact moment you connect to CarPlay.</li>
+        <li>Set up reliable morning or workout routines that launch your music without asking for confirmation.</li>
+        <li>Control playback actions flawlessly even when your iPhone is locked.</li>
+      </ul>
+      <p>Designed for power users who want absolute control over their audio environment without complex setups.</p>
+    </section>
+
+    <section>
+      <h2>Core Features</h2>
+      <ul>
+        <li><strong>Reliable Alarms:</strong> App Intents execute completely in the background, working perfectly from a cold start or screen lock.</li>
+        <li><strong>Universal Integration:</strong> Controls your personal "My Likes", standard library collections, and curated public stations.</li>
+        <li><strong>Privacy First:</strong> Built natively for iOS, leveraging Apple's official frameworks with no tracking or third-party servers.</li>
+        <li><strong>One-Time Purchase:</strong> Pay once, unlock absolute automation freedom permanently. No hidden subscriptions.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Get AutomateMusic</h2>
+      <p>Take complete control of your Apple Music playback and integrate it deeply into your daily iOS automations today.</p>
+      <div class="cta">
+        <a href="https://apps.apple.com/app/automatemusic/idYOUR_APP_ID" class="button">Download AutomateMusic</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Need Help?</h2>
+      <p>Visit our dedicated support section for detailed integration guides, FAQ, and custom iOS Shortcut templates.</p>
+      <div class="cta">
+        <a href="https://gzalomoscoso.github.io/AutomateMusic/support.html" class="button">Go to Support</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 AutomateMusic. All rights reserved.
+  </footer>
+
+</body>
+</html>
