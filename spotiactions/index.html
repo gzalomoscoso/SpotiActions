@@ -34,7 +34,6 @@
             padding: 40px 20px;
         }
 
-        /* Estructura centralizada estilo Cinephile */
         .wrapper {
             width: 100%;
             max-width: 800px;
@@ -86,9 +85,42 @@
 
         /* Hero Section */
         .hero {
-            padding: 48px 32px 32px 32px;
+            padding: 48px 32px 0 32px;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        /* Clapped Badge / Best New Apps Element */
+        .badge-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .badge-container .hands {
+            font-size: 1.1rem;
+            animation: clap 1.5s ease infinite alternate;
+            transform-origin: bottom center;
+            display: inline-block;
+        }
+
+        .badge-container .featured-tag {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        @keyframes clap {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(10deg); }
         }
 
         .hero h1 {
@@ -103,19 +135,48 @@
             color: var(--text-muted);
             font-size: 1.125rem;
             max-width: 600px;
-            margin: 0 auto 32px auto;
+            margin: 0 auto 40px auto;
         }
 
-        /* Showcase Mockup Principal */
-        .hero-mockup {
-            width: 100%;
-            max-width: 580px;
-            height: auto;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        /* Cinephile Asymmetric 3-Screenshot Showcase Wrapper */
+        .showcase-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            max-width: 640px;
             margin: 0 auto;
-            display: block;
+            position: relative;
+            height: 380px;
+            padding-top: 20px;
+        }
+
+        .screenshot {
+            width: 30%;
+            height: auto;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background-color: #16161a;
+            object-fit: cover;
+            transition: transform 0.1s ease-out; /* Smooth scrolling transition */
+            will-change: transform;
+        }
+
+        /* Lateral screenshots layout offset */
+        .screenshot.side-left {
+            transform: translateY(40px);
+        }
+        .screenshot.side-right {
+            transform: translateY(40px);
+        }
+
+        /* Center screenshot structural behavior */
+        .screenshot.center-focus {
+            z-index: 2;
+            width: 34%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            transform: translateY(20px); /* Base state, modified dynamically via JS */
         }
 
         /* Features Section */
@@ -145,6 +206,9 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 { font-size: 2rem; }
+            .showcase-container { height: 260px; }
+            .screenshot.side-left, .screenshot.side-right { transform: translateY(20px); }
+            .screenshot.center-focus { transform: translateY(10px); }
         }
 
         .feature-card {
@@ -172,32 +236,6 @@
             color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.45;
-        }
-
-        /* Gallery / UI Context Section */
-        .ui-showcase {
-            padding: 48px 32px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 24px;
-        }
-
-        .gallery-item {
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            background-color: rgba(0,0,0,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
         /* Pricing / Footer CTA Section */
@@ -298,15 +336,26 @@
             <a href="https://apps.apple.com/app/spotiactions/id6748419049" class="cta-header">Get App</a>
         </header>
 
-        <!-- Hero -->
+        <!-- Hero Section -->
         <section class="hero">
+            <!-- Cinephile Style Palms Badge -->
+            <div class="badge-container">
+                <span class="hands">👏</span>
+                <span>Featured on <span class="featured-tag">Best New Apps</span></span>
+            </div>
+            
             <h1>Bypass native limitations. Control your music library.</h1>
             <p>If you've ever tried to build a custom morning routine using iOS Shortcuts and Spotify, you've hit the same wall. SpotiActions bridges the gap between your music and system-level automation.</p>
-            <!-- REEMPLAZAR: Imagen principal de la cabecera (Mockup general o Video Frame) -->
-            <img src="hero-mockup.png" alt="SpotiActions Automation Interface" class="hero-mockup">
+            
+            <!-- Cinephile Interactive 3-Screenshot Grid Layout -->
+            <div class="showcase-container">
+                <img src="screenshot-shortcuts.png" alt="Shortcuts Integration" class="screenshot side-left">
+                <img src="screenshot-coverflow.png" alt="Cover Flow Real UI" class="screenshot center-focus" id="centerMockup">
+                <img src="screenshot-playing.png" alt="Music Execution Workflow" class="screenshot side-right">
+            </div>
         </section>
 
-        <!-- Features -->
+        <!-- Features Section -->
         <section class="features">
             <h2 class="section-title">🛠️ Built for Power-Users</h2>
             <div class="features-grid">
@@ -333,24 +382,7 @@
             </div>
         </section>
 
-        <!-- UI Showcase Gallery -->
-        <section class="ui-showcase">
-            <h2 class="section-title"><i class="fas fa-layer-group" style="color: var(--accent-color);"></i> High-Fidelity Experience</h2>
-            <p style="color: var(--text-muted); margin-bottom: 24px;">The Cover Flow interface you see in action is indeed the actual, fully functional UI of the app. Beautiful, responsive, and tactile.</p>
-            
-            <div class="gallery-grid">
-                <!-- REEMPLAZAR: Screenshot del Cover Flow interactivo -->
-                <div class="gallery-item">
-                    <img src="screenshot-coverflow.png" alt="Cover Flow User Interface">
-                </div>
-                <!-- REEMPLAZAR: Screenshot de la acción integrada en iOS Shortcuts -->
-                <div class="gallery-item">
-                    <img src="screenshot-shortcuts.png" alt="iOS Shortcuts Integration">
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing / Final CTA -->
+        <!-- Pricing / Final CTA Section -->
         <section class="pricing-cta">
             <span class="badge-deal">Special Launch Celebration — 80% OFF</span>
             <h2>Take control of your music library today</h2>
@@ -376,5 +408,26 @@
         </footer>
     </div>
 
+    <!-- JavaScript Execution Layer: Parallax Inverso para el Screenshot Central -->
+    <script>
+        const centerMockup = document.getElementById('centerMockup');
+        
+        window.addEventListener('scroll', () => {
+            // Evaluamos la posición actual de la ventana de scroll
+            const scrolled = window.scrollY;
+            
+            // Verificamos resolución de pantalla para no romper la estética en móviles
+            if (window.innerWidth > 640) {
+                // Cálculo de traslación inversa (subida asimétrica controlada)
+                // Modifica el factor '0.15' si deseas acelerar o desacelerar el ascenso de la imagen central
+                const translateValue = 20 - (scrolled * 0.15);
+                
+                // Aplicamos límite estructural para evitar que sobrepase el header en scrolls extremos
+                if (translateValue > -60) {
+                    centerMockup.style.transform = `translateY(${translateValue}px)`;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
