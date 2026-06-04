@@ -124,23 +124,23 @@
             margin-bottom: 40px;
         }
 
-        /* Cinephile Interactive 3-Screenshot Layout Auto-Sizable */
+        /* Cinephile Interactive 3-Screenshot Layout Auto-Sizable - OPTIMIZED FOR 50% INCREASE */
         .showcase-container {
             display: flex;
             justify-content: center;
             align-items: flex-end;
             gap: 4%;
             width: 100%;
-            max-width: 600px;
+            max-width: 850px; /* Expandido para alojar screenshots más grandes */
             margin: 0 auto;
             position: relative;
-            aspect-ratio: 16 / 10; 
+            aspect-ratio: 16 / 9; 
             padding-bottom: 20px;
         }
 
-        /* Todos los screenshots mantienen exactamente la misma escala de base (29%) */
+        /* Todos los screenshots escalados un 50% más grandes de su base original (de 29% a 44%) */
         .screenshot {
-            width: 29%;
+            width: 44%;
             height: auto;
             display: block;
             will-change: transform;
@@ -260,6 +260,16 @@
                     <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h6V7h-6V5h-2v6h2z"/></svg>
                     <h3>Advanced Playlist Logic</h3>
                     <p>You can pass actions to shuffle specific personalized playlists, trigger your "Liked Songs", or set up dynamic music queues directly inside your existing shortcuts.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0-2-.9-2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                    <h3>Native App Intents Architecture</h3>
+                    <p>Unlike legacy tools relying on basic deep links that time out, SpotiActions is fully compiled under Apple's modern App Intents framework, handling parameters natively at the core OS layer.</p>
+                </div>
+                <div class="feature-card">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0-2-.9-2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                    <h3>Locked-Screen Execution</h3>
+                    <p>Bypass the iOS background restriction. SpotiActions establishes a direct handshake with the Spotify Web API, forcing shortcuts to execute cleanly even when the device UI is locked down.</p>
                 </div>
                 <div class="feature-card">
                     <svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-5 20c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5.25-3H6.75V4h10.5v14z"/></svg>
