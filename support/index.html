@@ -1,1 +1,244 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyIOSApps – Support Center</title>
+  <style>
+    :root {
+      --bg-color: #f5f5f7;
+      --card-bg: #ffffff;
+      --text-main: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent-blue: #0071e3;
+      --accent-hover: #005bb5;
+      --border-color: #e8e8ed;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #121214 0%, #1c1c1e 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    header p {
+      margin: 0.75rem 0 0 0;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    h2 {
+      font-size: 1.625rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f5f5f7;
+      border-radius: 12px;
+    }
+
+    h3 {
+      color: var(--accent-blue);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.35rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    h3::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background-color: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    .faq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+    }
+
+    .faq-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .faq-answer {
+      color: #48484a;
+      font-size: 1rem;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent-blue);
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    a.button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-color);
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MyIOSApps Support</h1>
+    <p>Find answers and help for PlayPauseBar, Automate for Apple Music, and SpotiActions</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Contact Us</h2>
+      <p style="color: #48484a; margin-bottom: 1.5rem;">If you have questions, feedback, or need technical assistance with any of our apps, please contact our support team:</p>
+      <div class="contact-box">
+        <a href="mailto:support@myiosapps.org" class="button">support@myiosapps.org</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;">Select your application below to find solutions to common inquiries.</p>
+
+      <h3>PlayPauseBar (macOS)</h3>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <div class="faq-question">Where is the main application window?</div>
+          <div class="faq-answer">PlayPauseBar runs exclusively as a lightweight utility in your macOS system menu bar. It does not have a Dock icon or a standard main window to ensure a zero-clutter experience.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">How do I access the settings panel?</div>
+          <div class="faq-answer">If you are using the single direct-button mode, simply right-click the menu bar icon. If you have multiple controls enabled (Play/Pause and Next Track), left-clicking the icon will open a drop-down menu where you can click "Settings...".</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Why does the icon change to a headphones symbol?</div>
+          <div class="faq-answer">When both "Play / Pause" and "Next Track" are enabled in your preferences, the app switches to Menu Mode and updates its status icon to headphones to represent full media playback management.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Does the app collect any personal data?</div>
+          <div class="faq-answer">No. PlayPauseBar respects your privacy entirely. All configurations, layouts, and launch preferences are stored locally on your Mac using standard system-defined defaults.</div>
+        </li>
+      </ul>
+
+      <h3>Automate for Apple Music</h3>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <div class="faq-question">Do I need an Apple Music subscription?</div>
+          <div class="faq-answer">Yes, an active Apple Music subscription is required for the app to access and play songs or playlists from the catalog via system automations.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Does the app itself require a subscription?</div>
+          <div class="faq-answer">No, the application works fully without any internal app subscriptions, ensuring a smooth and complete experience.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Do I need the Shortcuts app?</div>
+          <div class="faq-answer">Yes, Apple’s native Shortcuts app must be installed on your iPhone to enable and trigger your music automations.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">App not playing music?</div>
+          <div class="faq-answer">Ensure you are logged into your Apple ID, your Apple Music subscription is active, and the Shortcuts app has permissions granted.</div>
+        </li>
+      </ul>
+
+      <h3>SpotiActions</h3>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <div class="faq-question">Do I need a Spotify Premium subscription?</div>
+          <div class="faq-answer">No, SpotiActions can function with both Spotify Free and Spotify Premium accounts.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Does the app require an internal subscription?</div>
+          <div class="faq-answer">No, the app works fully without any subscription or paid tiers.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">App not launching Spotify?</div>
+          <div class="faq-answer">Make sure the official Spotify app is installed on your device and you are actively logged into your account.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-question">Shortcuts not working?</div>
+          <div class="faq-answer">Try re-adding the Siri Shortcuts from inside the SpotiActions app and run them again.</div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 MyIOSApps.org. All rights reserved.
+  </footer>
+
+</body>
+</html>
