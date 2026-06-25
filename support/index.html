@@ -1,244 +1,270 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyIOSApps – Support Center</title>
-  <style>
-    :root {
-      --bg-color: #f5f5f7;
-      --card-bg: #ffffff;
-      --text-main: #1d1d1f;
-      --text-secondary: #86868b;
-      --accent-blue: #0071e3;
-      --accent-hover: #005bb5;
-      --border-color: #e8e8ed;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyIOSApps — Support Center</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --accent-blue: #007aff;
+            --accent-hover: #3395ff;
+        }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    header {
-      background: linear-gradient(135deg, #121214 0%, #1c1c1e 100%);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.6rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
+        /* Background Glow Effect */
+        .glow {
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    header p {
-      margin: 0.75rem 0 0 0;
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      font-weight: 400;
-    }
+        header {
+            max-width: 800px;
+            margin: 5rem auto 3rem auto;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
 
-    main {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    section {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      margin-bottom: 2.5rem;
-      border: 1px solid var(--border-color);
-    }
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            letter-spacing: -0.01em;
+        }
 
-    h2 {
-      font-size: 1.625rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      color: var(--text-main);
-    }
+        main {
+            max-width: 800px;
+            margin: 0 auto 6rem auto;
+            padding: 0 1.5rem;
+        }
 
-    .contact-box {
-      text-align: center;
-      padding: 1.5rem;
-      background: #f5f5f7;
-      border-radius: 12px;
-    }
+        section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2.5rem;
+        }
 
-    h3 {
-      color: var(--accent-blue);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      font-size: 1.35rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    h3::before {
-      content: "";
-      display: inline-block;
-      width: 4px;
-      height: 18px;
-      background-color: var(--accent-blue);
-      border-radius: 2px;
-    }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.75rem;
+        }
 
-    .faq-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2rem 0;
-    }
+        .contact-box {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px dashed var(--card-border);
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
 
-    .faq-item {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--border-color);
-    }
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
 
-    .faq-item:last-child {
-      border-bottom: none;
-    }
+        h3 {
+            color: var(--accent-blue);
+            margin: 3rem 0 1.5rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-    .faq-question {
-      font-weight: 600;
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-main);
-    }
+        h3::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
 
-    .faq-answer {
-      color: #48484a;
-      font-size: 1rem;
-    }
+        .faq-list {
+            list-style: none;
+        }
 
-    a.button {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--accent-blue);
-      color: white;
-      text-decoration: none;
-      border-radius: 20px;
-      font-weight: 500;
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+        .faq-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--card-border);
+        }
 
-    a.button:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
 
-    footer {
-      text-align: center;
-      padding: 3rem 1rem;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      border-top: 1px solid var(--border-color);
-      background-color: #ffffff;
-    }
-  </style>
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .faq-answer strong {
+            color: var(--text-main);
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--accent-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        a.button:hover {
+            background: var(--accent-hover);
+        }
+
+        a.button:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>MyIOSApps Support</h1>
-    <p>Find answers and help for PlayPauseBar, Automate for Apple Music, and SpotiActions</p>
-  </header>
+    <div class="glow"></div>
 
-  <main>
-    <section>
-      <h2>Contact Us</h2>
-      <p style="color: #48484a; margin-bottom: 1.5rem;">If you have questions, feedback, or need technical assistance with any of our apps, please contact our support team:</p>
-      <div class="contact-box">
-        <a href="mailto:support@myiosapps.org" class="button">support@myiosapps.org</a>
-      </div>
-    </section>
+    <header>
+        <h1>MyIOSApps Support Center</h1>
+        <p>Expert assistance, quick troubleshooting, and technical documentation for our native utilities.</p>
+    </header>
 
-    <section>
-      <h2>Frequently Asked Questions</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 2rem;">Select your application below to find solutions to common inquiries.</p>
+    <main>
+        <!-- Contact Section -->
+        <section>
+            <h2>Direct Technical Support</h2>
+            <p style="color: var(--text-muted); font-size: 1rem;">Have a bug to report, features to suggest, or encountered a complex synchronization issue? Drop our development team a message directly.</p>
+            <div class="contact-box">
+                <p>Average response time: Less than 24 hours</p>
+                <a href="mailto:support@myiosapps.org" class="button">Contact Developer</a>
+            </div>
+        </section>
 
-      <h3>PlayPauseBar (macOS)</h3>
-      <ul class="faq-list">
-        <li class="faq-item">
-          <div class="faq-question">Where is the main application window?</div>
-          <div class="faq-answer">PlayPauseBar runs exclusively as a lightweight utility in your macOS system menu bar. It does not have a Dock icon or a standard main window to ensure a zero-clutter experience.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">How do I access the settings panel?</div>
-          <div class="faq-answer">If you are using the single direct-button mode, simply right-click the menu bar icon. If you have multiple controls enabled (Play/Pause and Next Track), left-clicking the icon will open a drop-down menu where you can click "Settings...".</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Why does the icon change to a headphones symbol?</div>
-          <div class="faq-answer">When both "Play / Pause" and "Next Track" are enabled in your preferences, the app switches to Menu Mode and updates its status icon to headphones to represent full media playback management.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Does the app collect any personal data?</div>
-          <div class="faq-answer">No. PlayPauseBar respects your privacy entirely. All configurations, layouts, and launch preferences are stored locally on your Mac using standard system-defined defaults.</div>
-        </li>
-      </ul>
+        <!-- FAQ Section -->
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">Select the relevant suite application to inspect diagnostic solutions.</p>
 
-      <h3>Automate for Apple Music</h3>
-      <ul class="faq-list">
-        <li class="faq-item">
-          <div class="faq-question">Do I need an Apple Music subscription?</div>
-          <div class="faq-answer">Yes, an active Apple Music subscription is required for the app to access and play songs or playlists from the catalog via system automations.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Does the app itself require a subscription?</div>
-          <div class="faq-answer">No, the application works fully without any internal app subscriptions, ensuring a smooth and complete experience.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Do I need the Shortcuts app?</div>
-          <div class="faq-answer">Yes, Apple’s native Shortcuts app must be installed on your iPhone to enable and trigger your music automations.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">App not playing music?</div>
-          <div class="faq-answer">Ensure you are logged into your Apple ID, your Apple Music subscription is active, and the Shortcuts app has permissions granted.</div>
-        </li>
-      </ul>
+            <!-- PlayPauseBar -->
+            <h3>PlayPauseBar (macOS)</h3>
+            <ul class="faq-list">
+                <li class="faq-item">
+                    <div class="faq-question">Why does the icon click but nothing happens to my music?</div>
+                    <div class="faq-answer">PlayPauseBar interacts directly with the core macOS Quartz layer to emulate system media key presses. For security, macOS sandboxing requires explicit authorization. To fix this, navigate to <strong>System Settings > Privacy & Security > Accessibility</strong>, find PlayPauseBar in the listing, and switch the permission toggle to <strong>On</strong>.</div>
+                </li>
+                <li class="faq-item">
+                    <div class="faq-question">Where is the main graphical layout or Dock icon?</div>
+                    <div class="faq-answer">PlayPauseBar is systematically designed as a zero-clutter menu bar resident element. It features no standard active dock footprint or expansive window frame layout to stay fluid, minimal, and fully out of your way.</div>
+                </li>
+                <li class="faq-item">
+                    <div class="faq-question">How can I review the configuration preferences panel?</div>
+                    <div class="faq-answer">If operating strictly in Single Direct Button layout, execute a simple <strong>right-click</strong> on the interface menu icon. If multi-control modes are active, a standard left click reveals the drop-down selector containing the "Settings..." target.</div>
+                </li>
+            </ul>
 
-      <h3>SpotiActions</h3>
-      <ul class="faq-list">
-        <li class="faq-item">
-          <div class="faq-question">Do I need a Spotify Premium subscription?</div>
-          <div class="faq-answer">No, SpotiActions can function with both Spotify Free and Spotify Premium accounts.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Does the app require an internal subscription?</div>
-          <div class="faq-answer">No, the app works fully without any subscription or paid tiers.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">App not launching Spotify?</div>
-          <div class="faq-answer">Make sure the official Spotify app is installed on your device and you are actively logged into your account.</div>
-        </li>
-        <li class="faq-item">
-          <div class="faq-question">Shortcuts not working?</div>
-          <div class="faq-answer">Try re-adding the Siri Shortcuts from inside the SpotiActions app and run them again.</div>
-        </li>
-      </ul>
-    </section>
-  </main>
+            <!-- Automate for Apple Music -->
+            <h3>Automate for Apple Music</h3>
+            <ul class="faq-list">
+                <li class="faq-item">
+                    <div class="faq-question">Are there structural subscription loops or server costs required?</div>
+                    <div class="faq-answer">No. The application functions under a completely standalone model with zero hidden internal tiers or recurring charges. An active Apple Music subscription is required solely to access Apple's catalog metadata.</div>
+                </li>
+                <li class="faq-item">
+                    <div class="faq-question">How does the application integrate automation shortcuts?</div>
+                    <div class="faq-answer">The engine exposes deep native intents to iOS. Ensure that Apple's system <strong>Shortcuts app</strong> is installed on your device to build and trigger customized playback sequences seamlessly.</div>
+                </li>
+            </ul>
 
-  <footer>
-    &copy; 2026 MyIOSApps.org. All rights reserved.
-  </footer>
+            <!-- SpotiActions -->
+            <h3>SpotiActions</h3>
+            <ul class="faq-list">
+                <li class="faq-item">
+                    <div class="faq-question">Does SpotiActions require a Spotify Premium tier status?</div>
+                    <div class="faq-answer">No. SpotiActions functions identically across both Spotify Free and Spotify Premium structures, orchestrating system level integration regardless of account status.</div>
+                </li>
+                <li class="faq-item">
+                    <div class="faq-question">What should I do if a Siri Shortcut fails to invoke Spotify?</div>
+                    <div class="faq-answer">Verify that the official Spotify application is actively installed on your hardware and currently authenticated. If execution issues persist, open SpotiActions, remove the current entry, and select <strong>Re-add Siri Shortcuts</strong> to refresh the integration.</div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 MyIOSApps.org. All rights reserved.
+    </footer>
 
 </body>
 </html>
