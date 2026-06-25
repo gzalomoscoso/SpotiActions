@@ -1,1 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutomateMusic – Automate your Apple Music</title>
+  <style>
+    :root {
+      --primary: #fc3c44;
+      --primary-gradient: linear-gradient(135deg, #fc3c44 0%, #ff6b72 100%);
+      --bg: #0d0d11;
+      --card-bg: #16161f;
+      --text: #f5f5f7;
+      --text-muted: #8e8e93;
+      --border: rgba(255, 255, 255, 0.08);
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(13, 13, 17, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav .nav-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--primary-gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    nav .nav-btn:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    /* Hero Section */
+    header {
+      padding: 8rem 2rem 4rem 2rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    header p {
+      margin: 1.5rem auto 2.5rem auto;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      font-weight: 400;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .hero-image-container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-image-container img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1080/461;
+      border-radius: 16px;
+      border: var(--border);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 840px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      margin-bottom: 5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Cards Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    /* FAQ Accordion (Pure CSS) */
+    .faq-container {
+      background: var(--card-bg);
+      border: var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.5rem;
+    }
+
+    .faq-item {
+      border-bottom: var(--border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-input {
+      display: none;
+    }
+
+    .faq-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-label::after {
+      content: '+';
+      font-size: 1.2rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .faq-content p {
+      margin: 0 0 1.25rem 0;
+    }
+
+    .faq-input:checked ~ .faq-label::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-input:checked ~ .faq-content {
+      max-height: 200px;
+    }
+
+    /* Call To Action Footer Banner */
+    .cta-banner {
+      background: linear-gradient(180deg, var(--card-bg) 0%, rgba(22, 22, 31, 0.5) 100%);
+      border: var(--border);
+      border-radius: 16px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin-top: 6rem;
+    }
+
+    .cta-banner h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .button-main {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: var(--primary-gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 24px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(252, 60, 68, 0.3);
+    }
+
+    .button-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(252, 60, 68, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem 2rem 1rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.3);
+      border-top: var(--border);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.5rem; }
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Navigation Header with Sticky Download -->
+  <nav>
+    <div class="logo">AutomateMusic</div>
+    <a href="https://apps.apple.com/app/id6774013731" class="nav-btn">Download</a>
+  </nav>
+
+  <!-- Hero Presentation Section -->
+  <header>
+    <h1>Seamless Apple Music Automation</h1>
+    <p>Expose powerful native App Intents to run your custom music routines flawlessly in the background via iOS Shortcuts.</p>
+  </header>
+
+  <!-- Hero Image Placement -->
+  <div class="hero-image-container">
+    <img src="automatemusic.jpg" alt="AutomateMusic Interface Display" width="1080" height="461">
+  </div>
+
+  <main>
+
+    <!-- Core Features Grid -->
+    <section>
+      <h2>Why AutomateMusic?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🌅 Smart Morning Alarms</h3>
+          <p>Tired of waking up to the exact same song every single day? Trigger full, dynamic playlists instead of a single track to keep your routine fresh.</p>
+        </div>
+        <div class="card">
+          <h3>🚗 Instant CarPlay Routines</h3>
+          <p>Fire up your favorite soundtracks or custom media workflows the exact millisecond your iPhone establishes a connection with your car.</p>
+        </div>
+        <div class="card">
+          <h3>🔒 Locked Screen Support</h3>
+          <p>Built natively with MusicKit, actions execute perfectly from a cold start or while your device remains locked in your pocket.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ True Automation Control</h3>
+          <p>Establish reliable automation flows for your intense workouts, focused study hours, or evening wind-downs without manual runtime confirmation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        
+        <div class="faq-item">
+          <input type="checkbox" id="faq1" class="faq-input">
+          <label for="faq1" class="faq-label">How does the app unlock its Premium lifetime access?</label>
+          <div class="faq-content">
+            <p>AutomateMusic is structured as a premium, one-time purchase app with no In-App Purchases (IAP) or hidden paywalls. When downloaded during promotional windows, full lifetime access is permanently tied to your Apple ID natively.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <input type="checkbox" id="faq2" class="faq-input">
+          <label for="faq2" class="faq-label">Does it require confirmation to play music in the background?</label>
+          <div class="faq-content">
+            <p>No. By taking advantage of official iOS App Intents and native MusicKit frameworks, your custom automation routines execute completely in the background without needing a manual confirmation tap.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <input type="checkbox" id="faq3" class="faq-input">
+          <label for="faq3" class="faq-label">Are there any external dependencies required?</label>
+          <div class="faq-content">
+            <p>Yes. The official Apple iOS Shortcuts application must be installed on your iPhone to configure and trigger the automation workflows properly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <input type="checkbox" id="faq4" class="faq-input">
+          <label for="faq4" class="faq-label">What types of media library structures can I trigger?</label>
+          <div class="faq-content">
+            <p>You can seamlessly automate playback for your personal "My Likes" collection, standard localized library playlists, and curated public Apple Music stations.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Unified CTA Banner -->
+    <section class="cta-banner">
+      <h2>Get AutomateMusic Now</h2>
+      <p>Take complete command of your personal audio environment. No subscription fatigue, no ads, just absolute automation freedom.</p>
+      <a href="https://apps.apple.com/app/id6774013731" class="button-main">Download on the App Store</a>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 AutomateMusic. All rights reserved. Built natively for iOS.
+  </footer>
+
+</body>
+</html>
