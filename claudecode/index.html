@@ -1,1 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mira e - Single-Origin Ethiopian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0e0c;
+            color: #f5f1e8;
+            overflow-x: hidden;
+        }
+
+        /* Film grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2"/><feDisplacementMap in="SourceGraphic" scale="1"/></filter><rect width="100" height="100" fill="%23000000" opacity="0.03" filter="url(%23noise)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+            animation: filmGrain 0.1s steps(1) infinite;
+        }
+
+        @keyframes filmGrain {
+            0% { opacity: 0.02; }
+            50% { opacity: 0.04; }
+            100% { opacity: 0.02; }
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-style: italic;
+            color: #f5f1e8;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #d4a574;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: #8b5e3c;
+            color: #f5f1e8;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #a67c52;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Content Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-content {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-style: italic;
+            color: #f5f1e8;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #d4a574;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+
+        /* How We Roast Section */
+        #how-we-roast {
+            background: linear-gradient(135deg, #1a1815 0%, #2d2622 100%);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .process-card {
+            background: rgba(139, 94, 60, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            padding: 40px 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .process-card:hover {
+            background: rgba(139, 94, 60, 0.15);
+            border-color: rgba(212, 165, 116, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .process-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #d4a574;
+            margin-bottom: 15px;
+        }
+
+        .process-card p {
+            color: #b8a79f;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* The Farm Section */
+        #the-farm {
+            background: linear-gradient(135deg, #2d2622 0%, #1a1815 100%);
+        }
+
+        .farm-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .farm-text p {
+            color: #b8a79f;
+            line-height: 2;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .farm-highlight {
+            color: #d4a574;
+            font-weight: 600;
+        }
+
+        .farm-visual {
+            background: rgba(139, 94, 60, 0.15);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .farm-visual-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .farm-visual h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #d4a574;
+            margin-bottom: 10px;
+        }
+
+        .farm-visual p {
+            color: #b8a79f;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a08;
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        footer p {
+            color: #b8a79f;
+            margin-bottom: 20px;
+        }
+
+        footer .cta-button {
+            margin: 20px 0;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 20;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .farm-story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .hero-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Canvas -->
+    <section id="hero">
+        <canvas id="canvas"></canvas>
+        <div class="hero-content">
+            <h1>Mira</h1>
+            <p class="hero-tagline">Single-Origin Ethiopian e</p>
+            <p style="color: #b8a79f; margin-bottom: 30px; font-size: 1rem;">Sourced from the birthplace of e</p>
+            <button class="cta-button">Order this Friday's roast</button>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a574" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- How We Roast Section -->
+    <section id="how-we-roast">
+        <div class="section-content">
+            <h2 class="section-title">How We Roast</h2>
+            <p class="section-subtitle">Our meticulous three-step journey from bean to cup</p>
+            <div class="process-grid">
+                <div class="process-card">
+                    <h3>Source</h3>
+                    <p>We partner directly with Yirgacheffe farmers, selecting only the finest lots. Our relationships span generations, ensuring consistent quality and fair compensation.</p>
+                </div>
+                <div class="process-card">
+                    <h3>Roast</h3>
+                    <p>Small-batch roasting reveals the bean's unique characteristics. Each roast is timed to perfection, developing the complex floral and fruity notes Mira is known for.</p>
+                </div>
+                <div class="process-card">
+                    <h3>Ship</h3>
+                    <p>Roasted fresh and shipped within 48 hours, your e arrives at peak freshness. We focus on sustainability at every step of our delivery process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Farm Section -->
+    <section id="the-farm">
+        <div class="section-content">
+            <h2 class="section-title">The Farm</h2>
+            <p class="section-subtitle">Yirgacheffe: The Birthplace of e</p>
+            <div class="farm-story">
+                <div class="farm-text">
+                    <p>
+                        <span class="farm-highlight">Yirgacheffe</span> sits at the origin point of e cultivation, where the arabica plant first grew wild in Ethiopian forests. Our founder, Tilahun, spent three years identifying the ideal microclimate and soil composition for exceptional e.
+                    </p>
+                    <p>
+                        The farm spans 8 hectares of shade-grown e at 1,900 meters elevation. This altitude, combined with rich volcanic soil and consistent rainfall, creates conditions that yield beans with distinctive floral aromatics and bright acidity.
+                    </p>
+                    <p>
+                        We employ 23 local families year-round, providing education and healthcare benefits. By prioritizing quality over quantity, we've built a sustainable model that honors both the land and the people who tend it.
+                    </p>
+                </div>
+                <div class="farm-visual">
+                    <div class="farm-visual-icon">🌱</div>
+                    <h4>Yirgacheffe Farm</h4>
+                    <p style="margin-bottom: 15px;">Elevation: 1,900m</p>
+                    <p style="margin-bottom: 15px;">Area: 8 hectares</p>
+                    <p>Arabica varietals: Landrace, Bourbon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3 style="font-family: 'Fraunces', serif; font-style: italic; color: #d4a574; margin-bottom: 20px;">Join the Mira Community</h3>
+        <p>Receive this Friday's roast and access to exclusive farm stories</p>
+        <button class="cta-button">Order this Friday's roast</button>
+        <p style="margin-top: 40px; font-size: 0.9rem; border-top: 1px solid rgba(212, 165, 116, 0.2); padding-top: 30px;">
+            © 2024 Mira e. Ethically sourced from Yirgacheffe, Ethiopia.
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ============= THREE.JS SETUP =============
+        const canvas = document.getElementById('canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setClearColor(0x0f0e0c, 0.9);
+
+        camera.position.z = 5;
+
+        // ============= E BEAN GEOMETRY =============
+        function createeBeanGeometry() {
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            const indices = [];
+
+            // Create a custom bean shape using two interlocking ellipsoids
+            const segments = 8;
+            const rings = 6;
+
+            function addEllipsoid(offsetX, scaleX) {
+                const startVertex = vertices.length / 3;
+
+                for (let i = 0; i <= rings; i++) {
+                    const v = i / rings;
+                    const theta = v * Math.PI;
+
+                    for (let j = 0; j <= segments; j++) {
+                        const u = j / segments;
+                        const phi = u * Math.PI * 2;
+
+                        const x = Math.sin(theta) * Math.cos(phi) * scaleX + offsetX;
+                        const y = Math.sin(theta) * Math.sin(phi) * 0.6;
+                        const z = Math.cos(theta) * 0.8;
+
+                        vertices.push(x, y, z);
+                    }
+                }
+
+                // Create indices
+                for (let i = 0; i < rings; i++) {
+                    for (let j = 0; j < segments; j++) {
+                        const a = startVertex + i * (segments + 1) + j;
+                        const b = startVertex + i * (segments + 1) + j + 1;
+                        const c = startVertex + (i + 1) * (segments + 1) + j;
+                        const d = startVertex + (i + 1) * (segments + 1) + j + 1;
+
+                        indices.push(a, b, c);
+                        indices.push(b, d, c);
+                    }
+                }
+            }
+
+            addEllipsoid(-0.3, 0.6);
+            addEllipsoid(0.3, 0.6);
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+            geometry.setIndex(new THREE.BufferAttribute(new Uint32Array(indices), 1));
+            geometry.computeVertexNormals();
+
+            return geometry;
+        }
+
+        // ============= E BEANS CREATION =============
+        const eGeometry = createeBeanGeometry();
+        const beanGroup = new THREE.Group();
+        scene.add(beanGroup);
+
+        const roastColors = [
+            0x6b4423, // Light brown
+            0x5a3a1f, // Medium brown
+            0x4a2f1a, // Dark brown
+            0x8b5e3c, // Caramel brown
+            0x3d2817  // Deep espresso
+        ];
+
+        const beans = [];
+        const beanCount = 70;
+
+        for (let i = 0; i < beanCount; i++) {
+            const colorIndex = i % roastColors.length;
+            const material = new THREE.MeshStandardMaterial({
+                color: roastColors[colorIndex],
+                metalness: 0.2,
+                roughness: 0.6,
+                emissive: roastColors[colorIndex],
+                emissiveIntensity: 0.1
+            });
+
+            const mesh = new THREE.Mesh(eGeometry, material);
+            
+            // Random positioning in a spherical volume
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.random() * Math.PI;
+            const radius = 3 + Math.random() * 2;
+
+            mesh.position.x = Math.sin(phi) * Math.cos(theta) * radius;
+            mesh.position.y = Math.sin(phi) * Math.sin(theta) * radius;
+            mesh.position.z = Math.cos(phi) * radius - 1;
+
+            mesh.scale.set(
+                0.4 + Math.random() * 0.3,
+                0.4 + Math.random() * 0.3,
+                0.4 + Math.random() * 0.3
+            );
+
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+            mesh.rotation.z = Math.random() * Math.PI;
+
+            beanGroup.add(mesh);
+            beans.push({
+                mesh,
+                originalY: mesh.position.y,
+                floatSpeed: 0.5 + Math.random() * 0.5,
+                floatRange: 0.3 + Math.random() * 0.5
+            });
+        }
+
+        // ============= LIGHTING =============
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(0xd4a574, 1.2);
+        pointLight1.position.set(5, 5, 5);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0x8b5e3c, 0.8);
+        pointLight2.position.set(-5, -3, 3);
+        scene.add(pointLight2);
+
+        // ============= SCROLL INTERACTION =============
+        let scrollProgress = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgress = window.scrollY / scrollHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // ============= ANIMATION LOOP =============
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+
+            // Rotate bean group
+            beanGroup.rotation.x += 0.0002;
+            beanGroup.rotation.y += 0.0005;
+            beanGroup.rotation.z += 0.0001;
+
+            // Float beans up and down
+            beans.forEach((bean, index) => {
+                bean.mesh.position.y = bean.originalY + Math.sin(time * bean.floatSpeed + index) * bean.floatRange;
+            });
+
+            // Camera effects based on scroll
+            const targetCameraZ = 5 + scrollProgress * 3;
+            const targetCameraY = scrollProgress * 1.5;
+            
+            camera.position.z += (targetCameraZ - camera.position.z) * 0.1;
+            camera.position.y += (targetCameraY - camera.position.y) * 0.1;
+
+            // Parallax with mouse
+            beanGroup.rotation.x += mouseY * 0.0001;
+            beanGroup.rotation.y += mouseX * 0.0001;
+
+            // Scale effect on scroll (beans fade/rise)
+            const scale = 1 + scrollProgress * 0.5;
+            beanGroup.scale.set(scale, scale, scale);
+
+            // Fade beans as we scroll away
+            beans.forEach(bean => {
+                const opacity = Math.max(0, 1 - scrollProgress * 1.5);
+                bean.mesh.material.opacity = opacity;
+                bean.mesh.material.transparent = opacity < 1;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ============= RESPONSIVE =============
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
