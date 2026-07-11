@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotiActions Support & FAQ</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0d;
+            --surface-color: #16161a;
+            --surface-accent: #222227;
+            --primary-color: #1DB954;
+            --orange-color: #ff7a00;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --border-color: #2c2c35;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-phone: 32px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header styling */
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Visual Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 11fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        .step-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .step-number {
+            background-color: var(--surface-accent);
+            color: var(--primary-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            min-height: 72px;
+        }
+
+        /* Phone mockup simulation for 1179x2556 images */
+        .phone-mockup {
+            width: 100%;
+            max-width: 240px;
+            aspect-ratio: 1179 / 2556;
+            border-radius: var(--radius-phone);
+            border: 4px solid #2c2c30;
+            background-color: #000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            margin-top: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-5px);
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Callout note box */
+        .callout {
+            background-color: rgba(255, 122, 0, 0.06);
+            border: 1px solid rgba(255, 122, 0, 0.25);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-top: 30px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .callout-icon {
+            color: var(--orange-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .callout-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--orange-color);
+        }
+
+        .callout-text p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .callout-text ol {
+            margin-top: 10px;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .callout-text li {
+            margin-bottom: 4px;
+        }
+
+        /* FAQ block styling */
+        .faq-category {
+            margin-bottom: 40px;
+        }
+
+        .faq-category-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .faq-item {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .orange-badge {
+            color: var(--orange-color);
+            font-weight: 600;
+        }
+
+        /* Contact Box layout */
+        .contact-box {
+            background: linear-gradient(135deg, var(--surface-color) 0%, #1c1c22 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-box h2 {
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            color: var(--bg-color);
+            background-color: var(--text-main);
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .contact-email:hover {
+            background-color: #ffffff;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>SpotiActions Support</h1>
+            <p>Step-by-step optimization guides and answers to frequently asked technical questions.</p>
+        </header>
+
+        <!-- Quick Setup Section -->
+        <section id="setup-guide">
+            <h2>📱 Quick Setup Guide</h2>
+            <div class="steps-grid">
+                
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Install Master Shortcut</h3>
+                    <p>Trigger the installation of the core helper routine from the onboarding window to cleanly authorize iOS background processing execution loops.</p>
+                    <div class="phone-mockup">
+                        <img src="IMG_7489.JPG" alt="SpotiActions Onboarding and Master Shortcut setup wizard screen">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Explore Dashboard</h3>
+                    <p>Manage layouts natively with the interactive visual Cover Flow deck. Instantly verify active system run connections using the Test PLAY switch.</p>
+                    <div class="phone-mockup">
+                        <img src="IMG_7490.JPG" alt="Main app interface featuring the interactive central Cover Flow module">
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Map iOS Automation</h3>
+                    <p>Deploy the automation matrix variables inside the native iOS Shortcuts ecosystem using the dedicated multi-action architecture blueprint.</p>
+                    <div class="phone-mockup">
+                        <img src="IMG_7491.JPG" alt="Shortcuts setup view detailing the sequence parameters required">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Execution Parameter Callout Box -->
+            <div class="callout">
+                <div class="callout-icon">⚠️</div>
+                <div class="callout-text">
+                    <h4>Critical Execution Requirement</h4>
+                    <p>When engineering your system rule under the native Automation grid tab, ensure the primary runtime mode parameters are set exactly to <strong>"Run Immediately"</strong>. Enabling "Ask Before Running" will cause background loops to fail silently.</p>
+                    <ol>
+                        <li><strong>Set Volume:</strong> Map the sound level variable to your target percentage.</li>
+                        <li><strong>Play Playlist:</strong> Bind your layout placeholder from the selection panel.</li>
+                        <li><strong>Run Shortcut:</strong> Select the active <strong>SpotiActions303</strong> routine file.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Sections -->
+        <section id="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+
+            <!-- Custom Music Library Block -->
+            <div class="faq-category">
+                <div class="faq-category-title">Personal Playlists & Library Mapping</div>
+                
+                <div class="faq-item">
+                    <h3>How do I add my own personal playlists as options to be chosen?</h3>
+                    <p>Due to background execution restrictions between iOS sandboxing and Spotify, third-party apps cannot resolve dynamic custom URLs on the fly in the background without forcing a manual confirmation alert. SpotiActions circumvents this rule using pre-defined pipeline layouts located at the base of the app dashboard, identified by a distinct <span class="orange-badge">orange indicator</span> (such as <em>WakeUp Happy, Daily Mix, Modo Booster, Happy Hits, or My Liked Songs</em>).</p>
+                    <p style="margin-top: 12px;">To bind your custom audio tracks, simply navigate down to the orange layout rows, launch your favorite collection through a chosen profile row <strong>at least once</strong> to fulfill the security handshake, and then select that corresponding profile name within your iOS Shortcuts parameter list.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Do I need to grant profile permissions every single time?</h3>
+                    <p>No. Initial playback synchronization through an orange-indicated slot acts as a one-time structural initialization. Once the authorization footprint is mapped inside iOS, your automated routines will execute seamlessly without ever asking for verification again.</p>
+                </div>
+            </div>
+
+            <!-- System Troubleshooting Block -->
+            <div class="faq-category">
+                <div class="faq-category-title">Technical Troubleshooting</div>
+
+                <div class="faq-item">
+                    <h3>Shortcuts not working or failing to execute properly?</h3>
+                    <p>To avoid background process collision, clear any legacy files. Access your native Shortcuts library directory, wipe any duplicate, older, or corrupted SpotiActions routines, and verify that only a single instance of <strong>SpotiActions303</strong> is live. Open the utility interface to cleanly deploy a fresh configuration copy if required.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>App not launching Spotify?</h3>
+                    <p>Confirm the official Spotify platform binary is active on your device environment and logged into a functioning user account profile. SpotiActions functions strictly as an endpoint automation management bridge.</p>
+                </div>
+            </div>
+
+            <!-- Licensing Block -->
+            <div class="faq-category">
+                <div class="faq-category-title">Accounts & Licensing</div>
+
+                <div class="faq-item">
+                    <h3>Do I need a Spotify Premium subscription?</h3>
+                    <p>No. SpotiActions operates fully across both <strong>Spotify Free</strong> and <strong>Spotify Premium</strong> account ecosystems.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Does the app require an internal subscription or paywalls?</h3>
+                    <p>No. The utility is distributed as an upfront pay-once deployment package. It contains zero recurring in-app subscriptions, tiers, or paywalled modules.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer Contact Block -->
+        <footer>
+            <div class="contact-box">
+                <h2>✉️ Need Technical Assistance?</h2>
+                <p>If you have any further questions, feature requests, or need support with your automation layouts, feel free to contact our engineering desk.</p>
+                <a href="mailto:support@myiosapps.org" class="contact-email">support@myiosapps.org</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
