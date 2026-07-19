@@ -1,1 +1,372 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Apex Trade — Absolute control over your portfolio</title>
+<meta name="description" content="Apex Trade is an institutional-grade iOS environment for systematic, data-driven portfolio management. Live prices, VWAP, fair value, a market heat-map, and precise alerts — all synced privately to your iCloud." />
+<style>
+  :root{
+    --bg:#080b12; --bg-2:#0c1119; --surface:#111826; --surface-2:#0e1420;
+    --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.05);
+    --text:#e8edf5; --muted:#94a1b6; --faint:#61708a;
+    --accent:#3d82f7; --accent-2:#5aa0ff;
+    --green:#22c55e; --red:#ef4444;
+    --radius:18px; --maxw:1120px;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background-image:
+      radial-gradient(900px 500px at 78% -8%, rgba(61,130,247,.16), transparent 60%),
+      radial-gradient(700px 500px at 0% 0%, rgba(34,197,94,.06), transparent 55%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+  .mono{font-family:var(--mono)}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+    background:rgba(8,11,18,.72);border-bottom:1px solid var(--line-2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.2px}
+  .brand svg{width:30px;height:30px;flex:none}
+  .brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;font-weight:600;margin-top:-2px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;
+    padding:11px 20px;border-radius:999px;transition:transform .15s, background .2s, border-color .2s}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;
+    box-shadow:0 8px 22px rgba(61,130,247,.35)}
+  .btn-primary:hover{box-shadow:0 10px 28px rgba(61,130,247,.5)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.03)}
+  @media(max-width:780px){.nav-links{display:none}}
+
+  /* Hero */
+  .hero{padding:76px 0 40px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:6px 13px;background:rgba(255,255,255,.02)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  h1{font-size:56px;line-height:1.04;letter-spacing:-1.4px;font-weight:800;margin:22px 0 18px}
+  h1 .grad{background:linear-gradient(120deg,#fff 20%,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:18px;color:var(--muted);max-width:520px}
+  .hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;align-items:center}
+  .trialnote{font-size:13px;color:var(--faint)}
+  .hero-stats{display:flex;gap:30px;margin-top:38px;flex-wrap:wrap}
+  .hero-stats .s{border-left:2px solid rgba(61,130,247,.5);padding-left:14px}
+  .hero-stats .n{font-size:22px;font-weight:700;font-family:var(--mono)}
+  .hero-stats .l{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}h1{font-size:42px}}
+
+  /* Phone frame */
+  .phone{justify-self:center;width:300px;max-width:82vw;aspect-ratio:9/19.2;border-radius:44px;
+    padding:11px;background:linear-gradient(160deg,#20293a,#0a0e16);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.5) inset;position:relative}
+  .phone::before{content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);
+    width:34%;height:22px;background:#05070c;border-radius:999px;z-index:3}
+  .phone .screen{width:100%;height:100%;border-radius:34px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#0e1420,#0a0e16);display:flex;align-items:center;justify-content:center}
+  .phone .screen img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;color:var(--faint);text-align:center;padding:20px}
+  .ph-ph .code{font-family:var(--mono);font-size:12px;color:var(--accent-2)}
+
+  /* Sections */
+  section{padding:64px 0}
+  .sec-head{max-width:640px;margin-bottom:14px}
+  h2{font-size:34px;letter-spacing:-.6px;font-weight:750;line-height:1.12;margin:10px 0 12px}
+  .sec-head p{color:var(--muted);font-size:16.5px}
+
+  /* Marquee of capabilities */
+  .caps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+  .cap{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface-2)}
+  .cap .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;
+    background:rgba(61,130,247,.12);color:var(--accent-2);font-size:17px}
+  .cap h4{font-size:15px;font-weight:650;margin-bottom:4px}
+  .cap p{font-size:13px;color:var(--muted)}
+  @media(max-width:860px){.caps{grid-template-columns:repeat(2,1fr)}}
+
+  /* Feature rows (instructional) */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:34px 0}
+  .feature:nth-child(even) .f-media{order:2}
+  .f-num{font-family:var(--mono);font-size:13px;color:var(--accent-2);letter-spacing:.1em}
+  .feature h3{font-size:27px;letter-spacing:-.4px;font-weight:750;margin:8px 0 12px}
+  .feature p.desc{color:var(--muted);font-size:16px;margin-bottom:20px}
+  .steps{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .steps li{display:flex;gap:13px;align-items:flex-start;font-size:14.5px;color:#cdd6e4}
+  .steps .k{flex:none;width:24px;height:24px;border-radius:7px;background:rgba(61,130,247,.14);
+    color:var(--accent-2);font-family:var(--mono);font-size:12px;font-weight:600;display:grid;place-items:center;margin-top:1px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+  .tag.g{color:#7ee2a3;border-color:rgba(34,197,94,.3)}
+  .tag.r{color:#f7a1a1;border-color:rgba(239,68,68,.3)}
+
+  .f-media{position:relative}
+  .shot{border-radius:24px;overflow:hidden;border:1px solid var(--line);
+    background:linear-gradient(180deg,var(--surface),var(--surface-2));
+    aspect-ratio:9/16;max-width:340px;margin:0 auto;position:relative;
+    box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .ph-ph{border-radius:24px}
+  @media(max-width:860px){.feature{grid-template-columns:1fr;gap:26px}.feature:nth-child(even) .f-media{order:0}}
+
+  /* Pricing / trial */
+  .trial{border:1px solid var(--line);border-radius:24px;padding:40px;text-align:center;
+    background:radial-gradient(700px 300px at 50% -20%,rgba(61,130,247,.16),transparent 60%),var(--surface-2)}
+  .trial .big{font-size:40px;font-weight:800;letter-spacing:-1px;margin:8px 0}
+  .trial .big span{color:var(--accent-2)}
+  .trial p{color:var(--muted);max-width:520px;margin:0 auto 24px}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line-2);padding:44px 0 60px;margin-top:30px;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap}
+  .foot-links a{color:var(--muted);font-size:14px}
+  .foot-links a:hover{color:var(--text)}
+  .foot small{color:var(--faint);font-size:12.5px}
+  .divider{height:1px;background:var(--line-2);margin:56px 0}
+</style>
+</head>
+<body>
+
+<!-- Reusable brand mark -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/apextrade">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 4 C 16 4, 16 28, 29 28" stroke="#8a93a6" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M3 28 C 16 28, 16 4, 29 4" stroke="#3d82f7" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="2.6" fill="#fff"/>
+      </svg>
+      <span>Apex Trade<small>Portfolio Intelligence</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="https://www.myiosapps.org/apextrade/support/">Support</a>
+      <a href="https://www.myiosapps.org/apextrade/privacy.html">Privacy</a>
+      <a class="btn btn-primary" href="https://apps.apple.com/pe/app/apextrade/id6789768877">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span> Built for iOS 17.6+ · Live market data</span>
+      <h1>Absolute control over your <span class="grad">portfolio.</span></h1>
+      <p class="lede">An institutional-grade environment engineered for systematic, efficient, data-driven portfolio management — strip away the noise and act with precision.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://apps.apple.com/pe/app/apextrade/id6789768877">Download on the App Store</a>
+        <span class="trialnote">8 days free · then Apex Trade Pro</span>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><div class="n">S&amp;P 100</div><div class="l">Heat-map</div></div>
+        <div class="s"><div class="n">VWAP</div><div class="l">Live signals</div></div>
+        <div class="s"><div class="n">iCloud</div><div class="l">Private sync</div></div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="screen">
+        <img src="sshot1.jpg" alt="Apex Trade portfolio dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none">
+          <div>Portfolio dashboard</div>
+          <div class="code">sshot1.jpg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Capabilities -->
+<section id="features" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The toolkit</span>
+      <h2>Everything you need to run a book with discipline.</h2>
+      <p>Real-time pricing, quantitative signals and a private, cloud-synced portfolio — in one focused app.</p>
+    </div>
+    <div class="caps">
+      <div class="cap"><div class="ic">◧</div><h4>Live portfolio</h4><p>Value, day &amp; all-time P&amp;L, allocation and cost basis, updated in real time.</p></div>
+      <div class="cap"><div class="ic">▦</div><h4>Market heat-map</h4><p>S&amp;P 100, today's top gainers and key ETFs, sized and colored by the tape.</p></div>
+      <div class="cap"><div class="ic">◈</div><h4>Fair value &amp; VWAP</h4><p>Consensus fair value, VWAP flow and pre-trade fundamentals on every ticker.</p></div>
+      <div class="cap"><div class="ic">◐</div><h4>Precise alerts</h4><p>Price targets and confirmed VWAP breaks, delivered as notifications.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Instructional feature rows -->
+<section id="how" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Client guide</span>
+      <h2>How to use Apex Trade, screen by screen.</h2>
+      <p>A quick tour of each surface and exactly how to reach it.</p>
+    </div>
+
+    <!-- 01 Portfolio -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">01 · Portfolio</div>
+        <h3>Your book, at a glance</h3>
+        <p class="desc">The home tab opens on <strong>Portfolio Performance</strong> — total value, today's and all-time P&amp;L, the live VIX, and an interactive value-over-time chart. Below it, your holdings table shows trade price, unrealized P&amp;L, position size and the live mark (mid of bid/ask), with an allocation donut underneath.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Open the app — you land on the <strong>Portfolio</strong> tab (bottom-left).</span></li>
+          <li><span class="k">2</span><span>Tap <strong>+ Add Holding</strong> to enter a symbol, shares and average cost.</span></li>
+          <li><span class="k">3</span><span>Tap the chevron on the performance card to reveal the chart and time ranges.</span></li>
+          <li><span class="k">4</span><span>Tap any row to open that company's full fact sheet.</span></li>
+        </ul>
+        <div class="tags"><span class="tag">Real-time value</span><span class="tag g">Gain</span><span class="tag r">Loss</span><span class="tag">Allocation donut</span><span class="tag">Copy portfolio</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot2.jpg" alt="Portfolio tab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>Portfolio tab</div><div class="code">sshot2.jpg</div></div>
+      </div></div>
+    </div>
+
+    <!-- 02 Charts -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">02 · Charts</div>
+        <h3>Pre-trade scan &amp; live charts</h3>
+        <p class="desc">The <strong>Charts</strong> tab has two modes. <em>Portfolio</em> shows a live mini-chart per holding with stop-loss and VWAP status. <em>Pre-Trade Scan</em> surfaces the fundamentals that matter before you buy — market cap, P/E, EPS, relative volume, beta and VWAP — for the names you're evaluating.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Tap <strong>Charts</strong> in the tab bar.</span></li>
+          <li><span class="k">2</span><span>Use the segmented control to switch <strong>Portfolio</strong> ↔ <strong>Pre-Trade Scan</strong>.</span></li>
+          <li><span class="k">3</span><span>Flag a watchlist name as "evaluate" to have it appear in the scan.</span></li>
+        </ul>
+        <div class="tags"><span class="tag">RVOL</span><span class="tag">Beta</span><span class="tag">P/E (TTM)</span><span class="tag">VWAP</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot3.jpg" alt="Charts tab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>Charts tab</div><div class="code">sshot3.jpg</div></div>
+      </div></div>
+    </div>
+
+    <!-- 03 StockMap -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">03 · StockMap</div>
+        <h3>Map market liquidity</h3>
+        <p class="desc">A Finviz-style heat-map with three views: <strong>S&amp;P 100</strong> sized by market cap, <strong>Top Gainers</strong> graded green by the size of the move, and <strong>ETFs</strong> grouped into sectors. Instantly read where capital is flowing and which names show relative strength.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Tap <strong>StockMap</strong> in the tab bar.</span></li>
+          <li><span class="k">2</span><span>Switch the segment: S&amp;P 100 · Top Gainers · ETFs.</span></li>
+          <li><span class="k">3</span><span>Tap any tile to open its fact sheet.</span></li>
+        </ul>
+        <div class="tags"><span class="tag g">Brighter = bigger gain</span><span class="tag">Sized by cap</span><span class="tag">Auto-refresh</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot4.jpg" alt="StockMap heat-map" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>StockMap heat-map</div><div class="code">sshot4.jpg</div></div>
+      </div></div>
+    </div>
+
+    <!-- 04 Fact sheet -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">04 · Company fact sheet</div>
+        <h3>Every ticker, in depth</h3>
+        <p class="desc">Open any symbol to see the live price and after-hours quote, a scrubable chart, <strong>consensus fair value</strong>, volatility and 52-week ranges, VWAP flow, actionable metrics (RVOL, ROC, ATR, RSC) and a full fundamentals grid — plus one-tap news and a route-to-broker button.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Tap a holding, a watchlist row, or a heat-map tile.</span></li>
+          <li><span class="k">2</span><span>Use the range selector under the chart to change the timeframe.</span></li>
+          <li><span class="k">3</span><span>Tap the bell to set a price alert, or the star to add to your watchlist.</span></li>
+        </ul>
+        <div class="tags"><span class="tag">Fair value</span><span class="tag">VWAP flow</span><span class="tag">Fundamentals</span><span class="tag">Route to broker</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot5.jpg" alt="Company fact sheet" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>Company fact sheet</div><div class="code">sshot5.jpg</div></div>
+      </div></div>
+    </div>
+
+    <!-- 05 Watchlist & alerts -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">05 · Watchlist &amp; alerts</div>
+        <h3>Track and get notified</h3>
+        <p class="desc">Keep the names you care about in the <strong>Watchlist</strong> with live price, market cap and beta. Set price targets and let Apex Trade watch VWAP for confirmed bearish breaks — you're notified the moment it matters, even in the background.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Open any company and tap the ★ to add it to your watchlist.</span></li>
+          <li><span class="k">2</span><span>Tap the 🔔 bell on a fact sheet to set a price target.</span></li>
+          <li><span class="k">3</span><span>Enable VWAP &amp; price alerts in <strong>Settings → Investment Preferences</strong>.</span></li>
+        </ul>
+        <div class="tags"><span class="tag">Price alerts</span><span class="tag">VWAP alerts</span><span class="tag">Background monitoring</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot6.jpg" alt="Watchlist" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>Watchlist &amp; alerts</div><div class="code">sshot6.jpg</div></div>
+      </div></div>
+    </div>
+
+    <!-- 06 Privacy / sign in -->
+    <div class="feature">
+      <div class="f-copy">
+        <div class="f-num">06 · Your data</div>
+        <h3>Private by design</h3>
+        <p class="desc">Sign in with Apple and everything — holdings, watchlist and alerts — syncs to <strong>your</strong> private iCloud. Nothing lives on our servers; nothing is sold. Switch light/dark, choose your broker for routing, and set your risk levels in Settings.</p>
+        <ul class="steps">
+          <li><span class="k">1</span><span>Open <strong>Settings</strong> (gear, top-right of Portfolio).</span></li>
+          <li><span class="k">2</span><span>Tap <strong>Sign in with Apple</strong> to sync across your devices.</span></li>
+          <li><span class="k">3</span><span>Set appearance, stop-loss levels and your default broker.</span></li>
+        </ul>
+        <div class="tags"><span class="tag">Sign in with Apple</span><span class="tag">iCloud sync</span><span class="tag">No data sold</span></div>
+      </div>
+      <div class="f-media"><div class="shot">
+        <img src="sshot7.jpg" alt="Settings and privacy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph-ph" style="display:none"><div>Settings &amp; privacy</div><div class="code">sshot7.jpg</div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Trial / subscription -->
+<section>
+  <div class="wrap">
+    <div class="trial">
+      <span class="eyebrow">Membership</span>
+      <div class="big">Start with <span>8 days free</span></div>
+      <p>Download and explore every feature free for 8 days. Continue with Apex Trade Pro to keep your live data, alerts and cloud sync running. Manage or cancel anytime in your Apple ID settings.</p>
+      <a class="btn btn-primary" href="https://apps.apple.com/pe/app/apextrade/id6789768877">Start free on the App Store</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="/apextrade" style="margin-bottom:10px">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M3 4 C 16 4, 16 28, 29 28" stroke="#8a93a6" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M3 28 C 16 28, 16 4, 29 4" stroke="#3d82f7" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2.6" fill="#fff"/>
+        </svg>
+        <span>Apex Trade</span>
+      </a>
+      <div style="margin-top:10px"><small>Market data is provided for informational purposes only and is not investment advice.</small></div>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.myiosapps.org/apextrade">Home</a>
+      <a href="https://www.myiosapps.org/apextrade/support/">Support</a>
+      <a href="https://www.myiosapps.org/apextrade/privacy.html">Privacy</a>
+      <a href="https://apps.apple.com/pe/app/apextrade/id6789768877">App Store</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:22px"><small>© 2026 Apex Trade · myiosapps.org</small></div>
+</footer>
+
+</body>
+</html>
