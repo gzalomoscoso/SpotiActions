@@ -1,1 +1,171 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Support — Apex Trade</title>
+<meta name="description" content="Help center for Apex Trade: getting started, subscription and free trial, alerts, data and sync, and how to contact us." />
+<style>
+  :root{
+    --bg:#080b12;--surface:#111826;--surface-2:#0e1420;
+    --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.05);
+    --text:#e8edf5;--muted:#94a1b6;--faint:#61708a;--accent:#3d82f7;--accent-2:#5aa0ff;--green:#22c55e;
+    --maxw:900px;--mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(900px 460px at 82% -10%,rgba(61,130,247,.14),transparent 60%)}
+  a{color:var(--accent-2);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(8,11,18,.72);border-bottom:1px solid var(--line-2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1120px;margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700}
+  .brand svg{width:28px;height:28px}
+  .brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;font-weight:600;margin-top:-2px}
+  .back{color:var(--muted);font-size:14px;font-weight:500}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+  .hero{padding:58px 0 20px}
+  h1{font-size:42px;letter-spacing:-1px;font-weight:800;margin:14px 0 8px}
+  .intro{color:var(--muted);font-size:17px;max-width:620px;margin-top:8px}
+
+  .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0 10px}
+  .qc{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:18px;display:block;transition:border-color .2s,transform .15s}
+  .qc:hover{border-color:rgba(61,130,247,.4);transform:translateY(-2px)}
+  .qc .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;background:rgba(61,130,247,.12);color:var(--accent-2);font-size:16px}
+  .qc h4{font-size:15px;font-weight:650;color:var(--text)}
+  .qc p{font-size:13px;color:var(--muted);margin-top:3px}
+  @media(max-width:720px){.quick{grid-template-columns:1fr}}
+
+  h2{font-size:24px;font-weight:750;letter-spacing:-.3px;margin:44px 0 6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:14px}
+
+  details{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);margin:10px 0;overflow:hidden}
+  details[open]{border-color:rgba(61,130,247,.32)}
+  summary{list-style:none;cursor:pointer;padding:17px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary .chev{color:var(--faint);transition:transform .2s;font-size:15px}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--accent-2)}
+  .answer{padding:0 20px 18px;color:#c9d3e2}
+  .answer strong{color:#fff}
+  .answer ol{margin:8px 0 0 20px}.answer li{margin:6px 0}
+
+  .contact{border:1px solid var(--line);border-radius:20px;margin:40px 0 10px;padding:34px;text-align:center;
+    background:radial-gradient(600px 240px at 50% -30%,rgba(61,130,247,.16),transparent 60%),var(--surface-2)}
+  .contact h3{font-size:26px;font-weight:750;letter-spacing:-.4px}
+  .contact p{color:var(--muted);max-width:460px;margin:8px auto 20px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;
+    background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;box-shadow:0 8px 22px rgba(61,130,247,.35)}
+  .meta{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:22px;color:var(--faint);font-size:13.5px;font-family:var(--mono)}
+
+  footer{border-top:1px solid var(--line-2);padding:36px 0 60px;margin-top:44px;color:var(--muted)}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+  .foot-links a{color:var(--muted);font-size:14px}
+  small{color:var(--faint);font-size:12.5px}
+  @media(max-width:560px){h1{font-size:31px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/apextrade">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M3 4 C 16 4, 16 28, 29 28" stroke="#8a93a6" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M3 28 C 16 28, 16 4, 29 4" stroke="#3d82f7" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="2.6" fill="#fff"/>
+      </svg>
+      <span>Apex Trade<small>Support</small></span>
+    </a>
+    <a class="back" href="/apextrade">← Back to site</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Help center</span>
+    <h1>How can we help?</h1>
+    <p class="intro">Answers to the most common questions about Apex Trade — getting started, your subscription, alerts, and how your data is handled.</p>
+
+    <div class="quick">
+      <a class="qc" href="#start"><div class="ic">▷</div><h4>Getting started</h4><p>Add holdings, sign in, sync.</p></a>
+      <a class="qc" href="#billing"><div class="ic">✦</div><h4>Trial &amp; subscription</h4><p>8-day free trial, renewals, cancel.</p></a>
+      <a class="qc" href="#contact"><div class="ic">✉</div><h4>Contact us</h4><p>Reach a human directly.</p></a>
+    </div>
+  </div>
+
+  <h2 id="start">Getting started</h2>
+  <div class="sub">The basics to get your portfolio up and running.</div>
+
+  <details open><summary>How do I add a holding?<span class="chev">›</span></summary>
+    <div class="answer">On the <strong>Portfolio</strong> tab, tap <strong>+ Add Holding</strong>, search a ticker, then enter your number of shares and average cost. Your total value and P&amp;L update in real time.</div>
+  </details>
+  <details><summary>How do I sync across my iPhone and iPad?<span class="chev">›</span></summary>
+    <div class="answer">Open <strong>Settings</strong> (gear icon, top-right of Portfolio) and tap <strong>Sign in with Apple</strong>. Your holdings, watchlist and alerts are stored in your private iCloud and appear on every device signed into the same Apple ID.</div>
+  </details>
+  <details><summary>How do I add a stock to my watchlist or set an alert?<span class="chev">›</span></summary>
+    <div class="answer">Open any company's fact sheet (tap a holding, a watchlist row, or a heat-map tile). Tap the <strong>★ star</strong> to add it to your watchlist, or the <strong>🔔 bell</strong> to set a price target. Enable price and VWAP alerts under <strong>Settings → Investment Preferences</strong>.</div>
+  </details>
+
+  <h2 id="billing">Free trial &amp; subscription</h2>
+  <div class="sub">Apex Trade is free to download with an 8-day trial, then a subscription.</div>
+
+  <details><summary>How does the 8-day free trial work?<span class="chev">›</span></summary>
+    <div class="answer">Download the app and use every feature free for 8 days. If you don't continue, it simply stops after the trial. To keep live data, alerts and cloud sync, continue with Apex Trade Pro.</div>
+  </details>
+  <details><summary>How do I manage or cancel my subscription?<span class="chev">›</span></summary>
+    <div class="answer">Subscriptions are handled by Apple. To manage or cancel:
+      <ol>
+        <li>Open the iOS <strong>Settings</strong> app and tap your name at the top.</li>
+        <li>Tap <strong>Subscriptions</strong>.</li>
+        <li>Select <strong>Apex Trade</strong> and choose cancel or change plan.</li>
+      </ol>
+      Cancelling before the trial ends means you won't be charged.
+    </div>
+  </details>
+  <details><summary>I was charged / want a refund<span class="chev">›</span></summary>
+    <div class="answer">All payments are processed by Apple. Refund requests are handled through Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. If something looks wrong, email us and we'll help you sort it out.</div>
+  </details>
+
+  <h2>Data &amp; troubleshooting</h2>
+  <div class="sub">Where your data lives and what to try if something looks off.</div>
+
+  <details><summary>Where is my data stored? Is it private?<span class="chev">›</span></summary>
+    <div class="answer">Your holdings, watchlist and alerts live in <strong>your</strong> private iCloud — not on our servers — and nothing is sold. See the full <a href="https://www.myiosapps.org/apextrade/privacy.html">Privacy Policy</a>.</div>
+  </details>
+  <details><summary>Prices or a tab aren't loading<span class="chev">›</span></summary>
+    <div class="answer">Live data comes from third-party market providers and can occasionally rate-limit or lag. Try pulling to refresh, check your connection, or reopen the app. If a specific screen stays stuck, let us know which one.</div>
+  </details>
+  <details><summary>Which markets and symbols are supported?<span class="chev">›</span></summary>
+    <div class="answer">Apex Trade focuses on U.S.-listed equities and ETFs (and major indices such as the S&amp;P 100). You can search and add any supported ticker from the search bar.</div>
+  </details>
+
+  <div class="contact" id="contact">
+    <span class="eyebrow">Contact</span>
+    <h3>Still need a hand?</h3>
+    <p>Email us and we'll get back to you. Please include your device model and iOS version, and a screenshot if you can.</p>
+    <a class="btn" href="mailto:willmoscoso@gmail.com?subject=Apex%20Trade%20Support">Email support</a>
+    <div class="meta"><span>willmoscoso@gmail.com</span><span>iOS 17.6+</span><span>Response within 48h</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-weight:700">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width:24px;height:24px">
+        <path d="M3 4 C 16 4, 16 28, 29 28" stroke="#8a93a6" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M3 28 C 16 28, 16 4, 29 4" stroke="#3d82f7" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="2.6" fill="#fff"/>
+      </svg><span>Apex Trade</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.myiosapps.org/apextrade">Home</a>
+      <a href="https://www.myiosapps.org/apextrade/privacy.html">Privacy</a>
+      <a href="https://apps.apple.com/pe/app/apextrade/id6789768877">App Store</a>
+    </div>
+    <div style="margin-top:18px"><small>© 2026 Apex Trade · myiosapps.org</small></div>
+  </div>
+</footer>
+</body>
+</html>
