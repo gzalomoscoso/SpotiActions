@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SerialWatcher — Board promo (Reddit)</title>
+<style>
+  :root{
+    --bg:#0a0b0d; --surface-2:#14161b;
+    --line:rgba(255,255,255,.08);
+    --text:#f0ece3; --muted:#a49e90; --faint:#6f6a5e;
+    --accent:#d9ae3d; --accent-2:#f0c85a; --green:#22c55e;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#050506;font-family:var(--sans);color:var(--text);padding:24px;display:flex;flex-direction:column;align-items:center;gap:16px}
+  .hint{color:var(--faint);font-size:13px}
+
+  /* ===== Capture stage ===== */
+  #stage{width:2400px;height:1980px;flex:none;position:relative;overflow:hidden;background:var(--bg);
+    background-image:
+      radial-gradient(1400px 700px at 70% -10%, rgba(217,174,61,.18), transparent 60%),
+      radial-gradient(900px 600px at 0% 10%, rgba(217,174,61,.06), transparent 55%),
+      radial-gradient(1000px 800px at 50% 115%, rgba(217,174,61,.10), transparent 60%);
+    display:flex;flex-direction:column;align-items:center;padding:64px 70px 48px}
+
+  .brand{display:flex;align-items:center;gap:16px}
+  .brand svg{width:54px;height:54px}
+  .brand .n{font-size:36px;font-weight:800;letter-spacing:.3px}
+  .brand small{display:block;font-size:13px;letter-spacing:.24em;color:var(--faint);text-transform:uppercase;font-weight:600}
+
+  h1{font-size:64px;letter-spacing:-1.6px;font-weight:800;margin:22px 0 10px;text-align:center}
+  h1 .grad{background:linear-gradient(120deg,#fff 20%,var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:22px;color:var(--muted);text-align:center;max-width:1120px}
+
+  .grid{display:flex;gap:44px;justify-content:center;margin-top:44px}
+  .grid.r2{margin-top:40px}
+
+  .cell{display:flex;flex-direction:column;align-items:center;width:300px}
+  .cap{text-align:center;margin-bottom:14px;min-height:74px}
+  .cap b{display:block;font-size:19px;font-weight:750;letter-spacing:-.2px}
+  .cap i{display:block;font-style:normal;font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.35}
+
+  /* CSS iPhone frame — feed it PLAIN screenshots */
+  .phone{width:300px;aspect-ratio:9/19.4;border-radius:44px;padding:10px;flex:none;
+    background:linear-gradient(160deg,#2a2a2f,#0c0c10);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 34px 70px rgba(0,0,0,.62),0 0 0 1px rgba(0,0,0,.5) inset;position:relative}
+  .phone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);
+    width:32%;height:19px;background:#050506;border-radius:999px;z-index:3}
+  .phone .screen{width:100%;height:100%;border-radius:34px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#14161b,#0a0e16)}
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;color:var(--faint);text-align:center;padding:16px;font-size:13px}
+  .ph code{font-family:var(--mono);font-size:12px;color:var(--accent-2)}
+
+  .foot{margin-top:auto;display:flex;align-items:center;gap:26px;color:var(--muted);font-size:18px}
+  .foot .pill{display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:600;
+    border:1px solid var(--line);border-radius:999px;padding:9px 18px;background:rgba(255,255,255,.02)}
+  .foot .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .foot .m{font-family:var(--mono);font-size:15px;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<div class="hint">Coloca sshot1.jpg … sshot7.jpg junto a este archivo, ábrelo en el navegador y captura el board de abajo.</div>
+
+<div id="stage">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#d9ae3d" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="75.4" stroke-dashoffset="16" transform="rotate(-90 16 16)"/><path d="M13.2 11.6 L13.2 20.4 L20.2 16 Z" fill="#d9ae3d" stroke="#d9ae3d" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+    <span class="n">SerialWatcher<small>Seguidor de Series y Películas</small></span>
+  </div>
+
+  <h1>Todo lo que ves, <span class="grad">en un solo lugar.</span></h1>
+  <p class="sub">Descubre, califica y sigue películas y series — episodio por episodio. Tu progreso, tus listas y tus notas, guardados de forma privada en tu propio iCloud.</p>
+
+  <!-- Row 1 -->
+  <div class="grid">
+    <div class="cell">
+      <div class="cap"><b>Descubre qué ver</b><i>Tendencias, mejor rankeadas y estrenos de pelis y series, en una sola pantalla.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Descubre</div><code>sshot1.jpg</code></div>
+      </div></div>
+    </div>
+    <div class="cell">
+      <div class="cap"><b>Sigue cada episodio</b><i>Temporada a temporada, marca lo que viste y nunca pierdas el hilo.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Ficha de serie</div><code>sshot2.jpg</code></div>
+      </div></div>
+    </div>
+    <div class="cell">
+      <div class="cap"><b>Siempre sabes qué sigue</b><i>El próximo episodio por ver de cada serie en curso, listo para reproducir.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Pendientes de ver</div><code>sshot3.jpg</code></div>
+      </div></div>
+    </div>
+    <div class="cell">
+      <div class="cap"><b>Tu biblioteca, ordenada</b><i>Viendo, Quiero verla, Vista y favoritos — ordenado para ti.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot4.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Biblioteca</div><code>sshot4.jpg</code></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="grid r2">
+    <div class="cell">
+      <div class="cap"><b>Explora como quieras</b><i>Por género, año, actor/director o plataforma — con logos de streaming.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot5.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Explorar</div><code>sshot5.jpg</code></div>
+      </div></div>
+    </div>
+    <div class="cell">
+      <div class="cap"><b>Arma tus propias listas</b><i>Crea colecciones — agrega títulos completos o episodios sueltos.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot6.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Mis Listas</div><code>sshot6.jpg</code></div>
+      </div></div>
+    </div>
+    <div class="cell">
+      <div class="cap"><b>Privada por diseño</b><i>Sin cuenta. Todo se sincroniza en tu propio iCloud.</i></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot7.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph" style="display:none"><div>Ajustes · Privacidad</div><code>sshot7.jpg</code></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="pill"><span class="dot"></span> Gratis · Series y películas</span>
+    <span>iOS 17.6+ · Español &amp; English · Con datos de TMDB</span>
+    <span class="m">myiosapps.org/serialwatcher</span>
+  </div>
+</div>
+
+</body>
+</html>
