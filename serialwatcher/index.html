@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SerialWatcher — Track every movie & TV show</title>
+<style>
+  :root{
+    --bg:#0a0b0d;--bg2:#0d0f14;--surface:#14161b;--line:rgba(255,255,255,.08);
+    --text:#f2eee4;--muted:#a49e90;--faint:#6f6a5e;--accent:#d9ae3d;--accent2:#f0c85a;--green:#22c55e;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .accent{color:var(--accent2)}
+
+  /* Phone mock */
+  .phone{width:var(--pw,300px);aspect-ratio:1179/2556;border-radius:calc(var(--pw,300px)*.14);padding:calc(var(--pw,300px)*.032);
+    background:linear-gradient(160deg,#2b2b31,#0c0c10);border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.5) inset;position:relative;flex:none}
+  .phone::before{content:"";position:absolute;top:calc(var(--pw,300px)*.038);left:50%;transform:translateX(-50%);
+    width:32%;height:calc(var(--pw,300px)*.055);background:#050506;border-radius:999px;z-index:3}
+  .phone .screen{width:100%;height:100%;border-radius:calc(var(--pw,300px)*.108);overflow:hidden;background:#14161b}
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+  .phone .ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--faint);font-size:13px;text-align:center;padding:16px}
+  .phone .ph code{font-family:var(--mono);color:var(--accent2);font-size:12px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(14px);
+    background:rgba(10,11,13,.72);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:34px;height:34px}
+  .brand b{font-size:19px;font-weight:800}
+  .brand small{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase}
+  nav a{color:var(--muted);font-size:15px;margin-left:22px}
+  nav a:hover{color:#fff}
+  .nav-cta{background:var(--accent);color:#141007;padding:8px 16px;border-radius:999px;font-weight:700;font-size:14px}
+  .nav-cta:hover{background:var(--accent2)}
+
+  /* Hero */
+  .hero{position:relative;padding:76px 0 40px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      radial-gradient(1100px 620px at 78% -8%, rgba(217,174,61,.22), transparent 60%),
+      radial-gradient(820px 520px at 8% 20%, rgba(217,174,61,.08), transparent 60%)}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+    padding:7px 15px;font-size:13px;color:var(--muted);margin-bottom:22px;background:rgba(255,255,255,.02)}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .hero h1{font-size:62px;line-height:1.02;letter-spacing:-2px;font-weight:850;margin-bottom:18px}
+  .hero h1 .g{background:linear-gradient(120deg,#fff 25%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-size:20px;color:var(--muted);max-width:520px;margin-bottom:28px}
+  .btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#141007;font-weight:750;font-size:17px;padding:14px 26px;border-radius:999px}
+  .cta:hover{background:var(--accent2);transform:translateY(-1px)}
+  .cta,.nav-cta{transition:.18s}
+  .ghost{color:var(--muted);font-size:15px;border:1px solid var(--line);padding:13px 20px;border-radius:999px}
+  .ghost:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+  .meta{margin-top:16px;color:var(--faint);font-size:14px}
+  .hero-phone{display:flex;justify-content:center;--pw:320px;position:relative}
+  .hero-phone .phone{transform:rotate(3deg)}
+  .hero-glow{position:absolute;inset:-40px;z-index:-1;background:radial-gradient(closest-side,rgba(217,174,61,.28),transparent 70%);filter:blur(20px)}
+
+  /* Marquee strip of small logos-ish (features quick) */
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+  .strip .wrap{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:center;padding:18px 24px;color:var(--muted);font-size:14px}
+  .strip b{color:var(--text)}
+  .strip .s{display:inline-flex;align-items:center;gap:8px}
+  .strip .s::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+  /* Alternating feature rows */
+  section.feat{padding:70px 0}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative}
+  .row + .row{margin-top:36px}
+  .row.rev .txt{order:2}
+  .row.rev .art{order:1}
+  .art{display:flex;justify-content:center;position:relative;--pw:290px}
+  .art .aglow{position:absolute;width:340px;height:340px;border-radius:50%;z-index:0;
+    background:radial-gradient(closest-side,rgba(217,174,61,.20),transparent 70%);filter:blur(10px)}
+  .art .phone{position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+  .eyebrow .n{width:26px;height:26px;border-radius:8px;background:rgba(217,174,61,.15);display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+  .txt h2{font-size:36px;letter-spacing:-1px;line-height:1.08;font-weight:820;margin-bottom:14px}
+  .txt p{color:var(--muted);font-size:17.5px;line-height:1.6;margin-bottom:18px;max-width:480px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:13px;color:var(--text);border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:999px;padding:7px 13px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* CTA band */
+  .band{margin:30px 0 0;padding:64px 0}
+  .band .card{background:linear-gradient(140deg,rgba(217,174,61,.16),rgba(217,174,61,.03));
+    border:1px solid rgba(217,174,61,.28);border-radius:26px;padding:48px;text-align:center}
+  .band h2{font-size:38px;letter-spacing:-1px;font-weight:840;margin-bottom:10px}
+  .band p{color:var(--muted);font-size:18px;margin-bottom:26px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--faint);font-size:13px;text-align:center}
+  footer a{color:var(--muted);margin:0 8px}
+  footer a:hover{color:#fff}
+  .attr{margin-top:10px;font-size:12px;color:var(--faint)}
+
+  @media(max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
+    .hero p{margin-left:auto;margin-right:auto}
+    .btns{justify-content:center}
+    .hero-phone{margin-top:20px}
+    .hero h1{font-size:44px}
+    .row{grid-template-columns:1fr;gap:26px}
+    .row.rev .txt{order:1}.row.rev .art{order:2}
+    .txt{text-align:center}.txt p{margin-left:auto;margin-right:auto}
+    .eyebrow,.chips{justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="none" stroke="#d9ae3d" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="75.4" stroke-dashoffset="16" transform="rotate(-90 16 16)"/><path d="M13.2 11.6 L13.2 20.4 L20.2 16 Z" fill="#d9ae3d" stroke="#d9ae3d" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <b>SerialWatcher<small>Movies &amp; TV Tracker</small></b>
+    </div>
+    <nav>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a class="nav-cta" href="https://apps.apple.com/app/id6792816019">Download</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="reveal in">
+      <span class="pill"><span class="dot"></span> Free · iOS 17.6+ · English &amp; Español</span>
+      <h1>Everything you watch,<br><span class="g">in one place.</span></h1>
+      <p>Discover, rate and track movies and series — episode by episode. Private by design, synced to your own iCloud. No account needed.</p>
+      <div class="btns">
+        <a class="cta" href="https://apps.apple.com/app/id6792816019">Download on the App Store</a>
+        <a class="ghost" href="#features">See features ↓</a>
+      </div>
+      <div class="meta">Powered by TMDB · Nothing leaves your iCloud</div>
+    </div>
+    <div class="hero-phone reveal in">
+      <div class="hero-glow"></div>
+      <div class="phone"><div class="screen">
+        <img src="sshot1.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="ph"><div>Discover</div><code>sshot1.jpg</code></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- quick strip -->
+<div class="strip">
+  <div class="wrap">
+    <span class="s"><b>Trending</b> &amp; top-rated</span>
+    <span class="s">Episode tracking</span>
+    <span class="s">Up Next</span>
+    <span class="s">Ratings &amp; reviews</span>
+    <span class="s">Custom lists</span>
+    <span class="s">Streaming logos</span>
+    <span class="s">iCloud sync</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="feat" id="features">
+  <div class="wrap">
+
+    <!-- 1 -->
+    <div class="row reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">▤</span> Episode tracking</span>
+        <h2>Track every series, <span class="accent">episode by episode.</span></h2>
+        <p>Check off seasons and episodes as you watch. Mark a whole season — or every previous season — in a single tap, and rate what you loved.</p>
+        <div class="chips"><span class="chip">Seasons &amp; episodes</span><span class="chip">One-tap catch-up</span><span class="chip">0–10 ratings</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot2.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>Series detail</div><code>sshot2.jpg</code></div></div></div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="row rev reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">▶</span> Up Next</span>
+        <h2>Always know <span class="accent">what to watch next.</span></h2>
+        <p>The next unwatched episode of every show you're on, in one clean list — ordered by what you watched most recently, and filterable by streaming platform.</p>
+        <div class="chips"><span class="chip">Next episode per show</span><span class="chip">Filter by platform</span><span class="chip">Large widget</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot3.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>Up Next</div><code>sshot3.jpg</code></div></div></div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="row reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">≣</span> Your library</span>
+        <h2>Your collection, <span class="accent">perfectly organized.</span></h2>
+        <p>Watching, Want to Watch, Watched, On Hold and favorites — every title sorted by status, with your ratings and personal notes always at hand.</p>
+        <div class="chips"><span class="chip">By status</span><span class="chip">Favorites</span><span class="chip">Private reviews</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot4.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>Library</div><code>sshot4.jpg</code></div></div></div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="row rev reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">✦</span> Explore</span>
+        <h2>Explore any way <span class="accent">you think.</span></h2>
+        <p>Browse by genre, release year, actor or director, or streaming platform. Filter instantly, load more as you scroll, and see where each title streams — right on the poster.</p>
+        <div class="chips"><span class="chip">Genre · Year</span><span class="chip">Actor / Director</span><span class="chip">Platform logos</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot5.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>Explore</div><code>sshot5.jpg</code></div></div></div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="row reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">★</span> Your lists</span>
+        <h2>Build lists <span class="accent">exactly your way.</span></h2>
+        <p>Curate collections of the titles you love — and add single episodes too, not just whole shows. Perfect for "best episodes" lists that actually make sense.</p>
+        <div class="chips"><span class="chip">Titles or episodes</span><span class="chip">Unlimited lists</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot6.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>My Lists</div><code>sshot6.jpg</code></div></div></div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="row rev reveal">
+      <div class="txt">
+        <span class="eyebrow"><span class="n">􀉦</span> Privacy</span>
+        <h2>Private <span class="accent">by design.</span></h2>
+        <p>No account required. Everything you track syncs automatically to your own iCloud — reinstall and it all comes back. No servers, no analytics, no ads. Your data is yours.</p>
+        <div class="chips"><span class="chip">No account</span><span class="chip">iCloud sync</span><span class="chip">Zero tracking</span></div>
+      </div>
+      <div class="art">
+        <div class="aglow"></div>
+        <div class="phone"><div class="screen"><img src="sshot7.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="ph"><div>Settings · Privacy</div><code>sshot7.jpg</code></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="band">
+  <div class="wrap reveal">
+    <div class="card">
+      <h2>Start tracking what you watch.</h2>
+      <p>Free on the App Store. English &amp; Español. Nothing to sign up for.</p>
+      <a class="cta" href="https://apps.apple.com/app/id6792816019">Download on the App Store</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>© 2026 ‹tu nombre legal› · <a href="privacy.html">Privacy</a> · <a href="support.html">Support</a> · <a href="https://apps.apple.com/app/id6792816019">App Store</a></div>
+  <div class="attr">This product uses the TMDB API but is not endorsed or certified by TMDB.</div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.16});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
