@@ -1,152 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoloWrite — Privacy Policy</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-      color: #333;
-      line-height: 1.6;
-    }
-    header {
-      background: #222;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    main {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    h2 {
-      color: #222;
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-    }
-    p, li {
-      font-size: 1rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .meta {
-      color: #ddd;
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      border-top: 1px solid #e6e6e6;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — SoloWrite</title>
+<meta name="description" content="SoloWrite privacy policy. No data collected — no accounts, no analytics, no servers.">
+<style>
+  :root{
+    --bg:#f7f6f1; --surface:#ffffff; --text:#1d1d1f; --dim:#6e6e73;
+    --accent:#8e6bb5; --border:#e6e4dc; --ink:#111113;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.7;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(247,246,241,.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1060px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:baseline;gap:7px;text-decoration:none;color:var(--text)}
+  .brand .solo{font-weight:800;letter-spacing:.12em;font-size:19px}
+  .brand .write{font-family:"Courier New",Courier,monospace;font-weight:700;font-size:17px;letter-spacing:.06em}
+  .nav-links{display:flex;align-items:center;gap:18px}
+  .nav-links a{color:var(--dim);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--text)}
+  .lang-btn{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;
+  }
+  .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+  header{padding:64px 0 10px}
+  h1{font-size:clamp(28px,5vw,38px);font-weight:800;letter-spacing:-.01em}
+  .updated{margin-top:8px;color:var(--dim);font-size:13.5px}
+  .hero-claim{
+    margin:32px 0 8px;background:var(--ink);color:#f5f5f4;border-radius:20px;
+    padding:30px 32px;font-size:clamp(17px,2.6vw,21px);font-weight:600;line-height:1.5;
+  }
+  .hero-claim .accent{color:#b797dd}
+  main{padding:28px 0 70px}
+  h2{font-size:19px;font-weight:700;margin:34px 0 10px}
+  p{color:#3c3c40;font-size:15.5px;margin-bottom:12px}
+  code{
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13px;background:var(--surface);
+    border:1px solid var(--border);border-radius:5px;padding:1px 6px;
+  }
+  a{color:var(--accent)}
+  footer{border-top:1px solid var(--border);padding:34px 0 46px;font-size:13.5px;color:var(--dim)}
+  .foot-inner{max-width:1060px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--dim);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+</style>
 </head>
 <body>
-  <header>
-    <h1>SoloWrite — Privacy Policy</h1>
-    <div class="meta">Effective date: December 2025</div>
-    <div class="meta">Owner: Gonzalo Juvenal Moscoso Pacheco</div>
-  </header>
 
-  <main>
-    <section>
-      <p>
-        SoloWrite (“we”, “our”, or “the App”) is a minimalist writing application designed
-        to help users focus on writing without distractions. The App operates entirely
-        on the user’s device.
-      </p>
-    </section>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="solo">SOLO</span><span class="write">write</span></a>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="support.html" data-i18n="nav_support">Support</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
+    </div>
+  </div>
+</nav>
 
-    <section>
-      <h2>Data collection</h2>
-      <p>
-        <strong>No personal data is collected.</strong>  
-        SoloWrite does not collect, store, transmit, or share personal information.
-        There is no account creation, sign-in, analytics tracking, or backend server involved.
-      </p>
-    </section>
+<header class="wrap">
+  <h1 data-i18n="h1">Privacy Policy</h1>
+  <p class="updated" data-i18n="updated">Last updated: July 24, 2026</p>
+  <div class="hero-claim">
+    <span data-i18n="claim">SoloWrite collects</span> <span class="accent" data-i18n="claim2">no data</span><span data-i18n="claim3">. No accounts. No analytics. No servers. Your words never leave your devices and your personal iCloud.</span>
+  </div>
+</header>
 
-    <section>
-      <h2>User content</h2>
-      <p>
-        All text written in SoloWrite remains on the user’s device.
-        The App does not access, upload, analyze, or transmit user-written content
-        outside the device.
-      </p>
-    </section>
+<main class="wrap">
+  <h2 data-i18n="s1_t">What we collect</h2>
+  <p data-i18n="s1_p">Nothing. SoloWrite has no user accounts, no sign-up, no analytics or tracking frameworks, no advertising identifiers, no crash reporters that phone home, and no servers of our own. The app makes no network requests to us — because there is no "us" to send anything to. In App Store terms, its privacy label is "Data Not Collected".</p>
 
-    <section>
-      <h2>System permissions</h2>
-      <p>
-        SoloWrite does not request access to contacts, photos, location, microphone,
-        camera, or other personal data sources. Any system behavior is limited to
-        standard iOS functionality required to run the App.
-      </p>
-    </section>
+  <h2 data-i18n="s2_t">Where your notes live</h2>
+  <p data-i18n="s2_p1">Your notes are plain <code>.md</code> (Markdown) files. They are stored on your device and, if you have iCloud Drive enabled, in your personal iCloud Drive (inside the SoloWrite folder) so they can sync between your iPhone and your Mac.</p>
+  <p data-i18n="s2_p2">That storage belongs to you and is governed by your agreement with Apple. Apple handles iCloud data according to its own privacy policy; SoloWrite simply reads and writes files in your container and has no access to your Apple Account, credentials or any other iCloud content.</p>
 
-    <section>
-      <h2>Analytics and advertising</h2>
-      <p>
-        SoloWrite does <strong>not</strong> use analytics SDKs, advertising frameworks,
-        tracking technologies, or crash reporting services that transmit data off the device.
-      </p>
-    </section>
+  <h2 data-i18n="s3_t">Files you open from Finder (Mac)</h2>
+  <p data-i18n="s3_p">If you choose to open a Markdown file with the Mac app (for example by double-clicking it in Finder), SoloWrite reads and saves that single file on your disk, at your request. It is never copied, uploaded or indexed anywhere.</p>
 
-    <section>
-      <h2>Security</h2>
-      <p>
-        Because SoloWrite does not transmit or store personal data externally,
-        there is no server-side user data to secure. Standard iOS platform protections
-        apply to all local data.
-      </p>
-    </section>
+  <h2 data-i18n="s4_t">Third parties</h2>
+  <p data-i18n="s4_p">SoloWrite includes no third-party SDKs, no ads and no external services. The only party involved in storing your content is Apple (iCloud), under your own Apple Account.</p>
 
-    <section>
-      <h2>Export compliance</h2>
-      <p>
-        The App does not implement proprietary cryptography and relies solely on
-        standard iOS system APIs. No non-standard encryption is used.
-      </p>
-    </section>
+  <h2 data-i18n="s5_t">Children</h2>
+  <p data-i18n="s5_p">SoloWrite collects no data from anyone, including children. The app is rated 4+.</p>
 
-    <section>
-      <h2>Support</h2>
-      <p>
-        For questions or support requests, please visit:
-        <br />
-        <a href="https://www.myiosapps.org/solowrite/support.html">
-          https://www.myiosapps.org/solowrite/support.html
-        </a>
-      </p>
-    </section>
+  <h2 data-i18n="s6_t">Changes to this policy</h2>
+  <p data-i18n="s6_p">If this policy ever changes — for example if a future feature required any form of data handling — the update will be published on this page with a new "last updated" date before it takes effect.</p>
 
-    <section>
-      <h2>Changes to this policy</h2>
-      <p>
-        This Privacy Policy may be updated from time to time.
-        The effective date will be revised accordingly.
-        Continued use of the App indicates acceptance of the updated policy.
-      </p>
-    </section>
-  </main>
+  <h2 data-i18n="s7_t">Contact</h2>
+  <p><span data-i18n="s7_p">Questions about privacy? Write to </span><a href="mailto:gzalomoscoso@icloud.com">gzalomoscoso@icloud.com</a>.</p>
+</main>
 
-  <footer>
-    <p>© 2025 SoloWrite. All rights reserved.</p>
-  </footer>
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 Gonzalo Juvenal Moscoso Pacheco</div>
+    <div class="foot-links">
+      <a href="index.html" data-i18n="foot_home">Home</a>
+      <a href="support.html" data-i18n="foot_support">Support</a>
+      <a href="mailto:gzalomoscoso@icloud.com">gzalomoscoso@icloud.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    nav_home:"Home", nav_support:"Support",
+    h1:"Privacy Policy",
+    updated:"Last updated: July 24, 2026",
+    claim:"SoloWrite collects", claim2:"no data",
+    claim3:". No accounts. No analytics. No servers. Your words never leave your devices and your personal iCloud.",
+    s1_t:"What we collect",
+    s1_p:'Nothing. SoloWrite has no user accounts, no sign-up, no analytics or tracking frameworks, no advertising identifiers, no crash reporters that phone home, and no servers of our own. The app makes no network requests to us — because there is no "us" to send anything to. In App Store terms, its privacy label is "Data Not Collected".',
+    s2_t:"Where your notes live",
+    s2_p1:'Your notes are plain <code>.md</code> (Markdown) files. They are stored on your device and, if you have iCloud Drive enabled, in your personal iCloud Drive (inside the SoloWrite folder) so they can sync between your iPhone and your Mac.',
+    s2_p2:"That storage belongs to you and is governed by your agreement with Apple. Apple handles iCloud data according to its own privacy policy; SoloWrite simply reads and writes files in your container and has no access to your Apple Account, credentials or any other iCloud content.",
+    s3_t:"Files you open from Finder (Mac)",
+    s3_p:"If you choose to open a Markdown file with the Mac app (for example by double-clicking it in Finder), SoloWrite reads and saves that single file on your disk, at your request. It is never copied, uploaded or indexed anywhere.",
+    s4_t:"Third parties",
+    s4_p:"SoloWrite includes no third-party SDKs, no ads and no external services. The only party involved in storing your content is Apple (iCloud), under your own Apple Account.",
+    s5_t:"Children",
+    s5_p:"SoloWrite collects no data from anyone, including children. The app is rated 4+.",
+    s6_t:"Changes to this policy",
+    s6_p:'If this policy ever changes — for example if a future feature required any form of data handling — the update will be published on this page with a new "last updated" date before it takes effect.',
+    s7_t:"Contact",
+    s7_p:"Questions about privacy? Write to ",
+    foot_home:"Home", foot_support:"Support",
+  },
+  es: {
+    nav_home:"Inicio", nav_support:"Soporte",
+    h1:"Política de privacidad",
+    updated:"Última actualización: 24 de julio de 2026",
+    claim:"SoloWrite no recolecta", claim2:"ningún dato",
+    claim3:". Sin cuentas. Sin analytics. Sin servidores. Tus palabras nunca salen de tus dispositivos y tu iCloud personal.",
+    s1_t:"Qué recolectamos",
+    s1_p:'Nada. SoloWrite no tiene cuentas de usuario, ni registro, ni frameworks de analytics o rastreo, ni identificadores de publicidad, ni reportes de errores que envíen información, ni servidores propios. La app no hace ninguna petición de red hacia nosotros — porque no existe un "nosotros" al que enviar nada. En términos del App Store, su etiqueta de privacidad es "No se recopilan datos".',
+    s2_t:"Dónde viven tus notas",
+    s2_p1:'Tus notas son archivos <code>.md</code> (Markdown) planos. Se guardan en tu dispositivo y, si tienes iCloud Drive activado, en tu iCloud Drive personal (dentro de la carpeta SoloWrite) para que se sincronicen entre tu iPhone y tu Mac.',
+    s2_p2:"Ese almacenamiento te pertenece y se rige por tu acuerdo con Apple. Apple maneja los datos de iCloud según su propia política de privacidad; SoloWrite solo lee y escribe archivos en tu contenedor y no tiene acceso a tu Cuenta Apple, tus credenciales ni ningún otro contenido de iCloud.",
+    s3_t:"Archivos que abres desde Finder (Mac)",
+    s3_p:"Si eliges abrir un archivo Markdown con la app de Mac (por ejemplo, con doble clic en Finder), SoloWrite lee y guarda ese único archivo en tu disco, a petición tuya. Nunca se copia, sube ni indexa en ningún lugar.",
+    s4_t:"Terceros",
+    s4_p:"SoloWrite no incluye SDKs de terceros, ni anuncios, ni servicios externos. La única parte involucrada en almacenar tu contenido es Apple (iCloud), bajo tu propia Cuenta Apple.",
+    s5_t:"Menores",
+    s5_p:"SoloWrite no recolecta datos de nadie, incluidos los menores. La app está clasificada 4+.",
+    s6_t:"Cambios en esta política",
+    s6_p:'Si esta política llegara a cambiar — por ejemplo, si una función futura requiriera algún tipo de manejo de datos — la actualización se publicará en esta página con una nueva fecha de "última actualización" antes de entrar en vigor.',
+    s7_t:"Contacto",
+    s7_p:"¿Preguntas sobre privacidad? Escribe a ",
+    foot_home:"Inicio", foot_support:"Soporte",
+  }
+};
+let lang = (navigator.language || "en").toLowerCase().startsWith("es") ? "es" : "en";
+function applyLang(){
+  document.documentElement.lang = lang;
+  const dict = i18n[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.getElementById("langBtn").textContent = lang === "en" ? "ES" : "EN";
+  document.title = lang === "en" ? "Privacy Policy — SoloWrite" : "Política de privacidad — SoloWrite";
+}
+function toggleLang(){ lang = lang === "en" ? "es" : "en"; applyLang(); }
+applyLang();
+</script>
 </body>
 </html>
