@@ -1,228 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoloWrite | Pure Flow Writing</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --surface: #fafafa;
-            --text-main: #1d1d1f;
-            --text-dim: #86868b;
-            --accent: #a855f7; 
-            --border: #e5e5e5;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Hero Section */
-        header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            background: radial-gradient(circle at center, #fdfcfd 0%, #ffffff 100%);
-        }
-
-        header h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            margin-bottom: 1rem;
-            animation: fadeIn 1.5s ease;
-        }
-
-        header p {
-            font-size: 1.5rem;
-            color: var(--text-dim);
-            font-weight: 300;
-            max-width: 600px;
-            animation: fadeIn 2s ease;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        section {
-            margin-bottom: 6rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .highlight-box {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 24px;
-            margin-bottom: 2rem;
-        }
-
-        ul {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text-dim);
-        }
-
-        li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* Button Store */
-        .cta-container {
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .app-store-button {
-            display: inline-block;
-            background: var(--text-main);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 1px solid var(--text-main);
-        }
-
-        .app-store-button:hover {
-            background: transparent;
-            color: var(--text-main);
-            transform: scale(1.05);
-        }
-
-        footer {
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-        }
-
-        footer a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin: 0 0.5rem;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.8rem; }
-            header p { font-size: 1.2rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoloWrite — Don't get distracted. Just write.</title>
+<meta name="description" content="SoloWrite is a minimalist Markdown writing app for iPhone and Mac. Plain .md files in your iCloud Drive. No accounts, no distractions.">
+<style>
+  :root{
+    --bg:#f7f6f1; --surface:#ffffff; --text:#1d1d1f; --dim:#6e6e73;
+    --accent:#8e6bb5; --border:#e6e4dc; --ink:#111113;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;background:rgba(247,246,241,.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:baseline;gap:7px;text-decoration:none;color:var(--text)}
+  .brand .solo{font-weight:800;letter-spacing:.12em;font-size:19px}
+  .brand .write{font-family:"Courier New",Courier,monospace;font-weight:700;font-size:17px;letter-spacing:.06em}
+  .nav-links{display:flex;align-items:center;gap:18px}
+  .nav-links a{color:var(--dim);text-decoration:none;font-size:14px;font-weight:500}
+  .nav-links a:hover{color:var(--text)}
+  .lang-btn{
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;
+  }
+  .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
+  /* HERO */
+  .hero{padding:84px 0 40px;text-align:center}
+  .seal .solo{
+    display:block;font-weight:900;font-size:clamp(56px,10vw,88px);
+    letter-spacing:.14em;line-height:1;text-indent:.14em;
+  }
+  .seal .write{
+    display:block;font-family:"Courier New",Courier,monospace;font-weight:700;
+    font-size:clamp(26px,4.4vw,38px);letter-spacing:.34em;text-indent:.34em;margin-top:6px;
+  }
+  .tagline{margin-top:22px;font-size:clamp(17px,2.4vw,21px);color:var(--dim);font-style:italic}
+  .hero-ctas{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+    padding:14px 26px;border-radius:14px;font-size:16px;font-weight:600;transition:transform .15s ease,opacity .15s ease;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{opacity:.85}
+  .btn-ghost{border:1.5px solid var(--border);color:var(--text);background:var(--surface)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-meta{margin-top:16px;font-size:13px;color:var(--dim)}
+  .hero-shot{margin:56px auto 0;max-width:320px}
+  /* PHONE FRAME */
+  .phone{
+    background:#0c0c0e;border-radius:44px;padding:10px;
+    box-shadow:0 24px 60px rgba(29,29,31,.18),0 4px 14px rgba(29,29,31,.10);
+  }
+  .phone img{display:block;width:100%;border-radius:35px}
+  /* SECTIONS */
+  section{padding:76px 0}
+  .sec-title{font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-.01em;text-align:center}
+  .sec-sub{margin-top:10px;text-align:center;color:var(--dim);font-size:16.5px;max-width:560px;margin-left:auto;margin-right:auto}
+  /* FEATURES */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px 24px;
+  }
+  .card .ico{
+    width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    background:rgba(142,107,181,.12);color:var(--accent);font-size:19px;margin-bottom:14px;
+    font-family:"Courier New",Courier,monospace;font-weight:700;
+  }
+  .card h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+  .card p{font-size:14.5px;color:var(--dim);line-height:1.55}
+  /* GALLERY */
+  .gallery{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:34px 26px;margin-top:48px;align-items:start;
+  }
+  .shot{max-width:250px;margin:0 auto;text-align:center}
+  .shot .caption{margin-top:16px;font-size:14px;font-weight:600}
+  .shot .caption-sub{font-size:12.5px;color:var(--dim);font-weight:400;margin-top:2px}
+  /* MAC BAND */
+  .mac-band{
+    background:var(--ink);color:#f5f5f4;border-radius:26px;
+    padding:56px 40px;text-align:center;margin-top:20px;
+  }
+  .mac-band h2{font-size:clamp(22px,3.4vw,30px);font-weight:800}
+  .mac-band p{margin-top:12px;color:#a8a8ad;font-size:16px;max-width:600px;margin-left:auto;margin-right:auto}
+  .mac-band .accent{color:#b797dd}
+  /* FINAL CTA */
+  .final{text-align:center;padding:80px 0 90px}
+  /* FOOTER */
+  footer{border-top:1px solid var(--border);padding:34px 0 46px;font-size:13.5px;color:var(--dim)}
+  .foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:var(--dim);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap}
+  @media (max-width:640px){
+    .hero{padding-top:60px}
+    section{padding:56px 0}
+    .nav-links a.hide-sm{display:none}
+    .foot-inner{flex-direction:column}
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>SoloWrite</h1>
-        <p>It’s not just an app. <br>It’s a tool for your thoughts to flow.</p>
-    </header>
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html"><span class="solo">SOLO</span><span class="write">write</span></a>
+    <div class="nav-links">
+      <a class="hide-sm" href="#features" data-i18n="nav_features">Features</a>
+      <a class="hide-sm" href="#screens" data-i18n="nav_screens">Screenshots</a>
+      <a href="support.html" data-i18n="nav_support">Support</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">ES</button>
+    </div>
+  </div>
+</nav>
 
-    <main>
-        <section id="concept">
-            <div class="highlight-box">
-                <h2>Open. Write. Nothing in between.</h2>
-                <p>SoloWrite is the digital version of a blank page. It’s not a project manager, it’s not a social network; it’s the space where your ideas land before the noise makes them disappear.</p>
-            </div>
-        </section>
+<header class="hero wrap">
+  <div class="seal">
+    <span class="solo">SOLO</span>
+    <span class="write">write</span>
+  </div>
+  <p class="tagline" data-i18n="tagline">Don't get distracted. Just write.</p>
 
-        <section id="focus">
-            <h2>Designed for Absolute Focus</h2>
-            <p>Every gram of cognitive friction has been removed. In SoloWrite, the interface steps back so your text becomes the only protagonist.</p>
-            <ul>
-                <li>No complex menus or intrusive toolbars.</li>
-                <li>Typography designed for clarity and calm.</li>
-                <li>No notifications, no pressure metrics, no distractions.</li>
-            </ul>
-        </section>
+  <div class="hero-ctas">
+    <a class="btn btn-dark" href="https://apps.apple.com/app/id6753189572">
+      <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span data-i18n="cta_download">Download on the App Store</span>
+    </a>
+    <a class="btn btn-ghost" href="#features" data-i18n="cta_more">See what's inside</a>
+  </div>
+  <p class="hero-meta" data-i18n="hero_meta">One-time purchase · iPhone &amp; Mac · No subscription</p>
 
-        <section id="files">
-            <h2>Ownership by Design</h2>
-            <p>Your thoughts belong to you. That’s why SoloWrite uses the standard <strong>.md (Markdown)</strong> format stored in your own iCloud Drive.</p>
-            <ul>
-                <li>Full access from the iOS Files app or macOS Finder.</li>
-                <li>No proprietary databases: your files are yours forever.</li>
-                <li>Natively compatible with tools like Obsidian or iA Writer.</li>
-            </ul>
-        </section>
+  <div class="hero-shot">
+    <div class="phone"><img src="sshot1.png" alt="SoloWrite start screen" loading="eager"></div>
+  </div>
+</header>
 
-        <section id="download" class="cta-container">
-            <h2>Embrace Simplicity</h2>
-            <p style="color: var(--text-dim); margin-bottom: 2rem;">Start writing today in an environment designed for the analytical mind.</p>
-            <a href="https://apps.apple.com/app/solowrite/id6753189572" class="app-store-button">
-                Download on the App Store
-            </a>
-        </section>
-    </main>
+<section id="features">
+  <div class="wrap">
+    <h2 class="sec-title" data-i18n="feat_title">Everything you need. Nothing you don't.</h2>
+    <p class="sec-sub" data-i18n="feat_sub">A single, focused editor that renders Markdown as you type — and stays out of your way.</p>
 
-    <footer>
-        <p>
-            &copy; 2026 SoloWrite · A <a href="https://www.myiosapps.org">myIOSapps</a> project.
-            <br><br>
-            <a href="#">Privacy</a> · <a href="#">Support</a> · <a href="#">Terms</a>
-        </p>
-    </footer>
+    <div class="features">
+      <div class="card">
+        <div class="ico">#</div>
+        <h3 data-i18n="f1_t">Live Markdown</h3>
+        <p data-i18n="f1_p">Headings, bold, quotes, code blocks, lists and highlights render right in the editor as you type. One mode. No preview switching.</p>
+      </div>
+      <div class="card">
+        <div class="ico">42</div>
+        <h3 data-i18n="f2_t">Line numbers &amp; snippets</h3>
+        <p data-i18n="f2_p">A GitHub-style gutter keeps you oriented, and the &lt;/&gt; bar inserts headings, quotes, code and more with one tap.</p>
+      </div>
+      <div class="card">
+        <div class="ico">◐</div>
+        <h3 data-i18n="f3_t">12 themes</h3>
+        <p data-i18n="f3_p">From Paper and Sepia to Dracula, Nord and Tokyo Night. The theme dresses the whole app, not just the editor.</p>
+      </div>
+      <div class="card">
+        <div class="ico">.md</div>
+        <h3 data-i18n="f4_t">Your files, plain .md</h3>
+        <p data-i18n="f4_p">Notes are plain Markdown files stored in your own iCloud Drive. Open them with any app, today or in twenty years.</p>
+      </div>
+      <div class="card">
+        <div class="ico">✕</div>
+        <h3 data-i18n="f5_t">Private by design</h3>
+        <p data-i18n="f5_p">No accounts, no analytics, no servers. SoloWrite collects nothing — your words never leave your devices and your iCloud.</p>
+      </div>
+      <div class="card">
+        <div class="ico">⌘</div>
+        <h3 data-i18n="f6_t">iPhone &amp; Mac, EN/ES</h3>
+        <p data-i18n="f6_p">A native Mac companion picks up right where your iPhone left off. Both apps speak English and Spanish.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+<section id="screens">
+  <div class="wrap">
+    <h2 class="sec-title" data-i18n="sc_title">Designed to disappear</h2>
+    <p class="sec-sub" data-i18n="sc_sub">Open the app, tap once, write. That's the whole workflow.</p>
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+    <div class="gallery">
+      <div class="shot">
+        <div class="phone"><img src="sshot1.png" alt="Start screen" loading="lazy"></div>
+        <div class="caption" data-i18n="sc1_t">Start in one tap</div>
+        <div class="caption-sub" data-i18n="sc1_p">New document, or continue where you left off</div>
+      </div>
+      <div class="shot">
+        <div class="phone"><img src="sshot2.png" alt="Clean editor" loading="lazy"></div>
+        <div class="caption" data-i18n="sc2_t">A blank page, nothing else</div>
+        <div class="caption-sub" data-i18n="sc2_p">No toolbars shouting at you while you think</div>
+      </div>
+      <div class="shot">
+        <div class="phone"><img src="sshot4.png" alt="Markdown editor with dark theme" loading="lazy"></div>
+        <div class="caption" data-i18n="sc3_t">Markdown, rendered live</div>
+        <div class="caption-sub" data-i18n="sc3_p">Line numbers, snippets bar and your file's name</div>
+      </div>
+      <div class="shot">
+        <div class="phone"><img src="sshot3.png" alt="Theme gallery in Settings" loading="lazy"></div>
+        <div class="caption" data-i18n="sc4_t">Make it yours</div>
+        <div class="caption-sub" data-i18n="sc4_p">12 themes and instant English/Spanish switching</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="mac-band">
+      <h2><span data-i18n="mac_t">Also on your Mac</span> <span class="accent">⌘</span></h2>
+      <p data-i18n="mac_p">The native macOS companion shares the same notes through iCloud, renders Markdown live with line numbers, and can even become your default app for .md files in Finder.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final wrap">
+  <h2 class="sec-title" data-i18n="final_t">Stop fiddling. Start writing.</h2>
+  <div class="hero-ctas">
+    <a class="btn btn-dark" href="https://apps.apple.com/app/id6753189572">
+      <svg width="18" height="18" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span data-i18n="cta_download2">Download on the App Store</span>
+    </a>
+  </div>
+  <p class="hero-meta" data-i18n="final_meta">Requires iOS 17.6+ · Mac companion requires macOS 15.6+</p>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Gonzalo Juvenal Moscoso Pacheco</div>
+    <div class="foot-links">
+      <a href="support.html" data-i18n="foot_support">Support</a>
+      <a href="privacy.html" data-i18n="foot_privacy">Privacy Policy</a>
+      <a href="mailto:gzalomoscoso@icloud.com">gzalomoscoso@icloud.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    tagline: "Don't get distracted. Just write.",
+    nav_features: "Features", nav_screens: "Screenshots", nav_support: "Support",
+    cta_download: "Download on the App Store", cta_download2: "Download on the App Store",
+    cta_more: "See what's inside",
+    hero_meta: "One-time purchase · iPhone & Mac · No subscription",
+    feat_title: "Everything you need. Nothing you don't.",
+    feat_sub: "A single, focused editor that renders Markdown as you type — and stays out of your way.",
+    f1_t: "Live Markdown",
+    f1_p: "Headings, bold, quotes, code blocks, lists and highlights render right in the editor as you type. One mode. No preview switching.",
+    f2_t: "Line numbers & snippets",
+    f2_p: "A GitHub-style gutter keeps you oriented, and the </> bar inserts headings, quotes, code and more with one tap.",
+    f3_t: "12 themes",
+    f3_p: "From Paper and Sepia to Dracula, Nord and Tokyo Night. The theme dresses the whole app, not just the editor.",
+    f4_t: "Your files, plain .md",
+    f4_p: "Notes are plain Markdown files stored in your own iCloud Drive. Open them with any app, today or in twenty years.",
+    f5_t: "Private by design",
+    f5_p: "No accounts, no analytics, no servers. SoloWrite collects nothing — your words never leave your devices and your iCloud.",
+    f6_t: "iPhone & Mac, EN/ES",
+    f6_p: "A native Mac companion picks up right where your iPhone left off. Both apps speak English and Spanish.",
+    sc_title: "Designed to disappear",
+    sc_sub: "Open the app, tap once, write. That's the whole workflow.",
+    sc1_t: "Start in one tap", sc1_p: "New document, or continue where you left off",
+    sc2_t: "A blank page, nothing else", sc2_p: "No toolbars shouting at you while you think",
+    sc3_t: "Markdown, rendered live", sc3_p: "Line numbers, snippets bar and your file's name",
+    sc4_t: "Make it yours", sc4_p: "12 themes and instant English/Spanish switching",
+    mac_t: "Also on your Mac",
+    mac_p: "The native macOS companion shares the same notes through iCloud, renders Markdown live with line numbers, and can even become your default app for .md files in Finder.",
+    final_t: "Stop fiddling. Start writing.",
+    final_meta: "Requires iOS 17.6+ · Mac companion requires macOS 15.6+",
+    foot_support: "Support", foot_privacy: "Privacy Policy",
+  },
+  es: {
+    tagline: "No te distraigas. Solo escribe.",
+    nav_features: "Funciones", nav_screens: "Capturas", nav_support: "Soporte",
+    cta_download: "Descárgala en el App Store", cta_download2: "Descárgala en el App Store",
+    cta_more: "Mira lo que incluye",
+    hero_meta: "Pago único · iPhone y Mac · Sin suscripción",
+    feat_title: "Todo lo que necesitas. Nada más.",
+    feat_sub: "Un único editor enfocado que renderiza Markdown mientras escribes — y no se interpone en tu camino.",
+    f1_t: "Markdown en vivo",
+    f1_p: "Títulos, negritas, citas, bloques de código, listas y destacados se renderizan en el editor mientras escribes. Un solo modo. Sin alternar vista previa.",
+    f2_t: "Números de línea y snippets",
+    f2_p: "Un margen estilo GitHub te mantiene orientado, y la barra </> inserta títulos, citas, código y más con un toque.",
+    f3_t: "12 temas",
+    f3_p: "De Paper y Sepia a Dracula, Nord y Tokyo Night. El tema viste toda la app, no solo el editor.",
+    f4_t: "Tus archivos, .md planos",
+    f4_p: "Tus notas son archivos Markdown planos guardados en tu propio iCloud Drive. Ábrelos con cualquier app, hoy o dentro de veinte años.",
+    f5_t: "Privada por diseño",
+    f5_p: "Sin cuentas, sin analytics, sin servidores. SoloWrite no recolecta nada — tus palabras nunca salen de tus dispositivos y tu iCloud.",
+    f6_t: "iPhone y Mac, EN/ES",
+    f6_p: "El companion nativo para Mac continúa justo donde tu iPhone se quedó. Ambas apps hablan inglés y español.",
+    sc_title: "Diseñada para desaparecer",
+    sc_sub: "Abre la app, un toque, escribe. Ese es todo el flujo.",
+    sc1_t: "Comienza en un toque", sc1_p: "Documento nuevo, o continúa donde te quedaste",
+    sc2_t: "Una página en blanco, nada más", sc2_p: "Sin barras gritándote mientras piensas",
+    sc3_t: "Markdown renderizado en vivo", sc3_p: "Números de línea, barra de snippets y el nombre de tu archivo",
+    sc4_t: "Hazla tuya", sc4_p: "12 temas y cambio instantáneo inglés/español",
+    mac_t: "También en tu Mac",
+    mac_p: "El companion nativo para macOS comparte las mismas notas por iCloud, renderiza Markdown en vivo con números de línea, y hasta puede ser tu app por defecto para archivos .md en Finder.",
+    final_t: "Deja de configurar. Empieza a escribir.",
+    final_meta: "Requiere iOS 17.6+ · El companion de Mac requiere macOS 15.6+",
+    foot_support: "Soporte", foot_privacy: "Política de privacidad",
+  }
+};
+let lang = (navigator.language || "en").toLowerCase().startsWith("es") ? "es" : "en";
+function applyLang(){
+  document.documentElement.lang = lang;
+  const dict = i18n[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (dict[k]) el.innerHTML = dict[k].replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  });
+  document.getElementById("langBtn").textContent = lang === "en" ? "ES" : "EN";
+  document.title = lang === "en"
+    ? "SoloWrite — Don't get distracted. Just write."
+    : "SoloWrite — No te distraigas. Solo escribe.";
+}
+function toggleLang(){ lang = lang === "en" ? "es" : "en"; applyLang(); }
+applyLang();
+</script>
 </body>
 </html>
