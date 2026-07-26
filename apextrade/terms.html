@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Terms of Use (EULA) — Apex Trade</title>
-<meta name="description" content="Apex Trade End User License Agreement: informational tool only, not investment advice; third-party market data provided as is; auto-renewable subscription terms." />
+<title>Privacy Policy — Apex Trade</title>
+<meta name="description" content="How Apex Trade handles your data: private iCloud storage, Sign in with Apple, market-data providers, and subscriptions. Nothing is sold." />
 <style>
   :root{
     --bg:#080b12;--surface:#111826;--surface-2:#0e1420;
@@ -31,7 +31,7 @@
   .updated{color:var(--faint);font-size:14px;font-family:var(--mono)}
   .intro{color:var(--muted);font-size:17px;margin-top:18px}
   .card{border:1px solid var(--line);border-radius:16px;background:var(--surface-2);padding:22px 24px;margin:22px 0}
-  .card.warn{background:radial-gradient(500px 200px at 0% 0%,rgba(239,68,68,.10),transparent 60%),var(--surface-2);border-color:rgba(239,68,68,.24)}
+  .card.hi{background:radial-gradient(500px 200px at 0% 0%,rgba(34,197,94,.10),transparent 60%),var(--surface-2);border-color:rgba(34,197,94,.22)}
   h2{font-size:21px;font-weight:700;letter-spacing:-.3px;margin:38px 0 10px;padding-top:8px}
   h2 .n{font-family:var(--mono);color:var(--accent-2);font-size:15px;margin-right:8px}
   p{color:#c9d3e2;margin:10px 0}
@@ -39,11 +39,13 @@
   li{position:relative;padding-left:22px;margin:8px 0;color:#c9d3e2}
   li::before{content:"";position:absolute;left:4px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
   strong{color:#fff}
+  .kv{display:grid;grid-template-columns:170px 1fr;gap:8px 18px;font-size:15px;margin-top:6px}
+  .kv .k{color:var(--faint)}
   footer{border-top:1px solid var(--line-2);padding:36px 0 60px;margin-top:44px;color:var(--muted)}
   .foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
   .foot-links a{color:var(--muted);font-size:14px}
   small{color:var(--faint);font-size:12.5px}
-  @media(max-width:560px){h1{font-size:30px}}
+  @media(max-width:560px){h1{font-size:30px}.kv{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -64,81 +66,76 @@
 <div class="wrap">
   <div class="hero">
     <span class="eyebrow">Legal</span>
-    <h1>Terms of Use (EULA)</h1>
+    <h1>Privacy Policy</h1>
     <div class="updated">Last updated: July 2026</div>
-    <p class="intro">This End User License Agreement (the "Agreement") is a legal contract between you and <strong>Gonzalo Juvenal Moscoso Pacheco</strong> ("Developer", "we", "us") governing your use of the <strong>Apex Trade</strong> mobile application (the "App"). By downloading, installing, or using the App, you agree to be bound by this Agreement. If you do not agree, do not use the App. This Agreement is concluded between you and the Developer only, and not with Apple; the Developer alone is responsible for the App and its content.</p>
+    <p class="intro">Apex Trade is built privacy-first. Your portfolio lives in <strong>your</strong> iCloud, not on our servers — and we never sell your data. This page explains, in plain language, what is collected, where it lives, and who it is (and isn't) shared with.</p>
   </div>
 
-  <div class="card warn">
-    <p style="margin:0"><strong>Important — Apex Trade is an informational and educational tool, not a financial adviser or broker.</strong> It does not provide investment advice or recommendations, and the market data it shows comes from third parties and may be delayed or inaccurate. You are solely responsible for your investment decisions. See sections 2–4.</p>
+  <div class="card hi">
+    <p style="margin:0"><strong>The short version.</strong> We don't run accounts or a backend database of your holdings. Your data is stored in your private iCloud (Apple CloudKit), authentication is handled by Sign in with Apple, subscriptions are handled by Apple, and market data comes from third-party providers. We don't sell personal information.</p>
   </div>
 
-  <h2><span class="n">1</span>License grant</h2>
-  <p>The App is <strong>licensed, not sold</strong>. Subject to this Agreement, the Developer grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App on Apple-branded devices that you own or control, in accordance with the Usage Rules of the Apple Media Services Terms and Conditions.</p>
+  <h2><span class="n">1</span>Who we are</h2>
+  <p>Apex Trade ("the app", "we", "us") is an iOS application published by myiosapps.org. You can reach us any time at <a href="mailto:support@myiosapps.org">support@myiosapps.org</a> or through the <a href="https://www.myiosapps.org/apextrade/support/">Support page</a>.</p>
 
-  <h2><span class="n">2</span>No investment, financial, legal or tax advice</h2>
-  <p>Apex Trade is a tool for organizing and visualizing market data and your own portfolio inputs. The Developer is <strong>not</strong> a broker-dealer, investment adviser, financial planner, or fiduciary, and provides <strong>no</strong> personalized investment, financial, legal, accounting, or tax advice. Nothing displayed in the App — including prices, charts, "fair value" estimates, ratios, screeners, statistics, or any AI-generated notes — constitutes a recommendation, solicitation, endorsement, or offer to buy or sell any security or financial instrument. Consult a licensed professional before making any financial decision.</p>
-
-  <h2><span class="n">3</span>Market data — sources, delays and accuracy</h2>
-  <p>The App displays information obtained from third-party providers (which may include Yahoo Finance, Financial Modeling Prep, Alpha Vantage, Simply Wall St, and others). Such data may be <strong>delayed, incomplete, inaccurate, or temporarily unavailable</strong>, is provided <strong>"AS IS"</strong>, and is not guaranteed for trading. Quoted prices are not real-time exchange feeds and must not be relied upon for the timing or execution of trades. The Developer does not create this data and is not responsible for any third-party errors, omissions, delays, or interruptions.</p>
-
-  <h2><span class="n">4</span>Assumption of risk</h2>
-  <p>Trading and investing involve substantial risk, including the possible loss of your entire principal. <strong>You are solely responsible for your own investment decisions and their outcomes.</strong> To the maximum extent permitted by law, the Developer is not liable for any trading or investment losses, lost profits, missed opportunities, or any decision made in reliance on the App or the data it displays.</p>
-
-  <h2><span class="n">5</span>Subscriptions, free trial and payments</h2>
-  <p>Apex Trade may offer <strong>auto-renewable subscriptions</strong> (for example, monthly and annual "Pro" plans), which may include a free trial (currently 8 days). The following apply:</p>
+  <h2><span class="n">2</span>What data the app handles</h2>
   <ul>
-    <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
-    <li>The subscription <strong>renews automatically</strong> for the same period at the then-current price unless auto-renew is turned off at least 24 hours before the end of the current period.</li>
-    <li>Your account is charged for renewal within 24 hours before the end of the current period.</li>
-    <li>Any unused portion of a free trial is forfeited when you purchase a subscription that covers that trial.</li>
-    <li>You can manage or cancel your subscription at any time in your App Store account settings.</li>
-    <li>Prices may vary by region and may change with notice as permitted by the App Store.</li>
+    <li><strong>Portfolio &amp; app content</strong> — the holdings, watchlist symbols and price alerts you create. This is stored in your private iCloud and is used only to display your portfolio and power alerts.</li>
+    <li><strong>Sign in with Apple identity</strong> — if you choose to sign in, Apple provides a stable user identifier and, optionally, the name and email you agree to share. This is stored in your iCloud key-value store and used to personalize the app and keep your data associated with you across your devices.</li>
+    <li><strong>Symbols you view</strong> — the tickers you open are sent to market-data providers (below) to fetch quotes, charts and fundamentals. We do not build advertising profiles from this.</li>
   </ul>
-  <p>All billing, renewals, and refunds are handled by Apple under the Apple Media Services Terms and Conditions. The Developer does not process payments and cannot issue refunds directly.</p>
+  <p>Apex Trade does <strong>not</strong> request your contacts, photos, location, or device identifiers for tracking, and does not include third-party advertising or analytics SDKs that track you across apps.</p>
 
-  <h2><span class="n">6</span>Restrictions</h2>
-  <p>You may not: (a) reverse engineer, decompile, disassemble, or modify the App except to the extent permitted by law; (b) use the App for any unlawful purpose or in violation of any exchange or data-provider terms; (c) scrape, resell, redistribute, or build derivative commercial data products from the App's data; or (d) rent, lease, sublicense, sell, or otherwise transfer the App.</p>
+  <h2><span class="n">3</span>Where your data lives</h2>
+  <div class="kv">
+    <div class="k">Holdings / watchlist / alerts</div><div>Your private <strong>iCloud (Apple CloudKit)</strong> — synced across your Apple devices, readable only by you.</div>
+    <div class="k">Sign in identity</div><div>Your iCloud key-value store, provided by <strong>Sign in with Apple</strong>.</div>
+    <div class="k">Our servers</div><div>None. We do not operate a database that stores your personal portfolio.</div>
+  </div>
 
-  <h2><span class="n">7</span>Maintenance and support</h2>
-  <p>The Developer is solely responsible for providing any maintenance and support for the App and may do so at its discretion, but is not obligated to. <strong>Apple has no obligation whatsoever</strong> to furnish any maintenance or support services for the App.</p>
+  <h2><span class="n">4</span>Third-party market-data providers</h2>
+  <p>To show live prices, charts, fundamentals and fair-value estimates, the app requests data from the following providers when you open a symbol or a market view. These requests include the ticker symbols involved but not your identity:</p>
+  <ul>
+    <li><strong>Yahoo Finance</strong> — quotes, historical charts, screeners and index data.</li>
+    <li><strong>Finnhub</strong> — company profiles, key statistics and logos.</li>
+    <li><strong>Financial Modeling Prep</strong> — market movers (fallback) and analyst data.</li>
+    <li><strong>Simply Wall St</strong> — consensus fair-value estimates.</li>
+  </ul>
+  <p>Each provider processes requests under its own privacy policy. We share only what is necessary to return the requested market data.</p>
 
-  <h2><span class="n">8</span>Warranty disclaimer</h2>
-  <p>The App is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>, without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, accuracy, and non-infringement. In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple may refund the purchase price (if any) for the App; to the maximum extent permitted by law, Apple will have no other warranty obligation, and any other claims, losses, liabilities, damages, costs, or expenses attributable to a warranty failure are the sole responsibility of the Developer.</p>
 
-  <h2><span class="n">9</span>Limitation of liability</h2>
-  <p>To the maximum extent permitted by law, the Developer's total aggregate liability for any claim arising out of or relating to the App or this Agreement is limited to the amount you actually paid for the App or subscription in the twelve (12) months preceding the claim. The Developer will not be liable for indirect, incidental, special, consequential, or punitive damages, or for loss of profits, data, or goodwill.</p>
+  <h2><span class="n">5</span>Optional related-news stock sync</h2>
+  <p>If you turn on <strong>"Save the stocks I follow"</strong> in Preferences (off by default, and only available while signed in with Apple), the app uploads the <strong>ticker symbols</strong> of your portfolio — never shares, amounts or prices paid — together with your app language, to a file we host on GitHub, so we can build a news feed related to the stocks you follow.</p>
+  <ul>
+    <li>Your row is keyed by an <strong>anonymous identifier</strong> (a one-way hash of your Sign in with Apple id). It cannot be reversed into your identity.</li>
+    <li>That file is publicly readable; it never contains names, emails or position sizes.</li>
+    <li>Turn the toggle off at any time to stop future updates, or email us to have your row removed.</li>
+  </ul>
 
-  <h2><span class="n">10</span>Product claims</h2>
-  <p>The Developer, not Apple, is responsible for addressing any claims by you or a third party relating to the App or your possession and/or use of it, including: (a) product liability claims; (b) any claim that the App fails to conform to any applicable legal or regulatory requirement; and (c) claims arising under consumer protection, privacy, or similar legislation.</p>
+  <h2><span class="n">6</span>Subscriptions &amp; payments</h2>
+  <p>Apex Trade offers an <strong>16-day free trial</strong> followed by an auto-renewable subscription (Apex Trade Pro). Purchases, the free-trial period, renewals and cancellations are handled entirely by <strong>Apple</strong> through your App Store account. We never see or store your payment card details. You can manage or cancel your subscription at any time in your Apple ID settings.</p>
 
-  <h2><span class="n">11</span>Intellectual property</h2>
-  <p>The App and its original content (excluding third-party market data) are owned by the Developer and protected by applicable law. In the event of any third-party claim that the App or your use of it infringes that party's intellectual property rights, the Developer — not Apple — is solely responsible for the investigation, defense, settlement, and discharge of any such claim.</p>
+  <h2><span class="n">7</span>Notifications</h2>
+  <p>If you enable price or VWAP alerts, the app uses Apple's notification system to alert you. These alerts are generated on your device from market data; enabling them is entirely optional.</p>
 
-  <h2><span class="n">12</span>Legal compliance</h2>
-  <p>You represent and warrant that: (a) you are not located in a country that is subject to a U.S. Government embargo or that has been designated as a "terrorist supporting" country; and (b) you are not listed on any U.S. Government list of prohibited or restricted parties. You further agree to comply with all applicable laws and regulations, including those governing market data and securities.</p>
+  <h2><span class="n">8</span>Your choices &amp; rights</h2>
+  <ul>
+    <li>Delete any holding, watchlist item or alert inside the app at any time.</li>
+    <li>Sign out to stop associating data with your Apple identity.</li>
+    <li>Remove the app's iCloud data from your Apple ID settings, or delete the app to stop all processing.</li>
+    <li>Request information about your data by emailing us — since we hold no server-side copy, most data is already fully under your control in iCloud.</li>
+  </ul>
 
-  <h2><span class="n">13</span>Third-party terms</h2>
-  <p>You must comply with applicable third-party terms of agreement when using the App (for example, the terms of the market-data providers and your wireless carrier). The market-data providers are third-party beneficiaries of this Agreement with respect to their data and may enforce these terms against you.</p>
+  <h2><span class="n">9</span>Children</h2>
+  <p>Apex Trade is intended for adults managing their own investments and is not directed to children under 13.</p>
 
-  <h2><span class="n">14</span>Apple as third-party beneficiary</h2>
-  <p>You acknowledge and agree that Apple and Apple's subsidiaries are third-party beneficiaries of this Agreement, and that, upon your acceptance of this Agreement, Apple will have the right (and will be deemed to have accepted the right) to enforce this Agreement against you as a third-party beneficiary.</p>
+  <h2><span class="n">10</span>Changes to this policy</h2>
+  <p>We may update this policy as the app evolves. Material changes will be reflected here with a new "last updated" date.</p>
 
-  <h2><span class="n">15</span>Term and termination</h2>
-  <p>This Agreement is effective until terminated. Your rights under it terminate automatically, without notice, if you breach any of its terms. You may terminate at any time by deleting the App. Upon termination you must cease all use and delete the App. Provisions that by their nature should survive termination (including sections 2–4 and 8–12) will survive.</p>
+  <h2><span class="n">11</span>Contact</h2>
+  <p>Questions about privacy? Email <a href="mailto:support@myiosapps.org">support@myiosapps.org</a> or visit the <a href="https://www.myiosapps.org/apextrade/support/">Support page</a>.</p>
 
-  <h2><span class="n">16</span>Changes to this Agreement</h2>
-  <p>The Developer may update this Agreement as the App evolves. The current version is posted at <a href="https://www.myiosapps.org/apextrade/terms.html">myiosapps.org/apextrade/terms.html</a> with an updated date. Your continued use of the App after changes take effect constitutes acceptance of the revised Agreement.</p>
-
-  <h2><span class="n">17</span>Governing law</h2>
-  <p>This Agreement is governed by the laws of the Republic of Peru, without regard to its conflict-of-laws rules, and the courts located in Lima, Peru will have exclusive jurisdiction, except where mandatory consumer-protection law grants you rights in your country of residence. The Apple Media Services Terms and Conditions and their Usage Rules also apply to your use of the App.</p>
-
-  <h2><span class="n">18</span>Contact</h2>
-  <p>Developer: <strong>Gonzalo Juvenal Moscoso Pacheco</strong>. Questions or complaints regarding the App may be directed to <a href="mailto:support@myiosapps.org">support@myiosapps.org</a> or the <a href="https://www.myiosapps.org/apextrade/support/">Support page</a>.</p>
-
-  <p style="margin-top:18px">By installing or using Apex Trade, you confirm that you have read, understood, and accept this Agreement.</p>
-
-  <div class="card"><small>This EULA is provided as a general template that reflects how the app works and the minimum terms required by the App Store. It is not legal advice and should be reviewed by qualified counsel before publication to ensure it meets the requirements of your jurisdiction.</small></div>
+  <div class="card"><small>This policy is provided as a general template that reflects how the app works and should be reviewed by qualified counsel before publication to ensure it meets the requirements of your jurisdiction and the App Store.</small></div>
 </div>
 
 <footer>
@@ -153,8 +150,10 @@
     <div class="foot-links">
       <a href="https://www.myiosapps.org/apextrade">Home</a>
       <a href="https://www.myiosapps.org/apextrade/support/">Support</a>
-      <a href="https://www.myiosapps.org/apextrade/privacy.html">Privacy</a>
+      <a href="https://www.myiosapps.org/apextrade/terms.html">Terms</a>
+      <a href="https://apps.apple.com/app/id6793700978">App Store</a>
     </div>
+    <div style="margin-top:18px"><small>© 2026 Apex Trade · myiosapps.org</small></div>
   </div>
 </footer>
 </body>
