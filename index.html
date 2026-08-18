@@ -1,374 +1,1276 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyIOSapps | Engineering & Security Lab</title>
-    <link rel="icon" href="IMG_5954.png">
-    <style>
-        :root {
-            --bg: #000000;
-            --accent: #00ff41; 
-            --accent-glow: rgba(0, 255, 65, 0.2);
-            --text-main: #ffffff;
-            --text-dim: #86868b;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.08);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MyIOSapps — Financial Software, Apple Engineering & Automation</title>
+<meta name="description" content="Independent studio building native Apple software: portfolio analytics and market data, system-level automation through Shortcuts and App Intents. Six apps shipped on the App Store. No servers, no accounts, no tracking.">
+<meta name="theme-color" content="#050506">
+<link rel="icon" href="IMG_5954.png">
+<link rel="canonical" href="https://www.myiosapps.org/">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.myiosapps.org/">
+<meta property="og:site_name" content="MyIOSapps">
+<meta property="og:title" content="MyIOSapps — Financial Software, Apple Engineering & Automation">
+<meta property="og:description" content="Portfolio analytics, market data and system-level automation. Six native apps on the App Store. Local-first by architecture.">
+<meta property="og:image" content="https://www.myiosapps.org/IMG_5954.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MyIOSapps — Financial Software, Apple Engineering & Automation">
+<meta name="twitter:description" content="Portfolio analytics, market data and system-level automation. Six native apps on the App Store.">
+<meta name="twitter:image" content="https://www.myiosapps.org/IMG_5954.png">
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+<style>
+:root{
+  --bg:#050506;
+  --bg-2:#0a0b0d;
+  --surface:rgba(255,255,255,.022);
+  --surface-2:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.07);
+  --border-hi:rgba(255,255,255,.14);
+  --text:#f5f6f7;
+  --text-2:#a1a4ab;
+  --text-3:#6b6f78;
+  --up:#12e29a;
+  --up-dim:rgba(18,226,154,.12);
+  --up-line:rgba(18,226,154,.32);
+  --down:#ff4d5e;
+  --radius:20px;
+  --radius-lg:28px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --maxw:1240px;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:92px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  line-height:1.5;letter-spacing:-.011em;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(900px 520px at 78% -6%,rgba(18,226,154,.10),transparent 62%),
+    radial-gradient(700px 460px at 8% 12%,rgba(60,110,255,.055),transparent 60%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(ellipse 100% 60% at 50% 0%,#000 25%,transparent 78%);
+          mask-image:radial-gradient(ellipse 100% 60% at 50% 0%,#000 25%,transparent 78%);
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--up);outline-offset:3px;border-radius:6px}
+::selection{background:rgba(18,226,154,.24);color:#fff}
+img{max-width:100%;display:block}
 
-        /* Canvas de partículas dinámicas */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 90%; 
-            height: 100%;
-            z-index: -1;
-        }
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+section{position:relative;z-index:1}
+section[id]{scroll-margin-top:88px}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--up);display:inline-flex;align-items:center;gap:10px;
+}
+.sec-head{max-width:760px;margin-bottom:44px}
+.sec-head h2{
+  hyphens:none;-webkit-hyphens:none;text-wrap:balance;
+  font-size:clamp(30px,4.2vw,46px);font-weight:640;letter-spacing:-.035em;
+  line-height:1.05;margin:16px 0 14px;
+}
+.sec-head p{color:var(--text-2);font-size:17px;max-width:620px}
+.dot{
+  width:7px;height:7px;border-radius:50%;background:var(--up);
+  box-shadow:0 0 0 0 rgba(18,226,154,.55);animation:ping 2.4s var(--ease) infinite;flex:none;
+}
+@keyframes ping{
+  0%{box-shadow:0 0 0 0 rgba(18,226,154,.5)}
+  70%{box-shadow:0 0 0 8px rgba(18,226,154,0)}
+  100%{box-shadow:0 0 0 0 rgba(18,226,154,0)}
+}
 
-        /* Navegación Estratégica */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 10px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
-        }
+/* ---------- nav ---------- */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  border-bottom:1px solid transparent;transition:background .45s var(--ease),border-color .45s var(--ease),backdrop-filter .45s;
+}
+header.nav.stuck{
+  background:rgba(5,5,6,.72);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);border-bottom-color:var(--border);
+}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:660;font-size:15.5px;letter-spacing:-.02em;margin-right:auto;min-width:0;white-space:nowrap}
+.brand .mark{
+  width:26px;height:26px;border-radius:8px;flex:none;
+  background:linear-gradient(145deg,var(--up),#0b9c6c);
+  display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;color:#00140c;
+}
+.brand em{font-style:normal;color:var(--text-3);font-weight:500}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:13.5px;color:var(--text-2);transition:color .25s}
+.nav-links a:hover{color:var(--text)}
+.lang{
+  display:flex;flex:none;border:1px solid var(--border);border-radius:100px;overflow:hidden;font-family:var(--mono);
+}
+.lang button{
+  background:none;border:0;color:var(--text-3);font:inherit;font-size:10.5px;letter-spacing:.08em;
+  padding:6px 11px;cursor:pointer;transition:.3s var(--ease);
+}
+.lang button[aria-pressed="true"]{background:rgba(18,226,154,.13);color:var(--up)}
+.nav-cta{
+  flex:none;border:1px solid var(--border-hi);border-radius:100px;padding:8px 17px;font-size:13px;font-weight:560;
+  transition:.35s var(--ease);white-space:nowrap;
+}
+.nav-cta:hover{background:var(--up);border-color:var(--up);color:#00140c}
 
-        .nav-logo {
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
+/* ---------- hero ---------- */
+.hero{padding:150px 0 76px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.09fr) minmax(0,.91fr);gap:52px;align-items:center}
+.hero h1{
+  hyphens:none;-webkit-hyphens:none;text-wrap:pretty;
+  font-size:clamp(36px,4.55vw,62px);font-weight:660;letter-spacing:-.045em;line-height:.98;
+  margin:20px 0 24px;
+  background:linear-gradient(178deg,#fff 32%,rgba(255,255,255,.52) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero h1 .hl{
+  background:linear-gradient(178deg,var(--up) 20%,#0d9d6d 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{font-size:18.5px;color:var(--text-2);max-width:530px;line-height:1.58}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:100px;
+  font-size:14px;font-weight:580;transition:.4s var(--ease);border:1px solid transparent;white-space:nowrap;
+}
+.btn-p{background:var(--up);color:#00140c}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 34px -10px rgba(18,226,154,.55)}
+.btn-s{border-color:var(--border-hi);color:var(--text)}
+.btn-s:hover{background:var(--surface-2);border-color:var(--text-3);transform:translateY(-2px)}
+.btn svg{width:15px;height:15px;flex:none}
 
-        .nav-logo span { color: var(--accent); }
+/* hero chart */
+.chart-card{
+  position:relative;border:1px solid var(--border);border-radius:var(--radius-lg);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  overflow:hidden;box-shadow:0 44px 90px -46px rgba(0,0,0,.95);
+}
+.chart-top{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);
+}
+.chart-top .tag{color:var(--up)}
+.chart-top .legend{margin-left:auto;display:flex;gap:14px;align-items:center}
+.chart-top .legend i{display:inline-block;width:14px;height:2px;border-radius:2px;margin-right:6px;vertical-align:middle}
+#heroChart{display:block;width:100%;height:340px}
+.chart-note{
+  padding:11px 18px;border-top:1px solid var(--border);font-family:var(--mono);
+  font-size:10px;letter-spacing:.06em;color:var(--text-3);
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 36px 24px 80px;
-            position: relative;
-            z-index: 1;
-        }
+/* metrics */
+.metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:64px;
+}
+.metric{background:var(--bg);padding:26px 24px}
+.metric .n{font-size:34px;font-weight:640;letter-spacing:-.04em;line-height:1;font-family:var(--mono)}
+.metric .n .u{font-size:17px;color:var(--up);margin-left:2px}
+.metric .l{margin-top:9px;font-size:12.5px;color:var(--text-3);letter-spacing:.01em}
 
-        /* Hero Section */
-        .hero {
-            text-align: left;
-            padding: 100px 0 60px;
-            max-width: 55%;
-        }
+/* ticker */
+.ticker{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  margin-top:76px;overflow:hidden;background:rgba(255,255,255,.014);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+}
+.ticker-track{display:flex;width:max-content;animation:slide 46s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{
+  display:flex;align-items:center;gap:10px;padding:15px 26px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.11em;color:var(--text-3);white-space:nowrap;
+}
+.ticker-item b{color:var(--text-2);font-weight:500}
+.ticker-item::after{content:"";width:3px;height:3px;border-radius:50%;background:var(--up);opacity:.5}
+@keyframes slide{to{transform:translateX(-50%)}}
 
-        .hero-brand {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: var(--accent);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
+/* ---------- capabilities ---------- */
+.caps{padding:110px 0 0}
+.caps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cap{
+  position:relative;border:1px solid var(--border);border-radius:var(--radius);padding:30px 28px 28px;
+  background:var(--surface);overflow:hidden;transition:.5s var(--ease);
+}
+.cap::before{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%),rgba(18,226,154,.09),transparent 66%);
+}
+.cap:hover{border-color:var(--border-hi);transform:translateY(-3px)}
+.cap:hover::before{opacity:1}
+.cap-ico{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin-bottom:20px;
+  background:var(--up-dim);border:1px solid rgba(18,226,154,.2);color:var(--up);
+}
+.cap-ico svg{width:19px;height:19px}
+.cap h3{font-size:19px;font-weight:620;letter-spacing:-.02em;margin-bottom:11px}
+.cap p{font-size:14.5px;color:var(--text-2);line-height:1.62}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.chip{
+  font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+  padding:5px 10px;border-radius:100px;border:1px solid var(--border);color:var(--text-3);
+}
+.cap:hover .chip{border-color:rgba(18,226,154,.2);color:var(--up)}
 
-        /* Punto de pulso estilo Sensor */
-        .status-dot {
-            height: 8px;
-            width: 8px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 12px;
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 2s infinite;
-        }
+/* privacy band */
+.band{
+  margin-top:20px;border:1px solid var(--border);border-radius:var(--radius);
+  background:linear-gradient(100deg,rgba(18,226,154,.055),transparent 58%);
+  padding:32px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;
+}
+.band h3{font-size:19px;font-weight:620;letter-spacing:-.02em;margin-bottom:8px}
+.band p{color:var(--text-2);font-size:14.5px;max-width:640px}
+.band-stats{display:flex;gap:34px;margin-left:auto}
+.band-stats div{font-family:var(--mono)}
+.band-stats b{display:block;font-size:22px;font-weight:600;color:var(--up)}
+.band-stats span{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-3)}
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.5; }
-            100% { transform: scale(0.9); opacity: 1; }
-        }
+/* ---------- products ---------- */
+.products{padding:118px 0 0}
+.rank{
+  font-family:var(--mono);font-size:10.5px;color:var(--text-3);letter-spacing:.14em;
+  border:1px solid var(--border);border-radius:100px;padding:4px 10px;
+}
+.feature{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:0;
+  border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
+  background:linear-gradient(155deg,rgba(18,226,154,.055),rgba(255,255,255,.012) 46%);
+  transition:.55s var(--ease);
+}
+.feature:hover{border-color:rgba(18,226,154,.3);box-shadow:0 40px 90px -50px rgba(18,226,154,.35)}
+.feature-body{padding:44px 42px}
+.badge-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 11px;border-radius:100px;background:var(--up-dim);
+  border:1px solid rgba(18,226,154,.26);color:var(--up);
+}
+.badge.neutral{background:none;border-color:var(--border);color:var(--text-3)}
+.feature h3{font-size:clamp(30px,3.6vw,40px);font-weight:660;letter-spacing:-.038em;line-height:1.02}
+.feature .tagline{color:var(--up);font-size:15.5px;margin-top:10px;font-weight:500}
+.feature p.desc{color:var(--text-2);font-size:15.5px;line-height:1.66;margin-top:18px;max-width:520px}
+.feat-list{display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;margin:26px 0 30px}
+.feat-list li{
+  list-style:none;font-size:13.5px;color:var(--text-2);display:flex;gap:9px;align-items:flex-start;
+}
+.feat-list li::before{
+  content:"";width:5px;height:5px;border-radius:50%;background:var(--up);margin-top:7px;flex:none;
+}
+.feature-visual{position:relative;border-left:1px solid var(--border);background:rgba(0,0,0,.34);display:flex;flex-direction:column}
+.visual-top{
+  padding:13px 18px;border-bottom:1px solid var(--border);font-family:var(--mono);
+  font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--text-3);
+  display:flex;justify-content:space-between;
+}
+#heatmap{display:block;width:100%;flex:1;min-height:300px}
+.visual-note{padding:10px 18px;border-top:1px solid var(--border);font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-3)}
 
-        .hero h1 {
-            font-size: clamp(50px, 9vw, 85px);
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            line-height: 0.9;
-            background: linear-gradient(180deg, #fff 40%, rgba(255,255,255,0.4) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
+.grid-apps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
+.app{
+  position:relative;display:flex;flex-direction:column;padding:30px 30px 28px;
+  border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);
+  overflow:hidden;transition:.5s var(--ease);
+}
+.app::before{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(18,226,154,.08),transparent 64%);
+}
+.app:hover{border-color:var(--border-hi);transform:translateY(-3px)}
+.app:hover::before{opacity:1}
+.app h4{font-size:22px;font-weight:630;letter-spacing:-.028em;margin-top:2px}
+.app .tagline{color:var(--up);font-size:14px;margin-top:7px;font-weight:500}
+.app p{color:var(--text-2);font-size:14.2px;line-height:1.62;margin-top:14px}
+.app-foot{
+  display:flex;align-items:center;gap:16px;margin-top:auto;padding-top:24px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-3);
+}
+.app-foot .go{margin-left:auto;color:var(--text-2);display:inline-flex;align-items:center;gap:6px;transition:.35s var(--ease)}
+.app:hover .go{color:var(--up);gap:10px}
+.app-links{display:flex;gap:10px;margin-top:22px}
+.mini{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--border);border-radius:100px;padding:7px 14px;color:var(--text-2);transition:.35s var(--ease);
+}
+.mini:hover{border-color:var(--up);color:var(--up)}
+.mini.solid{background:rgba(18,226,154,.1);border-color:rgba(18,226,154,.25);color:var(--up)}
+.mini.solid:hover{background:var(--up);color:#00140c}
 
-        .hero p {
-            font-size: 20px;
-            color: var(--text-dim);
-            max-width: 480px;
-            line-height: 1.5;
-        }
+/* ---------- automation ---------- */
+.auto{padding:120px 0 0}
+.auto-card{
+  border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+}
+#autoGraph{display:block;width:100%;height:214px}
+.auto-legend{
+  display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);
+}
+.auto-legend div{padding:22px 24px;border-right:1px solid var(--border)}
+.auto-legend div:last-child{border-right:0}
+.auto-legend b{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--up);margin-bottom:9px;
+}
+.auto-legend p{font-size:13.2px;color:var(--text-2);line-height:1.55}
 
-        /* Grid de Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 60px 0;
-        }
+/* ---------- about ---------- */
+.about{padding:118px 0 0}
+.about-card{
+  border:1px solid var(--border);border-radius:var(--radius-lg);padding:46px 44px;
+  background:var(--surface);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center;
+}
+.about-card h2{font-size:clamp(26px,3.4vw,36px);font-weight:640;letter-spacing:-.035em;line-height:1.08;margin:16px 0 16px}
+.about-card p{color:var(--text-2);font-size:15.5px;line-height:1.66;max-width:640px}
 
-        .service-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 24px;
-            transition: 0.4s ease;
-        }
+/* ---------- footer ---------- */
+footer{margin-top:118px;border-top:1px solid var(--border);padding:52px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.foot-grid h5{
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:16px;
+}
+.foot-grid a{display:block;font-size:13.5px;color:var(--text-2);padding:5px 0;transition:color .3s}
+.foot-grid a:hover{color:var(--up)}
+.foot-blurb{font-size:13.5px;color:var(--text-3);max-width:290px;margin-top:14px;line-height:1.6}
+.foot-bottom{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:52px;
+  padding-top:26px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);
+}
 
-        .service-card:hover {
-            border-color: var(--accent);
-            background: rgba(0, 255, 65, 0.01);
-        }
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
 
-        .service-card h2 { font-size: 20px; margin-bottom: 12px; color: var(--accent); font-weight: 600; }
-        .service-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
-
-        /* App Section */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .app-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 32px;
-            text-decoration: none;
-            color: inherit;
-            transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .app-card:hover {
-            border-color: rgba(0, 255, 65, 0.3);
-            transform: scale(1.01);
-        }
-
-        .app-card h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .app-card p {
-            font-size: 14px;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        .badge {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            padding: 4px 10px;
-            border-radius: 100px;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        footer {
-            margin-top: 100px;
-            text-align: center;
-            padding: 40px;
-            font-size: 11px;
-            color: #444;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 900px) {
-            .hero { max-width: 100%; text-align: center; }
-            .services-grid, .apps-grid { grid-template-columns: 1fr; }
-            nav { padding: 15px 24px; }
-        }
-
-        .btn-portfolio {
-            display: inline-block;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            margin-top: 30px;
-            padding: 12px 28px;
-            font-weight: 600;
-            font-size: 12px;
-            border-radius: 5px;
-            transition: 0.3s all ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-dim) !important; 
-            text-decoration: none;
-        }
-
-        .btn-portfolio:hover {
-            border-color: var(--accent);
-            background: rgba(0, 255, 65, 0.05);
-            color: var(--text-dim) !important;
-        }
-        
-    </style>
+/* ---------- responsive ---------- */
+@media (max-width:1040px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .feature{grid-template-columns:1fr}
+  .feature-visual{border-left:0;border-top:1px solid var(--border)}
+  .caps-grid{grid-template-columns:1fr}
+  .auto-legend{grid-template-columns:1fr 1fr}
+  .auto-legend div:nth-child(2){border-right:0}
+  .auto-legend div:nth-child(1),.auto-legend div:nth-child(2){border-bottom:1px solid var(--border)}
+  .about-card{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  .nav-in{padding:12px 16px;gap:10px}
+  .brand{font-size:14.5px;gap:9px}
+  .brand em{display:none}
+  .nav-cta{padding:8px 14px;font-size:12.5px}
+  .lang button{padding:6px 9px;font-size:10px}
+  .nav-links{display:none}
+  .hero{padding:118px 0 60px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .grid-apps{grid-template-columns:1fr}
+  .feature-body{padding:32px 26px}
+  .feat-list{grid-template-columns:1fr}
+  .band{flex-direction:column;align-items:flex-start}
+  .band-stats{margin-left:0;gap:26px;flex-wrap:wrap}
+  .about-card{padding:34px 26px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:26px}
+  #heroChart{height:250px}
+  #autoGraph{height:360px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .rv{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
 
-    <nav>
-        <!-- Contenido eliminado para dejar el frame limpio -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="MyIOSapps home">
+      <span class="mark" aria-hidden="true">M</span>
+      MyIOSapps<em>.org</em>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#products" data-en="Products" data-es="Productos">Products</a>
+      <a href="#automation" data-en="Automation" data-es="Automatización">Automation</a>
+      <a href="#capabilities" data-en="Engineering" data-es="Ingeniería">Engineering</a>
+      <a href="#about" data-en="About" data-es="Nosotros">About</a>
     </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btnEn" aria-pressed="true">EN</button>
+      <button type="button" id="btnEs" aria-pressed="false">ES</button>
+    </div>
+    <a class="nav-cta" href="https://apps.apple.com/app/id6793700978" target="_blank" rel="noopener"
+       data-en="Get ApexTrade" data-es="Obtener ApexTrade">Get ApexTrade</a>
+  </div>
+</header>
 
-    <canvas id="particle-canvas"></canvas>
+<main id="top">
 
-    <div class="container">
-        <header class="hero">
-            <div class="hero-brand">
-                <span class="status-dot"></span> Engineering Lab
-            </div>
-            <h1>Security & <br>Development</h1>
-            <p>Soluciones de Desarrollo, automatizacion, Seguridad y Bases de Datos</p>
-            <a href="https://gzalomoscoso.github.io/articulos/portafolio.html" class="btn-portfolio">
-                _Portafolio de Gonzalo Moscoso
-            </a>
-        </header>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow rv"><span class="dot" aria-hidden="true"></span>
+          <span data-en="6 apps live on the App Store" data-es="6 apps publicadas en el App Store">6 apps live on the App Store</span>
+        </span>
+        <h1 class="rv" style="--d:70ms"
+            data-en="Software built for<br><span class=&quot;hl&quot;>markets and machines.</span>"
+            data-es="Software para<br><span class=&quot;hl&quot;>mercados y máquinas.</span>">
+          Software built for<br><span class="hl">markets and machines.</span>
+        </h1>
+        <p class="hero-sub rv" style="--d:140ms"
+           data-en="MyIOSapps is an independent engineering studio building institutional-grade Apple software across three domains: portfolio and market analytics, system-level automation, and focused productivity tools. Everything runs on-device and syncs through your own iCloud."
+           data-es="MyIOSapps es un estudio de ingeniería independiente que construye software de grado institucional para Apple en tres dominios: analítica de portafolio y mercado, automatización a nivel de sistema y herramientas de productividad enfocadas. Todo corre en el dispositivo y sincroniza por tu propio iCloud.">
+          MyIOSapps is an independent engineering studio building institutional-grade Apple software across three domains: portfolio and market analytics, system-level automation, and focused productivity tools. Everything runs on-device and syncs through your own iCloud.
+        </p>
+        <div class="hero-cta rv" style="--d:210ms">
+          <a class="btn btn-p" href="#products" data-en="Explore the products" data-es="Ver los productos">Explore the products</a>
+          <a class="btn btn-s" href="https://www.myiosapps.org/apextrade" data-en="ApexTrade — flagship" data-es="ApexTrade — producto insignia">ApexTrade — flagship</a>
+        </div>
+      </div>
 
-        <section class="services-grid">
-            <div class="service-card">
-                <h2>Cybersecurity</h2>
-                <p>Hardening de sistemas y auditoría técnica basada en arquitecturas Zero-Trust.</p>
-            </div>
-            <div class="service-card">
-                <h2>Development</h2>
-                <p>Aplicaciones en Swift con integración profunda en el ecosistema Apple y APIs.</p>
-            </div>
-            <div class="service-card">
-                <h2>Automations</h2>
-                <p>Pipeline de automatización SecOps utilizando Python y n8n para entornos empresariales.</p>
-            </div>
-        </section>
-
-        <section class="apps-grid">
-            <a href="https://apps.apple.com/app/spotiactions/id6748419049" class="app-card">
-                <span class="badge">Ecosystem Bridge</span>
-                <h3>SpotiActions</h3>
-                <p>Control avanzado de flujos multimedia mediante automatizaciones personalizadas.</p>
-            </a>
-            <a href="https://www.myiosapps.org/solowrite/" class="app-card">
-                <span class="badge">Secure Writing</span>
-                <h3>SoloWrite</h3>
-                <p>Escritura técnica y minimalista libre de distracciones.</p>
-            </a>
-            <a href="https://www.myiosapps.org/automatemusic/" class="app-card">
-                <span class="badge">Audio Automation</span>
-                <h3>AutomateMusic</h3>
-                <p>Integración nativa via Shortcuts para automatizar listas de reproducción completas en Apple Music sin confirmación.</p>
-            </a>
-            <a href="https://www.myiosapps.org/playpausebar/" class="app-card">
-                <span class="badge">System Utility</span>
-                <h3>PlayPauseBar</h3>
-                <p>Control multimedia persistente y accesible directamente desde la barra de menús del sistema.</p>
-            </a>
-        </section>
-
-        <footer>
-            www.myiosapps.org
-        </footer>
+      <div class="chart-card rv" style="--d:280ms">
+        <div class="chart-top">
+          <span class="tag">ApexTrade</span>
+          <span data-en="Chart engine" data-es="Motor de gráficos">Chart engine</span>
+          <span class="legend">
+            <span><i style="background:var(--up)"></i>OHLC</span>
+            <span><i style="background:#7d8bff"></i>VWAP</span>
+          </span>
+        </div>
+        <canvas id="heroChart" role="img"
+                aria-label="Animated illustration of the ApexTrade candlestick and VWAP chart engine. Decorative, not live market data."></canvas>
+        <div class="chart-note"
+             data-en="Illustrative rendering of the in-app chart engine — not live market data."
+             data-es="Render ilustrativo del motor de gráficos de la app — no son datos de mercado en vivo.">
+          Illustrative rendering of the in-app chart engine — not live market data.
+        </div>
+      </div>
     </div>
 
-    <script>
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles;
+    <div class="metrics rv" style="--d:120ms">
+      <div class="metric"><div class="n">6</div><div class="l" data-en="Apps shipped on the App Store" data-es="Apps publicadas en el App Store">Apps shipped on the App Store</div></div>
+      <div class="metric"><div class="n">2</div><div class="l" data-en="Platforms — iOS and macOS" data-es="Plataformas — iOS y macOS">Platforms — iOS and macOS</div></div>
+      <div class="metric"><div class="n">100<span class="u">%</span></div><div class="l" data-en="Native Swift, no wrappers" data-es="Swift nativo, sin wrappers">Native Swift, no wrappers</div></div>
+      <div class="metric"><div class="n">0</div><div class="l" data-en="Analytics SDKs or tracking" data-es="SDKs de analítica o tracking">Analytics SDKs or tracking</div></div>
+    </div>
+  </div>
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initParticles();
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="caps" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-en="What we build" data-es="Qué construimos">What we build</span>
+      <h2 data-en="Three disciplines, one engineering standard." data-es="Tres disciplinas, un solo estándar de ingeniería.">Three disciplines, one engineering standard.</h2>
+      <p data-en="Every product ships from the same stack and the same constraints: native frameworks, on-device execution, and no data leaving the user's account."
+         data-es="Cada producto sale del mismo stack y las mismas restricciones: frameworks nativos, ejecución en el dispositivo y ningún dato saliendo de la cuenta del usuario.">
+        Every product ships from the same stack and the same constraints: native frameworks, on-device execution, and no data leaving the user's account.
+      </p>
+    </div>
+
+    <div class="caps-grid">
+      <article class="cap rv" data-tilt>
+        <div class="cap-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-8 4 5"/><path d="M3 21h18"/></svg>
+        </div>
+        <h3 data-en="Financial software" data-es="Software financiero">Financial software</h3>
+        <p data-en="Portfolio accounting with cost basis and realized P&amp;L, per-holding stop losses, market heat-maps, VWAP and fair-value analytics, opening-range reports and price alerts. Built around a rules-based risk process rather than around engagement."
+           data-es="Contabilidad de portafolio con costo base y P&amp;L realizado, stop loss por posición, heat-maps de mercado, analítica de VWAP y fair value, reportes de apertura y alertas de precio. Construido alrededor de un proceso de riesgo por reglas, no alrededor del engagement.">
+          Portfolio accounting with cost basis and realized P&amp;L, per-holding stop losses, market heat-maps, VWAP and fair-value analytics, opening-range reports and price alerts. Built around a rules-based risk process rather than around engagement.
+        </p>
+        <div class="chips"><span class="chip">Portfolio</span><span class="chip">VWAP</span><span class="chip">Heat-map</span><span class="chip">Stop Loss</span><span class="chip">Alerts</span></div>
+      </article>
+
+      <article class="cap rv" style="--d:90ms" data-tilt>
+        <div class="cap-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3 data-en="Apple platform engineering" data-es="Ingeniería en plataformas Apple">Apple platform engineering</h3>
+        <p data-en="Swift and SwiftUI across iPhone and Mac, with AppKit where the Mac demands it. Widgets, App Intents, MusicKit, CloudKit, background execution and Live Markdown rendering — first-party frameworks, never cross-platform wrappers."
+           data-es="Swift y SwiftUI en iPhone y Mac, con AppKit donde el Mac lo exige. Widgets, App Intents, MusicKit, CloudKit, ejecución en segundo plano y render de Markdown en vivo — frameworks de primera parte, nunca wrappers multiplataforma.">
+          Swift and SwiftUI across iPhone and Mac, with AppKit where the Mac demands it. Widgets, App Intents, MusicKit, CloudKit, background execution and Live Markdown rendering — first-party frameworks, never cross-platform wrappers.
+        </p>
+        <div class="chips"><span class="chip">Swift</span><span class="chip">SwiftUI</span><span class="chip">AppKit</span><span class="chip">CloudKit</span><span class="chip">WidgetKit</span></div>
+      </article>
+
+      <article class="cap rv" style="--d:180ms" data-tilt>
+        <div class="cap-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a3 3 0 013 3v1"/><path d="M7 18h5a3 3 0 003-3v-1"/></svg>
+        </div>
+        <h3 data-en="Automation &amp; integrations" data-es="Automatización e integraciones">Automation &amp; integrations</h3>
+        <p data-en="System-level automation through Shortcuts and App Intents: routines that fire from an alarm, a CarPlay connection or a focus change and complete in the background, from a locked screen, with no confirmation dialog. Plus REST integrations with third-party services."
+           data-es="Automatización a nivel de sistema con Shortcuts y App Intents: rutinas que se disparan desde una alarma, una conexión CarPlay o un cambio de Focus y se completan en segundo plano, con la pantalla bloqueada y sin diálogos de confirmación. Más integraciones REST con servicios de terceros.">
+          System-level automation through Shortcuts and App Intents: routines that fire from an alarm, a CarPlay connection or a focus change and complete in the background, from a locked screen, with no confirmation dialog. Plus REST integrations with third-party services.
+        </p>
+        <div class="chips"><span class="chip">Shortcuts</span><span class="chip">App Intents</span><span class="chip">MusicKit</span><span class="chip">REST APIs</span><span class="chip">n8n</span></div>
+      </article>
+    </div>
+
+    <div class="band rv">
+      <div>
+        <h3 data-en="Privacy is an architecture, not a policy." data-es="La privacidad es una arquitectura, no una política.">Privacy is an architecture, not a policy.</h3>
+        <p data-en="There is no MyIOSapps backend. Holdings, notes, watchlists and libraries live in your own iCloud container and sync device-to-device. No accounts to create, no analytics SDKs linked, nothing sold."
+           data-es="No existe un backend de MyIOSapps. Posiciones, notas, watchlists y bibliotecas viven en tu propio contenedor de iCloud y sincronizan entre dispositivos. Sin cuentas que crear, sin SDKs de analítica enlazados, sin nada vendido.">
+          There is no MyIOSapps backend. Holdings, notes, watchlists and libraries live in your own iCloud container and sync device-to-device. No accounts to create, no analytics SDKs linked, nothing sold.
+        </p>
+      </div>
+      <div class="band-stats">
+        <div><b>0</b><span data-en="Servers" data-es="Servidores">Servers</span></div>
+        <div><b>0</b><span data-en="Accounts" data-es="Cuentas">Accounts</span></div>
+        <div><b>0</b><span data-en="Trackers" data-es="Trackers">Trackers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-en="Products" data-es="Productos">Products</span>
+      <h2 data-en="Six shipped apps, ordered by depth." data-es="Seis apps publicadas, ordenadas por profundidad.">Six shipped apps, ordered by depth.</h2>
+      <p data-en="From a full portfolio-management environment to a single-purpose menu bar utility. Each one solves a problem the platform left open."
+         data-es="Desde un entorno completo de gestión de portafolio hasta una utilidad de un solo propósito en la barra de menús. Cada una resuelve un problema que la plataforma dejó abierto.">
+        From a full portfolio-management environment to a single-purpose menu bar utility. Each one solves a problem the platform left open.
+      </p>
+    </div>
+
+    <!-- FLAGSHIP -->
+    <article class="feature rv">
+      <div class="feature-body">
+        <div class="badge-row">
+          <span class="rank">01</span>
+          <span class="badge" data-en="Flagship · Finance" data-es="Insignia · Finanzas">Flagship · Finance</span>
+          <span class="badge neutral">iOS 17.6+</span>
+        </div>
+        <h3>ApexTrade</h3>
+        <div class="tagline" data-en="Absolute control over your portfolio." data-es="Control absoluto sobre tu portafolio.">Absolute control over your portfolio.</div>
+        <p class="desc"
+           data-en="An institutional-grade environment engineered for systematic, data-driven portfolio management. Live holdings value with daily and all-time P&amp;L, cost basis and per-holding stop losses; a market heat-map over the S&amp;P 100, top movers and ETFs sized by market cap; fair-value and VWAP analytics on every ticker; morning opening-range reports, price targets and VWAP-break notifications."
+           data-es="Un entorno de grado institucional diseñado para gestión de portafolio sistemática y basada en datos. Valor de posiciones en vivo con P&amp;L diario e histórico, costo base y stop loss por posición; heat-map de mercado sobre el S&amp;P 100, mayores movimientos y ETFs dimensionados por capitalización; analítica de fair value y VWAP en cada ticker; reportes de rango de apertura, precios objetivo y notificaciones de ruptura de VWAP.">
+          An institutional-grade environment engineered for systematic, data-driven portfolio management. Live holdings value with daily and all-time P&amp;L, cost basis and per-holding stop losses; a market heat-map over the S&amp;P 100, top movers and ETFs sized by market cap; fair-value and VWAP analytics on every ticker; morning opening-range reports, price targets and VWAP-break notifications.
+        </p>
+        <ul class="feat-list">
+          <li data-en="Live P&amp;L, cost basis and stop losses" data-es="P&amp;L en vivo, costo base y stop loss">Live P&amp;L, cost basis and stop losses</li>
+          <li data-en="StockMap heat-map — S&amp;P 100 and ETFs" data-es="Heat-map StockMap — S&amp;P 100 y ETFs">StockMap heat-map — S&amp;P 100 and ETFs</li>
+          <li data-en="Fair value and VWAP on every ticker" data-es="Fair value y VWAP en cada ticker">Fair value and VWAP on every ticker</li>
+          <li data-en="Daily report and break alerts" data-es="Reporte diario y alertas de ruptura">Daily report and break alerts</li>
+          <li data-en="Fact sheets: fundamentals, ranges, news" data-es="Fichas: fundamentales, rangos, noticias">Fact sheets: fundamentals, ranges, news</li>
+          <li data-en="Private iCloud sync via Sign in with Apple" data-es="Sync privado por iCloud con Sign in with Apple">Private iCloud sync via Sign in with Apple</li>
+        </ul>
+        <div class="app-links">
+          <a class="mini solid" href="https://apps.apple.com/app/id6793700978" target="_blank" rel="noopener" data-en="App Store" data-es="App Store">App Store</a>
+          <a class="mini" href="https://www.myiosapps.org/apextrade" data-en="Full overview" data-es="Ver detalle">Full overview</a>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="visual-top">
+          <span data-en="StockMap · market heat-map" data-es="StockMap · heat-map de mercado">StockMap · market heat-map</span>
+          <span data-en="Weighted by market cap" data-es="Ponderado por capitalización">Weighted by market cap</span>
+        </div>
+        <canvas id="heatmap" role="img"
+                aria-label="Animated illustration of the StockMap heat-map: tiles sized by market capitalisation and coloured by performance. Decorative, not live market data."></canvas>
+        <div class="visual-note"
+             data-en="Illustrative rendering — not live market data."
+             data-es="Render ilustrativo — no son datos de mercado en vivo.">
+          Illustrative rendering — not live market data.
+        </div>
+      </div>
+    </article>
+
+    <!-- REST -->
+    <div class="grid-apps">
+
+      <a class="app rv" href="https://www.myiosapps.org/solowrite" data-tilt>
+        <div class="badge-row">
+          <span class="rank">02</span>
+          <span class="badge" data-en="Writing" data-es="Escritura">Writing</span>
+          <span class="badge neutral">iOS · macOS</span>
+        </div>
+        <h4>SoloWrite</h4>
+        <div class="tagline" data-en="Don't get distracted. Just write." data-es="No te distraigas. Solo escribe.">Don't get distracted. Just write.</div>
+        <p data-en="A Markdown editor that renders as you type — headings, bold, quotes, code blocks and lists live in the editor, with a GitHub-style line-number gutter. Twelve themes, a native Mac companion, and notes stored as plain .md files in your own iCloud Drive. One-time purchase."
+           data-es="Un editor Markdown que renderiza mientras escribes — títulos, negritas, citas, bloques de código y listas en vivo dentro del editor, con numeración de líneas estilo GitHub. Doce temas, app nativa para Mac, y notas guardadas como archivos .md planos en tu propio iCloud Drive. Pago único.">
+          A Markdown editor that renders as you type — headings, bold, quotes, code blocks and lists live in the editor, with a GitHub-style line-number gutter. Twelve themes, a native Mac companion, and notes stored as plain .md files in your own iCloud Drive. One-time purchase.
+        </p>
+        <div class="app-foot">
+          <span>Swift · SwiftUI</span>
+          <span class="go" data-en="Open&nbsp;→" data-es="Abrir&nbsp;→">Open&nbsp;→</span>
+        </div>
+      </a>
+
+      <a class="app rv" style="--d:80ms" href="https://www.myiosapps.org/spotiactions" data-tilt>
+        <div class="badge-row">
+          <span class="rank">03</span>
+          <span class="badge" data-en="Automation" data-es="Automatización">Automation</span>
+          <span class="badge neutral">iOS</span>
+        </div>
+        <h4>SpotiActions</h4>
+        <div class="tagline" data-en="Advanced Spotify automation for iOS." data-es="Automatización avanzada de Spotify para iOS.">Advanced Spotify automation for iOS.</div>
+        <p data-en="Bridges the gap between your music and system-level automation. Trigger Spotify workflows from alarms and time-based automations, shuffle personal playlists and Liked Songs inside Shortcuts, and browse the library through a cover-flow interface. One-time purchase, zero background tracking."
+           data-es="Cierra la brecha entre tu música y la automatización a nivel de sistema. Dispara flujos de Spotify desde alarmas y automatizaciones por hora, mezcla playlists personales y Liked Songs dentro de Shortcuts, y navega la biblioteca con una interfaz cover-flow. Pago único, cero tracking en segundo plano.">
+          Bridges the gap between your music and system-level automation. Trigger Spotify workflows from alarms and time-based automations, shuffle personal playlists and Liked Songs inside Shortcuts, and browse the library through a cover-flow interface. One-time purchase, zero background tracking.
+        </p>
+        <div class="app-foot">
+          <span>Shortcuts · Spotify API</span>
+          <span class="go" data-en="Open&nbsp;→" data-es="Abrir&nbsp;→">Open&nbsp;→</span>
+        </div>
+      </a>
+
+      <a class="app rv" href="https://www.myiosapps.org/automatemusic" data-tilt>
+        <div class="badge-row">
+          <span class="rank">04</span>
+          <span class="badge" data-en="Automation" data-es="Automatización">Automation</span>
+          <span class="badge neutral">iOS</span>
+        </div>
+        <h4>AutomateMusic</h4>
+        <div class="tagline" data-en="Automate your Apple Music." data-es="Automatiza tu Apple Music.">Automate your Apple Music.</div>
+        <p data-en="Exposes native App Intents so your music routines run flawlessly in the background through iOS Shortcuts: smart morning alarms with dynamic playlists, instant CarPlay routines, and playback from a locked screen via MusicKit — with no confirmation prompt. One-time purchase, no in-app purchases."
+           data-es="Expone App Intents nativos para que tus rutinas de música corran sin fallos en segundo plano mediante Shortcuts: alarmas matutinas con playlists dinámicas, rutinas instantáneas de CarPlay y reproducción con pantalla bloqueada vía MusicKit — sin diálogo de confirmación. Pago único, sin compras dentro de la app.">
+          Exposes native App Intents so your music routines run flawlessly in the background through iOS Shortcuts: smart morning alarms with dynamic playlists, instant CarPlay routines, and playback from a locked screen via MusicKit — with no confirmation prompt. One-time purchase, no in-app purchases.
+        </p>
+        <div class="app-foot">
+          <span>App Intents · MusicKit</span>
+          <span class="go" data-en="Open&nbsp;→" data-es="Abrir&nbsp;→">Open&nbsp;→</span>
+        </div>
+      </a>
+
+      <a class="app rv" style="--d:80ms" href="https://www.myiosapps.org/serialwatcher" data-tilt>
+        <div class="badge-row">
+          <span class="rank">05</span>
+          <span class="badge" data-en="Tracking" data-es="Seguimiento">Tracking</span>
+          <span class="badge neutral">iOS 17.6+</span>
+        </div>
+        <h4>SerialWatcher</h4>
+        <div class="tagline" data-en="Track every movie &amp; TV show." data-es="Registra cada película y serie.">Track every movie &amp; TV show.</div>
+        <p data-en="Episode-level tracking with 0–10 ratings and whole-season completion, an Up Next queue filterable by streaming platform, a library organised by status, and browsing by genre, year, actor, director or service. Automatic iCloud sync with no account. Free, no ads, no analytics."
+           data-es="Seguimiento episodio por episodio con calificaciones de 0–10 y completado por temporada, una cola Up Next filtrable por plataforma de streaming, biblioteca organizada por estado y navegación por género, año, actor, director o servicio. Sync automático por iCloud sin cuenta. Gratis, sin anuncios ni analítica.">
+          Episode-level tracking with 0–10 ratings and whole-season completion, an Up Next queue filterable by streaming platform, a library organised by status, and browsing by genre, year, actor, director or service. Automatic iCloud sync with no account. Free, no ads, no analytics.
+        </p>
+        <div class="app-foot">
+          <span>CloudKit · TMDB</span>
+          <span class="go" data-en="Open&nbsp;→" data-es="Abrir&nbsp;→">Open&nbsp;→</span>
+        </div>
+      </a>
+
+      <a class="app rv" href="https://www.myiosapps.org/playpausebar" data-tilt>
+        <div class="badge-row">
+          <span class="rank">06</span>
+          <span class="badge" data-en="Utility" data-es="Utilidad">Utility</span>
+          <span class="badge neutral">macOS 13+</span>
+        </div>
+        <h4>PlayPauseBar</h4>
+        <div class="tagline" data-en="One click. Total control." data-es="Un clic. Control total.">One click. Total control.</div>
+        <p data-en="A menu bar utility that removes the two-step friction of Control Center: one click pauses Spotify, Apple Music, YouTube or local media, whatever is playing. Built in Swift and AppKit with SF Symbols, under 15 MB of memory, right-click configuration and auto-start."
+           data-es="Una utilidad de barra de menús que elimina la fricción de dos pasos del Centro de Control: un clic pausa Spotify, Apple Music, YouTube o media local, sea lo que sea que esté sonando. Hecha en Swift y AppKit con SF Symbols, menos de 15 MB de memoria, configuración con clic derecho y arranque automático.">
+          A menu bar utility that removes the two-step friction of Control Center: one click pauses Spotify, Apple Music, YouTube or local media, whatever is playing. Built in Swift and AppKit with SF Symbols, under 15 MB of memory, right-click configuration and auto-start.
+        </p>
+        <div class="app-foot">
+          <span>Swift · AppKit</span>
+          <span class="go" data-en="Open&nbsp;→" data-es="Abrir&nbsp;→">Open&nbsp;→</span>
+        </div>
+      </a>
+
+      <div class="app rv" style="--d:80ms;background:linear-gradient(150deg,rgba(18,226,154,.06),transparent 60%)">
+        <div class="badge-row"><span class="badge" data-en="Next" data-es="Siguiente">Next</span></div>
+        <h4 data-en="Have a problem worth automating?" data-es="¿Tienes un problema que valga automatizar?">Have a problem worth automating?</h4>
+        <p data-en="Most of these apps started as a workflow that the platform refused to complete without a tap. If you have a market process, a data pipeline or a repetitive routine that should run itself, that is the kind of work this studio takes on."
+           data-es="Casi todas estas apps empezaron como un flujo que la plataforma se negaba a completar sin un toque. Si tienes un proceso de mercado, un pipeline de datos o una rutina repetitiva que debería ejecutarse sola, ese es el tipo de trabajo que este estudio toma.">
+          Most of these apps started as a workflow that the platform refused to complete without a tap. If you have a market process, a data pipeline or a repetitive routine that should run itself, that is the kind of work this studio takes on.
+        </p>
+        <div class="app-links">
+          <a class="mini solid" href="https://gzalomoscoso.github.io/articulos/portafolio.html" target="_blank" rel="noopener" data-en="Start a conversation" data-es="Conversemos">Start a conversation</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTOMATION ============ -->
+<section class="auto" id="automation">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-en="How the automation works" data-es="Cómo funciona la automatización">How the automation works</span>
+      <h2 data-en="A routine that finishes without asking you anything." data-es="Una rutina que termina sin preguntarte nada.">A routine that finishes without asking you anything.</h2>
+      <p data-en="Most &quot;automations&quot; on iOS stop at a confirmation dialog. SpotiActions and AutomateMusic expose native App Intents, so the system resolves the whole chain in the background — including from a locked screen."
+         data-es="La mayoría de las «automatizaciones» en iOS se detienen en un diálogo de confirmación. SpotiActions y AutomateMusic exponen App Intents nativos, así el sistema resuelve toda la cadena en segundo plano — incluso con la pantalla bloqueada.">
+        Most "automations" on iOS stop at a confirmation dialog. SpotiActions and AutomateMusic expose native App Intents, so the system resolves the whole chain in the background — including from a locked screen.
+      </p>
+    </div>
+
+    <div class="auto-card rv">
+      <canvas id="autoGraph" role="img"
+              aria-label="Diagram of the automation chain: a system trigger such as an alarm, CarPlay connection or focus change resolves an App Intent, which calls MusicKit or the Spotify API, which starts playback in the background."></canvas>
+      <div class="auto-legend">
+        <div>
+          <b data-en="01 · Trigger" data-es="01 · Disparador">01 · Trigger</b>
+          <p data-en="An alarm, a time of day, a CarPlay connection or a Focus change fires a native iOS automation." data-es="Una alarma, una hora del día, una conexión CarPlay o un cambio de Focus dispara una automatización nativa de iOS.">An alarm, a time of day, a CarPlay connection or a Focus change fires a native iOS automation.</p>
+        </div>
+        <div>
+          <b data-en="02 · App Intent" data-es="02 · App Intent">02 · App Intent</b>
+          <p data-en="Shortcuts resolves an intent the app publishes — with real parameters: playlist, station, shuffle mode, target device." data-es="Shortcuts resuelve un intent que la app publica — con parámetros reales: playlist, estación, modo aleatorio, dispositivo destino.">Shortcuts resolves an intent the app publishes — with real parameters: playlist, station, shuffle mode, target device.</p>
+        </div>
+        <div>
+          <b data-en="03 · Framework" data-es="03 · Framework">03 · Framework</b>
+          <p data-en="The intent calls MusicKit or the Spotify Web API directly, inside the app's own background execution window." data-es="El intent llama a MusicKit o a la Spotify Web API directamente, dentro de la ventana de ejecución en segundo plano de la app.">The intent calls MusicKit or the Spotify Web API directly, inside the app's own background execution window.</p>
+        </div>
+        <div>
+          <b data-en="04 · Result" data-es="04 · Resultado">04 · Result</b>
+          <p data-en="Playback starts. No unlock, no tap, no confirmation screen — the chain completes end to end." data-es="La reproducción arranca. Sin desbloquear, sin tocar, sin pantalla de confirmación — la cadena se completa de extremo a extremo.">Playback starts. No unlock, no tap, no confirmation screen — the chain completes end to end.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-card rv">
+      <div>
+        <span class="eyebrow" data-en="The studio" data-es="El estudio">The studio</span>
+        <h2 data-en="One engineer, six products, no shortcuts taken." data-es="Un ingeniero, seis productos, sin atajos.">One engineer, six products, no shortcuts taken.</h2>
+        <p data-en="MyIOSapps is the software label of Gonzalo Moscoso — engineering across Apple platforms, financial tooling and automation infrastructure, with a background in systems hardening and technical auditing. Every app here was designed, built, shipped and is maintained in-house."
+           data-es="MyIOSapps es el sello de software de Gonzalo Moscoso — ingeniería en plataformas Apple, herramientas financieras e infraestructura de automatización, con formación en hardening de sistemas y auditoría técnica. Cada app aquí fue diseñada, construida, publicada y se mantiene en casa.">
+          MyIOSapps is the software label of Gonzalo Moscoso — engineering across Apple platforms, financial tooling and automation infrastructure, with a background in systems hardening and technical auditing. Every app here was designed, built, shipped and is maintained in-house.
+        </p>
+      </div>
+      <div class="app-links" style="margin:0">
+        <a class="mini solid" href="https://gzalomoscoso.github.io/articulos/portafolio.html" target="_blank" rel="noopener"
+           data-en="Personal portfolio" data-es="Portafolio personal">Personal portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><span class="mark" aria-hidden="true">M</span>MyIOSapps<em>.org</em></a>
+        <p class="foot-blurb" data-en="Native Apple software for markets, automation and focused work. Built in Swift. Stored in your iCloud, not ours."
+           data-es="Software nativo de Apple para mercados, automatización y trabajo enfocado. Hecho en Swift. Guardado en tu iCloud, no en el nuestro.">
+          Native Apple software for markets, automation and focused work. Built in Swift. Stored in your iCloud, not ours.
+        </p>
+      </div>
+      <div>
+        <h5 data-en="Finance" data-es="Finanzas">Finance</h5>
+        <a href="https://www.myiosapps.org/apextrade">ApexTrade</a>
+      </div>
+      <div>
+        <h5 data-en="Automation" data-es="Automatización">Automation</h5>
+        <a href="https://www.myiosapps.org/spotiactions">SpotiActions</a>
+        <a href="https://www.myiosapps.org/automatemusic">AutomateMusic</a>
+        <a href="https://www.myiosapps.org/playpausebar">PlayPauseBar</a>
+      </div>
+      <div>
+        <h5 data-en="Productivity" data-es="Productividad">Productivity</h5>
+        <a href="https://www.myiosapps.org/solowrite">SoloWrite</a>
+        <a href="https://www.myiosapps.org/serialwatcher">SerialWatcher</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> MyIOSapps · Gonzalo Moscoso</span>
+      <span data-en="Built with Swift · Hosted on myiosapps.org" data-es="Hecho con Swift · Alojado en myiosapps.org">Built with Swift · Hosted on myiosapps.org</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://www.myiosapps.org/#org",
+      "name":"MyIOSapps",
+      "url":"https://www.myiosapps.org/",
+      "logo":"https://www.myiosapps.org/IMG_5954.png",
+      "description":"Independent engineering studio building native Apple software: portfolio and market analytics, system-level automation and focused productivity tools.",
+      "founder":{"@type":"Person","name":"Gonzalo Moscoso","url":"https://gzalomoscoso.github.io/articulos/portafolio.html"},
+      "knowsAbout":["iOS development","macOS development","Swift","Portfolio management software","Market data","Automation","App Intents","Shortcuts"]
+    },
+    {
+      "@type":"WebSite",
+      "url":"https://www.myiosapps.org/",
+      "name":"MyIOSapps",
+      "publisher":{"@id":"https://www.myiosapps.org/#org"}
+    },
+    {
+      "@type":"ItemList",
+      "name":"MyIOSapps products",
+      "itemListOrder":"https://schema.org/ItemListOrderDescending",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"item":{"@type":"SoftwareApplication","name":"ApexTrade","applicationCategory":"FinanceApplication","operatingSystem":"iOS 17.6","url":"https://www.myiosapps.org/apextrade","installUrl":"https://apps.apple.com/app/id6793700978","description":"Institutional-grade portfolio management: live P&L, cost basis, stop losses, market heat-map, VWAP and fair-value analytics, daily reports and alerts."}},
+        {"@type":"ListItem","position":2,"item":{"@type":"SoftwareApplication","name":"SoloWrite","applicationCategory":"ProductivityApplication","operatingSystem":"iOS 17.6, macOS 15.6","url":"https://www.myiosapps.org/solowrite","installUrl":"https://apps.apple.com/app/id6753189572","description":"Distraction-free Markdown editor with live rendering, 12 themes and plain .md files in your own iCloud Drive."}},
+        {"@type":"ListItem","position":3,"item":{"@type":"SoftwareApplication","name":"SpotiActions","applicationCategory":"UtilitiesApplication","operatingSystem":"iOS","url":"https://www.myiosapps.org/spotiactions","installUrl":"https://apps.apple.com/app/spotiactions/id6748419049","description":"Advanced Spotify automation for iOS through Shortcuts and system automations."}},
+        {"@type":"ListItem","position":4,"item":{"@type":"SoftwareApplication","name":"AutomateMusic","applicationCategory":"UtilitiesApplication","operatingSystem":"iOS","url":"https://www.myiosapps.org/automatemusic","installUrl":"https://apps.apple.com/app/id6774013731","description":"Native App Intents that run Apple Music routines in the background via iOS Shortcuts."}},
+        {"@type":"ListItem","position":5,"item":{"@type":"SoftwareApplication","name":"SerialWatcher","applicationCategory":"EntertainmentApplication","operatingSystem":"iOS 17.6","url":"https://www.myiosapps.org/serialwatcher","installUrl":"https://apps.apple.com/app/id6792816019","description":"Episode-level movie and TV tracking with iCloud sync and no account required."}},
+        {"@type":"ListItem","position":6,"item":{"@type":"SoftwareApplication","name":"PlayPauseBar","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.0","url":"https://www.myiosapps.org/playpausebar","installUrl":"https://apps.apple.com/pe/app/playpausebar/id6776444827","description":"One-click macOS menu bar media control for Spotify, Apple Music, YouTube and local media."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function(){
+"use strict";
+
+var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------------- year ---------------- */
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+/* ---------------- sticky nav ---------------- */
+var nav = document.getElementById("nav");
+function onScroll(){ nav.classList.toggle("stuck", window.scrollY > 12); }
+window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+/* ---------------- reveal on scroll ---------------- */
+if (!reduce && "IntersectionObserver" in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {rootMargin:"0px 0px -8% 0px", threshold:0.06});
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+} else {
+  document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("in"); });
+}
+
+/* ---------------- pointer glow ---------------- */
+if (!reduce && window.matchMedia("(hover:hover)").matches){
+  document.querySelectorAll("[data-tilt]").forEach(function(el){
+    el.addEventListener("pointermove", function(ev){
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", (ev.clientX - r.left) + "px");
+      el.style.setProperty("--my", (ev.clientY - r.top) + "px");
+    });
+  });
+}
+
+/* ---------------- language ---------------- */
+var lang = "en";
+var btnEn = document.getElementById("btnEn"), btnEs = document.getElementById("btnEs");
+function setLang(next){
+  lang = next;
+  document.documentElement.lang = next;
+  btnEn.setAttribute("aria-pressed", String(next === "en"));
+  btnEs.setAttribute("aria-pressed", String(next === "es"));
+  document.querySelectorAll("[data-en]").forEach(function(el){
+    var v = el.getAttribute("data-" + next);
+    if (v != null) el.innerHTML = v;
+  });
+}
+btnEn.addEventListener("click", function(){ setLang("en"); });
+btnEs.addEventListener("click", function(){ setLang("es"); });
+
+/* ---------------- tech ticker ---------------- */
+var stack = ["Swift","SwiftUI","AppKit","App Intents","Shortcuts","MusicKit","CloudKit","WidgetKit","Spotify Web API","TMDB","Sign in with Apple","Background Tasks","SF Symbols","Live Markdown","Local Notifications","StoreKit 2"];
+var track = document.getElementById("tickerTrack");
+var html = stack.map(function(s){ return '<span class="ticker-item"><b>' + s + '</b></span>'; }).join("");
+track.innerHTML = html + html;
+
+/* ---------------- canvas helper ---------------- */
+function setupCanvas(canvas, draw){
+  var ctx = canvas.getContext("2d");
+  var w = 0, h = 0, dpr = 1, visible = true, raf = 0;
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    w = Math.max(1, Math.round(r.width));
+    h = Math.max(1, Math.round(r.height));
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (typeof draw.onResize === "function") draw.onResize(w, h);
+  }
+  function frame(t){
+    raf = 0;
+    if (!visible || document.hidden) return;
+    draw.render(ctx, w, h, t || 0);
+    raf = requestAnimationFrame(frame);
+  }
+  function start(){ if (!raf) raf = requestAnimationFrame(frame); }
+  function stop(){ if (raf){ cancelAnimationFrame(raf); raf = 0; } }
+  if ("ResizeObserver" in window){
+    new ResizeObserver(function(){ resize(); if (reduce) draw.render(ctx, w, h, 0); }).observe(canvas);
+  } else {
+    window.addEventListener("resize", resize);
+  }
+  resize();
+  if (reduce){ draw.render(ctx, w, h, 0); return; }
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){
+      visible = es[0].isIntersecting;
+      if (visible) start(); else stop();
+    }, {threshold:0.02}).observe(canvas);
+  } else { visible = true; start(); }
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden && visible) start(); });
+  start();
+}
+
+/* deterministic pseudo-random so the page looks the same on every load */
+function rng(seed){
+  var s = seed >>> 0;
+  return function(){
+    s ^= s << 13; s >>>= 0;
+    s ^= s >> 17;
+    s ^= s << 5;  s >>>= 0;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+/* =========================================================
+   1. ApexTrade chart engine — OHLC candles + session VWAP
+   ========================================================= */
+(function(){
+  var el = document.getElementById("heroChart");
+  if (!el) return;
+
+  var rand = rng(20260818);
+  var PAD = {l:10, r:34, t:16, b:14};
+  var CW = 12, PERIOD = 850;
+  var W = 0, H = 0, cap = 40;
+  var candles = [], live = null, p = 0, lastT = 0;
+  var sMin = 0, sMax = 1, init = false;
+
+  function next(open){
+    var drift = (rand() - 0.47) * 1.7;
+    var close = open + drift;
+    var wick = 0.25 + rand() * 0.95;
+    return {
+      o: open, c: close,
+      h: Math.max(open, close) + wick * rand(),
+      l: Math.min(open, close) - wick * rand(),
+      v: 0.45 + rand()
+    };
+  }
+  function seed(){
+    candles = [];
+    var base = 100;
+    for (var i = 0; i < cap; i++){ var k = next(base); candles.push(k); base = k.c; }
+    live = next(base); p = 0;
+  }
+  function shape(c, prog){
+    // the forming candle grows out of its open price
+    var e = prog * prog * (3 - 2 * prog);
+    return {
+      o: c.o,
+      c: c.o + (c.c - c.o) * e,
+      h: c.o + (c.h - c.o) * e,
+      l: c.o + (c.l - c.o) * e,
+      v: c.v
+    };
+  }
+  function vwapSeries(list){
+    var out = [], pv = 0, vv = 0;
+    for (var i = 0; i < list.length; i++){
+      var c = list[i], tp = (c.h + c.l + c.c) / 3;
+      pv += tp * c.v; vv += c.v;
+      out.push(pv / vv);
+    }
+    return out;
+  }
+
+  setupCanvas(el, {
+    onResize: function(w, h){
+      W = w; H = h;
+      cap = Math.max(14, Math.floor((w - PAD.l - PAD.r) / CW));
+      seed(); init = false;
+    },
+    render: function(ctx, w, h, t){
+      if (!lastT) lastT = t;
+      var dt = Math.min(t - lastT, 120); lastT = t;
+      p += dt / PERIOD;
+      while (p >= 1){
+        p -= 1;
+        candles.push(live);
+        if (candles.length > cap) candles.shift();
+        live = next(live.c);
+      }
+
+      var view = candles.concat([shape(live, p)]);
+      var vw = vwapSeries(view);
+
+      var lo = Infinity, hi = -Infinity;
+      for (var i = 0; i < view.length; i++){
+        if (view[i].l < lo) lo = view[i].l;
+        if (view[i].h > hi) hi = view[i].h;
+      }
+      var padY = (hi - lo) * 0.14 || 1;
+      lo -= padY; hi += padY;
+      if (!init){ sMin = lo; sMax = hi; init = true; }
+      else { sMin += (lo - sMin) * 0.08; sMax += (hi - sMax) * 0.08; }
+
+      var plotW = w - PAD.l - PAD.r, plotH = h - PAD.t - PAD.b;
+      function Y(v){ return PAD.t + plotH - ((v - sMin) / (sMax - sMin)) * plotH; }
+      function X(i){ return PAD.l + (i + 0.5) * (plotW / view.length); }
+
+      ctx.clearRect(0, 0, w, h);
+
+      // grid
+      ctx.strokeStyle = "rgba(255,255,255,.045)";
+      ctx.lineWidth = 1;
+      for (var g = 0; g <= 4; g++){
+        var gy = Math.round(PAD.t + (plotH / 4) * g) + 0.5;
+        ctx.beginPath(); ctx.moveTo(PAD.l, gy); ctx.lineTo(w - PAD.r + 18, gy); ctx.stroke();
+      }
+
+      // candles
+      var bw = Math.max(2.5, (plotW / view.length) * 0.58);
+      for (var j = 0; j < view.length; j++){
+        var c = view[j], up = c.c >= c.o;
+        var col = up ? "#12e29a" : "#ff4d5e";
+        var x = X(j);
+        ctx.globalAlpha = j === view.length - 1 ? 1 : 0.78;
+        ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(Math.round(x) + 0.5, Y(c.h));
+        ctx.lineTo(Math.round(x) + 0.5, Y(c.l));
+        ctx.stroke();
+        var yo = Y(c.o), yc = Y(c.c);
+        var top = Math.min(yo, yc), bh = Math.max(1.2, Math.abs(yc - yo));
+        ctx.fillStyle = up ? "rgba(18,226,154,.85)" : "rgba(255,77,94,.85)";
+        ctx.fillRect(x - bw / 2, top, bw, bh);
+      }
+      ctx.globalAlpha = 1;
+
+      // VWAP
+      ctx.beginPath();
+      for (var k = 0; k < vw.length; k++){
+        var vx = X(k), vy = Y(vw[k]);
+        if (k === 0) ctx.moveTo(vx, vy); else ctx.lineTo(vx, vy);
+      }
+      ctx.strokeStyle = "#7d8bff"; ctx.lineWidth = 1.6;
+      ctx.shadowColor = "rgba(125,139,255,.55)"; ctx.shadowBlur = 9;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // last-price marker
+      var lastC = view[view.length - 1];
+      var ly = Y(lastC.c), lcol = lastC.c >= lastC.o ? "#12e29a" : "#ff4d5e";
+      ctx.setLineDash([3, 4]);
+      ctx.strokeStyle = lcol; ctx.globalAlpha = 0.35; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD.l, ly); ctx.lineTo(w - PAD.r + 20, ly); ctx.stroke();
+      ctx.setLineDash([]); ctx.globalAlpha = 1;
+
+      var px = w - PAD.r + 20;
+      var pulse = 3.2 + Math.sin(t / 260) * 1.1;
+      ctx.fillStyle = lcol; ctx.globalAlpha = 0.22;
+      ctx.beginPath(); ctx.arc(px, ly, pulse + 3.5, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(px, ly, 3.2, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+})();
+
+/* =========================================================
+   2. StockMap — treemap sized by weight, coloured by change
+   ========================================================= */
+(function(){
+  var el = document.getElementById("heatmap");
+  if (!el) return;
+
+  var rand = rng(77213);
+  var N = 36, items = [];
+  for (var i = 0; i < N; i++){
+    items.push({
+      w: Math.pow(1 - i / N, 1.55) * 74 + 9 + rand() * 6,
+      phase: rand() * Math.PI * 2,
+      speed: 0.00016 + rand() * 0.00042,
+      bias: (rand() - 0.5) * 0.62
+    });
+  }
+  var layout = [], W = 0, H = 0;
+
+  /* squarified treemap */
+  function squarify(list, x, y, w, h, out){
+    if (!list.length) return;
+    if (list.length === 1){ out.push({x:x, y:y, w:w, h:h, i:list[0].i}); return; }
+    var total = 0, n;
+    for (n = 0; n < list.length; n++) total += list[n].w;
+    var acc = 0, split = 0, half = total / 2;
+    for (n = 0; n < list.length; n++){
+      acc += list[n].w;
+      if (acc >= half){ split = n + 1; break; }
+    }
+    split = Math.min(Math.max(split, 1), list.length - 1);
+    var a = list.slice(0, split), b = list.slice(split), sa = 0;
+    for (n = 0; n < a.length; n++) sa += a[n].w;
+    var f = sa / total;
+    if (w >= h){
+      squarify(a, x, y, w * f, h, out);
+      squarify(b, x + w * f, y, w * (1 - f), h, out);
+    } else {
+      squarify(a, x, y, w, h * f, out);
+      squarify(b, x, y + h * f, w, h * (1 - f), out);
+    }
+  }
+  function build(w, h){
+    var list = items.map(function(it, idx){ return {w: it.w, i: idx}; });
+    layout = [];
+    squarify(list, 2, 2, w - 4, h - 4, layout);
+  }
+  function mix(v){
+    // v in [-1,1] -> red .. neutral .. green
+    var a, b, t;
+    if (v >= 0){ a = [34,38,44]; b = [16,190,131]; t = Math.min(v, 1); }
+    else { a = [34,38,44]; b = [214,63,79]; t = Math.min(-v, 1); }
+    t = Math.pow(t, 0.85);
+    return "rgb(" + Math.round(a[0]+(b[0]-a[0])*t) + "," +
+                    Math.round(a[1]+(b[1]-a[1])*t) + "," +
+                    Math.round(a[2]+(b[2]-a[2])*t) + ")";
+  }
+
+  setupCanvas(el, {
+    onResize: function(w, h){ W = w; H = h; build(w, h); },
+    render: function(ctx, w, h, t){
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < layout.length; i++){
+        var r = layout[i], it = items[r.i];
+        var v = Math.sin(t * it.speed + it.phase) * 0.85 + it.bias;
+        ctx.fillStyle = mix(v);
+        var rr = Math.min(4, r.w / 2, r.h / 2);
+        var x = r.x + 1, y = r.y + 1, ww = Math.max(0, r.w - 2), hh = Math.max(0, r.h - 2);
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, y, ww, hh, rr);
+        else ctx.rect(x, y, ww, hh);
+        ctx.fill();
+        if (ww > 30 && hh > 22){
+          ctx.fillStyle = "rgba(255,255,255,.5)";
+          ctx.fillRect(x + 8, y + 9, Math.min(ww * 0.42, 30), 3);
+          ctx.fillStyle = "rgba(255,255,255,.22)";
+          ctx.fillRect(x + 8, y + 17, Math.min(ww * 0.28, 20), 3);
         }
+      }
+    }
+  });
+})();
 
-        const particleCount = 1000;
-        const particleColor = '#00ff41';
-        let tick = 0;
+/* =========================================================
+   3. Automation chain — trigger -> intent -> framework -> result
+   ========================================================= */
+(function(){
+  var el = document.getElementById("autoGraph");
+  if (!el) return;
 
-        class Particle {
-            constructor() {
-                this.init();
-            }
+  var LABELS = [
+    ["TRIGGER",   "Alarm · CarPlay · Focus"],
+    ["APP INTENT","Shortcuts resolves params"],
+    ["FRAMEWORK", "MusicKit · Spotify API"],
+    ["RESULT",    "Background playback"]
+  ];
+  var nodes = [], vertical = false, W = 0, H = 0;
+  var pulses = [0, -0.34, -0.68];
 
-            init() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 1.5 + 0.2;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 50) + 10; 
-                this.angle = Math.random() * Math.PI * 2;
-            }
+  setupCanvas(el, {
+    onResize: function(w, h){
+      W = w; H = h;
+      vertical = w < 680;
+      nodes = [];
+      var i;
+      if (vertical){
+        var bw = Math.min(w - 48, 300), gap = h / 4;
+        for (i = 0; i < 4; i++) nodes.push({x: w/2 - bw/2, y: gap*i + gap/2 - 26, w: bw, h: 52});
+      } else {
+        var pad = 26, bwh = (w - pad*2 - 3*36) / 4;
+        for (i = 0; i < 4; i++) nodes.push({x: pad + i*(bwh + 36), y: h/2 - 34, w: bwh, h: 68});
+      }
+    },
+    render: function(ctx, w, h, t){
+      ctx.clearRect(0, 0, w, h);
+      var i, n;
 
-            update() {
-                let time = Date.now() * 0.0008; 
-                let centerX = width * 0.7; 
-                let centerY = 200; 
+      // edges
+      for (i = 0; i < 3; i++){
+        var a = nodes[i], b = nodes[i+1];
+        var x1, y1, x2, y2;
+        if (vertical){ x1 = a.x + a.w/2; y1 = a.y + a.h; x2 = b.x + b.w/2; y2 = b.y; }
+        else { x1 = a.x + a.w; y1 = a.y + a.h/2; x2 = b.x; y2 = b.y + b.h/2; }
+        ctx.strokeStyle = "rgba(255,255,255,.12)";
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
 
-                let radius = 250 + Math.sin(time) * 100; 
-                
-                let targetX = centerX + (Math.cos(this.angle + time) * radius * Math.sin(this.angle * 2 + time)) * 1.5;
-                let targetY = centerY + (Math.sin(this.angle + time) * radius * Math.cos(this.angle * 0.5 + time)) * 1.0;
+        // arrow head
+        ctx.fillStyle = "rgba(255,255,255,.2)";
+        ctx.beginPath();
+        if (vertical){ ctx.moveTo(x2, y2); ctx.lineTo(x2 - 4, y2 - 7); ctx.lineTo(x2 + 4, y2 - 7); }
+        else { ctx.moveTo(x2, y2); ctx.lineTo(x2 - 7, y2 - 4); ctx.lineTo(x2 - 7, y2 + 4); }
+        ctx.closePath(); ctx.fill();
+      }
 
-                let dx = targetX - this.x;
-                let dy = targetY - this.y;
-                
-                this.x += dx / this.density;
-                this.y += dy / this.density;
-            }
-
-            draw() {
-                ctx.globalAlpha = this.alpha || 0.5; 
-                ctx.fillStyle = particleColor;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+      // travelling pulses
+      var cycle = (t % 4200) / 4200;
+      for (var pi = 0; pi < pulses.length; pi++){
+        var prog = cycle + pulses[pi];
+        if (prog < 0 || prog > 1) continue;
+        var seg = Math.min(2, Math.floor(prog * 3));
+        var local = prog * 3 - seg;
+        var a2 = nodes[seg], b2 = nodes[seg+1], px, py;
+        if (vertical){
+          px = a2.x + a2.w/2;
+          py = (a2.y + a2.h) + ((b2.y) - (a2.y + a2.h)) * local;
+        } else {
+          px = (a2.x + a2.w) + (b2.x - (a2.x + a2.w)) * local;
+          py = a2.y + a2.h/2;
         }
+        var fade = Math.sin(local * Math.PI);
+        ctx.globalAlpha = 0.25 + fade * 0.75;
+        ctx.fillStyle = "#12e29a";
+        ctx.shadowColor = "rgba(18,226,154,.85)"; ctx.shadowBlur = 12;
+        ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+      }
 
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
+      // nodes
+      for (i = 0; i < 4; i++){
+        n = nodes[i];
+        var active = Math.floor(((t % 4200) / 4200) * 4) === i;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(n.x, n.y, n.w, n.h, 12);
+        else ctx.rect(n.x, n.y, n.w, n.h);
+        ctx.fillStyle = active ? "rgba(18,226,154,.09)" : "rgba(255,255,255,.028)";
+        ctx.fill();
+        ctx.strokeStyle = active ? "rgba(18,226,154,.42)" : "rgba(255,255,255,.09)";
+        ctx.lineWidth = 1; ctx.stroke();
 
-        function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            ctx.fillRect(0, 0, width, height);
+        ctx.textAlign = "center";
+        ctx.fillStyle = active ? "#12e29a" : "#8b8f97";
+        ctx.font = "600 10px ui-monospace, SFMono-Regular, Menlo, monospace";
+        ctx.fillText(LABELS[i][0], n.x + n.w/2, n.y + n.h/2 - 6);
+        ctx.fillStyle = active ? "rgba(245,246,247,.92)" : "#6b6f78";
+        ctx.font = "500 11.5px -apple-system, BlinkMacSystemFont, system-ui, sans-serif";
+        ctx.fillText(LABELS[i][1], n.x + n.w/2, n.y + n.h/2 + 12);
+      }
+    }
+  });
+})();
 
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-        animate();
-    </script>
+})();
+</script>
 </body>
 </html>
