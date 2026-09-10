@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soporte — Escrituras</title>
+<meta name="description" content="Centro de ayuda de Escrituras: primeros pasos, widgets, temas, modo aleatorio, privacidad y cómo contactarnos." />
+<style>
+  :root{
+    --bg:#080f0d;--surface:#111a17;--surface-2:#0e1714;
+    --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.05);
+    --text:#e8f2ee;--muted:#94b0a6;--faint:#5f7a70;--accent:#2f9e73;--accent-2:#6ecfa5;
+    --maxw:900px;--mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(900px 460px at 82% -10%,rgba(47,158,115,.16),transparent 60%)}
+  a{color:var(--accent-2);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(8,15,13,.72);border-bottom:1px solid var(--line-2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1120px;margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700}
+  .brand svg{width:28px;height:28px}
+  .brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;font-weight:600;margin-top:-2px}
+  .back{color:var(--muted);font-size:14px;font-weight:500}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+  .hero{padding:58px 0 20px}
+  h1{font-size:42px;letter-spacing:-1px;font-weight:800;margin:14px 0 8px}
+  .intro{color:var(--muted);font-size:17px;max-width:620px;margin-top:8px}
+
+  .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0 10px}
+  .qc{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:18px;display:block;transition:border-color .2s,transform .15s}
+  .qc:hover{border-color:rgba(47,158,115,.45);transform:translateY(-2px)}
+  .qc .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:12px;background:rgba(47,158,115,.14);color:var(--accent-2);font-size:16px}
+  .qc h4{font-size:15px;font-weight:650;color:var(--text)}
+  .qc p{font-size:13px;color:var(--muted);margin-top:3px}
+  @media(max-width:720px){.quick{grid-template-columns:1fr}}
+
+  h2{font-size:24px;font-weight:750;letter-spacing:-.3px;margin:44px 0 6px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:14px}
+
+  details{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);margin:10px 0;overflow:hidden}
+  details[open]{border-color:rgba(47,158,115,.36)}
+  summary{list-style:none;cursor:pointer;padding:17px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+  summary::-webkit-details-marker{display:none}
+  summary .chev{color:var(--faint);transition:transform .2s;font-size:15px}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--accent-2)}
+  .answer{padding:0 20px 18px;color:#c6d8d1}
+  .answer strong{color:#fff}
+  .answer ol{margin:8px 0 0 20px}.answer li{margin:6px 0}
+
+  .contact{border:1px solid var(--line);border-radius:20px;margin:40px 0 10px;padding:34px;text-align:center;
+    background:radial-gradient(600px 240px at 50% -30%,rgba(47,158,115,.18),transparent 60%),var(--surface-2)}
+  .contact h3{font-size:26px;font-weight:750;letter-spacing:-.4px}
+  .contact p{color:var(--muted);max-width:480px;margin:8px auto 20px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;
+    background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#06120e;box-shadow:0 8px 22px rgba(47,158,115,.35)}
+  .meta{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:22px;color:var(--faint);font-size:13.5px;font-family:var(--mono)}
+
+  .rights{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;background:var(--surface-2);
+    padding:18px 20px;margin:34px 0 0;color:var(--muted);font-size:14px}
+  .rights strong{color:var(--text)}
+
+  footer{border-top:1px solid var(--line-2);padding:36px 0 60px;margin-top:44px;color:var(--muted)}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+  .foot-links a{color:var(--muted);font-size:14px}
+  small{color:var(--faint);font-size:12.5px}
+  @media(max-width:560px){h1{font-size:31px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/escrituras">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 8 C 12 5, 7 5, 4 6 L 4 25 C 7 24, 12 24, 16 27" stroke="#8aa69c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 C 20 5, 25 5, 28 6 L 28 25 C 25 24, 20 24, 16 27" stroke="#2f9e73" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 L 16 27" stroke="#6ecfa5" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>Escrituras<small>Soporte</small></span>
+    </a>
+    <a class="back" href="/escrituras">← Volver al sitio</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <span class="eyebrow">Centro de ayuda</span>
+    <h1>¿En qué te ayudamos?</h1>
+    <p class="intro">Respuestas a lo que más se pregunta sobre Escrituras — cómo guardar un pasaje, los widgets, los temas y qué pasa con tus datos.</p>
+
+    <div class="quick">
+      <a class="qc" href="#inicio"><div class="ic">▷</div><h4>Primeros pasos</h4><p>Copiar el enlace y guardarlo.</p></a>
+      <a class="qc" href="#widgets"><div class="ic">▣</div><h4>Widgets y temas</h4><p>Tres tamaños, 17 temas.</p></a>
+      <a class="qc" href="#contacto"><div class="ic">✉</div><h4>Contacto</h4><p>Escríbenos directamente.</p></a>
+    </div>
+  </div>
+
+  <h2 id="inicio">Primeros pasos</h2>
+  <div class="sub">Lo mínimo para tener tu versículo en la pantalla de inicio.</div>
+
+  <details open><summary>¿Cómo guardo el pasaje donde me quedé?<span class="chev">›</span></summary>
+    <div class="answer">
+      <ol>
+        <li>En Gospel Library o en churchofjesuschrist.org, copia el enlace del versículo donde estás leyendo.</li>
+        <li>Abre <strong>Escrituras</strong>. La app detecta que hay un enlace copiado y te ofrece leerlo.</li>
+        <li>Toca <strong>Aceptar</strong>, revisa el versículo y toca <strong>Guardar</strong>.</li>
+      </ol>
+      También puedes pegarlo a mano en el campo de la parte superior.
+    </div>
+  </details>
+  <details><summary>¿Cómo añado el widget?<span class="chev">›</span></summary>
+    <div class="answer">Mantén pulsada la pantalla de inicio, toca <strong>+</strong> arriba a la izquierda, busca <strong>Escrituras</strong> y elige el tamaño. Puedes poner más de uno: todos muestran lo mismo.</div>
+  </details>
+  <details><summary>Toco el widget y no abre Gospel Library<span class="chev">›</span></summary>
+    <div class="answer">El widget abre Gospel Library en el punto exacto, pero la app tiene que estar instalada. Si no lo está, el enlace no abre nada. La app te avisa de esto en la vista previa.</div>
+  </details>
+
+  <h2 id="widgets">Widgets y temas</h2>
+  <div class="sub">Tres tamaños y diecisiete temas, uno claro y uno oscuro a la vez.</div>
+
+  <details><summary>¿Por qué el widget pequeño corta el versículo?<span class="chev">›</span></summary>
+    <div class="answer">Es a propósito. El texto <strong>nunca reduce de tamaño</strong>: preferimos que la letra se lea cómoda y que el pasaje se corte con «…» antes que encogerla hasta hacerla ilegible. El widget grande continúa con los versículos siguientes del mismo capítulo.</div>
+  </details>
+  <details><summary>¿Cómo elijo los temas?<span class="chev">›</span></summary>
+    <div class="answer">En <strong>Apariencia del widget → Temas</strong>. Eliges <strong>dos</strong>: uno claro y uno oscuro. Con <strong>Automático</strong>, el widget usa el claro de día y el oscuro de noche; con <strong>Día</strong> o <strong>Noche</strong> fijos, usa siempre el que corresponda.</div>
+  </details>
+  <details><summary>Cambié algo y el widget no se actualiza<span class="chev">›</span></summary>
+    <div class="answer">iOS decide cuándo repinta los widgets y a veces tarda unos segundos. Si pasa más de un minuto, abre la app una vez: al hacerlo se le pide a iOS que refresque.</div>
+  </details>
+  <details><summary>¿Qué es el modo aleatorio?<span class="chev">›</span></summary>
+    <div class="answer">Al activarlo, el widget deja de mostrar tu marcador y va rotando cada hora entre una lista de referencias del Libro de Mormón incluida en la app. <strong>Otra ahora</strong> salta a otra sin esperar. Guardar un enlace a mano apaga el modo aleatorio.</div>
+  </details>
+
+  <h2>Datos y privacidad</h2>
+  <div class="sub">Dónde vive lo tuyo.</div>
+
+  <details><summary>¿Qué datos recoge la app?<span class="chev">›</span></summary>
+    <div class="answer"><strong>Ninguno.</strong> Escrituras no tiene cuentas, ni servidores, ni analítica. Tu marcador, tu racha y tus temas se guardan solo en tu iPhone. El texto de las Escrituras viene incluido en la app, así que funciona sin conexión.</div>
+  </details>
+  <details><summary>¿Lee mi portapapeles?<span class="chev">›</span></summary>
+    <div class="answer">Solo comprueba <strong>si hay algo con forma de enlace</strong>, sin ver el contenido y sin disparar el aviso de iOS. El contenido se lee únicamente cuando tú tocas <strong>Aceptar</strong>, que es donde iOS te pide permiso.</div>
+  </details>
+
+  <div class="rights">
+    <strong>Sobre el texto de las Escrituras.</strong> El texto incluido en esta app es propiedad de Intellectual Reserve, Inc. y se usa conforme a las Condiciones de uso de churchofjesuschrist.org. Escrituras es una app independiente y <strong>no está afiliada ni respaldada por La Iglesia de Jesucristo de los Santos de los Últimos Días</strong>.
+  </div>
+
+  <div class="contact" id="contacto">
+    <span class="eyebrow">Contacto</span>
+    <h3>¿Te seguimos ayudando?</h3>
+    <p>Escríbenos y te respondemos. Incluye tu modelo de iPhone y la versión de iOS, y una captura si puedes.</p>
+    <a class="btn" href="mailto:willmoscoso@gmail.com?subject=Soporte%20Escrituras">Escribir a soporte</a>
+    <div class="meta"><span>willmoscoso@gmail.com</span><span>iOS 17.0+</span><span>Respuesta en 48 h</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-weight:700">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width:24px;height:24px">
+        <path d="M16 8 C 12 5, 7 5, 4 6 L 4 25 C 7 24, 12 24, 16 27" stroke="#8aa69c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 C 20 5, 25 5, 28 6 L 28 25 C 25 24, 20 24, 16 27" stroke="#2f9e73" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg><span>Escrituras</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.myiosapps.org/escrituras">Inicio</a>
+      <a href="https://www.myiosapps.org/escrituras/privacy.html">Privacidad</a>
+      <a href="https://www.myiosapps.org">myiosapps.org</a>
+    </div>
+    <div style="margin-top:18px"><small>© 2026 Escrituras · myiosapps.org</small></div>
+  </div>
+</footer>
+</body>
+</html>
