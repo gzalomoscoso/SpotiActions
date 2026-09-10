@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Escrituras — El versículo donde te quedaste, en tu pantalla de inicio</title>
+<meta name="description" content="Copia el enlace donde te quedaste leyendo y un widget muestra ese versículo en tu pantalla de inicio. Tócalo y Gospel Library abre en el punto exacto. Sin cuentas, sin conexión, sin anuncios." />
+<meta property="og:title" content="Escrituras — El versículo donde te quedaste" />
+<meta property="og:description" content="Un widget con el pasaje donde ibas. Toca y sigues leyendo." />
+<meta property="og:type" content="website" />
+<style>
+  :root{
+    --bg:#080f0d;--surface:#111a17;--surface-2:#0e1714;
+    --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.05);
+    --text:#e8f2ee;--muted:#94b0a6;--faint:#5f7a70;--accent:#2f9e73;--accent-2:#6ecfa5;
+    --maxw:1120px;--mono:"SF Mono",ui-monospace,Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1000px 520px at 78% -12%,rgba(47,158,115,.18),transparent 62%)}
+  a{color:var(--accent-2);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(8,15,13,.72);border-bottom:1px solid var(--line-2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700}
+  .brand svg{width:28px;height:28px}
+  .brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;font-weight:600;margin-top:-2px}
+  .navlinks{display:flex;gap:22px;align-items:center}
+  .navlinks a{color:var(--muted);font-size:14px;font-weight:500}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);font-weight:600}
+
+  .hero{padding:76px 0 26px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  h1{font-size:52px;line-height:1.1;letter-spacing:-1.4px;font-weight:800;margin:14px 0 14px}
+  .lede{color:var(--muted);font-size:19px;max-width:520px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:650;font-size:15px;padding:13px 24px;border-radius:999px;
+    background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#06120e;box-shadow:0 10px 26px rgba(47,158,115,.34)}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--text);box-shadow:none}
+  .note{color:var(--faint);font-size:13.5px;font-family:var(--mono);margin-top:16px}
+
+  .device{border:1px solid var(--line);border-radius:26px;background:var(--surface-2);padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .card{border-radius:20px;background:#FAF8F0;color:#2b2b29;padding:22px 24px;font-size:15.5px;line-height:1.5}
+  .card .ref{font-weight:800;color:#465261;margin-bottom:6px;font-size:16px}
+  .card .n{font-weight:800;color:#465261}
+  .device .cap{color:var(--faint);font-size:12.5px;text-align:center;margin-top:14px;font-family:var(--mono)}
+  @media(max-width:880px){.hero{grid-template-columns:1fr;gap:34px}h1{font-size:38px}}
+
+  h2{font-size:30px;font-weight:780;letter-spacing:-.6px;margin:74px 0 8px}
+  .sub{color:var(--muted);font-size:16px;margin-bottom:26px;max-width:640px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .f{border:1px solid var(--line);border-radius:16px;background:var(--surface-2);padding:24px}
+  .f .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:14px;
+    background:rgba(47,158,115,.14);color:var(--accent-2);font-size:17px}
+  .f h3{font-size:16.5px;font-weight:680;margin-bottom:5px}
+  .f p{color:var(--muted);font-size:14.5px;line-height:1.6}
+  @media(max-width:880px){.grid{grid-template-columns:1fr}}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+  .st{border:1px solid var(--line);border-radius:16px;background:var(--surface-2);padding:24px;position:relative}
+  .st::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+    background:rgba(47,158,115,.16);color:var(--accent-2);font-weight:700;font-size:14px;font-family:var(--mono);margin-bottom:13px}
+  .st h3{font-size:16px;font-weight:670;margin-bottom:4px}
+  .st p{color:var(--muted);font-size:14.5px}
+  @media(max-width:880px){.steps{grid-template-columns:1fr}}
+
+  .rights{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;background:var(--surface-2);
+    padding:20px 22px;margin:56px 0 0;color:var(--muted);font-size:14px}
+  .rights strong{color:var(--text)}
+
+  footer{border-top:1px solid var(--line-2);padding:38px 0 66px;margin-top:52px;color:var(--muted)}
+  .foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+  .foot-links a{color:var(--muted);font-size:14px}
+  small{color:var(--faint);font-size:12.5px}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/escrituras">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 8 C 12 5, 7 5, 4 6 L 4 25 C 7 24, 12 24, 16 27" stroke="#8aa69c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 C 20 5, 25 5, 28 6 L 28 25 C 25 24, 20 24, 16 27" stroke="#2f9e73" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 L 16 27" stroke="#6ecfa5" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>Escrituras<small>para iPhone</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="#como">Cómo funciona</a>
+      <a href="https://www.myiosapps.org/escrituras/support.html">Soporte</a>
+      <a href="https://www.myiosapps.org">myiosapps.org</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Widget de escrituras</span>
+      <h1>El versículo donde te quedaste, en tu pantalla de inicio.</h1>
+      <p class="lede">Copia el enlace de donde ibas leyendo y pégalo. El widget muestra ese pasaje; al tocarlo, Gospel Library abre justo ahí. Sin volver a buscar el capítulo cada vez.</p>
+      <div class="cta">
+        <a class="btn" href="#">Descargar en el App Store</a>
+        <a class="btn ghost" href="#como">Ver cómo funciona</a>
+      </div>
+      <div class="note">iPhone · iOS 17.0+ · Gratis · Sin anuncios · Funciona sin conexión</div>
+    </div>
+    <div class="device">
+      <div class="card">
+        <div class="ref">Éter 3</div>
+        <div><span class="n">25</span> Y cuando el Señor hubo hablado estas palabras, mostró al hermano de Jared todos los habitantes de la tierra que había habido, y también todos los que había de haber; y no los ocultó de su vista, aun ha…</div>
+      </div>
+      <div class="cap">widget mediano · tema Papel</div>
+    </div>
+  </section>
+
+  <h2 id="como">Tres pasos y ya está</h2>
+  <div class="sub">No hay cuentas que crear ni nada que configurar.</div>
+  <div class="steps">
+    <div class="st"><h3>Copia el enlace</h3><p>En Gospel Library o en la web, copia el enlace del versículo donde te quedaste.</p></div>
+    <div class="st"><h3>Ábrelo en la app</h3><p>Escrituras detecta el enlace copiado y te enseña el versículo antes de guardarlo.</p></div>
+    <div class="st"><h3>Vuelve cuando quieras</h3><p>El widget lo tiene a la vista. Un toque y sigues leyendo donde lo dejaste.</p></div>
+  </div>
+
+  <h2>Lo que hace</h2>
+  <div class="sub">Pensado para leer, no para gestionar una app.</div>
+  <div class="grid">
+    <div class="f"><div class="ic">▣</div><h3>Tres tamaños</h3><p>Pequeño, mediano y grande. El grande continúa con los versículos siguientes del capítulo.</p></div>
+    <div class="f"><div class="ic">◐</div><h3>17 temas</h3><p>Eliges uno claro y uno oscuro. El widget usa el que toca según la hora del día.</p></div>
+    <div class="f"><div class="ic">✦</div><h3>Modo aleatorio</h3><p>Una escritura distinta cada hora, de una lista de 161 referencias del Libro de Mormón.</p></div>
+    <div class="f"><div class="ic">◈</div><h3>Racha de lectura</h3><p>Cuenta los días seguidos en que abres tu lectura desde el widget.</p></div>
+    <div class="f"><div class="ic">⌁</div><h3>Sin conexión</h3><p>El texto viene dentro de la app. No hace falta internet para nada.</p></div>
+    <div class="f"><div class="ic">⚿</div><h3>Nada sale del iPhone</h3><p>Sin cuentas, sin servidores, sin analítica. Tus datos se quedan donde están.</p></div>
+  </div>
+
+  <div class="rights">
+    <strong>Sobre el texto de las Escrituras.</strong> El texto incluido en esta app es propiedad de Intellectual Reserve, Inc. y se usa conforme a las Condiciones de uso de churchofjesuschrist.org. Escrituras es una app independiente y <strong>no está afiliada ni respaldada por La Iglesia de Jesucristo de los Santos de los Últimos Días</strong>.
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-weight:700">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" style="width:24px;height:24px">
+        <path d="M16 8 C 12 5, 7 5, 4 6 L 4 25 C 7 24, 12 24, 16 27" stroke="#8aa69c" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M16 8 C 20 5, 25 5, 28 6 L 28 25 C 25 24, 20 24, 16 27" stroke="#2f9e73" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg><span>Escrituras</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://www.myiosapps.org/escrituras/support.html">Soporte</a>
+      <a href="https://www.myiosapps.org/escrituras/privacy.html">Privacidad</a>
+      <a href="https://www.myiosapps.org">Todas las apps</a>
+    </div>
+    <div style="margin-top:18px"><small>© 2026 Escrituras · myiosapps.org</small></div>
+  </div>
+</footer>
+</body>
+</html>
