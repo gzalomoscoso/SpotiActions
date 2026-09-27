@@ -1,402 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpotiActions Support & FAQ</title>
-    <style>
-        :root {
-            --bg-color: #0b0b0d;
-            --surface-color: #16161a;
-            --surface-accent: #222227;
-            --primary-color: #1DB954;
-            --orange-color: #ff7a00;
-            --text-main: #f5f5f7;
-            --text-muted: #86868b;
-            --border-color: #2c2c35;
-            --radius-lg: 16px;
-            --radius-md: 12px;
-            --radius-phone: 32px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpotiActions Support</title>
+<meta name="description" content="Find the fix for SpotiActions in seconds: setup, shortcuts that aren't found, permission prompts, the widget, CarPlay, your own playlist and purchases.">
+<style>
+  :root {
+    --bg: #0b0b0d;
+    --surface: #151518;
+    --surface-2: #1c1c21;
+    --line: #2a2a31;
+    --text: #f5f5f7;
+    --muted: #9a9aa2;
+    --accent: #ff8801;          /* naranja del logotipo */
+    --accent-soft: rgba(255, 136, 1, 0.12);
+    --accent-line: rgba(255, 136, 1, 0.32);
+    --r-lg: 18px;
+    --r-md: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  /* ---------- Cabecera con buscador ---------- */
+  .hero {
+    padding: 64px 0 28px;
+    text-align: center;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,136,1,0.18), transparent 70%);
+  }
+  .brand { font-weight: 800; letter-spacing: -0.02em; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin: 6px 0 8px; }
+  .hero p { color: var(--muted); font-size: 1.1rem; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+  .search-bar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(11,11,13,0.82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .search {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 14px; padding: 12px 14px;
+    transition: border-color .2s;
+  }
+  .search:focus-within { border-color: var(--accent-line); }
+  .search svg { flex: none; opacity: .6; }
+  .search input {
+    flex: 1; background: none; border: 0; outline: 0;
+    color: var(--text); font-size: 1.05rem; font-family: inherit;
+  }
+  .search input::placeholder { color: #6e6e76; }
+  .search .clear { background: none; border: 0; color: var(--muted); font-size: 1.2rem; cursor: pointer; display: none; }
+  .search .count { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .chip {
+    background: var(--surface); border: 1px solid var(--line); color: var(--text);
+    border-radius: 999px; padding: 6px 13px; font-size: .88rem; cursor: pointer;
+    font-family: inherit; transition: border-color .2s, background .2s;
+  }
+  .chip:hover { border-color: var(--accent-line); background: var(--accent-soft); }
 
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+  /* ---------- Secciones ---------- */
+  section { padding: 56px 0 8px; }
+  section > h2 { font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 6px; }
+  section > .lead { color: var(--muted); margin-bottom: 26px; max-width: 640px; }
 
-        /* Header styling */
-        header {
-            text-align: center;
-            padding: 60px 0 40px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 60px;
-        }
+  /* Pasos de configuracion */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 22px; display: flex; flex-direction: column;
+  }
+  .step .n {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: #1a1816; font-weight: 800;
+    display: grid; place-items: center; font-size: .9rem; margin-bottom: 12px;
+  }
+  .step h3 { font-size: 1.12rem; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: .95rem; margin-bottom: 18px; }
+  .shot { margin-top: auto; }
 
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  /* Marco de telefono para capturas 1179x2556, cuadrado para las demas */
+  .phone {
+    width: 100%; max-width: 210px; margin: 0 auto; aspect-ratio: 1179 / 2556;
+    border-radius: 30px; border: 4px solid #2c2c30; background: #000; overflow: hidden;
+  }
+  .square { width: 100%; max-width: 280px; margin: 0 auto; aspect-ratio: 1; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); }
+  .phone img, .square img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; transition: transform .3s; }
+  .phone img:hover, .square img:hover { transform: scale(1.02); }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+  .callout {
+    margin-top: 20px; display: flex; gap: 14px;
+    background: var(--accent-soft); border: 1px solid var(--accent-line);
+    border-radius: var(--r-md); padding: 18px;
+  }
+  .callout strong { color: var(--accent); }
+  .callout p { font-size: .96rem; }
 
-        section {
-            margin-bottom: 80px;
-        }
+  /* Tarjetas Premium */
+  .premium { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 820px) { .premium { grid-template-columns: 1fr; } }
+  .p-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; }
+  .p-card .ico { font-size: 1.5rem; margin-bottom: 8px; }
+  .p-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .p-card p, .p-card li { color: var(--muted); font-size: .94rem; }
+  .p-card ol { padding-left: 18px; margin-top: 6px; }
+  .tag {
+    display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line);
+    border-radius: 999px; padding: 2px 9px; margin-bottom: 10px; text-transform: uppercase;
+  }
 
-        section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+  /* Preguntas desplegables */
+  .group-title {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+    margin: 28px 0 10px;
+  }
+  .qa {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+    margin-bottom: 10px; transition: border-color .2s, box-shadow .4s;
+  }
+  .qa[open] { border-color: var(--accent-line); }
+  .qa.flash { box-shadow: 0 0 0 3px rgba(255,136,1,.45); }
+  .qa summary {
+    list-style: none; cursor: pointer; padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.02rem;
+  }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary .chev { margin-left: auto; transition: transform .2s; opacity: .55; flex: none; }
+  .qa[open] summary .chev { transform: rotate(90deg); }
+  .qa .ans { padding: 0 18px 18px; color: #c8c8cf; font-size: .98rem; }
+  .qa .ans p + p, .qa .ans p + ol, .qa .ans ol + p, .qa .ans p + ul, .qa .ans ul + p { margin-top: 10px; }
+  .qa .ans ol, .qa .ans ul { padding-left: 20px; }
+  .qa .ans li { margin-bottom: 4px; }
+  .qa .ans .square { margin: 14px 0 4px; max-width: 320px; }
+  .qa .copy {
+    margin-top: 14px; background: none; border: 1px solid var(--line); color: var(--muted);
+    border-radius: 8px; padding: 5px 10px; font-size: .8rem; cursor: pointer; font-family: inherit;
+  }
+  .qa .copy:hover { color: var(--text); border-color: var(--accent-line); }
+  kbd {
+    font-family: inherit; font-size: .88em; background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: var(--text);
+  }
+  mark { background: rgba(255,136,1,.35); color: inherit; border-radius: 3px; padding: 0 1px; }
 
-        /* Visual Steps Grid */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 11fr);
-            gap: 30px;
-        }
+  .empty {
+    display: none; text-align: center; background: var(--surface); border: 1px dashed var(--line);
+    border-radius: var(--r-lg); padding: 30px; margin-top: 30px;
+  }
+  .empty p { color: var(--muted); margin-bottom: 14px; }
 
-        @media (max-width: 900px) {
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
+  /* Contacto */
+  .contact {
+    margin: 64px 0 30px; text-align: center;
+    background: linear-gradient(135deg, var(--surface), #1b1b21);
+    border: 1px solid var(--line); border-radius: var(--r-lg); padding: 36px 22px;
+  }
+  .contact p { color: var(--muted); max-width: 520px; margin: 8px auto 20px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #1a1816; font-weight: 700;
+    padding: 13px 24px; border-radius: 12px; text-decoration: none;
+  }
+  footer { color: #6e6e76; font-size: .82rem; text-align: center; padding: 10px 0 40px; }
 
-        .step-card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+  /* Visor de imagenes */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,.88); display: none;
+    align-items: center; justify-content: center; z-index: 50; padding: 24px; cursor: zoom-out;
+  }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 14px; }
+  .lightbox.on { display: flex; }
 
-        .step-number {
-            background-color: var(--surface-accent);
-            color: var(--primary-color);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .step-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .step-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-            min-height: 72px;
-        }
-
-        /* Phone mockup simulation for 1179x2556 images */
-        .phone-mockup {
-            width: 100%;
-            max-width: 240px;
-            aspect-ratio: 1179 / 2556;
-            border-radius: var(--radius-phone);
-            border: 4px solid #2c2c30;
-            background-color: #000;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            margin-top: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .phone-mockup:hover {
-            transform: translateY(-5px);
-        }
-
-        .phone-mockup img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Callout note box */
-        .callout {
-            background-color: rgba(255, 122, 0, 0.06);
-            border: 1px solid rgba(255, 122, 0, 0.25);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            margin-top: 30px;
-            display: flex;
-            gap: 16px;
-        }
-
-        .callout-icon {
-            color: var(--orange-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .callout-text h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: var(--orange-color);
-        }
-
-        .callout-text p {
-            font-size: 0.95rem;
-            color: var(--text-main);
-        }
-
-        .callout-text ol {
-            margin-top: 10px;
-            padding-left: 20px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .callout-text li {
-            margin-bottom: 4px;
-        }
-
-        /* FAQ block styling */
-        .faq-category {
-            margin-bottom: 40px;
-        }
-
-        .faq-category-title {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .faq-item {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 24px;
-            margin-bottom: 16px;
-        }
-
-        .faq-item h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .faq-item p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .orange-badge {
-            color: var(--orange-color);
-            font-weight: 600;
-        }
-
-        /* Contact Box layout */
-        .contact-box {
-            background: linear-gradient(135deg, var(--surface-color) 0%, #1c1c22 100%);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .contact-box h2 {
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-
-        .contact-box p {
-            color: var(--text-muted);
-            max-width: 500px;
-            margin: 0 auto 24px;
-        }
-
-        .contact-email {
-            display: inline-block;
-            color: var(--bg-color);
-            background-color: var(--text-main);
-            padding: 14px 28px;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .contact-email:hover {
-            background-color: #ffffff;
-            transform: scale(1.02);
-        }
-    </style>
+  .hidden { display: none !important; }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <header>
-            <h1>SpotiActions Support</h1>
-            <p>Step-by-step optimization guides and answers to frequently asked technical questions.</p>
-        </header>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">SpotiActions</div>
+    <h1>How can we help?</h1>
+    <p>Search, or tap what's happening. Every answer has its own link.</p>
+  </div>
+</header>
 
-        <!-- Quick Setup Section -->
-        <section id="setup-guide">
-            <h2>📱 Quick Setup Guide</h2>
-            <div class="steps-grid">
-                
-                <!-- Step 1 -->
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Install Master Shortcut</h3>
-                    <p>Trigger the installation of the core helper routine from the onboarding window to cleanly authorize iOS background processing execution loops.</p>
-                    <div class="phone-mockup">
-                        <img src="IMG_7489.JPG" alt="SpotiActions Onboarding and Master Shortcut setup wizard screen">
-                    </div>
-                </div>
+<div class="search-bar">
+  <div class="wrap">
+    <label class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="e.g. could not find the shortcut, CarPlay, refund…" autocomplete="off" aria-label="Search the help">
+      <span class="count" id="count"></span>
+      <button class="clear" id="clear" aria-label="Clear search">✕</button>
+    </label>
+    </div>
+  </div>
+</div>
 
-                <!-- Step 2 -->
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Explore Dashboard</h3>
-                    <p>Manage layouts natively with the interactive visual Cover Flow deck. Instantly verify active system run connections using the Test PLAY switch.</p>
-                    <div class="phone-mockup">
-                        <img src="IMG_7490.JPG" alt="Main app interface featuring the interactive central Cover Flow module">
-                    </div>
-                </div>
+<main class="wrap">
+  <!-- Los chips NO van en la barra fija: en un iPhone, ocho chips en cuatro
+       filas se comían media pantalla y tapaban la respuesta al saltar a ella.
+       Solo el buscador se queda pegado arriba. -->
+  <div class="chips">
+      <button class="chip" data-go="not-found">Shortcut not found</button>
+      <button class="chip" data-go="silent">Nothing plays</button>
+      <button class="chip" data-go="replace">"Replace shortcut?"</button>
+      <button class="chip" data-go="allow">Permission prompt</button>
+      <button class="chip" data-go="own-playlist">My own playlist</button>
+      <button class="chip" data-go="carplay">Widget in CarPlay</button>
+      <button class="chip" data-go="restore">Restore purchase</button>
+      <button class="chip" data-go="refund">Refund</button>
 
-                <!-- Step 3 -->
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Map iOS Automation</h3>
-                    <p>Deploy the automation matrix variables inside the native iOS Shortcuts ecosystem using the dedicated multi-action architecture blueprint.</p>
-                    <div class="phone-mockup">
-                        <img src="IMG_7491.JPG" alt="Shortcuts setup view detailing the sequence parameters required">
-                    </div>
-                </div>
 
-            </div>
+  <!-- ================= PUESTA EN MARCHA ================= -->
+  <section id="setup" data-section>
+    <h2>Set it up in three steps</h2>
+    <p class="lead">Each playlist is its own ready-made shortcut. You install it once, allow it once, and it can wake you up every morning after that.</p>
 
-            <!-- Execution Parameter Callout Box -->
-            <div class="callout">
-                <div class="callout-icon">⚠️</div>
-                <div class="callout-text">
-                    <h4>Critical Execution Requirement</h4>
-                    <p>When engineering your system rule under the native Automation grid tab, ensure the primary runtime mode parameters are set exactly to <strong>"Run Immediately"</strong>. Enabling "Ask Before Running" will cause background loops to fail silently.</p>
-                    <ol>
-                        <li><strong>Set Volume:</strong> Map the sound level variable to your target percentage.</li>
-                        <li><strong>Play Playlist:</strong> Bind your layout placeholder from the selection panel.</li>
-                        <li><strong>Run Shortcut:</strong> Select the active <strong>SpotiActions303</strong> routine file.</li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Sections -->
-        <section id="faq">
-            <h2>❓ Frequently Asked Questions</h2>
-
-            <!-- Custom Music Library Block -->
-            <div class="faq-category">
-                <div class="faq-category-title">Personal Playlists & Library Mapping</div>
-                
-                <div class="faq-item">
-                    <h3>How do I add my own personal playlists as options to be chosen?</h3>
-                    <p>Due to background execution restrictions between iOS sandboxing and Spotify, third-party apps cannot resolve dynamic custom URLs on the fly in the background without forcing a manual confirmation alert. SpotiActions circumvents this rule using pre-defined pipeline layouts located at the base of the app dashboard, identified by a distinct <span class="orange-badge">orange indicator</span> (such as <em>WakeUp Happy, Daily Mix, Modo Booster, Happy Hits, or My Liked Songs</em>).</p>
-                    <p style="margin-top: 12px;">To bind your custom audio tracks, simply navigate down to the orange layout rows, launch your favorite collection through a chosen profile row <strong>at least once</strong> to fulfill the security handshake, and then select that corresponding profile name within your iOS Shortcuts parameter list.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Do I need to grant profile permissions every single time?</h3>
-                    <p>No. Initial playback synchronization through an orange-indicated slot acts as a one-time structural initialization. Once the authorization footprint is mapped inside iOS, your automated routines will execute seamlessly without ever asking for verification again.</p>
-                </div>
-            </div>
-
-            <!-- System Troubleshooting Block -->
-            <div class="faq-category">
-                <div class="faq-category-title">Technical Troubleshooting</div>
-
-                <div class="faq-item">
-                    <h3>Shortcuts not working or failing to execute properly?</h3>
-                    <p>To avoid background process collision, clear any legacy files. Access your native Shortcuts library directory, wipe any duplicate, older, or corrupted SpotiActions routines, and verify that only a single instance of <strong>SpotiActions303</strong> is live. Open the utility interface to cleanly deploy a fresh configuration copy if required.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>App not launching Spotify?</h3>
-                    <p>Confirm the official Spotify platform binary is active on your device environment and logged into a functioning user account profile. SpotiActions functions strictly as an endpoint automation management bridge.</p>
-                </div>
-            </div>
-
-            <!-- Licensing Block -->
-            <div class="faq-category">
-                <div class="faq-category-title">Accounts & Licensing</div>
-
-                <div class="faq-item">
-                    <h3>Do I need a Spotify Premium subscription?</h3>
-                    <p>No. SpotiActions operates fully across both <strong>Spotify Free</strong> and <strong>Spotify Premium</strong> account ecosystems.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Does the app require an internal subscription or paywalls?</h3>
-                    <p>No. The utility is distributed as an upfront pay-once deployment package. It contains zero recurring in-app subscriptions, tiers, or paywalled modules.</p>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Footer Contact Block -->
-        <footer>
-            <div class="contact-box">
-                <h2>✉️ Need Technical Assistance?</h2>
-                <p>If you have any further questions, feature requests, or need support with your automation layouts, feel free to contact our engineering desk.</p>
-                <a href="mailto:support@myiosapps.org" class="contact-email">support@myiosapps.org</a>
-            </div>
-        </footer>
-
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Install a playlist</h3>
+        <p>Tap a cover on the main screen. iOS opens the share sheet: choose <b>Shortcuts</b> and add it.</p>
+        <div class="shot phone"><img src="IMG_7490.JPG" alt="SpotiActions main screen with the playlist covers" loading="lazy"></div>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Allow it once</h3>
+        <p>The first time it runs, iOS asks to let the shortcut run Spotify actions. Tap <b>Allow</b>. Once per playlist, and never again.</p>
+        <div class="shot square"><img src="tuto_permitir.png" alt="iOS asking to allow the shortcut to execute Spotify actions" loading="lazy"></div>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Automate it</h3>
+        <p>In Shortcuts › Automation, pick a trigger —a time, connecting to CarPlay, arriving home— and add <b>Select Playlist</b> followed by <b>Run Shortcut</b>.</p>
+        <div class="shot phone"><img src="IMG_7491.JPG" alt="The automation in the Shortcuts app" loading="lazy"></div>
+      </div>
     </div>
 
+    <div class="callout">
+      <div>⚠️</div>
+      <p>Set the automation to <strong>Run Immediately</strong>. With “Ask Before Running”, iOS waits for a tap — and at 6 AM nobody taps, so the alarm stays silent.</p>
+    </div>
+  </section>
+
+  <!-- ================= PREMIUM ================= -->
+  <section id="premium" data-section>
+    <h2>What Premium adds</h2>
+    <p class="lead">SpotiActions is free to download and you can try three playlists. One payment —no subscription— unlocks the rest.</p>
+
+    <div class="premium">
+      <div class="p-card">
+        <span class="tag">New</span>
+        <div class="ico">🎧</div>
+        <h3>Your own playlist</h3>
+        <p>Wake up to a playlist <em>you</em> made, with your own songs.</p>
+        <ol>
+          <li>Settings › <b>Your playlist</b></li>
+          <li>Paste the link of a <b>public</b> Spotify playlist and send it</li>
+          <li>Within 5 days an <b>Install</b> button appears in the same place</li>
+        </ol>
+      </div>
+      <div class="p-card">
+        <span class="tag">New</span>
+        <div class="ico">🚗</div>
+        <h3>Widget for Home Screen &amp; CarPlay</h3>
+        <p>Three playlists, one tap each. Choose them in Settings › <b>Widget</b> — it comes with three to start. Add it to your CarPlay dashboard too.</p>
+      </div>
+      <div class="p-card">
+        <div class="ico">📚</div>
+        <h3>The whole catalogue</h3>
+        <p>Every playlist, including the five <b>Personalized</b> ones that Spotify builds for each listener, plus every playlist added in future updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROBLEMAS ================= -->
+  <section id="fixes" data-section>
+    <h2>Fix a problem</h2>
+    <p class="lead">The issues people actually run into, and how to get past them.</p>
+
+    <div class="group-title" data-group>Shortcuts &amp; automations</div>
+
+    <details class="qa" id="not-found">
+      <summary>“Could not find the shortcut f_SA…”<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>The automation is pointing at a playlist whose shortcut isn't in your Shortcuts library — it was deleted, or the install never finished.</p>
+        <div class="square"><img src="tuto_find.jpg" alt="Shortcuts error: the file doesn't exist, could not find the shortcut" loading="lazy"></div>
+        <ol>
+          <li>Open the <b>Shortcuts</b> app and search for the name in the message (it starts with <kbd>f_SA</kbd>). If there's a leftover copy, delete it.</li>
+          <li>In SpotiActions, go to that playlist and use <b>Menu › Reinstall current playlist</b> — or long-press its cover.</li>
+          <li>Play it once so iOS asks for permission, and tap <b>Allow</b>.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details class="qa" id="replace">
+      <summary>Shortcuts says “You already have a shortcut named…”<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>Tap <b>Cancel</b>. You already have that playlist; SpotiActions marks it as installed either way.</p>
+        <div class="square"><img src="tuto_replace.jpg" alt="Shortcuts asking to replace, keep both, or cancel" loading="lazy"></div>
+        <p>Don't tap <b>Keep Both</b>: it creates a duplicate named “… 2” that clutters your library and can confuse later reinstalls. And don't tap <b>Replace</b> either.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="allow">
+      <summary>It asks me to allow “Spotify actions”<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>That's expected: iOS asks once per playlist, the first time its shortcut runs. Tap <b>Allow</b> and it won't ask again.</p>
+        <p>Tapped <b>Don't Allow</b> by mistake? Play the playlist again from SpotiActions. If iOS doesn't ask anymore, delete that shortcut in the Shortcuts app and use <b>Menu › Reinstall current playlist</b>.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="silent">
+      <summary>The automation runs, but nothing plays<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>Go through these, in order — one of them is almost always it:</p>
+        <ol>
+          <li>The automation is set to <b>Run Immediately</b>, not “Ask Before Running”.</li>
+          <li>You played that playlist <b>once by hand</b> and tapped <b>Allow</b>. Until then iOS stops to ask, and nobody answers at 6 AM.</li>
+          <li><b>Run Shortcut</b> uses the <em>result</em> of Select Playlist as its input — not a name typed by hand.</li>
+          <li>Spotify is installed on the same iPhone and you're logged in.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details class="qa" id="already-have">
+      <summary>The app says a playlist isn't installed, but I have it<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>This happens after deleting and reinstalling SpotiActions: your shortcuts stay in the Shortcuts app, but the app forgets which ones you have. iOS doesn't let an app check.</p>
+        <p>Under the cover, next to “Not installed yet”, tap <b>I already have it</b>. No need to install it again.</p>
+      </div>
+    </details>
+
+    <div class="group-title" data-group>Widget &amp; CarPlay</div>
+
+    <details class="qa" id="carplay">
+      <summary>The widget doesn't play from CarPlay<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>Your iPhone has to be <b>unlocked</b>. A widget can only start a playlist by opening SpotiActions, and iOS never opens an app from a widget while the phone is locked. That's an iOS rule, not something the app can change — which is why the widget shows “Unlock iPhone to play”.</p>
+        <p>For fully hands-free music in the car, use an automation instead: <b>When CarPlay connects</b> › Select Playlist › Run Shortcut. Automations do run with the phone locked.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="widget-opens">
+      <summary>A playlist in the widget opens the app instead of playing<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>That playlist isn't installed yet — the widget comes with three to start, and you may not have installed them. The app offers to install it right there; do it once, and next time the widget plays it directly.</p>
+      </div>
+    </details>
+
+    <div class="group-title" data-group>Your own playlist</div>
+
+    <details class="qa" id="own-playlist">
+      <summary>Can I use my own Spotify playlist?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p><b>Yes, with Premium</b> — one playlist of your own, with your own songs. Go to Settings › <b>Your playlist</b>, paste its Spotify link and send it. Within 5 days an Install button appears in the same place.</p>
+        <p>In your automation, use the <b>Personalized Playlist</b> action followed by <b>Run Shortcut</b>.</p>
+        <p>Everything else in the app is a catalogue of ready-made playlists: SpotiActions can't read or import your Spotify library.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="rejected">
+      <summary>My playlist request was rejected, or never arrives<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>The playlist has to be <b>public</b>. In Spotify, open it, make it public, and send the link again — the reason for a rejection appears right in Settings › Your playlist.</p>
+        <p>Also check you're signed in to iCloud on your iPhone: requests are sent through it. If five days have passed with no answer, write to us.</p>
+      </div>
+    </details>
+
+    <div class="group-title" data-group>Purchases</div>
+
+    <details class="qa" id="restore">
+      <summary>I paid, but I see the purchase screen<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>Open Settings › <b>Restore Purchase</b>. It's also the first thing to do on a new iPhone.</p>
+        <p>Bought SpotiActions back when it was a paid app? You don't need to buy anything again: the app recognises you automatically and gives you full access.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="refund">
+      <summary>How do I get a refund?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>Apple handles every App Store purchase, so refunds are requested from Apple — developers can't issue them. Go to <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, sign in, pick SpotiActions and request it.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="free-vs-paid">
+      <summary>What's free and what's paid?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>The app is free to download and you can try <b>three playlists</b> — any except the five Personalized ones.</p>
+        <p>A single payment unlocks every playlist, the ones added later, the widget and your own playlist. No subscription: nothing renews and nothing expires. Playlists you already installed keep working whatever you decide.</p>
+      </div>
+    </details>
+
+    <div class="group-title" data-group>General</div>
+
+    <details class="qa" id="spotify-free">
+      <summary>Do I need Spotify Premium?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p>No. It works with Spotify Free and Premium. On Spotify Free, Spotify itself may play a playlist in shuffle — that's a limit of Spotify Free, not of SpotiActions.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="locked">
+      <summary>Does it work with my iPhone locked?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <p><b>Automations, yes</b> — that's what makes it work as an alarm, as long as they're set to Run Immediately. <b>The widget, no</b>: iOS needs the phone unlocked to start anything from a widget.</p>
+      </div>
+    </details>
+
+    <details class="qa" id="requirements">
+      <summary>What do I need?<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m9 6 6 6-6 6"/></svg></summary>
+      <div class="ans">
+        <ul>
+          <li>iPhone with iOS 17.6 or later</li>
+          <li>Apple's <b>Shortcuts</b> app — free, and preinstalled on most iPhones</li>
+          <li><b>Spotify</b> on the same iPhone, logged in</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="empty" id="empty">
+      <p>Nothing matches “<span id="empty-q"></span>”. Tell us what's happening and we'll help.</p>
+      <a class="btn" id="empty-mail" href="mailto:support@myiosapps.org?subject=SpotiActions%20support">Email support</a>
+    </div>
+  </section>
+
+  <div class="contact">
+    <h2>Still stuck?</h2>
+    <p>Write to us with your iPhone model, iOS version and what you see. A screenshot saves a lot of back and forth.</p>
+    <a class="btn" href="mailto:support@myiosapps.org?subject=SpotiActions%20support">support@myiosapps.org</a>
+  </div>
+
+  <footer>SpotiActions is an independent app. It is not affiliated with, endorsed by, or sponsored by Spotify AB.</footer>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt=""></div>
+
+<script>
+(() => {
+  const q = document.getElementById('q');
+  const clear = document.getElementById('clear');
+  const count = document.getElementById('count');
+  const empty = document.getElementById('empty');
+  const items = [...document.querySelectorAll('.qa')];
+  const groups = [...document.querySelectorAll('[data-group]')];
+  const sections = [...document.querySelectorAll('[data-section]')];
+
+  // Texto de cada respuesta, normalizado una sola vez: sin acentos ni
+  // mayusculas, para que "cancion" encuentre "canción".
+  const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  items.forEach(el => {
+    el.dataset.text = norm(el.textContent);
+    el.querySelector('summary').dataset.orig = el.querySelector('summary').firstChild.textContent;
+  });
+
+  // Boton "copiar enlace" en cada respuesta: para mandar la solucion exacta
+  // en un correo de soporte o en la respuesta a una reseña.
+  items.forEach(el => {
+    const b = document.createElement('button');
+    b.className = 'copy';
+    b.type = 'button';
+    b.textContent = 'Copy link to this answer';
+    b.addEventListener('click', async () => {
+      const url = location.origin + location.pathname + '#' + el.id;
+      try { await navigator.clipboard.writeText(url); b.textContent = 'Link copied'; }
+      catch { history.replaceState(null, '', '#' + el.id); b.textContent = 'Link in address bar'; }
+      setTimeout(() => (b.textContent = 'Copy link to this answer'), 1800);
+    });
+    el.querySelector('.ans').appendChild(b);
+  });
+
+  function marcar(el, palabras) {
+    const s = el.querySelector('summary');
+    const nodo = s.firstChild;
+    let t = s.dataset.orig;
+    if (palabras.length) {
+      const re = new RegExp('(' + palabras.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+      const span = document.createElement('span');
+      span.innerHTML = t.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(re, '<mark>$1</mark>');
+      s.replaceChild(span, nodo);
+    } else if (nodo.nodeType !== 3) {
+      s.replaceChild(document.createTextNode(t), nodo);
+    }
+  }
+
+  function filtrar() {
+    const raw = q.value.trim();
+    const palabras = norm(raw).split(/\s+/).filter(w => w.length > 1);
+    clear.style.display = raw ? 'block' : 'none';
+    let n = 0;
+    items.forEach(el => {
+      const ok = palabras.every(w => el.dataset.text.includes(w));
+      el.classList.toggle('hidden', !ok);
+      if (ok) n++;
+      if (raw) el.open = ok && n <= 3;   // abre las tres primeras coincidencias
+      marcar(el, raw ? raw.split(/\s+/).filter(w => w.length > 1) : []);
+    });
+    // Con busqueda activa, fuera todo lo que no es respuesta.
+    document.getElementById('setup').classList.toggle('hidden', !!raw);
+    document.getElementById('premium').classList.toggle('hidden', !!raw);
+    groups.forEach(g => {
+      let sib = g.nextElementSibling, alguno = false;
+      while (sib && !sib.hasAttribute('data-group') && sib.classList.contains('qa')) {
+        if (!sib.classList.contains('hidden')) alguno = true;
+        sib = sib.nextElementSibling;
+      }
+      g.classList.toggle('hidden', raw && !alguno);
+    });
+    count.textContent = raw ? (n === 1 ? '1 answer' : n + ' answers') : '';
+    empty.style.display = raw && n === 0 ? 'block' : 'none';
+    if (raw && n === 0) {
+      document.getElementById('empty-q').textContent = raw;
+      document.getElementById('empty-mail').href =
+        'mailto:support@myiosapps.org?subject=' + encodeURIComponent('SpotiActions support') +
+        '&body=' + encodeURIComponent('I searched for: ' + raw + '\n\nWhat happens:\n');
+    }
+  }
+
+  q.addEventListener('input', filtrar);
+  clear.addEventListener('click', e => { e.preventDefault(); q.value = ''; filtrar(); q.focus(); });
+
+  function ir(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (q.value) { q.value = ''; filtrar(); }
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.classList.add('flash');
+    setTimeout(() => el.classList.remove('flash'), 1400);
+    history.replaceState(null, '', '#' + id);
+  }
+  document.querySelectorAll('[data-go]').forEach(c => c.addEventListener('click', () => ir(c.dataset.go)));
+
+  // Al saltar a una respuesta, que no quede debajo de la barra fija: el
+  // margen se ajusta a su altura real, que cambia con el ancho de pantalla.
+  const barra = document.querySelector('.search-bar');
+  const ajustar = () => document.documentElement.style.scrollPaddingTop = (barra.offsetHeight + 14) + 'px';
+  ajustar(); addEventListener('resize', ajustar);
+
+  // Enlace directo a una respuesta: la abre y la resalta.
+  if (location.hash) setTimeout(() => ir(location.hash.slice(1)), 150);
+
+  // Visor de imagenes
+  const lb = document.getElementById('lightbox');
+  document.querySelectorAll('.phone img, .square img').forEach(img =>
+    img.addEventListener('click', () => { lb.querySelector('img').src = img.src; lb.classList.add('on'); }));
+  lb.addEventListener('click', () => lb.classList.remove('on'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+})();
+</script>
 </body>
 </html>
